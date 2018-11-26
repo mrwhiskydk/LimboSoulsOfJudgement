@@ -2,10 +2,14 @@
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
+using Microsoft.Xna.Framework;
 
 namespace LimboSoulsOfJudgement
 {
-    public class Soul
+    public class Soul : AnimatedGameObject
     {
+        public Soul(int frameCount, float animationFPS, Vector2 startPostion, string spriteName) : base(frameCount, animationFPS, startPostion, spriteName)
+        {
+        }
     }
 }
