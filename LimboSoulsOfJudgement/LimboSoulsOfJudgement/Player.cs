@@ -1,5 +1,6 @@
 ﻿using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Graphics;
+using Microsoft.Xna.Framework.Input;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -10,13 +11,24 @@ namespace LimboSoulsOfJudgement
 {
     public class Player : Character
     {
+        MeleeWeapon melee;
+        RangedWeapon ranged;
+
         public Player(int frameCount, float animationFPS, Vector2 startPostion, string spriteName) : base(frameCount, animationFPS, startPostion, spriteName)
         {
+            melee = new MeleeWeapon();
+            ranged = new RangedWeapon();
         }
 
-        public void Update(GameTime gameTime)
+
+
+        public override void Update(GameTime gameTime)
         {
             //OVERRIDE FROM CHARACTER
+            if (Mouse.GetState().LeftButton == ButtonState.Pressed)
+            {
+                System.Console.Write(position);
+            }
         }
 
         /// <summary>
@@ -31,7 +43,7 @@ namespace LimboSoulsOfJudgement
         /// 
         /// </summary>
         /// <param name="otherObject"></param>
-        public void DoCollision(GameObject otherObject)
+        public override void DoCollision(GameObject otherObject)
         {
             //OVERRIDE FROM CHARACTER
         }
@@ -40,7 +52,7 @@ namespace LimboSoulsOfJudgement
         /// 
         /// </summary>
         /// <param name="spriteBatch"></param>
-        public void Draw(SpriteBatch spriteBatch)
+        public override void Draw(SpriteBatch spriteBatch)
         {
             //OVERRIDE FROM CHARACTER
         }
