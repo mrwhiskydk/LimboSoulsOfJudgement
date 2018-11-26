@@ -9,8 +9,12 @@ namespace LimboSoulsOfJudgement
 {
     public class RangedWeapon : Weapon
     {
-        public RangedWeapon(Vector2 startPosition, string spriteName) : base(startPosition, spriteName)
+        private int speed = 1000;
+        private int amountToFire = 1;
+
+        public RangedWeapon() : base("bow")
         {
+
         }
     }
 }
