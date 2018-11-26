@@ -27,7 +27,7 @@ namespace LimboSoulsOfJudgement
 
         public AnimatedGameObject(int frameCount, float animationFPS, string spriteName) : this(frameCount, animationFPS, Vector2.Zero, spriteName)
         {
-
+                        
         }
 
         public AnimatedGameObject(int frameCount, float animationFPS, Vector2 startPostion, string spriteName) : base(startPostion, spriteName)

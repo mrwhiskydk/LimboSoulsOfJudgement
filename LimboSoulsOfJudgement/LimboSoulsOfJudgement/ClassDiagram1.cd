@@ -3,7 +3,7 @@
   <Class Name="LimboSoulsOfJudgement.GameWorld" Collapsed="true">
     <Position X="11.25" Y="1" Width="1.5" />
     <TypeIdentifier>
-      <HashCode>AAZgEEAAAAAABwAJAAIEQAAAAAAAAEhBBAAAAAAAIAQ=</HashCode>
+      <HashCode>AAZgEEAAAAAABwAJAAIEQAAAAAAAAEhBAAAAAAAAAAQ=</HashCode>
       <FileName>GameWorld.cs</FileName>
     </TypeIdentifier>
   </Class>
@@ -64,7 +64,7 @@
     </TypeIdentifier>
   </Class>
   <Class Name="LimboSoulsOfJudgement.Ability" Collapsed="true">
-    <Position X="1" Y="6.75" Width="1.5" />
+    <Position X="3" Y="6" Width="1.5" />
     <TypeIdentifier>
       <HashCode>AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA=</HashCode>
       <FileName>Ability.cs</FileName>
@@ -94,14 +94,14 @@
   <Class Name="LimboSoulsOfJudgement.Player" Collapsed="true">
     <Position X="5.75" Y="7.5" Width="1.5" />
     <TypeIdentifier>
-      <HashCode>AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAACAAAAA=</HashCode>
+      <HashCode>AAQAAAAAAAAAAgAAAAAAAAAAAgAAAAAAAAAAACAAAAA=</HashCode>
       <FileName>Player.cs</FileName>
     </TypeIdentifier>
   </Class>
   <Class Name="LimboSoulsOfJudgement.Enemy" Collapsed="true">
     <Position X="8.25" Y="7.5" Width="1.5" />
     <TypeIdentifier>
-      <HashCode>AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA=</HashCode>
+      <HashCode>AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAACAAAAA=</HashCode>
       <FileName>Enemy.cs</FileName>
     </TypeIdentifier>
   </Class>

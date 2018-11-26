@@ -14,16 +14,10 @@ namespace LimboSoulsOfJudgement
     public class GameWorld : Game
     {
         private SpriteBatch spriteBatch;
-        private Texture2D background;
-        private Rectangle exampleRect;
         private List<GameObject> gameObjects = new List<GameObject>();
         private static List<GameObject> toBeAdded = new List<GameObject>();
         private static List<GameObject> toBeRemoved = new List<GameObject>();
-
-
-
-        private Player player;
-        private SpriteFont font;
+        public Player player;
         private Texture2D collisionTexture;
 
         private static GraphicsDeviceManager graphics;
@@ -54,10 +48,10 @@ namespace LimboSoulsOfJudgement
             graphics = new GraphicsDeviceManager(this);
             graphics.PreferredBackBufferWidth = 1920;  // set this value to the desired width of your window
             graphics.PreferredBackBufferHeight = 1080;   // set this value to the desired height of your window
-            graphics.ToggleFullScreen();
+            //graphics.ToggleFullScreen();
             graphics.ApplyChanges();
             Content.RootDirectory = "Content";
-            // _content = Content;
+            _content = Content;
         }
 
         public static void AddGameObject(GameObject go)
@@ -91,6 +85,8 @@ namespace LimboSoulsOfJudgement
         {
             // Create a new SpriteBatch, which can be used to draw textures.
             spriteBatch = new SpriteBatch(GraphicsDevice);
+            collisionTexture = Content.Load<Texture2D>("CollisionTexture");
+            player = new Player();
 
         }
 
@@ -152,7 +148,7 @@ namespace LimboSoulsOfJudgement
         {
             GraphicsDevice.Clear(Color.CornflowerBlue);
             spriteBatch.Begin();
-            spriteBatch.Draw(background, exampleRect, Color.White);
+
             foreach (GameObject go in gameObjects)
             {
                 go.Draw(spriteBatch);

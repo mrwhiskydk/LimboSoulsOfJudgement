@@ -10,12 +10,14 @@ namespace LimboSoulsOfJudgement
 {
     public class Player : Character
     {
-        public Player(int frameCount, float animationFPS, Vector2 startPostion, string spriteName) : base(frameCount, animationFPS, startPostion, spriteName)
+        public Player() : base(3, 12, new Vector2(GameWorld.ScreenSize.Width / 2, GameWorld.ScreenSize.Height/2), "Melee2")
         {
+
         }
 
         public override void Update(GameTime gameTime)
         {
+            base.Update(gameTime);
             //OVERRIDE FROM CHARACTER
         }
 

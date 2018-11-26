@@ -38,6 +38,7 @@ namespace LimboSoulsOfJudgement
 
         public override void Update(GameTime gameTime)
         {
+            base.Update(gameTime);
             //OVERRIDE FROM ANIMATED GAME OBJECT
         }
 
