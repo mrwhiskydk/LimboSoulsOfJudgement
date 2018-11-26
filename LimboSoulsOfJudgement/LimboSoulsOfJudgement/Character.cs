@@ -38,7 +38,7 @@ namespace LimboSoulsOfJudgement
 
         public override void Update(GameTime gameTime)
         {
-
+            //OVERRIDE FROM ANIMATED GAME OBJECT
         }
 
         /// <summary>
