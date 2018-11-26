@@ -1,38 +1,66 @@
 ﻿<?xml version="1.0" encoding="utf-8"?>
 <ClassDiagram MajorVersion="1" MinorVersion="1">
-  <Class Name="LimboSoulsOfJudgement.Character" Collapsed="true">
-    <Position X="8.5" Y="2.5" Width="1.5" />
+  <Class Name="LimboSoulsOfJudgement.GameWorld" Collapsed="true">
+    <Position X="5.25" Y="1.75" Width="1.5" />
     <TypeIdentifier>
-      <HashCode>AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA=</HashCode>
-      <FileName>Character.cs</FileName>
+      <HashCode>AAQAEEAAAAAAAwAAAAAAAAAAAAAAAAgAAAAAAAAAAAQ=</HashCode>
+      <FileName>GameWorld.cs</FileName>
     </TypeIdentifier>
   </Class>
-  <Class Name="LimboSoulsOfJudgement.Enemy" Collapsed="true">
-    <Position X="9.25" Y="3.75" Width="1.5" />
+  <Class Name="LimboSoulsOfJudgement.GameObject" Collapsed="true">
+    <Position X="5.25" Y="3.75" Width="1.5" />
     <TypeIdentifier>
       <HashCode>AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA=</HashCode>
-      <FileName>Enemy.cs</FileName>
+      <FileName>GameObject.cs</FileName>
     </TypeIdentifier>
   </Class>
-  <Class Name="LimboSoulsOfJudgement.Player" Collapsed="true">
-    <Position X="7.25" Y="3.75" Width="1.5" />
+  <Class Name="LimboSoulsOfJudgement.Level" Collapsed="true">
+    <Position X="8.25" Y="3.75" Width="1.5" />
     <TypeIdentifier>
       <HashCode>AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA=</HashCode>
-      <FileName>Player.cs</FileName>
+      <FileName>Level.cs</FileName>
     </TypeIdentifier>
   </Class>
-  <Class Name="LimboSoulsOfJudgement.MinorEnemy" Collapsed="true">
-    <Position X="8.25" Y="4.75" Width="1.5" />
+  <Class Name="LimboSoulsOfJudgement.AnimatedGameObject" Collapsed="true">
+    <Position X="4.25" Y="5.25" Width="1.5" />
     <TypeIdentifier>
       <HashCode>AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA=</HashCode>
-      <FileName>MinorEnemy.cs</FileName>
+      <FileName>AnimatedGameObject.cs</FileName>
     </TypeIdentifier>
   </Class>
-  <Class Name="LimboSoulsOfJudgement.BossEnemy" Collapsed="true">
-    <Position X="10" Y="4.75" Width="1.5" />
+  <Class Name="LimboSoulsOfJudgement.Platform" Collapsed="true">
+    <Position X="6.75" Y="5.25" Width="1.5" />
     <TypeIdentifier>
       <HashCode>AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA=</HashCode>
-      <FileName>BossEnemy.cs</FileName>
+      <FileName>Platform.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="LimboSoulsOfJudgement.Projectile" Collapsed="true">
+    <Position X="9.5" Y="5.25" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA=</HashCode>
+      <FileName>Projectile.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="LimboSoulsOfJudgement.Weapon" Collapsed="true">
+    <Position X="12" Y="5.25" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA=</HashCode>
+      <FileName>Weapon.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="LimboSoulsOfJudgement.RangedWeapon" Collapsed="true">
+    <Position X="10.75" Y="6.75" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA=</HashCode>
+      <FileName>RangedWeapon.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="LimboSoulsOfJudgement.MeleeWeapon" Collapsed="true">
+    <Position X="13.25" Y="6.75" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA=</HashCode>
+      <FileName>MeleeWeapon.cs</FileName>
     </TypeIdentifier>
   </Class>
   <Font Name="Segoe UI" Size="9" />
