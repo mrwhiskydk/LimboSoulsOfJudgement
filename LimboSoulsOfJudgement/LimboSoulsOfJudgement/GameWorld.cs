@@ -14,16 +14,10 @@ namespace LimboSoulsOfJudgement
     public class GameWorld : Game
     {
         private SpriteBatch spriteBatch;
-        private Texture2D background;
-        private Rectangle exampleRect;
         private List<GameObject> gameObjects = new List<GameObject>();
         private static List<GameObject> toBeAdded = new List<GameObject>();
         private static List<GameObject> toBeRemoved = new List<GameObject>();
-
-
-
-        private Player player;
-        private SpriteFont font;
+        public Player player;
         private Texture2D collisionTexture;
 
         private static GraphicsDeviceManager graphics;
@@ -91,6 +85,9 @@ namespace LimboSoulsOfJudgement
         {
             // Create a new SpriteBatch, which can be used to draw textures.
             spriteBatch = new SpriteBatch(GraphicsDevice);
+            collisionTexture = Content.Load<Texture2D>("CollisionTexture");
+            player = new Player();
+
         }
 
 

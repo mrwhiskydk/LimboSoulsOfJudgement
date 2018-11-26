@@ -10,7 +10,6 @@ namespace LimboSoulsOfJudgement
     {
         public Projectile(Vector2 startPosition, string spriteName) : base(startPosition, spriteName)
         {
-
         }
     }
 }

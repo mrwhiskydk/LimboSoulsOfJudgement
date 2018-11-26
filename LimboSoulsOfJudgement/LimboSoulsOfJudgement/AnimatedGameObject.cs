@@ -16,6 +16,10 @@ namespace LimboSoulsOfJudgement
         int currentAnimationIndex = 0;
         double timeElapsed = 0;
 
+        /// <summary>
+        /// Bool that checks for the current direction of the GameObject, on the X axis
+        /// </summary>
+        public bool facingRight;
 
         public override Rectangle CollisionBox
         {
@@ -27,7 +31,7 @@ namespace LimboSoulsOfJudgement
 
         public AnimatedGameObject(int frameCount, float animationFPS, string spriteName) : this(frameCount, animationFPS, Vector2.Zero, spriteName)
         {
-
+                        
         }
 
         public AnimatedGameObject(int frameCount, float animationFPS, Vector2 startPostion, string spriteName) : base(startPostion, spriteName)

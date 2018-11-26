@@ -27,18 +27,17 @@ namespace LimboSoulsOfJudgement
         /// <summary>
         /// Default Character Constructor
         /// </summary>
-
-        public Character(int frameCount, float animationFPS, string spriteName) : base(frameCount, animationFPS, spriteName)
-        {
-        }
-
         public Character(int frameCount, float animationFPS, Vector2 startPostion, string spriteName) : base(frameCount, animationFPS, startPostion, spriteName)
         {
         }
 
+        /// <summary>
+        /// Method that updates game logic
+        /// </summary>
+        /// <param name="gameTime"></param>
         public override void Update(GameTime gameTime)
         {
-            //OVERRIDE FROM ANIMATED GAME OBJECT
+            base.Update(gameTime);
         }
 
         /// <summary>
