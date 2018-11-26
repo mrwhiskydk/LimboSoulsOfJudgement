@@ -21,7 +21,12 @@ namespace LimboSoulsOfJudgement
         /// <param name="spriteName"></param>
         public Player(int frameCount, float animationFPS, Vector2 startPostion, string spriteName) : base(frameCount, animationFPS, startPostion, spriteName)
         {
+            //Maximum amount of Player health
+            maxHealth = 100;
+            health = maxHealth;
 
+            //Player movementspeed amount
+            movementSpeed = 250;
         }
 
         /// <summary>
@@ -45,15 +50,22 @@ namespace LimboSoulsOfJudgement
             //Statement that checks if Player is moving to the left
             if (Keyboard.GetState().IsKeyDown(Keys.A))
             {
-
+                facingRight = false;
+                position.X -= (float)(movementSpeed * gameTime.ElapsedGameTime.TotalSeconds);
             }
 
             //Statement that checks if Player is moving to the right
             if (Keyboard.GetState().IsKeyDown(Keys.D))
             {
-
+                facingRight = true;
+                position.Y += (float)(movementSpeed * gameTime.ElapsedGameTime.TotalSeconds);
             }
 
+            //Statement that checks if the Player is jumping, and handles Player jumpforce while in the air 
+            if (Keyboard.GetState().IsKeyDown(Keys.Space))
+            {
+
+            }
         }
 
         /// <summary>

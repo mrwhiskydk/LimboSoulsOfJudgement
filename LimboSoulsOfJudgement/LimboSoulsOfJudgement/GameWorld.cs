@@ -54,10 +54,9 @@ namespace LimboSoulsOfJudgement
             graphics = new GraphicsDeviceManager(this);
             graphics.PreferredBackBufferWidth = 1920;  // set this value to the desired width of your window
             graphics.PreferredBackBufferHeight = 1080;   // set this value to the desired height of your window
-            graphics.ToggleFullScreen();
             graphics.ApplyChanges();
             Content.RootDirectory = "Content";
-            // _content = Content;
+            _content = Content;
         }
 
         public static void AddGameObject(GameObject go)
@@ -152,7 +151,6 @@ namespace LimboSoulsOfJudgement
         {
             GraphicsDevice.Clear(Color.CornflowerBlue);
             spriteBatch.Begin();
-            spriteBatch.Draw(background, exampleRect, Color.White);
             foreach (GameObject go in gameObjects)
             {
                 go.Draw(spriteBatch);
