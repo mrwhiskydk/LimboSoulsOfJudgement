@@ -11,16 +11,11 @@ namespace LimboSoulsOfJudgement
 {
     public class Player : Character
     {
-        public Player() : base(3, 12, new Vector2(GameWorld.ScreenSize.Width / 2, GameWorld.ScreenSize.Height/2), "Melee2")
 
         /// <summary>
         /// Player constructor that sets player animation values, position and sprite name
         /// </summary>
-        /// <param name="frameCount"></param>
-        /// <param name="animationFPS"></param>
-        /// <param name="startPostion"></param>
-        /// <param name="spriteName"></param>
-        public Player(int frameCount, float animationFPS, Vector2 startPostion, string spriteName) : base(frameCount, animationFPS, startPostion, spriteName)
+        public Player() : base(3, 12, new Vector2(GameWorld.ScreenSize.Width / 2, GameWorld.ScreenSize.Height/2), "Melee2")
         {
             //Maximum amount of Player health
             maxHealth = 100;
@@ -59,7 +54,7 @@ namespace LimboSoulsOfJudgement
             if (Keyboard.GetState().IsKeyDown(Keys.D))
             {
                 facingRight = true;
-                position.Y += (float)(movementSpeed * gameTime.ElapsedGameTime.TotalSeconds);
+                position.X += (float)(movementSpeed * gameTime.ElapsedGameTime.TotalSeconds);
             }
 
             //Statement that checks if the Player is jumping, and handles Player jumpforce while in the air 
