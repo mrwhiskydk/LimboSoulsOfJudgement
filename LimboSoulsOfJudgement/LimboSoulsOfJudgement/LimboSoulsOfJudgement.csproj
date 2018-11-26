@@ -42,8 +42,13 @@
   </PropertyGroup>
   <ItemGroup>
     <Compile Include="AnimatedGameObject.cs" />
+    <Compile Include="BossEnemy.cs" />
+    <Compile Include="Character.cs" />
+    <Compile Include="Enemy.cs" />
     <Compile Include="GameWorld.cs" />
     <Compile Include="GameObject.cs" />
+    <Compile Include="MinorEnemy.cs" />
+    <Compile Include="Player.cs" />
     <Compile Include="Level.cs" />
     <Compile Include="MeleeWeapon.cs" />
     <Compile Include="Platform.cs" />
