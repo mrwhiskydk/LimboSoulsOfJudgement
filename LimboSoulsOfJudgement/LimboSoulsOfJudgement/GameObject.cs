@@ -8,5 +8,6 @@ namespace LimboSoulsOfJudgement
 {
     class GameObject
     {
+
     }
 }
