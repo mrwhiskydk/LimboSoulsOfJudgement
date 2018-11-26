@@ -1,4 +1,5 @@
 ﻿using Microsoft.Xna.Framework;
+using Microsoft.Xna.Framework.Content;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -7,7 +8,7 @@ using System.Threading.Tasks;
 
 namespace LimboSoulsOfJudgement
 {
-    public abstract class Character
+    public abstract class Character : AnimatedGameObject
     {
         protected int health;
         protected int maxHealth;
@@ -26,16 +27,16 @@ namespace LimboSoulsOfJudgement
         /// <summary>
         /// Default Character Constructor
         /// </summary>
-        public Character()
-        {
 
+        public Character(int frameCount, float animationFPS, string spriteName) : base(frameCount, animationFPS, spriteName)
+        {
         }
 
-        /// <summary>
-        /// Method that updates general logic of the game
-        /// </summary>
-        /// <param name="gameTime"></param>
-        public void Update(GameTime gameTime)
+        public Character(int frameCount, float animationFPS, Vector2 startPostion, string spriteName) : base(frameCount, animationFPS, startPostion, spriteName)
+        {
+        }
+
+        public override void Update(GameTime gameTime)
         {
             //OVERRIDE FROM ANIMATED GAME OBJECT
         }

@@ -10,13 +10,7 @@ namespace LimboSoulsOfJudgement
 {
     public class Player : Character
     {
-
-
-
-        /// <summary>
-        /// Player Constructor
-        /// </summary>
-        public Player()
+        public Player(int frameCount, float animationFPS, Vector2 startPostion, string spriteName) : base(frameCount, animationFPS, startPostion, spriteName)
         {
         }
 
@@ -54,3 +48,6 @@ namespace LimboSoulsOfJudgement
 
     }
 }
+     
+    
+

@@ -9,14 +9,18 @@ using System.Threading.Tasks;
 
 namespace LimboSoulsOfJudgement
 {
-    class GameObject
+    public class GameObject
     {
         protected Texture2D sprite;
-        protected float rotation;
-        protected Vector2 position;
-        public Vector2 Position { get => position; }
 
         protected ContentManager content;
+        protected float rotation;
+        protected Vector2 position;
+
+        /// <summary>
+        /// Property for the position of current GameObject
+        /// </summary>
+        public Vector2 Position { get => position; set => position = value; }
 
         /// <summary>
         /// The Collision Box of the GameObject. The default box is based upon the GameObject position and sprite size
@@ -56,9 +60,9 @@ namespace LimboSoulsOfJudgement
         /// <param name="content">Reference to a ContentManager for loading resources</param>
         /// <param name="spriteName">The name of the texture resource the should be used for the sprite</param>
         /// <exception cref="Microsoft.Xna.Framework.Content.ContentLoadException">Thrown if a matching texture cant be found for spriteName</exception>
-        public GameObject(ContentManager content, string spriteName) : this(Vector2.Zero, content, spriteName)
+        public GameObject(string spriteName) : this(Vector2.Zero, spriteName)
         {
-            this.content = content;
+
         }
 
         /// <summary>
@@ -68,7 +72,7 @@ namespace LimboSoulsOfJudgement
         /// <param name="content">Reference to a ContentManager for loading resources</param>
         /// <param name="spriteName">The name of the texture resource the should be used for the sprite</param>
         /// <exception cref="Microsoft.Xna.Framework.Content.ContentLoadException">Thrown if a matching texture cant be found for spriteName</exception>
-        public GameObject(Vector2 startPosition, ContentManager content, string spriteName)
+        public GameObject(Vector2 startPosition, string spriteName)
         {
             position = startPosition;
             sprite = content.Load<Texture2D>(spriteName);
