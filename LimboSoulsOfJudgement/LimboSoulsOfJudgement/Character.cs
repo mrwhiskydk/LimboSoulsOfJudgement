@@ -8,14 +8,20 @@ using System.Threading.Tasks;
 
 namespace LimboSoulsOfJudgement
 {
-    public class Character : AnimatedGameObject
+    public abstract class Character
     {
         protected int health;
         protected int maxHealth;
         protected float movementSpeed;
 
+        /// <summary>
+        /// Property that sets the health value of the current GameObject
+        /// </summary>
         protected int Health { get; set; }
 
+        /// <summary>
+        /// Property that sets the max health value of the current GameObject
+        /// </summary>
         protected int MaxHealth { get; set; }
 
         /// <summary>
@@ -29,5 +35,15 @@ namespace LimboSoulsOfJudgement
         public Character(int frameCount, float animationFPS, Vector2 startPostion, string spriteName) : base(frameCount, animationFPS, startPostion, spriteName)
         {
         }
+
+        public void Update(GameTime gameTime)
+        {
+
+        }
+
+        /// <summary>
+        /// Abstract method used in Player and Enemy to secure individual movement functionality between each class
+        /// </summary>
+        protected abstract void HandleMovement(GameTime gameTime);
     }
 }
