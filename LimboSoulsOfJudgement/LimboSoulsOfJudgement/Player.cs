@@ -10,13 +10,26 @@ namespace LimboSoulsOfJudgement
 {
     public class Player : Character
     {
+
+        /// <summary>
+        /// Player constructor that sets player animation values, position and sprite name
+        /// </summary>
+        /// <param name="frameCount"></param>
+        /// <param name="animationFPS"></param>
+        /// <param name="startPostion"></param>
+        /// <param name="spriteName"></param>
         public Player(int frameCount, float animationFPS, Vector2 startPostion, string spriteName) : base(frameCount, animationFPS, startPostion, spriteName)
         {
+
         }
 
-        public void Update(GameTime gameTime)
+        /// <summary>
+        /// Update method that enables Player movement.
+        /// </summary>
+        /// <param name="gameTime"></param>
+        public override void Update(GameTime gameTime)
         {
-            //OVERRIDE FROM CHARACTER
+            base.Update(gameTime);
         }
 
         /// <summary>
@@ -28,21 +41,21 @@ namespace LimboSoulsOfJudgement
         }
 
         /// <summary>
-        /// 
+        /// Method that handles player collision with other GameObjects.
         /// </summary>
         /// <param name="otherObject"></param>
-        public void DoCollision(GameObject otherObject)
+        public override void DoCollision(GameObject otherObject)
         {
-            //OVERRIDE FROM CHARACTER
+            
         }
 
         /// <summary>
-        /// 
+        /// Draws the Player sprite in a specific way.
         /// </summary>
         /// <param name="spriteBatch"></param>
-        public void Draw(SpriteBatch spriteBatch)
+        public override void Draw(SpriteBatch spriteBatch)
         {
-            //OVERRIDE FROM CHARACTER
+            base.Draw(spriteBatch);
         }
 
 
