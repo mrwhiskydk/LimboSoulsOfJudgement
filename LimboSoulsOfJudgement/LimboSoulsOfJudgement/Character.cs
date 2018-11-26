@@ -8,7 +8,7 @@ using System.Threading.Tasks;
 
 namespace LimboSoulsOfJudgement
 {
-    public abstract class Character
+    public abstract class Character : AnimatedGameObject
     {
         protected int health;
         protected int maxHealth;
@@ -36,7 +36,7 @@ namespace LimboSoulsOfJudgement
         {
         }
 
-        public void Update(GameTime gameTime)
+        public override void Update(GameTime gameTime)
         {
 
         }

@@ -12,5 +12,7 @@ namespace LimboSoulsOfJudgement
         public Enemy(int frameCount, float animationFPS, Vector2 startPostion, string spriteName) : base(frameCount, animationFPS, startPostion, spriteName)
         {
         }
+
+
     }
 }
