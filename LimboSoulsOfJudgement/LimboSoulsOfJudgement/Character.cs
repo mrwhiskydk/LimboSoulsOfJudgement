@@ -31,9 +31,13 @@ namespace LimboSoulsOfJudgement
 
         }
 
+        /// <summary>
+        /// Method that updates general logic of the game
+        /// </summary>
+        /// <param name="gameTime"></param>
         public void Update(GameTime gameTime)
         {
-
+            //OVERRIDE FROM ANIMATED GAME OBJECT
         }
 
         /// <summary>
