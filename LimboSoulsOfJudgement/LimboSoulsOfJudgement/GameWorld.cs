@@ -148,7 +148,6 @@ namespace LimboSoulsOfJudgement
         {
             GraphicsDevice.Clear(Color.CornflowerBlue);
             spriteBatch.Begin();
-
             foreach (GameObject go in gameObjects)
             {
                 go.Draw(spriteBatch);
