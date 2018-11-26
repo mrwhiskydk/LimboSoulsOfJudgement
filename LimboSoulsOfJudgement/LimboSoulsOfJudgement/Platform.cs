@@ -5,7 +5,7 @@ using System.Text;
 
 namespace LimboSoulsOfJudgement
 {
-    public class Platform
+    public class Platform : GameObject
     {
     }
 }
