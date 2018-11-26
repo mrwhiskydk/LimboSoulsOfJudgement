@@ -12,7 +12,7 @@ namespace LimboSoulsOfJudgement
         public int karma;
         
         /// <summary>
-        /// MinorEnemy constructor that sets animation values, position and sprite names of current GameObject
+        /// MinorEnemy constructor that sets animation values, position and sprite names of current MinorEnemy GameObject
         /// </summary>
         /// <param name="frameCount"></param>
         /// <param name="animationFPS"></param>
@@ -26,7 +26,7 @@ namespace LimboSoulsOfJudgement
         /// <summary>
         /// Method that updates game logic of the current MinorEnemy GameObject
         /// </summary>
-        /// <param name="gameTime"></param>
+        /// <param name="gameTime">Time elapsed since last call in the update</param>
         public override void Update(GameTime gameTime)
         {
             base.Update(gameTime);

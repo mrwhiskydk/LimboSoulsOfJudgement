@@ -10,7 +10,13 @@ namespace LimboSoulsOfJudgement
     public class BossEnemy : Enemy
     {
 
-
+        /// <summary>
+        /// BossEnemy constructor that sets animation values, position and sprite names of current BossEnemy GameObject
+        /// </summary>
+        /// <param name="frameCount"></param>
+        /// <param name="animationFPS"></param>
+        /// <param name="startPostion"></param>
+        /// <param name="spriteName"></param>
         public BossEnemy(int frameCount, float animationFPS, Vector2 startPostion, string spriteName) : base(frameCount, animationFPS, startPostion, spriteName)
         {
         }
@@ -23,5 +29,7 @@ namespace LimboSoulsOfJudgement
         {
             base.Update(gameTime);
         }
+
+
     }
 }

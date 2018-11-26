@@ -5,6 +5,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using Microsoft.Xna.Framework.Input;
 
 namespace LimboSoulsOfJudgement
 {
@@ -30,6 +31,8 @@ namespace LimboSoulsOfJudgement
         public override void Update(GameTime gameTime)
         {
             base.Update(gameTime);
+
+            HandleMovement(gameTime);
         }
 
         /// <summary>
@@ -38,7 +41,19 @@ namespace LimboSoulsOfJudgement
         /// <param name="gameTime">Time elapsed since last call in the update</param>
         protected override void HandleMovement(GameTime gameTime)
         {
-            
+
+            //Statement that checks if Player is moving to the left
+            if (Keyboard.GetState().IsKeyDown(Keys.A))
+            {
+
+            }
+
+            //Statement that checks if Player is moving to the right
+            if (Keyboard.GetState().IsKeyDown(Keys.D))
+            {
+
+            }
+
         }
 
         /// <summary>
