@@ -14,7 +14,7 @@ namespace LimboSoulsOfJudgement
         {
         }
 
-        public void Update(GameTime gameTime)
+        public override void Update(GameTime gameTime)
         {
             //OVERRIDE FROM CHARACTER
         }
@@ -31,7 +31,7 @@ namespace LimboSoulsOfJudgement
         /// 
         /// </summary>
         /// <param name="otherObject"></param>
-        public void DoCollision(GameObject otherObject)
+        public override void DoCollision(GameObject otherObject)
         {
             //OVERRIDE FROM CHARACTER
         }
@@ -40,7 +40,7 @@ namespace LimboSoulsOfJudgement
         /// 
         /// </summary>
         /// <param name="spriteBatch"></param>
-        public void Draw(SpriteBatch spriteBatch)
+        public override void Draw(SpriteBatch spriteBatch)
         {
             //OVERRIDE FROM CHARACTER
         }

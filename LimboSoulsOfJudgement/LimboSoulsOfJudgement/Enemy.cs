@@ -13,6 +13,9 @@ namespace LimboSoulsOfJudgement
         {
         }
 
+        protected override void HandleMovement(GameTime gameTime)
+        {
 
+        }
     }
 }
