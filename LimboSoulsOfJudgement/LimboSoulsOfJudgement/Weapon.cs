@@ -7,10 +7,17 @@ using Microsoft.Xna.Framework.Content;
 
 namespace LimboSoulsOfJudgement
 {
-    public class Weapon : GameObject
+    public abstract class Weapon : GameObject
     {
-        public Weapon(Vector2 startPosition, string spriteName) : base(startPosition, spriteName)
+        protected float attackRate = 1;
+        protected float currentAttackRate = 1;
+        protected int damage = 1;
+        protected double lastAttack = 0;
+        protected bool equipped = false;
+
+        public Weapon(string spriteName) : base(spriteName)
         {
+
         }
     }
 }

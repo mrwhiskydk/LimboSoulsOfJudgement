@@ -9,7 +9,7 @@ namespace LimboSoulsOfJudgement
 {
     public class MeleeWeapon : Weapon
     {
-        public MeleeWeapon(Vector2 startPosition, string spriteName) : base(startPosition, spriteName)
+        public MeleeWeapon() : base("sword")
         {
         }
     }
