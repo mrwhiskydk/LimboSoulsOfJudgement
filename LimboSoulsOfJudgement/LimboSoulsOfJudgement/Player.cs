@@ -24,9 +24,9 @@ namespace LimboSoulsOfJudgement
         }
 
         /// <summary>
-        /// Update method that enables Player movement.
+        /// Update method that enables Player movement
         /// </summary>
-        /// <param name="gameTime"></param>
+        /// <param name="gameTime">Time elapsed since last call in the update</param>
         public override void Update(GameTime gameTime)
         {
             base.Update(gameTime);
@@ -35,15 +35,16 @@ namespace LimboSoulsOfJudgement
         /// <summary>
         /// Method that sets the default movement functionality of the Player
         /// </summary>
+        /// <param name="gameTime">Time elapsed since last call in the update</param>
         protected override void HandleMovement(GameTime gameTime)
         {
             
         }
 
         /// <summary>
-        /// Method that handles player collision with other GameObjects.
+        /// Method that handles player collision with other GameObjects
         /// </summary>
-        /// <param name="otherObject"></param>
+        /// <param name="otherObject">The GameObject that the player object collides with</param>
         public override void DoCollision(GameObject otherObject)
         {
             
@@ -52,7 +53,7 @@ namespace LimboSoulsOfJudgement
         /// <summary>
         /// Draws the Player sprite in a specific way.
         /// </summary>
-        /// <param name="spriteBatch"></param>
+        /// <param name="spriteBatch">The spritebatch that is used for drawing</param>
         public override void Draw(SpriteBatch spriteBatch)
         {
             base.Draw(spriteBatch);
