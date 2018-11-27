@@ -12,6 +12,11 @@ namespace LimboSoulsOfJudgement
         private bool canSwitchWeapons = true;
         private double attackTimer = 0;
 
+        private const float jumpPower = 1000;
+        private double jumpForce = jumpPower;
+
+        private bool canJump = false;   //Controls wether the Player can jump or not
+
         /// <summary>
         /// Player constructor that sets player animation values, position and sprite name
         /// </summary>
@@ -47,6 +52,7 @@ namespace LimboSoulsOfJudgement
         /// <param name="gameTime">Time elapsed since last call in the update</param>
         protected override void HandleMovement(GameTime gameTime)
         {
+            gravity = true;
 
             //Statement that checks if Player is moving to the left
             if (Keyboard.GetState().IsKeyDown(Keys.A))
@@ -62,10 +68,15 @@ namespace LimboSoulsOfJudgement
                 position.X += (float)(movementSpeed * gameTime.ElapsedGameTime.TotalSeconds);
             }
 
-            //Statement that checks if the Player is jumping, and handles Player jumpforce while in the air 
-            if (Keyboard.GetState().IsKeyDown(Keys.Space))
-            {
+            jumpForce -= gameTime.ElapsedGameTime.TotalSeconds * 1500; //Reduces the value of jumpForce over when the Player jumps           
+            if (Keyboard.GetState().IsKeyDown(Keys.Space) && canJump)  //Statement that checks if the Player is jumping, and handles Player jumpforce while in the air
+            {              
+                position.Y -= (float)(jumpForce * gameTime.ElapsedGameTime.TotalSeconds);
+            }
 
+            if (Keyboard.GetState().IsKeyUp(Keys.Space))
+            {
+                canJump = false;
             }
         }
 
@@ -116,7 +127,13 @@ namespace LimboSoulsOfJudgement
         /// <param name="otherObject">The GameObject that the player object collides with</param>
         public override void DoCollision(GameObject otherObject)
         {
-            
+            base.DoCollision(otherObject);
+
+            if(otherObject is Platform)
+            {
+                jumpForce = jumpPower;
+                canJump = true;
+            }
         }
 
         /// <summary>

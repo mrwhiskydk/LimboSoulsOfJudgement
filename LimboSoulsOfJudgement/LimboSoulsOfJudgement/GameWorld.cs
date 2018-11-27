@@ -17,10 +17,16 @@ namespace LimboSoulsOfJudgement
         private List<GameObject> gameObjects = new List<GameObject>();
         private static List<GameObject> toBeAdded = new List<GameObject>();
         private static List<GameObject> toBeRemoved = new List<GameObject>();
-        public Player player;
+        public static Player player;
         private Texture2D collisionTexture;
+        private Platform platform;
+        private MinorEnemy minorEnemy;
+        private Camera camera;
 
         private static GraphicsDeviceManager graphics;
+
+        //Insert GameWorld fields below
+        private float gravityStrength = 5f;
 
         public static Rectangle ScreenSize
         {
@@ -29,7 +35,6 @@ namespace LimboSoulsOfJudgement
                 return graphics.GraphicsDevice.Viewport.Bounds;
             }
         }
-
 
         private static ContentManager _content;
         public static ContentManager ContentManager
@@ -48,7 +53,6 @@ namespace LimboSoulsOfJudgement
             graphics = new GraphicsDeviceManager(this);
             graphics.PreferredBackBufferWidth = 1920;  // set this value to the desired width of your window
             graphics.PreferredBackBufferHeight = 1080;   // set this value to the desired height of your window
-            //graphics.ToggleFullScreen();
             graphics.ApplyChanges();
             Content.RootDirectory = "Content";
             _content = Content;
@@ -86,7 +90,15 @@ namespace LimboSoulsOfJudgement
             // Create a new SpriteBatch, which can be used to draw textures.
             spriteBatch = new SpriteBatch(GraphicsDevice);
             collisionTexture = Content.Load<Texture2D>("CollisionTexture");
+            for (int i = 0; i < 28; i++)
+            {
+                new Platform(new Vector2((i * 128) + 35, 1050), "MediumBlock");
+            }
+            platform = new Platform(new Vector2(850, 850), "SmallBlock");
             player = new Player();
+            minorEnemy = new MinorEnemy();
+            camera = new Camera();
+
         }
 
 
@@ -114,6 +126,12 @@ namespace LimboSoulsOfJudgement
 
             foreach (GameObject go in gameObjects)
             {
+                //Applies gravity to GameObject
+                if (go.Gravity)
+                {
+                    go.Position = new Vector2(go.Position.X, go.Position.Y + gravityStrength);
+                }
+
                 go.Update(gameTime);
                 foreach (GameObject other in gameObjects)
                 {
@@ -135,7 +153,7 @@ namespace LimboSoulsOfJudgement
 
 
 
-
+            camera.Position = player.Position;
             base.Update(gameTime);
         }
 
@@ -146,7 +164,7 @@ namespace LimboSoulsOfJudgement
         protected override void Draw(GameTime gameTime)
         {
             GraphicsDevice.Clear(Color.CornflowerBlue);
-            spriteBatch.Begin(SpriteSortMode.FrontToBack);
+            spriteBatch.Begin(SpriteSortMode.Deferred, null, null, null, null, null, camera.viewMatrix);
             foreach (GameObject go in gameObjects)
             {
                 go.Draw(spriteBatch);
