@@ -51,7 +51,10 @@ namespace LimboSoulsOfJudgement
         /// <param name="otherObject">The GameObject that the current GameObject collides with</param>
         public virtual void DoCollision(GameObject otherObject)
         {
+            if (otherObject is Platform)
+            {
 
+            }
         }
 
         /// <summary>
