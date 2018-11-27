@@ -18,7 +18,7 @@ namespace LimboSoulsOfJudgement
         /// <param name="animationFPS"></param>
         /// <param name="startPostion"></param>
         /// <param name="spriteName"></param>
-        public MinorEnemy(int frameCount, float animationFPS, Vector2 startPostion, string spriteName) : base(frameCount, animationFPS, startPostion, spriteName)
+        public MinorEnemy() : base(5, 5, new Vector2(1400, 700), "Boss")
         {
 
         }
@@ -30,6 +30,18 @@ namespace LimboSoulsOfJudgement
         public override void Update(GameTime gameTime)
         {
             base.Update(gameTime);
+            HandleMovement(gameTime);
+        }
+
+        protected override void HandleMovement(GameTime gameTime)
+        {
+            base.HandleMovement(gameTime);
+
+        }
+
+        public override void DoCollision(GameObject otherObject)
+        {
+            base.DoCollision(otherObject);
         }
 
     }

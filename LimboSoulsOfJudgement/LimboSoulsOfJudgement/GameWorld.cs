@@ -19,6 +19,8 @@ namespace LimboSoulsOfJudgement
         private static List<GameObject> toBeRemoved = new List<GameObject>();
         public Player player;
         private Texture2D collisionTexture;
+        private Platform platform;
+        private MinorEnemy minorEnemy;
 
         private static GraphicsDeviceManager graphics;
 
@@ -51,7 +53,7 @@ namespace LimboSoulsOfJudgement
             graphics = new GraphicsDeviceManager(this);
             graphics.PreferredBackBufferWidth = 1920;  // set this value to the desired width of your window
             graphics.PreferredBackBufferHeight = 1080;   // set this value to the desired height of your window
-            //graphics.ToggleFullScreen();
+            graphics.ToggleFullScreen();
             graphics.ApplyChanges();
             Content.RootDirectory = "Content";
             _content = Content;
@@ -89,7 +91,14 @@ namespace LimboSoulsOfJudgement
             // Create a new SpriteBatch, which can be used to draw textures.
             spriteBatch = new SpriteBatch(GraphicsDevice);
             collisionTexture = Content.Load<Texture2D>("CollisionTexture");
+            for (int i = 0; i < 28; i++)
+            {
+                new Platform(new Vector2((i * 70) + 35, 1016), "castle");
+            }
+            platform = new Platform(new Vector2(850, 850), "castleHalf");
             player = new Player();
+            minorEnemy = new MinorEnemy();
+
         }
 
 

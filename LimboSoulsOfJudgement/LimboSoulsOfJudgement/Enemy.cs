@@ -47,7 +47,7 @@ namespace LimboSoulsOfJudgement
         /// <param name="otherObject">The GameObject that the player object collides with</param>
         public override void DoCollision(GameObject otherObject)
         {
-            
+            base.DoCollision(otherObject);
         }
 
     }
