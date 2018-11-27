@@ -87,7 +87,6 @@ namespace LimboSoulsOfJudgement
             spriteBatch = new SpriteBatch(GraphicsDevice);
             collisionTexture = Content.Load<Texture2D>("CollisionTexture");
             player = new Player();
-
         }
 
 
