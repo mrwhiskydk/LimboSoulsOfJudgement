@@ -7,6 +7,9 @@ namespace LimboSoulsOfJudgement
     public class Player : Character
     {
 
+        private const float jumpPower = 1000;
+
+
         /// <summary>
         /// Player constructor that sets player animation values, position and sprite name
         /// </summary>
