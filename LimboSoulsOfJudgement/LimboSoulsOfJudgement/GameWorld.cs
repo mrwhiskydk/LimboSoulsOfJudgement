@@ -17,7 +17,7 @@ namespace LimboSoulsOfJudgement
         private List<GameObject> gameObjects = new List<GameObject>();
         private static List<GameObject> toBeAdded = new List<GameObject>();
         private static List<GameObject> toBeRemoved = new List<GameObject>();
-        public Player player;
+        public static Player player;
         private Texture2D collisionTexture;
         private Platform platform;
         private MinorEnemy minorEnemy;
@@ -93,7 +93,7 @@ namespace LimboSoulsOfJudgement
             collisionTexture = Content.Load<Texture2D>("CollisionTexture");
             for (int i = 0; i < 28; i++)
             {
-                new Platform(new Vector2((i * 70) + 35, 1016), "castle");
+                new Platform(new Vector2((i * 70) + 35, 1050), "castle");
             }
             platform = new Platform(new Vector2(850, 850), "castleHalf");
             player = new Player();
