@@ -17,7 +17,7 @@ namespace LimboSoulsOfJudgement
         private List<GameObject> gameObjects = new List<GameObject>();
         private static List<GameObject> toBeAdded = new List<GameObject>();
         private static List<GameObject> toBeRemoved = new List<GameObject>();
-        public Player player;
+        public static Player player;
         private Texture2D collisionTexture;
         private Platform platform;
         private MinorEnemy minorEnemy;
@@ -53,7 +53,6 @@ namespace LimboSoulsOfJudgement
             graphics = new GraphicsDeviceManager(this);
             graphics.PreferredBackBufferWidth = 1920;  // set this value to the desired width of your window
             graphics.PreferredBackBufferHeight = 1080;   // set this value to the desired height of your window
-            graphics.ToggleFullScreen();
             graphics.ApplyChanges();
             Content.RootDirectory = "Content";
             _content = Content;

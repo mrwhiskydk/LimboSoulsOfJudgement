@@ -10,6 +10,9 @@ namespace LimboSoulsOfJudgement
     public class Enemy : Character
     {
         public int enemyDamage;
+        public bool aggro;
+        protected bool goHorizontally;
+        protected bool goVertically;
 
         /// <summary>
         /// Enemy constructor that sets animation values, position and sprite names of MinorEnemy and BossEnemy
@@ -30,6 +33,25 @@ namespace LimboSoulsOfJudgement
         public override void Update(GameTime gameTime)
         {
             base.Update(gameTime);
+            if (GameWorld.player.Position.X + 500 <= Position.X || GameWorld.player.Position.X - 500 >= Position.X )
+            {
+                goHorizontally = false;
+            }
+            else
+            {
+                goHorizontally = true;
+            }
+            if (GameWorld.player.Position.Y + 500 <= Position.Y || GameWorld.player.Position.Y - 500 >= Position.Y)
+            {
+
+                goVertically = true;
+            }
+            else
+            {
+                goVertically = false;
+            }
+            
+           
         }
 
         /// <summary>
@@ -38,7 +60,14 @@ namespace LimboSoulsOfJudgement
         /// <param name="gameTime">Time elapsed since last call in the update</param>
         protected override void HandleMovement(GameTime gameTime)
         {
-
+            if (goHorizontally == true && GameWorld.player.Position.X < position.X || aggro == true)
+            {
+                position.X -= (float)(movementSpeed * gameTime.ElapsedGameTime.TotalSeconds);
+            }
+            if (goHorizontally == true && GameWorld.player.Position.X > position.X || aggro == true)
+            {
+                position.X += (float)(movementSpeed * gameTime.ElapsedGameTime.TotalSeconds);
+            }
         }
 
         /// <summary>
@@ -48,6 +77,11 @@ namespace LimboSoulsOfJudgement
         public override void DoCollision(GameObject otherObject)
         {
             base.DoCollision(otherObject);
+
+            if (otherObject is Player)
+            {
+
+            }
         }
 
     }
