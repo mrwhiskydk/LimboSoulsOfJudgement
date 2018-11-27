@@ -14,6 +14,7 @@ namespace LimboSoulsOfJudgement
 
         private const float jumpPower = 1000;
         private double jumpForce = jumpPower;
+        
 
         private bool canJump = false;   //Controls wether the Player can jump or not
 

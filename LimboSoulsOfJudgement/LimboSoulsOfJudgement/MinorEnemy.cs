@@ -21,6 +21,7 @@ namespace LimboSoulsOfJudgement
         public MinorEnemy() : base(5, 5, new Vector2(1700, 700), "Boss")
         {
             movementSpeed = 100;
+            health = 100;
         }
 
         /// <summary>

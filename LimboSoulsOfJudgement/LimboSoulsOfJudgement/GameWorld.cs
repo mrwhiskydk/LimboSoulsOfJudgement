@@ -23,6 +23,7 @@ namespace LimboSoulsOfJudgement
         private MinorEnemy minorEnemy;
         private Camera camera;
 
+
         private static GraphicsDeviceManager graphics;
 
         //Insert GameWorld fields below
