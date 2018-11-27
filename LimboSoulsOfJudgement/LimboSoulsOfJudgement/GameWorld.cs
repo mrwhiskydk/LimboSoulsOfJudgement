@@ -98,9 +98,9 @@ namespace LimboSoulsOfJudgement
             player = new Player();
             minorEnemy = new MinorEnemy();
             camera = new Camera();
-            Soul soul = new Soul(1, 1, new Vector2(100, 900), "Bow");
-            Soul soul2 = new Soul(1, 1, new Vector2(130, 900), "Bow");
-            Soul soul3 = new Soul(1, 1, new Vector2(160, 900), "Bow");
+            Soul soul = new Soul(1, 1, new Vector2(200, 700), "Bow");
+            Soul soul2 = new Soul(1, 1, new Vector2(230, 700), "Bow");
+            Soul soul3 = new Soul(1, 1, new Vector2(260, 700), "Bow");
 
         }
 
