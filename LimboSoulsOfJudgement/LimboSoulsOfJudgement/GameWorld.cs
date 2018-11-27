@@ -92,9 +92,9 @@ namespace LimboSoulsOfJudgement
             collisionTexture = Content.Load<Texture2D>("CollisionTexture");
             for (int i = 0; i < 28; i++)
             {
-                new Platform(new Vector2((i * 70) + 35, 1050), "castle");
+                new Platform(new Vector2((i * 128) + 35, 1050), "MediumBlock");
             }
-            platform = new Platform(new Vector2(850, 850), "castleHalf");
+            platform = new Platform(new Vector2(850, 850), "SmallBlock");
             player = new Player();
             minorEnemy = new MinorEnemy();
 
