@@ -12,7 +12,6 @@ namespace LimboSoulsOfJudgement
 
         private bool canJump = false;   //Controls wether the Player can jump or not
 
-
         /// <summary>
         /// Player constructor that sets player animation values, position and sprite name
         /// </summary>
@@ -59,10 +58,14 @@ namespace LimboSoulsOfJudgement
                 position.X += (float)(movementSpeed * gameTime.ElapsedGameTime.TotalSeconds);
             }
 
-            jumpForce -= gameTime.ElapsedGameTime.TotalSeconds * 1500;  //Reduces the value of jumpForce over when the Player jumps           
-            if (Keyboard.GetState().IsKeyDown(Keys.Space))  //Statement that checks if the Player is jumping, and handles Player jumpforce while in the air
-            {
+            jumpForce -= gameTime.ElapsedGameTime.TotalSeconds * 1500; //Reduces the value of jumpForce over when the Player jumps           
+            if (Keyboard.GetState().IsKeyDown(Keys.Space) && canJump)  //Statement that checks if the Player is jumping, and handles Player jumpforce while in the air
+            {              
                 position.Y -= (float)(jumpForce * gameTime.ElapsedGameTime.TotalSeconds);
+            }
+
+            if (Keyboard.GetState().IsKeyUp(Keys.Space))
+            {
                 canJump = false;
             }
         }
