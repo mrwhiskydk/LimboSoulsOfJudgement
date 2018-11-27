@@ -25,10 +25,11 @@ namespace LimboSoulsOfJudgement
         protected int MaxHealth { get; set; }
 
         /// <summary>
-        /// Default Character Constructor
+        /// Character Constructor that enables gravity as default
         /// </summary>
         public Character(int frameCount, float animationFPS, Vector2 startPostion, string spriteName) : base(frameCount, animationFPS, startPostion, spriteName)
         {
+            gravity = true;
         }
 
         /// <summary>

@@ -22,6 +22,9 @@ namespace LimboSoulsOfJudgement
 
         private static GraphicsDeviceManager graphics;
 
+        //Insert GameWorld fields below
+        private float gravityStrength = 5f;
+
         public static Rectangle ScreenSize
         {
             get
@@ -115,6 +118,12 @@ namespace LimboSoulsOfJudgement
 
             foreach (GameObject go in gameObjects)
             {
+                //Applies gravity to GameObject
+                if (go.Gravity)
+                {
+                    go.Position = new Vector2(go.Position.X, go.Position.Y + gravityStrength);
+                }
+
                 go.Update(gameTime);
                 foreach (GameObject other in gameObjects)
                 {

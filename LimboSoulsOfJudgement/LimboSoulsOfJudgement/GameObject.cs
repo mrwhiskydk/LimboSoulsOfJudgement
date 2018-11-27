@@ -18,9 +18,19 @@ namespace LimboSoulsOfJudgement
         protected Vector2 position;
 
         /// <summary>
+        /// Sets the default gravity for the current GameObject
+        /// </summary>
+        protected bool gravity = false;
+
+        /// <summary>
         /// Property for the position of current GameObject
         /// </summary>
         public Vector2 Position { get => position; set => position = value; }
+
+        /// <summary>
+        /// Property that sets gravity value of the current GameObject
+        /// </summary>
+        public bool Gravity { get => gravity; set => gravity = value; }
 
         /// <summary>
         /// The Collision Box of the GameObject. The default box is based upon the GameObject position and sprite size
@@ -51,7 +61,10 @@ namespace LimboSoulsOfJudgement
         /// <param name="otherObject">The GameObject that the current GameObject collides with</param>
         public virtual void DoCollision(GameObject otherObject)
         {
-
+            if(otherObject is Platform)
+            {
+                Gravity = false;
+            }
         }
 
         /// <summary>
