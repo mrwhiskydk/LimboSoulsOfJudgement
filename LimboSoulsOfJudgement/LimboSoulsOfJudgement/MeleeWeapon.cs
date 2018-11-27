@@ -11,6 +11,7 @@ namespace LimboSoulsOfJudgement
     {
         public MeleeWeapon() : base("sword")
         {
+
         }
     }
 }
