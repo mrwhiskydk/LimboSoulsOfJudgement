@@ -44,6 +44,7 @@
     <Compile Include="Ability.cs" />
     <Compile Include="AnimatedGameObject.cs" />
     <Compile Include="BossEnemy.cs" />
+    <Compile Include="Camera.cs" />
     <Compile Include="Character.cs" />
     <Compile Include="Enemy.cs" />
     <Compile Include="GameWorld.cs" />
