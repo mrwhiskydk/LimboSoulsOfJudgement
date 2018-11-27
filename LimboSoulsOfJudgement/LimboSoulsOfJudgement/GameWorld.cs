@@ -21,6 +21,7 @@ namespace LimboSoulsOfJudgement
         private Texture2D collisionTexture;
         private Platform platform;
         private MinorEnemy minorEnemy;
+        private Camera camera;
 
         private static GraphicsDeviceManager graphics;
 
@@ -34,7 +35,6 @@ namespace LimboSoulsOfJudgement
                 return graphics.GraphicsDevice.Viewport.Bounds;
             }
         }
-
 
         private static ContentManager _content;
         public static ContentManager ContentManager
@@ -97,6 +97,7 @@ namespace LimboSoulsOfJudgement
             platform = new Platform(new Vector2(850, 850), "SmallBlock");
             player = new Player();
             minorEnemy = new MinorEnemy();
+            camera = new Camera();
 
         }
 
@@ -152,7 +153,7 @@ namespace LimboSoulsOfJudgement
 
 
 
-
+            camera.Position = player.Position;
             base.Update(gameTime);
         }
 
@@ -163,7 +164,7 @@ namespace LimboSoulsOfJudgement
         protected override void Draw(GameTime gameTime)
         {
             GraphicsDevice.Clear(Color.CornflowerBlue);
-            spriteBatch.Begin();
+            spriteBatch.Begin(SpriteSortMode.Deferred, null, null, null, null, null, camera.viewMatrix);
             foreach (GameObject go in gameObjects)
             {
                 go.Draw(spriteBatch);
