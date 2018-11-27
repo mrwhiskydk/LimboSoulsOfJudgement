@@ -6,12 +6,16 @@ namespace LimboSoulsOfJudgement
 {
     public class Player : Character
     {
+        MeleeWeapon melee = new MeleeWeapon();
+        RangedWeapon ranged = new RangedWeapon();
+        Weapon weapon;
+        private bool canSwitchWeapons = true;
+        private double attackTimer = 0;
 
         private const float jumpPower = 1000;
         private double jumpForce = jumpPower;
 
         private bool canJump = false;   //Controls wether the Player can jump or not
-
 
         /// <summary>
         /// Player constructor that sets player animation values, position and sprite name
@@ -24,6 +28,10 @@ namespace LimboSoulsOfJudgement
 
             //Player movementspeed amount
             movementSpeed = 250;
+
+            //Weapon setup
+            weapon = ranged;
+            weapon.equipped = true;
         }
 
         /// <summary>
@@ -35,6 +43,7 @@ namespace LimboSoulsOfJudgement
             base.Update(gameTime);
 
             HandleMovement(gameTime);
+            HandleWeapons(gameTime);
         }
 
         /// <summary>
@@ -59,11 +68,56 @@ namespace LimboSoulsOfJudgement
                 position.X += (float)(movementSpeed * gameTime.ElapsedGameTime.TotalSeconds);
             }
 
-            jumpForce -= gameTime.ElapsedGameTime.TotalSeconds * 1500;  //Reduces the value of jumpForce over when the Player jumps           
-            if (Keyboard.GetState().IsKeyDown(Keys.Space))  //Statement that checks if the Player is jumping, and handles Player jumpforce while in the air
-            {
+            jumpForce -= gameTime.ElapsedGameTime.TotalSeconds * 1500; //Reduces the value of jumpForce over when the Player jumps           
+            if (Keyboard.GetState().IsKeyDown(Keys.Space) && canJump)  //Statement that checks if the Player is jumping, and handles Player jumpforce while in the air
+            {              
                 position.Y -= (float)(jumpForce * gameTime.ElapsedGameTime.TotalSeconds);
+            }
+
+            if (Keyboard.GetState().IsKeyUp(Keys.Space))
+            {
                 canJump = false;
+            }
+        }
+
+        /// <summary>
+        /// Switch the equipped weapon
+        /// </summary>
+        private void HandleWeapons(GameTime gameTime)
+        {
+            if (Keyboard.GetState().IsKeyDown(Keys.Tab) && canSwitchWeapons)
+            {
+                if (weapon is MeleeWeapon)
+                {
+                    weapon.equipped = false;
+                    weapon = ranged;
+                    weapon.equipped = true;
+                    
+                }
+                else
+                {
+                    weapon.equipped = false;
+                    weapon = melee;
+                    weapon.equipped = true;
+                    
+                }
+                canSwitchWeapons = false;
+            }
+            else if (Keyboard.GetState().IsKeyUp(Keys.Tab))
+            {
+                canSwitchWeapons = true;
+            }
+            weapon.Position = position;
+
+            attackTimer += gameTime.ElapsedGameTime.TotalSeconds;
+
+            if (attackTimer >= Weapon.currentAttackRate)
+            {
+                if (Mouse.GetState().LeftButton == ButtonState.Pressed)
+                {
+                    weapon.Attack();
+                    attackTimer = 0;
+                }
             }
         }
 
