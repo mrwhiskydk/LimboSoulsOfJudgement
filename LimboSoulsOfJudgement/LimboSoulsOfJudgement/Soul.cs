@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using Microsoft.Xna.Framework;
+using Microsoft.Xna.Framework.Graphics;
 
 namespace LimboSoulsOfJudgement
 {
@@ -25,10 +26,10 @@ namespace LimboSoulsOfJudgement
         /// <param name="animationFPS"></param>
         /// <param name="startPostion"></param>
         /// <param name="spriteName"></param>
-        public Soul(int frameCount, float animationFPS, Vector2 startPostion, string spriteName) : base(frameCount, animationFPS, startPostion, spriteName)
+        public Soul(int frameCount, float animationFPS, Vector2 startPostion, string spriteName, int souls) : base(frameCount, animationFPS, startPostion, spriteName)
         {
             direction = (float)(rnd.Next(0, 2) * 2 - 1) * rnd.Next(0, 180);
-
+            this.souls = souls;
         }
 
         /// <summary>
@@ -74,9 +75,10 @@ namespace LimboSoulsOfJudgement
 
             if (otherObject is Player)
             {
-
+                GameWorld.player.currentSouls += souls;
                 GameWorld.RemoveGameObject(this);
             }
         }
+
     }
 }

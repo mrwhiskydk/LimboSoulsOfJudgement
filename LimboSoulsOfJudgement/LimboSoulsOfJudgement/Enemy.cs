@@ -24,6 +24,9 @@ namespace LimboSoulsOfJudgement
         /// </summary>
         protected bool goVertically;
 
+        private double patrolTime;
+        private float patrolDuration = 6f;
+
         /// <summary>
         /// Enemy constructor that sets animation values, position and sprite names of MinorEnemy and BossEnemy
         /// </summary>
@@ -77,6 +80,24 @@ namespace LimboSoulsOfJudgement
         /// <param name="gameTime">Time elapsed since last call in the update</param>
         protected override void HandleMovement(GameTime gameTime)
         {
+            patrolTime += gameTime.ElapsedGameTime.TotalSeconds;
+
+            if (aggro == false)
+            {
+                if (patrolTime < 3f)
+                {
+                    position.X += (float)(movementSpeed * gameTime.ElapsedGameTime.TotalSeconds);
+                }
+                if (patrolTime > 3f)
+                {
+                    position.X -= (float)(movementSpeed * gameTime.ElapsedGameTime.TotalSeconds);
+                }
+                if (patrolTime > patrolDuration)
+                {
+                    patrolTime = 0;
+                }
+            }
+                    
             if (aggro == true && GameWorld.player.Position.X < position.X)
             {
                 position.X -= (float)(movementSpeed * gameTime.ElapsedGameTime.TotalSeconds);

@@ -22,6 +22,7 @@ namespace LimboSoulsOfJudgement
         private Platform platform;
         private MinorEnemy minorEnemy;
         private Camera camera;
+        private SpriteFont font;
         private Vendor vendor;
 
         private Texture2D vendorUI;
@@ -96,6 +97,7 @@ namespace LimboSoulsOfJudgement
         {
             // Create a new SpriteBatch, which can be used to draw textures.
             spriteBatch = new SpriteBatch(GraphicsDevice);
+            font = Content.Load<SpriteFont>("ExampleFont");
             collisionTexture = Content.Load<Texture2D>("CollisionTexture");
             for (int i = 0; i < 28; i++)
             {
@@ -105,9 +107,9 @@ namespace LimboSoulsOfJudgement
             player = new Player();
             minorEnemy = new MinorEnemy();
             camera = new Camera();
-            Soul soul = new Soul(3, 6, new Vector2(100, 900), "Soul");
-            Soul soul2 = new Soul(3, 6, new Vector2(130, 900), "Soul");
-            Soul soul3 = new Soul(3, 6, new Vector2(160, 900), "Soul");
+            Soul soul = new Soul(3, 6, new Vector2(100, 900), "Soul",3);
+            Soul soul2 = new Soul(3, 6, new Vector2(130, 900), "Soul",2);
+            Soul soul3 = new Soul(3, 6, new Vector2(160, 900), "Soul",1);
 
             //Load Vendor & Vendor UI
             vendor = new Vendor(1, 1, new Vector2(300, 750), "VendorTest");
@@ -180,6 +182,7 @@ namespace LimboSoulsOfJudgement
         {
             GraphicsDevice.Clear(Color.CornflowerBlue);
             spriteBatch.Begin(SpriteSortMode.FrontToBack, null, null, null, null, null, camera.viewMatrix);
+            spriteBatch.DrawString(font, $"Souls: {player.currentSouls}", new Vector2(350, 500), Color.White, 0f, Vector2.Zero, 1f, SpriteEffects.None, 0.991f);
             foreach (GameObject go in gameObjects)
             {
                 go.Draw(spriteBatch);

@@ -10,10 +10,10 @@ namespace LimboSoulsOfJudgement
 {
     public class AnimatedGameObject : GameObject
     {
-        Rectangle[] animationRectangles;
+        protected Rectangle[] animationRectangles;
 
         float animationFPS = 10;
-        int currentAnimationIndex = 0;
+        protected int currentAnimationIndex = 0;
         double timeElapsed = 0;
 
         /// <summary>
