@@ -23,6 +23,8 @@ namespace LimboSoulsOfJudgement
         private MinorEnemy minorEnemy;
         private Camera camera;
         private SpriteFont font;
+        public static Random rnd = new Random();
+        public static Crosshair mouse;
 
         private static GraphicsDeviceManager graphics;
 
@@ -103,7 +105,7 @@ namespace LimboSoulsOfJudgement
             Soul soul = new Soul(3, 6, new Vector2(100, 900), "Soul",3);
             Soul soul2 = new Soul(3, 6, new Vector2(130, 900), "Soul",2);
             Soul soul3 = new Soul(3, 6, new Vector2(160, 900), "Soul",1);
-
+            mouse = new Crosshair();
         }
 
 

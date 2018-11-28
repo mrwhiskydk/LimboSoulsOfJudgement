@@ -15,7 +15,6 @@ namespace LimboSoulsOfJudgement
         float animationFPS = 10;
         protected int currentAnimationIndex = 0;
         double timeElapsed = 0;
-
         /// <summary>
         /// Bool that checks for the current direction of the GameObject, on the X axis
         /// </summary>
@@ -68,7 +67,14 @@ namespace LimboSoulsOfJudgement
 
         public override void Draw(SpriteBatch spriteBatch)
         {
-            spriteBatch.Draw(sprite, position, animationRectangles[currentAnimationIndex], Color.White, rotation, new Vector2(animationRectangles[currentAnimationIndex].Width * 0.5f, animationRectangles[currentAnimationIndex].Height * 0.5f), 1f, new SpriteEffects(), 0f);
+            if (facingRight == true)
+            {
+                spriteBatch.Draw(sprite, position, animationRectangles[currentAnimationIndex], Color.White, rotation, new Vector2(animationRectangles[currentAnimationIndex].Width * 0.5f, animationRectangles[currentAnimationIndex].Height * 0.5f), 1f, SpriteEffects.None, 0.9f);
+            }
+            else if (facingRight == false)
+            {
+                spriteBatch.Draw(sprite, position, animationRectangles[currentAnimationIndex], Color.White, rotation, new Vector2(animationRectangles[currentAnimationIndex].Width * 0.5f, animationRectangles[currentAnimationIndex].Height * 0.5f), 1f, SpriteEffects.FlipHorizontally, 0.9f);
+            }
         }
 
     }

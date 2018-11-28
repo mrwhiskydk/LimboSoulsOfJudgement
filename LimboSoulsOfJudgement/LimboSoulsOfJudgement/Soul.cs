@@ -16,7 +16,7 @@ namespace LimboSoulsOfJudgement
         private bool hitTheGround = false;
         private float direction;
         private double jumpForce = 400;
-        private Random rnd = new Random();
+
 
 
         /// <summary>
@@ -28,7 +28,7 @@ namespace LimboSoulsOfJudgement
         /// <param name="spriteName"></param>
         public Soul(int frameCount, float animationFPS, Vector2 startPostion, string spriteName, int souls) : base(frameCount, animationFPS, startPostion, spriteName)
         {
-            direction = (float)(rnd.Next(0, 2) * 2 - 1) * rnd.Next(0, 180);
+            direction = (float)(GameWorld.rnd.Next(0, 2) * 2 - 1) * GameWorld.rnd.Next(0, 180);
             this.souls = souls;
         }
 

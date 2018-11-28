@@ -10,7 +10,7 @@ namespace LimboSoulsOfJudgement
     public class MinorEnemy : Enemy
     {
         public int karma;
-        
+
         /// <summary>
         /// MinorEnemy constructor that sets animation values, position and sprite names of current MinorEnemy GameObject
         /// </summary>
@@ -21,7 +21,9 @@ namespace LimboSoulsOfJudgement
         public MinorEnemy() : base(5, 5, new Vector2(1700, 700), "Boss")
         {
             movementSpeed = 100;
-            health = 100;
+            enemyHealth = 3;
+            enemySouls = 1;
+            soulCount = 3;
         }
 
         /// <summary>
@@ -44,7 +46,10 @@ namespace LimboSoulsOfJudgement
         public override void DoCollision(GameObject otherObject)
         {
             base.DoCollision(otherObject);
+
         }
+
+        
 
     }
 }
