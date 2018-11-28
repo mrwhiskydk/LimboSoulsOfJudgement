@@ -50,7 +50,8 @@ namespace LimboSoulsOfJudgement
             HandleMovement(gameTime);
 
             HandleJumping(gameTime);
-            
+
+            HandleWeapons(gameTime);
         }
 
         /* Method that handles jump functionality of the Player
