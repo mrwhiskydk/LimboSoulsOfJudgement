@@ -23,10 +23,11 @@ namespace LimboSoulsOfJudgement
         private MinorEnemy minorEnemy;
         private Camera camera;
 
+
         private static GraphicsDeviceManager graphics;
 
         //Insert GameWorld fields below
-        private float gravityStrength = 5f;
+        private float gravityStrength = 7f;
 
         public static Rectangle ScreenSize
         {
@@ -92,12 +93,15 @@ namespace LimboSoulsOfJudgement
             collisionTexture = Content.Load<Texture2D>("CollisionTexture");
             for (int i = 0; i < 28; i++)
             {
-                new Platform(new Vector2((i * 128) + 35, 1050), "MediumBlock");
+                new Platform(new Vector2((i * 128), 1050), "MediumBlock");
             }
             platform = new Platform(new Vector2(850, 850), "SmallBlock");
             player = new Player();
             minorEnemy = new MinorEnemy();
             camera = new Camera();
+            Soul soul = new Soul(3, 6, new Vector2(100, 900), "Soul");
+            Soul soul2 = new Soul(3, 6, new Vector2(130, 900), "Soul");
+            Soul soul3 = new Soul(3, 6, new Vector2(160, 900), "Soul");
 
         }
 

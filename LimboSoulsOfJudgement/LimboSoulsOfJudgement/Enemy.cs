@@ -10,8 +10,18 @@ namespace LimboSoulsOfJudgement
     public class Enemy : Character
     {
         public int enemyDamage;
-        public bool aggro;
+
+        /// <summary>
+        /// If true, the enemy will follow the player until it dies
+        /// </summary>
+        public bool aggro = false;
+        /// <summary>
+        /// Checks if an enemy should go after the player horizontally
+        /// </summary>
         protected bool goHorizontally;
+        /// <summary>
+        /// Checks if an enemy should go after the player vertically
+        /// </summary>
         protected bool goVertically;
 
         /// <summary>
@@ -36,19 +46,26 @@ namespace LimboSoulsOfJudgement
             if (GameWorld.player.Position.X + 500 <= Position.X || GameWorld.player.Position.X - 500 >= Position.X )
             {
                 goHorizontally = false;
+                goVertically = false;
             }
             else
             {
                 goHorizontally = true;
             }
+            if (goHorizontally == true && health > 0)
+            {
+                aggro = true;
+            }
+
             if (GameWorld.player.Position.Y + 500 <= Position.Y || GameWorld.player.Position.Y - 500 >= Position.Y)
             {
 
-                goVertically = true;
+                goVertically = false;
+                goHorizontally = false;
             }
             else
             {
-                goVertically = false;
+                goVertically = true;
             }
             
            
@@ -60,11 +77,11 @@ namespace LimboSoulsOfJudgement
         /// <param name="gameTime">Time elapsed since last call in the update</param>
         protected override void HandleMovement(GameTime gameTime)
         {
-            if (goHorizontally == true && GameWorld.player.Position.X < position.X || aggro == true)
+            if (aggro == true && GameWorld.player.Position.X < position.X)
             {
                 position.X -= (float)(movementSpeed * gameTime.ElapsedGameTime.TotalSeconds);
             }
-            if (goHorizontally == true && GameWorld.player.Position.X > position.X || aggro == true)
+            if (aggro == true && GameWorld.player.Position.X > position.X)
             {
                 position.X += (float)(movementSpeed * gameTime.ElapsedGameTime.TotalSeconds);
             }
