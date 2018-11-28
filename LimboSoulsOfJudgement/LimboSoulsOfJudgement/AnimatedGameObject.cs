@@ -12,7 +12,7 @@ namespace LimboSoulsOfJudgement
     {
         protected Rectangle[] animationRectangles;
 
-        float animationFPS = 10;
+        protected float animationFPS = 10;
         protected int currentAnimationIndex = 0;
         double timeElapsed = 0;
         /// <summary>

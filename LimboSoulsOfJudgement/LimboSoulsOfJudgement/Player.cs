@@ -12,6 +12,7 @@ namespace LimboSoulsOfJudgement
         private bool canSwitchWeapons = true;
         private double attackTimer = 0;
         public int currentSouls;
+        private double collisionMovement;
 
         private const float jumpPower = 1150;
         private double jumpForce = jumpPower;
@@ -46,6 +47,7 @@ namespace LimboSoulsOfJudgement
         public override void Update(GameTime gameTime)
         {
             base.Update(gameTime);
+            collisionMovement = movementSpeed * gameTime.ElapsedGameTime.TotalSeconds;
 
             HandleMovement(gameTime);
 
@@ -139,7 +141,6 @@ namespace LimboSoulsOfJudgement
             {
                 canSwitchWeapons = true;
             }
-            weapon.Position = position;
 
             attackTimer += gameTime.ElapsedGameTime.TotalSeconds;
 
@@ -161,11 +162,47 @@ namespace LimboSoulsOfJudgement
         {
             base.DoCollision(otherObject);
 
-            if(otherObject is Platform)
+            // Creates small collisionboxes around the player to be used for collision
+            Rectangle topLine = new Rectangle(CollisionBox.X, CollisionBox.Y, CollisionBox.Width, 1);
+            Rectangle bottomLine = new Rectangle(CollisionBox.X + 15, CollisionBox.Y + CollisionBox.Height, CollisionBox.Width - 30, 1);
+            Rectangle rightLine = new Rectangle(CollisionBox.X + CollisionBox.Width, CollisionBox.Y + 8, 1, CollisionBox.Height - 16);
+            Rectangle leftLine = new Rectangle(CollisionBox.X, CollisionBox.Y + 8, 1, CollisionBox.Height - 16);
+
+            // If the player stands on a platform, make him able to jump
+            if (bottomLine.Intersects(otherObject.CollisionBox) && otherObject is Platform)
             {
                 jumpForce = jumpPower;
                 canJump = true;
                 isJumping = false;
+            }
+
+            // If the small collsionboxes intesects with a platform move the player in the opposite direction. 
+            if (otherObject is Platform)
+            {
+                if (rightLine.Intersects(otherObject.CollisionBox))
+                {
+                    position.X -= (float)collisionMovement;
+                    Gravity = true;
+                }
+
+                if (leftLine.Intersects(otherObject.CollisionBox))
+                {
+                    position.X += (float)collisionMovement;
+                    Gravity = true;
+                }
+
+                if (topLine.Intersects(otherObject.CollisionBox))
+                {
+                    jumpForce = 0;
+                    canJump = false;
+                    Gravity = true;
+                }
+
+                if (bottomLine.Intersects(otherObject.CollisionBox) && Gravity is true)
+                {
+                    position.Y -= + 7;
+                    Gravity = false;
+                }
             }
         }
 
@@ -175,7 +212,7 @@ namespace LimboSoulsOfJudgement
         /// <param name="spriteBatch">The spritebatch that is used for drawing</param>
         public override void Draw(SpriteBatch spriteBatch)
         {
-            base.Draw(spriteBatch);
+            spriteBatch.Draw(sprite, position, animationRectangles[currentAnimationIndex], Color.White, rotation, new Vector2(animationRectangles[currentAnimationIndex].Width * 0.5f, animationRectangles[currentAnimationIndex].Height * 0.5f), 1f, SpriteEffects.None, 0.99f);
         }
 
     }
