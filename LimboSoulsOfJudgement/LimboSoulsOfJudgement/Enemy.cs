@@ -11,6 +11,12 @@ namespace LimboSoulsOfJudgement
     {
         public int enemyDamage;
 
+        public int enemyHealth;
+
+        protected int enemySouls;
+
+        protected int soulCount;
+
         /// <summary>
         /// If true, the enemy will follow the player until it dies
         /// </summary>
@@ -23,6 +29,9 @@ namespace LimboSoulsOfJudgement
         /// Checks if an enemy should go after the player vertically
         /// </summary>
         protected bool goVertically;
+
+        private double patrolTime;
+        private float patrolDuration = 6f;
 
         /// <summary>
         /// Enemy constructor that sets animation values, position and sprite names of MinorEnemy and BossEnemy
@@ -52,7 +61,7 @@ namespace LimboSoulsOfJudgement
             {
                 goHorizontally = true;
             }
-            if (goHorizontally == true && health > 0)
+            if (goHorizontally == true && enemyHealth > 0)
             {
                 aggro = true;
             }
@@ -67,8 +76,18 @@ namespace LimboSoulsOfJudgement
             {
                 goVertically = true;
             }
-            
-           
+
+            if (enemyHealth <= 0)
+            {
+
+                for (int i = 0; i < soulCount; i++)
+                {
+                         GameWorld.AddGameObject(new Soul(3, 6, new Vector2(position.X, position.Y), "Soul", enemySouls));                    
+                }
+                GameWorld.RemoveGameObject(this);
+               
+            }
+
         }
 
         /// <summary>
@@ -77,12 +96,34 @@ namespace LimboSoulsOfJudgement
         /// <param name="gameTime">Time elapsed since last call in the update</param>
         protected override void HandleMovement(GameTime gameTime)
         {
+            patrolTime += gameTime.ElapsedGameTime.TotalSeconds;
+
+            if (aggro == false)
+            {
+                if (patrolTime < 3f)
+                {
+                    facingRight = false;
+                    position.X += (float)(movementSpeed * gameTime.ElapsedGameTime.TotalSeconds);
+                }
+                if (patrolTime > 3f)
+                {
+                    facingRight = true;
+                    position.X -= (float)(movementSpeed * gameTime.ElapsedGameTime.TotalSeconds);
+                }
+                if (patrolTime > patrolDuration)
+                {
+                    patrolTime = 0;
+                }
+            }
+                    
             if (aggro == true && GameWorld.player.Position.X < position.X)
             {
+                facingRight = true;
                 position.X -= (float)(movementSpeed * gameTime.ElapsedGameTime.TotalSeconds);
             }
             if (aggro == true && GameWorld.player.Position.X > position.X)
             {
+                facingRight = false;
                 position.X += (float)(movementSpeed * gameTime.ElapsedGameTime.TotalSeconds);
             }
         }
@@ -98,6 +139,13 @@ namespace LimboSoulsOfJudgement
             if (otherObject is Player)
             {
 
+            }
+
+            if (otherObject is Projectile)
+            {
+                Projectile arrow = (Projectile)otherObject;
+                enemyHealth -= arrow.damage;
+                GameWorld.RemoveGameObject(arrow);
             }
         }
 
