@@ -126,6 +126,7 @@ namespace LimboSoulsOfJudgement
             vendorUI = Content.Load<Texture2D>("VendorUITest");
 
             mouse = new Crosshair();
+            camera.Position = player.Position;
         }
 
 
@@ -181,7 +182,7 @@ namespace LimboSoulsOfJudgement
 
 
 
-            camera.Position = player.Position;
+            camera.Position = new Vector2(MathHelper.Lerp(camera.Position.X, player.Position.X, 0.25f), MathHelper.Lerp(camera.Position.Y, player.Position.Y, 0.25f)); 
             base.Update(gameTime);
         }
 
@@ -193,7 +194,7 @@ namespace LimboSoulsOfJudgement
         {
             GraphicsDevice.Clear(Color.CornflowerBlue);
             spriteBatch.Begin(SpriteSortMode.FrontToBack, null, null, null, null, null, camera.viewMatrix);
-            spriteBatch.DrawString(font, $"Souls: {player.currentSouls}", new Vector2(350, 500), Color.White, 0f, Vector2.Zero, 1f, SpriteEffects.None, 0.991f);
+            spriteBatch.DrawString(font, $"Souls: {player.currentSouls}", new Vector2(camera.Position.X, camera.Position.Y), Color.White, 0f, Vector2.Zero, 1f, SpriteEffects.None, 0.991f);
             foreach (GameObject go in gameObjects)
             {
                 go.Draw(spriteBatch);
