@@ -6,6 +6,7 @@ namespace LimboSoulsOfJudgement
 {
     public class Player : Character
     {
+        public int currentSouls;
 
         private const float jumpPower = 1150;
         private double jumpForce = jumpPower;
