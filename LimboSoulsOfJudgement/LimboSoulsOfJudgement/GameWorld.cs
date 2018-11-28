@@ -192,10 +192,10 @@ namespace LimboSoulsOfJudgement
             }
 
             vendorUIRect = new Rectangle(0, 0, vendorUI.Width, vendorUI.Height);
-            vendorUIPosition = new Vector2(player.Position.X + 350, player.Position.Y - 400);
+            vendorUIPosition = new Vector2(player.Position.X + 350, player.Position.Y - 300);
             if (triggerVendor)
             {
-                spriteBatch.Draw(vendorUI, vendorUIPosition, vendorUIRect, Color.White, 0, Vector2.Zero, 1.2f, SpriteEffects.None, 1);
+                spriteBatch.Draw(vendorUI, vendorUIPosition, vendorUIRect, Color.White, 0, Vector2.Zero, 1, SpriteEffects.None, 1);
             }
 
             spriteBatch.End();
