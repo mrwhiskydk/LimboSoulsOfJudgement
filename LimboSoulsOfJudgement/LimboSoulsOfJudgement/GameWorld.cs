@@ -22,7 +22,7 @@ namespace LimboSoulsOfJudgement
         private Platform platform;
         private MinorEnemy minorEnemy;
         private Camera camera;
-
+        private SpriteFont font;
 
         private static GraphicsDeviceManager graphics;
 
@@ -90,6 +90,7 @@ namespace LimboSoulsOfJudgement
         {
             // Create a new SpriteBatch, which can be used to draw textures.
             spriteBatch = new SpriteBatch(GraphicsDevice);
+            font = Content.Load<SpriteFont>("ExampleFont");
             collisionTexture = Content.Load<Texture2D>("CollisionTexture");
             for (int i = 0; i < 28; i++)
             {
@@ -169,6 +170,7 @@ namespace LimboSoulsOfJudgement
         {
             GraphicsDevice.Clear(Color.CornflowerBlue);
             spriteBatch.Begin(SpriteSortMode.FrontToBack, null, null, null, null, null, camera.viewMatrix);
+            spriteBatch.DrawString(font, $"Souls: {player.currentSouls}", new Vector2(350, 500), Color.White, 0f, Vector2.Zero, 1f, SpriteEffects.None, 0.991f);
             foreach (GameObject go in gameObjects)
             {
                 go.Draw(spriteBatch);
