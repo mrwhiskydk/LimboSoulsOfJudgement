@@ -23,8 +23,15 @@ namespace LimboSoulsOfJudgement
         private MinorEnemy minorEnemy;
         private Camera camera;
         private SpriteFont font;
+        private Vendor vendor;
+
+        private Texture2D vendorUI;
+        private Rectangle vendorUIRect;
+        private Vector2 vendorUIPosition;
         public static Random rnd = new Random();
         public static Crosshair mouse;
+
+        public static bool triggerVendor = false;
 
         private static GraphicsDeviceManager graphics;
 
@@ -105,6 +112,11 @@ namespace LimboSoulsOfJudgement
             Soul soul = new Soul(3, 6, new Vector2(100, 900), "Soul",3);
             Soul soul2 = new Soul(3, 6, new Vector2(130, 900), "Soul",2);
             Soul soul3 = new Soul(3, 6, new Vector2(160, 900), "Soul",1);
+
+            //Load Vendor & Vendor UI
+            vendor = new Vendor(1, 1, new Vector2(300, 750), "VendorTest");
+            vendorUI = Content.Load<Texture2D>("VendorUITest");
+
             mouse = new Crosshair();
         }
 
@@ -130,6 +142,7 @@ namespace LimboSoulsOfJudgement
         {
             if (GamePad.GetState(PlayerIndex.One).Buttons.Back == ButtonState.Pressed || Keyboard.GetState().IsKeyDown(Keys.Escape))
                 Exit();
+
 
             foreach (GameObject go in gameObjects)
             {
@@ -181,6 +194,12 @@ namespace LimboSoulsOfJudgement
 #endif
             }
 
+            vendorUIRect = new Rectangle(0, 0, vendorUI.Width, vendorUI.Height);
+            vendorUIPosition = new Vector2(player.Position.X + 350, player.Position.Y - 300);
+            if (triggerVendor)
+            {
+                spriteBatch.Draw(vendorUI, vendorUIPosition, vendorUIRect, Color.White, 0, Vector2.Zero, 1, SpriteEffects.None, 1);
+            }
 
             spriteBatch.End();
             base.Draw(gameTime);
