@@ -23,6 +23,7 @@ namespace LimboSoulsOfJudgement
         private MinorEnemy minorEnemy;
         private Camera camera;
 
+
         private static GraphicsDeviceManager graphics;
 
         //Insert GameWorld fields below
@@ -98,6 +99,9 @@ namespace LimboSoulsOfJudgement
             player = new Player();
             minorEnemy = new MinorEnemy();
             camera = new Camera();
+            Soul soul = new Soul(1, 1, new Vector2(200, 700), "Bow");
+            Soul soul2 = new Soul(1, 1, new Vector2(230, 700), "Bow");
+            Soul soul3 = new Soul(1, 1, new Vector2(260, 700), "Bow");
 
         }
 
@@ -164,7 +168,7 @@ namespace LimboSoulsOfJudgement
         protected override void Draw(GameTime gameTime)
         {
             GraphicsDevice.Clear(Color.CornflowerBlue);
-            spriteBatch.Begin(SpriteSortMode.Deferred, null, null, null, null, null, camera.viewMatrix);
+            spriteBatch.Begin(SpriteSortMode.FrontToBack, null, null, null, null, null, camera.viewMatrix);
             foreach (GameObject go in gameObjects)
             {
                 go.Draw(spriteBatch);
