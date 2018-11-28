@@ -26,7 +26,7 @@ namespace LimboSoulsOfJudgement
         private static GraphicsDeviceManager graphics;
 
         //Insert GameWorld fields below
-        private float gravityStrength = 5f;
+        private float gravityStrength = 7f;
 
         public static Rectangle ScreenSize
         {

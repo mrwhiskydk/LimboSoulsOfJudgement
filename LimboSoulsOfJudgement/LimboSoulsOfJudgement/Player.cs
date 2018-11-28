@@ -7,10 +7,14 @@ namespace LimboSoulsOfJudgement
     public class Player : Character
     {
 
-        private const float jumpPower = 1000;
+        private const float jumpPower = 1150;
         private double jumpForce = jumpPower;
 
+        //private float maxJumpTime = 2f;
+        private double jumpTime;
+
         private bool canJump = false;   //Controls wether the Player can jump or not
+        private bool isJumping = false;
 
         /// <summary>
         /// Player constructor that sets player animation values, position and sprite name
@@ -34,6 +38,36 @@ namespace LimboSoulsOfJudgement
             base.Update(gameTime);
 
             HandleMovement(gameTime);
+
+            HandleJumping(gameTime);
+            
+        }
+
+        /* Method that handles jump functionality of the Player
+         * Value is added to jumpTime until it reaches the value of jumpForce
+         * Reduces the value of jumpForce, to give position.Y a certain stop point in the air
+         * Once jumpTime and jumpForce value are at the same, stop point is reached and the player falls down through use of gravity
+        */
+        private void HandleJumping(GameTime gameTime)
+        {
+            if (isJumping)
+            {
+                jumpTime += gameTime.ElapsedGameTime.TotalSeconds;
+                if (jumpTime <= jumpForce)
+                {
+                    position.Y -= (float)(jumpForce * gameTime.ElapsedGameTime.TotalSeconds);
+                    jumpForce -= gameTime.ElapsedGameTime.TotalSeconds * 1500;
+                }
+
+                if (jumpTime >= jumpForce)
+                {
+                    isJumping = false;
+                }
+            }
+            else if (!isJumping)
+            {
+                gravity = true;
+            }
         }
 
         /// <summary>
@@ -58,16 +92,12 @@ namespace LimboSoulsOfJudgement
                 position.X += (float)(movementSpeed * gameTime.ElapsedGameTime.TotalSeconds);
             }
 
-            jumpForce -= gameTime.ElapsedGameTime.TotalSeconds * 1500; //Reduces the value of jumpForce over when the Player jumps           
-            if (Keyboard.GetState().IsKeyDown(Keys.Space) && canJump)  //Statement that checks if the Player is jumping, and handles Player jumpforce while in the air
-            {              
-                position.Y -= (float)(jumpForce * gameTime.ElapsedGameTime.TotalSeconds);
+            //Statement that checks if the Player is jumping
+            if (Keyboard.GetState().IsKeyDown(Keys.Space) && canJump) 
+            {
+                isJumping = true;
             }
 
-            if (Keyboard.GetState().IsKeyUp(Keys.Space))
-            {
-                canJump = false;
-            }
         }
 
         /// <summary>
@@ -82,6 +112,7 @@ namespace LimboSoulsOfJudgement
             {
                 jumpForce = jumpPower;
                 canJump = true;
+                isJumping = false;
             }
         }
 
