@@ -92,6 +92,11 @@ namespace LimboSoulsOfJudgement
             GameWorld.AddGameObject(this);
         }
 
+        public virtual void Destroy()
+        {
+            GameWorld.RemoveGameObject(this);
+        }
+
         /// <summary>
         /// Enabled the GameObject to have game logic defined
         /// </summary>

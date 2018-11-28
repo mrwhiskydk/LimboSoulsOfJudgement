@@ -50,6 +50,8 @@ namespace LimboSoulsOfJudgement
             HandleMovement(gameTime);
 
             HandleJumping(gameTime);
+
+            HandleWeapons(gameTime);
             
         }
 
@@ -137,7 +139,6 @@ namespace LimboSoulsOfJudgement
             {
                 canSwitchWeapons = true;
             }
-            weapon.Position = position;
 
             attackTimer += gameTime.ElapsedGameTime.TotalSeconds;
 
@@ -173,7 +174,7 @@ namespace LimboSoulsOfJudgement
         /// <param name="spriteBatch">The spritebatch that is used for drawing</param>
         public override void Draw(SpriteBatch spriteBatch)
         {
-            base.Draw(spriteBatch);
+            spriteBatch.Draw(sprite, position, animationRectangles[currentAnimationIndex], Color.White, rotation, new Vector2(animationRectangles[currentAnimationIndex].Width * 0.5f, animationRectangles[currentAnimationIndex].Height * 0.5f), 1f, SpriteEffects.None, 0.99f);
         }
 
     }
