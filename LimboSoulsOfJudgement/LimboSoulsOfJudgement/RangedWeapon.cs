@@ -10,7 +10,7 @@ namespace LimboSoulsOfJudgement
 {
     public class RangedWeapon : Weapon
     {
-        private int speed = 1000;
+        private int speed = 100;
         private int amountToFire = 1;
         public string arrowSprite = "arrow";
 
