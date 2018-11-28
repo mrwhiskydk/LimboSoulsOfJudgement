@@ -102,6 +102,14 @@ namespace LimboSoulsOfJudgement
             Soul soul = new Soul(3, 6, new Vector2(100, 900), "Soul",3);
             Soul soul2 = new Soul(3, 6, new Vector2(130, 900), "Soul",2);
             Soul soul3 = new Soul(3, 6, new Vector2(160, 900), "Soul",1);
+            new Platform(new Vector2(2000, 850), "MediumBlock");
+            new Platform(new Vector2(2000, 650), "MediumBlock");
+            new Platform(new Vector2(1850, 250), "MediumBlock");
+            new Platform(new Vector2(2000, 590), "MediumBlock");
+            new Platform(new Vector2(2000, 470), "MediumBlock");
+            new Platform(new Vector2(2000, 350), "MediumBlock");
+            new Platform(new Vector2(1500, 600), "MediumBlock");
+            new Platform(new Vector2(2000, 750), "MediumBlock");
 
         }
 
