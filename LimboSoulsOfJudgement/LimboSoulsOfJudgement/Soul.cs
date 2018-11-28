@@ -38,13 +38,14 @@ namespace LimboSoulsOfJudgement
         public override void Update(GameTime gameTime)
         {
             int distance = (int)Vector2.Distance(position, GameWorld.player.Position); // Gets the distance between the player and the soul
-            // if the distance is under 200 and 1.5 seconds have passed since the soul was dropped the soul moves towards the player
+            // if the distance is under 200 and the soul has hit the ground the soul moves towards the player
             if (distance < 200 && hitTheGround is true)
             {
                 SoulMovement();
             }
 
-            if (hitTheGround is false && gameTime.TotalGameTime.Seconds > 3)
+            // if the soul has not hit the ground, make it move like it has been thrown
+            if (hitTheGround is false)
             {
                 jumpForce -= gameTime.ElapsedGameTime.TotalSeconds * 1000;
                 position.Y -= (float)(jumpForce * gameTime.ElapsedGameTime.TotalSeconds);
@@ -69,6 +70,12 @@ namespace LimboSoulsOfJudgement
             if (otherObject is Platform)
             {
                 hitTheGround = true;
+            }
+
+            if (otherObject is Player)
+            {
+
+                GameWorld.RemoveGameObject(this);
             }
         }
     }
