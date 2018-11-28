@@ -22,7 +22,16 @@ namespace LimboSoulsOfJudgement
         private Platform platform;
         private MinorEnemy minorEnemy;
         private Camera camera;
+        private SpriteFont font;
+        private Vendor vendor;
 
+        private Texture2D vendorUI;
+        private Rectangle vendorUIRect;
+        private Vector2 vendorUIPosition;
+        public static Random rnd = new Random();
+        public static Crosshair mouse;
+
+        public static bool triggerVendor = false;
 
         private static GraphicsDeviceManager graphics;
 
@@ -90,6 +99,7 @@ namespace LimboSoulsOfJudgement
         {
             // Create a new SpriteBatch, which can be used to draw textures.
             spriteBatch = new SpriteBatch(GraphicsDevice);
+            font = Content.Load<SpriteFont>("ExampleFont");
             collisionTexture = Content.Load<Texture2D>("CollisionTexture");
             for (int i = 0; i < 28; i++)
             {
@@ -111,6 +121,11 @@ namespace LimboSoulsOfJudgement
             new Platform(new Vector2(1500, 600), "MediumBlock");
             new Platform(new Vector2(2000, 750), "MediumBlock");
 
+            //Load Vendor & Vendor UI
+            vendor = new Vendor(1, 1, new Vector2(300, 750), "VendorTest");
+            vendorUI = Content.Load<Texture2D>("VendorUITest");
+
+            mouse = new Crosshair();
         }
 
 
@@ -135,6 +150,7 @@ namespace LimboSoulsOfJudgement
         {
             if (GamePad.GetState(PlayerIndex.One).Buttons.Back == ButtonState.Pressed || Keyboard.GetState().IsKeyDown(Keys.Escape))
                 Exit();
+
 
             foreach (GameObject go in gameObjects)
             {
@@ -177,6 +193,7 @@ namespace LimboSoulsOfJudgement
         {
             GraphicsDevice.Clear(Color.CornflowerBlue);
             spriteBatch.Begin(SpriteSortMode.FrontToBack, null, null, null, null, null, camera.viewMatrix);
+            spriteBatch.DrawString(font, $"Souls: {player.currentSouls}", new Vector2(350, 500), Color.White, 0f, Vector2.Zero, 1f, SpriteEffects.None, 0.991f);
             foreach (GameObject go in gameObjects)
             {
                 go.Draw(spriteBatch);
@@ -185,6 +202,12 @@ namespace LimboSoulsOfJudgement
 #endif
             }
 
+            vendorUIRect = new Rectangle(0, 0, vendorUI.Width, vendorUI.Height);
+            vendorUIPosition = new Vector2(player.Position.X + 350, player.Position.Y - 300);
+            if (triggerVendor)
+            {
+                spriteBatch.Draw(vendorUI, vendorUIPosition, vendorUIRect, Color.White, 0, Vector2.Zero, 1, SpriteEffects.None, 1);
+            }
 
             spriteBatch.End();
             base.Draw(gameTime);

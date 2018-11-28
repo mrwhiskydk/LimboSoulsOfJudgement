@@ -33,7 +33,7 @@ namespace LimboSoulsOfJudgement
             health = maxHealth;
 
             //Player movementspeed amount
-            movementSpeed = 250;
+            movementSpeed = 450;
 
             //Weapon setup
             weapon = ranged;
@@ -41,7 +41,7 @@ namespace LimboSoulsOfJudgement
         }
 
         /// <summary>
-        /// Update method that enables Player movement
+        /// Update method that enables Player movement, jumping and attacking mechanism
         /// </summary>
         /// <param name="gameTime">Time elapsed since last call in the update</param>
         public override void Update(GameTime gameTime)
@@ -53,7 +53,8 @@ namespace LimboSoulsOfJudgement
 
             HandleJumping(gameTime);
 
-
+            HandleWeapons(gameTime);
+            
         }
 
         /* Method that handles jump functionality of the Player

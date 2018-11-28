@@ -46,6 +46,7 @@
     <Compile Include="BossEnemy.cs" />
     <Compile Include="Camera.cs" />
     <Compile Include="Character.cs" />
+    <Compile Include="Crosshair.cs" />
     <Compile Include="Enemy.cs" />
     <Compile Include="GameWorld.cs" />
     <Compile Include="GameObject.cs" />
