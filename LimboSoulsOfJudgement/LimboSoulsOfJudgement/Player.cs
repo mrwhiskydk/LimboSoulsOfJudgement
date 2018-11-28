@@ -33,7 +33,7 @@ namespace LimboSoulsOfJudgement
             health = maxHealth;
 
             //Player movementspeed amount
-            movementSpeed = 450;
+            movementSpeed = 250;
 
             //Weapon setup
             weapon = ranged;
@@ -204,15 +204,6 @@ namespace LimboSoulsOfJudgement
                     Gravity = false;
                 }
             }
-        }
-
-        /// <summary>
-        /// Draws the Player sprite in a specific way.
-        /// </summary>
-        /// <param name="spriteBatch">The spritebatch that is used for drawing</param>
-        public override void Draw(SpriteBatch spriteBatch)
-        {
-            spriteBatch.Draw(sprite, position, animationRectangles[currentAnimationIndex], Color.White, rotation, new Vector2(animationRectangles[currentAnimationIndex].Width * 0.5f, animationRectangles[currentAnimationIndex].Height * 0.5f), 1f, SpriteEffects.None, 0.99f);
         }
 
     }
