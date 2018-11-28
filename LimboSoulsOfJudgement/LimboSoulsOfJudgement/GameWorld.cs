@@ -93,15 +93,15 @@ namespace LimboSoulsOfJudgement
             collisionTexture = Content.Load<Texture2D>("CollisionTexture");
             for (int i = 0; i < 28; i++)
             {
-                new Platform(new Vector2((i * 128) + 35, 1050), "MediumBlock");
+                new Platform(new Vector2((i * 128), 1050), "MediumBlock");
             }
             platform = new Platform(new Vector2(850, 850), "SmallBlock");
             player = new Player();
             minorEnemy = new MinorEnemy();
             camera = new Camera();
-            Soul soul = new Soul(1, 1, new Vector2(100, 900), "Bow");
-            Soul soul2 = new Soul(1, 1, new Vector2(130, 900), "Bow");
-            Soul soul3 = new Soul(1, 1, new Vector2(160, 900), "Bow");
+            Soul soul = new Soul(1, 1, new Vector2(100, 900), "Soul");
+            Soul soul2 = new Soul(1, 1, new Vector2(130, 900), "Soul");
+            Soul soul3 = new Soul(1, 1, new Vector2(160, 900), "Soul");
 
         }
 

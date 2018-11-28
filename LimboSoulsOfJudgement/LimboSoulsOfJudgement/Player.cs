@@ -21,7 +21,7 @@ namespace LimboSoulsOfJudgement
         /// <summary>
         /// Player constructor that sets player animation values, position and sprite name
         /// </summary>
-        public Player() : base(3, 12, new Vector2(GameWorld.ScreenSize.Width / 2, GameWorld.ScreenSize.Height/2), "Melee2")
+        public Player() : base(3, 12, new Vector2(GameWorld.ScreenSize.Width / 2, GameWorld.ScreenSize.Height/2), "PlayerIdle")
         {
             //Maximum amount of Player health
             maxHealth = 100;
