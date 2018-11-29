@@ -36,6 +36,7 @@ namespace LimboSoulsOfJudgement
 
         private double patrolTime;
         private float patrolDuration = 6f;
+        private double collisionMovement;
 
 
 
@@ -93,7 +94,7 @@ namespace LimboSoulsOfJudgement
                 GameWorld.RemoveGameObject(this);
                
             }
-
+            collisionMovement = movementSpeed * gameTime.ElapsedGameTime.TotalSeconds;
         }
 
         /// <summary>
@@ -152,6 +153,23 @@ namespace LimboSoulsOfJudgement
                 Projectile arrow = (Projectile)otherObject;
                 enemyHealth -= arrow.damage;
                 GameWorld.RemoveGameObject(arrow);
+            }
+
+            Rectangle rightLine = new Rectangle(CollisionBox.X + CollisionBox.Width, CollisionBox.Y + 8, 1, CollisionBox.Height - 16);
+            Rectangle leftLine = new Rectangle(CollisionBox.X, CollisionBox.Y + 8, 1, CollisionBox.Height - 16);
+
+            if (otherObject is Platform)
+            {
+                if (rightLine.Intersects(otherObject.CollisionBox))
+                {
+                    position.X -= (float)collisionMovement;
+                }
+
+                if (leftLine.Intersects(otherObject.CollisionBox))
+                {
+                    position.X += (float)collisionMovement;
+                }
+
             }
         }
 
