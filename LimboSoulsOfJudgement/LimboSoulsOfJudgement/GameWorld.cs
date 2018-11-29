@@ -25,6 +25,8 @@ namespace LimboSoulsOfJudgement
         private SpriteFont font;
         private Vendor vendor;
 
+        private Level level1;
+
         private Texture2D vendorUI;
         private Rectangle vendorUIRect;
         private Vector2 vendorUIPosition;
@@ -107,7 +109,7 @@ namespace LimboSoulsOfJudgement
             }
             platform = new Platform(new Vector2(850, 850), "SmallBlock");
             player = new Player();
-            minorEnemy = new MinorEnemy();
+            minorEnemy = new MinorEnemy(new Vector2(1700,700));
             camera = new Camera();
             Soul soul = new Soul(3, 6, new Vector2(100, 900), "Soul",3);
             Soul soul2 = new Soul(3, 6, new Vector2(130, 900), "Soul",2);
@@ -127,6 +129,8 @@ namespace LimboSoulsOfJudgement
 
             mouse = new Crosshair();
             camera.Position = player.Position;
+
+            level1 = new Level();
         }
 
 
@@ -195,6 +199,7 @@ namespace LimboSoulsOfJudgement
             GraphicsDevice.Clear(Color.CornflowerBlue);
             spriteBatch.Begin(SpriteSortMode.FrontToBack, null, null, null, null, null, camera.viewMatrix);
             spriteBatch.DrawString(font, $"Souls: {player.currentSouls}", new Vector2(camera.Position.X, camera.Position.Y), Color.White, 0f, Vector2.Zero, 1f, SpriteEffects.None, 0.991f);
+            spriteBatch.DrawString(font, $"Coordinates: X: {Mouse.GetState().X - camera.viewMatrix.Translation.X}   Y: {Mouse.GetState().Y - camera.viewMatrix.Translation.Y}", new Vector2(camera.Position.X, camera.Position.Y - 500), Color.White, 0f, Vector2.Zero, 1f, SpriteEffects.None, 0.991f);
             foreach (GameObject go in gameObjects)
             {
                 go.Draw(spriteBatch);
