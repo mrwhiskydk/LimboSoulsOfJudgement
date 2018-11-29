@@ -34,14 +34,29 @@ namespace LimboSoulsOfJudgement
         {
             base.DoCollision(otherObject);
 
-            if (otherObject is Player)
+            foreach(GameObject go in GameWorld.gameObjects)
             {
-                GameWorld.triggerVendor = true;
+                otherObject = go;
+                if (otherObject.IsColliding(this) && otherObject is Player)
+                {
+                    GameWorld.triggerVendor = true;
+                }
+                else if(GameWorld.player.IsColliding(this) == false)
+                {
+                    GameWorld.triggerVendor = false;
+                }
+
             }
-            else
-            {
-                GameWorld.triggerVendor = false;
-            }
+
+            //if (otherObject is Player)
+            //{
+            //    GameWorld.triggerVendor = true;
+            //}
+            //else
+            //{
+            //    GameWorld.triggerVendor = false;
+            //}
+
         }
 
     }

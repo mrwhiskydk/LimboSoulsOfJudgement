@@ -14,7 +14,7 @@ namespace LimboSoulsOfJudgement
     public class GameWorld : Game
     {
         private SpriteBatch spriteBatch;
-        private List<GameObject> gameObjects = new List<GameObject>();
+        public static List<GameObject> gameObjects = new List<GameObject>();
         private static List<GameObject> toBeAdded = new List<GameObject>();
         private static List<GameObject> toBeRemoved = new List<GameObject>();
         public static Player player;
@@ -204,7 +204,7 @@ namespace LimboSoulsOfJudgement
             }
 
             vendorUIRect = new Rectangle(0, 0, vendorUI.Width, vendorUI.Height);
-            vendorUIPosition = new Vector2(player.Position.X + 350, player.Position.Y - 300);
+            vendorUIPosition = new Vector2(camera.Position.X + 350, camera.Position.Y - 300);
             if (triggerVendor)
             {
                 spriteBatch.Draw(vendorUI, vendorUIPosition, vendorUIRect, Color.White, 0, Vector2.Zero, 1, SpriteEffects.None, 1);
