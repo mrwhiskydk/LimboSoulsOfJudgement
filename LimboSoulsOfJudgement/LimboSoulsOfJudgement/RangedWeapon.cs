@@ -21,7 +21,7 @@ namespace LimboSoulsOfJudgement
 
         public override void Attack()
         {
-            Vector2 dir = new Vector2(Mouse.GetState().Position.X, Mouse.GetState().Position.Y) - position;
+            Vector2 dir = new Vector2(Mouse.GetState().Position.X - GameWorld.camera.viewMatrix.Translation.X, Mouse.GetState().Position.Y - GameWorld.camera.viewMatrix.Translation.Y) - position;
 
             for (int i = 0; i < amountToFire; i++)
             {
