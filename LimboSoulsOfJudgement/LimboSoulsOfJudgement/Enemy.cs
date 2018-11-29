@@ -12,9 +12,13 @@ namespace LimboSoulsOfJudgement
         public int enemyDamage;
 
         public int enemyHealth;
-
-        protected int enemySouls;
-
+        /// <summary>
+        /// 
+        /// </summary>
+        public int enemySouls;
+        /// <summary>
+        /// 
+        /// </summary>
         protected int soulCount;
 
         /// <summary>
@@ -32,6 +36,8 @@ namespace LimboSoulsOfJudgement
 
         private double patrolTime;
         private float patrolDuration = 6f;
+
+
 
         /// <summary>
         /// Enemy constructor that sets animation values, position and sprite names of MinorEnemy and BossEnemy
@@ -82,7 +88,7 @@ namespace LimboSoulsOfJudgement
 
                 for (int i = 0; i < soulCount; i++)
                 {
-                         GameWorld.AddGameObject(new Soul(3, 6, new Vector2(position.X, position.Y), "Soul", enemySouls));                    
+                    GameWorld.AddGameObject(new Soul(3, 6, new Vector2(position.X, position.Y), "Soul", enemySouls));                    
                 }
                 GameWorld.RemoveGameObject(this);
                

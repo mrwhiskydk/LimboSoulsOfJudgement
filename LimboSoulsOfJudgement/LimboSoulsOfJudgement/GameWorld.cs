@@ -30,7 +30,7 @@ namespace LimboSoulsOfJudgement
         private Vector2 vendorUIPosition;
         public static Random rnd = new Random();
         public static Crosshair mouse;
-
+        private Texture2D backGround;
         public static bool triggerVendor = false;
 
         private static GraphicsDeviceManager graphics;
@@ -100,6 +100,7 @@ namespace LimboSoulsOfJudgement
             // Create a new SpriteBatch, which can be used to draw textures.
             spriteBatch = new SpriteBatch(GraphicsDevice);
             font = Content.Load<SpriteFont>("ExampleFont");
+            backGround = Content.Load<Texture2D>("GreyBackground");
             collisionTexture = Content.Load<Texture2D>("CollisionTexture");
             for (int i = 0; i < 28; i++)
             {
@@ -192,9 +193,12 @@ namespace LimboSoulsOfJudgement
         /// <param name="gameTime">Provides a snapshot of timing values.</param>
         protected override void Draw(GameTime gameTime)
         {
-            GraphicsDevice.Clear(Color.CornflowerBlue);
-            spriteBatch.Begin(SpriteSortMode.FrontToBack, null, null, null, null, null, camera.viewMatrix);
-            spriteBatch.DrawString(font, $"Souls: {player.currentSouls}", new Vector2(camera.Position.X, camera.Position.Y), Color.White, 0f, Vector2.Zero, 1f, SpriteEffects.None, 0.991f);
+            GraphicsDevice.Clear(Color.DarkGray);
+            spriteBatch.Begin(SpriteSortMode.Deferred, null, null, null, null, null, camera.viewMatrix);
+            spriteBatch.Draw(backGround, new Vector2(camera.Position.X - ScreenSize.Width*0.5f, camera.Position.Y - ScreenSize.Height * 0.5f), null, Color.White, 0f, Vector2.Zero, 1f, SpriteEffects.None, 0.01f);
+            spriteBatch.DrawString(font, $"Souls: {player.currentSouls}", new Vector2(camera.Position.X - 900, camera.Position.Y - 515), Color.White, 0f, Vector2.Zero, 1f, SpriteEffects.None, 0.991f);
+            spriteBatch.DrawString(font, $"Health: {player.Health}", new Vector2(camera.Position.X - 900, camera.Position.Y - 500), Color.White, 0f, Vector2.Zero, 1f, SpriteEffects.None, 0.991f);
+
             foreach (GameObject go in gameObjects)
             {
                 go.Draw(spriteBatch);

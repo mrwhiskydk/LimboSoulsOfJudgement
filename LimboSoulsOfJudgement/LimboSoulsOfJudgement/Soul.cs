@@ -18,7 +18,6 @@ namespace LimboSoulsOfJudgement
         private double jumpForce = 400;
 
 
-
         /// <summary>
         /// Soul Constructor that sets Soul animation values, position and sprite name
         /// </summary>

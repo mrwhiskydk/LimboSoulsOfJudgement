@@ -45,11 +45,13 @@
     <Compile Include="AnimatedGameObject.cs" />
     <Compile Include="BossEnemy.cs" />
     <Compile Include="Camera.cs" />
+    <Compile Include="Chain.cs" />
     <Compile Include="Character.cs" />
     <Compile Include="Crosshair.cs" />
     <Compile Include="Enemy.cs" />
     <Compile Include="GameWorld.cs" />
     <Compile Include="GameObject.cs" />
+    <Compile Include="Lava.cs" />
     <Compile Include="MinorEnemy.cs" />
     <Compile Include="Player.cs" />
     <Compile Include="Level.cs" />

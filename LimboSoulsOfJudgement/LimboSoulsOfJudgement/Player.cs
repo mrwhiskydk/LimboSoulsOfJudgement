@@ -204,6 +204,11 @@ namespace LimboSoulsOfJudgement
                     Gravity = false;
                 }
             }
+
+            if (otherObject is Lava)
+            {
+                health -= 10;
+            }
         }
 
     }
