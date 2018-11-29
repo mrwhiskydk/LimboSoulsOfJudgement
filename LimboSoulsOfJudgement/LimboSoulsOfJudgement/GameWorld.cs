@@ -21,7 +21,7 @@ namespace LimboSoulsOfJudgement
         private Texture2D collisionTexture;
         private Platform platform;
         private MinorEnemy minorEnemy;
-        private Camera camera;
+        public static Camera camera;
         private SpriteFont font;
         private Vendor vendor;
 
