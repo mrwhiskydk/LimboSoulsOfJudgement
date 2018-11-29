@@ -33,7 +33,7 @@ namespace LimboSoulsOfJudgement
             health = maxHealth;
 
             //Player movementspeed amount
-            movementSpeed = 250;
+            movementSpeed = 500;
 
             //Weapon setup
             weapon = ranged;
