@@ -17,7 +17,27 @@ namespace LimboSoulsOfJudgement
         /// <summary>
         /// Property that sets the health value of the current GameObject
         /// </summary>
-        protected int Health { get; set; }
+        public int Health
+        {
+            get
+            {
+                return health;
+            }
+            set
+            {
+                if (value >= maxHealth)
+                {
+                    health = maxHealth;
+                }
+                else
+                {
+                    health = value;
+                }
+            }
+        }
+
+
+
 
         /// <summary>
         /// Property that sets the max health value of the current GameObject

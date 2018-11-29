@@ -19,7 +19,6 @@ namespace LimboSoulsOfJudgement
         private bool soulsGiven = false;
 
 
-
         /// <summary>
         /// Soul Constructor that sets Soul animation values, position and sprite name
         /// </summary>

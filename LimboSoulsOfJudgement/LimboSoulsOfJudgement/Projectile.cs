@@ -58,6 +58,7 @@ namespace LimboSoulsOfJudgement
             if (otherObject is Platform)
             {
                 speed = 0;
+                damage = 0;
                 remove = true;
             }
         }

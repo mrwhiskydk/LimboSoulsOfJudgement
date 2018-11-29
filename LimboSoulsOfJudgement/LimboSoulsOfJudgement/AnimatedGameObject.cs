@@ -20,6 +20,7 @@ namespace LimboSoulsOfJudgement
         /// </summary>
         public bool facingRight;
 
+
         public override Rectangle CollisionBox
         {
             get

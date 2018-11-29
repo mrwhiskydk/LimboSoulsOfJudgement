@@ -12,9 +12,13 @@ namespace LimboSoulsOfJudgement
         public int enemyDamage;
 
         public int enemyHealth;
-
-        protected int enemySouls;
-
+        /// <summary>
+        /// 
+        /// </summary>
+        public int enemySouls;
+        /// <summary>
+        /// 
+        /// </summary>
         protected int soulCount;
 
         /// <summary>
@@ -32,6 +36,9 @@ namespace LimboSoulsOfJudgement
 
         private double patrolTime;
         private float patrolDuration = 6f;
+        private double collisionMovement;
+
+
 
         /// <summary>
         /// Enemy constructor that sets animation values, position and sprite names of MinorEnemy and BossEnemy
@@ -82,12 +89,12 @@ namespace LimboSoulsOfJudgement
 
                 for (int i = 0; i < soulCount; i++)
                 {
-                         GameWorld.AddGameObject(new Soul(3, 6, new Vector2(position.X, position.Y), "Soul", enemySouls));                    
+                    GameWorld.AddGameObject(new Soul(3, 6, new Vector2(position.X, position.Y), "Soul", enemySouls));                    
                 }
                 GameWorld.RemoveGameObject(this);
                
             }
-
+            collisionMovement = movementSpeed * gameTime.ElapsedGameTime.TotalSeconds;
         }
 
         /// <summary>
@@ -146,6 +153,23 @@ namespace LimboSoulsOfJudgement
                 Projectile arrow = (Projectile)otherObject;
                 enemyHealth -= arrow.damage;
                 GameWorld.RemoveGameObject(arrow);
+            }
+
+            Rectangle rightLine = new Rectangle(CollisionBox.X + CollisionBox.Width, CollisionBox.Y + 8, 1, CollisionBox.Height - 16);
+            Rectangle leftLine = new Rectangle(CollisionBox.X, CollisionBox.Y + 8, 1, CollisionBox.Height - 16);
+
+            if (otherObject is Platform)
+            {
+                if (rightLine.Intersects(otherObject.CollisionBox))
+                {
+                    position.X -= (float)collisionMovement;
+                }
+
+                if (leftLine.Intersects(otherObject.CollisionBox))
+                {
+                    position.X += (float)collisionMovement;
+                }
+
             }
         }
 
