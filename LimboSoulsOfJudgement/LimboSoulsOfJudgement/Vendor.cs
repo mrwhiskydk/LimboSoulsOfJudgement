@@ -23,6 +23,10 @@ namespace LimboSoulsOfJudgement
 
         }
 
+        /// <summary>
+        /// Update Method that enables constant gravity on the Vendor GameObject, and updates base game logic
+        /// </summary>
+        /// <param name="gameTime"></param>
         public override void Update(GameTime gameTime)
         {
             gravity = true;
@@ -30,6 +34,10 @@ namespace LimboSoulsOfJudgement
             base.Update(gameTime);
         }
 
+        /// <summary>
+        /// Method that handles Vendor collision functionality with the other current GameObjects in the game
+        /// </summary>
+        /// <param name="otherObject">The GameObject that the Vendor object collides with</param>
         public override void DoCollision(GameObject otherObject)
         {
             base.DoCollision(otherObject);
@@ -47,16 +55,6 @@ namespace LimboSoulsOfJudgement
                 }
 
             }
-
-            //if (otherObject is Player)
-            //{
-            //    GameWorld.triggerVendor = true;
-            //}
-            //else
-            //{
-            //    GameWorld.triggerVendor = false;
-            //}
-
         }
 
     }
