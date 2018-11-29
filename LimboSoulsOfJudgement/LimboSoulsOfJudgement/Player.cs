@@ -12,7 +12,7 @@ namespace LimboSoulsOfJudgement
         private bool canSwitchWeapons = true;
         private double attackTimer = 0;
         public int currentSouls;
-        private double collisionMovement;
+        private double collisionMovement; // Used for collision so you dont need gameTime in DoCollision
 
         private const float jumpPower = 1150;
         private double jumpForce = jumpPower;

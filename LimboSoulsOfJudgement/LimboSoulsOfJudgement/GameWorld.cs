@@ -14,16 +14,18 @@ namespace LimboSoulsOfJudgement
     public class GameWorld : Game
     {
         private SpriteBatch spriteBatch;
-        private List<GameObject> gameObjects = new List<GameObject>();
+        public static List<GameObject> gameObjects = new List<GameObject>();
         private static List<GameObject> toBeAdded = new List<GameObject>();
         private static List<GameObject> toBeRemoved = new List<GameObject>();
         public static Player player;
         private Texture2D collisionTexture;
         private Platform platform;
         private MinorEnemy minorEnemy;
-        private Camera camera;
+        public static Camera camera;
         private SpriteFont font;
         private Vendor vendor;
+
+        private Level level1;
 
         private Texture2D vendorUI;
         private Rectangle vendorUIRect;
@@ -108,7 +110,7 @@ namespace LimboSoulsOfJudgement
             }
             platform = new Platform(new Vector2(850, 850), "SmallBlock");
             player = new Player();
-            minorEnemy = new MinorEnemy();
+            minorEnemy = new MinorEnemy(new Vector2(1700,700));
             camera = new Camera();
             Soul soul = new Soul(3, 6, new Vector2(100, 900), "Soul",3);
             Soul soul2 = new Soul(3, 6, new Vector2(130, 900), "Soul",2);
@@ -128,6 +130,8 @@ namespace LimboSoulsOfJudgement
 
             mouse = new Crosshair();
             camera.Position = player.Position;
+
+            level1 = new Level();
         }
 
 
@@ -208,7 +212,7 @@ namespace LimboSoulsOfJudgement
             }
 
             vendorUIRect = new Rectangle(0, 0, vendorUI.Width, vendorUI.Height);
-            vendorUIPosition = new Vector2(player.Position.X + 350, player.Position.Y - 300);
+            vendorUIPosition = new Vector2(camera.Position.X + 350, camera.Position.Y - 300);
             if (triggerVendor)
             {
                 spriteBatch.Draw(vendorUI, vendorUIPosition, vendorUIRect, Color.White, 0, Vector2.Zero, 1, SpriteEffects.None, 1);
