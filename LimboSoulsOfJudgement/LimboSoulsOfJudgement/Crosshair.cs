@@ -18,7 +18,7 @@ namespace LimboSoulsOfJudgement
 
         public override void Update(GameTime gameTime)
         {
-            position = new Vector2(Mouse.GetState().Position.X, Mouse.GetState().Position.Y);
+            position = new Vector2(Mouse.GetState().X - GameWorld.camera.viewMatrix.Translation.X, Mouse.GetState().Y - GameWorld.camera.viewMatrix.Translation.Y);
         }
 
         public override void Draw(SpriteBatch spriteBatch)

@@ -16,6 +16,7 @@ namespace LimboSoulsOfJudgement
         private bool hitTheGround = false;
         private float direction;
         private double jumpForce = 400;
+        private bool soulsGiven = false;
 
 
 
@@ -75,7 +76,11 @@ namespace LimboSoulsOfJudgement
 
             if (otherObject is Player)
             {
-                GameWorld.player.currentSouls += souls;
+                if (soulsGiven is false)
+                {
+                    GameWorld.player.currentSouls += souls;
+                    soulsGiven = true;
+                }
                 GameWorld.RemoveGameObject(this);
             }
         }
