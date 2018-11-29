@@ -33,7 +33,6 @@ namespace LimboSoulsOfJudgement
         public static Random rnd = new Random();
         public static Crosshair mouse;
         private Texture2D backGround;
-        public static bool triggerVendor = false;
 
         private static GraphicsDeviceManager graphics;
 
