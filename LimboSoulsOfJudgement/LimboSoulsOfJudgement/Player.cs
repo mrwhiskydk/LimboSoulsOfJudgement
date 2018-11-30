@@ -14,7 +14,7 @@ namespace LimboSoulsOfJudgement
         public int currentSouls;
         private double collisionMovement; // Used for collision so you dont need gameTime in DoCollision
 
-        private bool climb = false;
+        public bool climb = false;
 
         private bool takingDamage = false;
         private float immortalDuration = 1.0f;
@@ -60,7 +60,7 @@ namespace LimboSoulsOfJudgement
             collisionMovement = movementSpeed * gameTime.ElapsedGameTime.TotalSeconds;
 
             HandleMovement(gameTime);
-
+            climb = false;
             HandleJumping(gameTime);
 
             HandleWeapons(gameTime);
@@ -195,7 +195,7 @@ namespace LimboSoulsOfJudgement
 
             // Creates small collisionboxes around the player to be used for collision
             Rectangle topLine = new Rectangle(CollisionBox.X, CollisionBox.Y, CollisionBox.Width, 1);
-            Rectangle bottomLine = new Rectangle(CollisionBox.X + 3, CollisionBox.Y + CollisionBox.Height, CollisionBox.Width - 6, 1);
+            Rectangle bottomLine = new Rectangle(CollisionBox.X + 10, CollisionBox.Y + CollisionBox.Height, CollisionBox.Width - 20, 1);
             Rectangle rightLine = new Rectangle(CollisionBox.X + CollisionBox.Width, CollisionBox.Y + 8, 1, CollisionBox.Height - 16);
             Rectangle leftLine = new Rectangle(CollisionBox.X, CollisionBox.Y + 8, 1, CollisionBox.Height - 16);
 
@@ -236,6 +236,7 @@ namespace LimboSoulsOfJudgement
                 }
             }
 
+
             if (otherObject is Lava && isImmortal == false)
             {
                 health -= 10;
@@ -247,10 +248,7 @@ namespace LimboSoulsOfJudgement
             {
                 climb = true;
                 gravity = false;
-            }
-            else
-            {
-                climb = false;
+                jumpForce = 0;
             }
         }
 

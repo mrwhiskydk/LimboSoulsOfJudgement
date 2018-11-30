@@ -101,6 +101,10 @@ namespace LimboSoulsOfJudgement
             }
             collisionMovement = movementSpeed * gameTime.ElapsedGameTime.TotalSeconds;
             HandleJumping(gameTime);
+            if (GameWorld.player.climb is true)
+            {
+                goVertically = true;
+            }
         }
 
         private void HandleJumping(GameTime gameTime)
@@ -183,20 +187,20 @@ namespace LimboSoulsOfJudgement
                 GameWorld.RemoveGameObject(arrow);
             }
 
-            Rectangle rightLine = new Rectangle(CollisionBox.X + CollisionBox.Width, CollisionBox.Y + 8, 1, CollisionBox.Height - 16);
-            Rectangle leftLine = new Rectangle(CollisionBox.X, CollisionBox.Y + 8, 1, CollisionBox.Height - 16);
+            Rectangle rightLine = new Rectangle(CollisionBox.X + CollisionBox.Width, CollisionBox.Y + 12, 1, CollisionBox.Height - 24);
+            Rectangle leftLine = new Rectangle(CollisionBox.X, CollisionBox.Y + 12, 1, CollisionBox.Height - 24);
             Rectangle bottomLine = new Rectangle(CollisionBox.X + 3, CollisionBox.Y + CollisionBox.Height, CollisionBox.Width - 6, 1);
 
             if (otherObject is Platform)
             {
-                if (rightLine.Intersects(otherObject.CollisionBox))
+                if (rightLine.Intersects(otherObject.CollisionBox) && rightLine.Intersects(GameWorld.player.CollisionBox) is false)
                 {
                     position.X -= (float)collisionMovement;
                     Gravity = true;
                     isJumping = true;
                 }
 
-                if (leftLine.Intersects(otherObject.CollisionBox))
+                if (leftLine.Intersects(otherObject.CollisionBox) && leftLine.Intersects(GameWorld.player.CollisionBox) is false)
                 {
                     position.X += (float)collisionMovement;
                     Gravity = true;
@@ -211,6 +215,7 @@ namespace LimboSoulsOfJudgement
                 }
 
             }
+
         }
 
     }
