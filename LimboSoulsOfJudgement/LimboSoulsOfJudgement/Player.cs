@@ -43,7 +43,7 @@ namespace LimboSoulsOfJudgement
             health = maxHealth;
 
             //Player movementspeed amount
-            movementSpeed = 250;
+            movementSpeed = 500;
 
             //Weapon setup
             weapon = ranged;
@@ -195,7 +195,7 @@ namespace LimboSoulsOfJudgement
 
             // Creates small collisionboxes around the player to be used for collision
             Rectangle topLine = new Rectangle(CollisionBox.X, CollisionBox.Y, CollisionBox.Width, 1);
-            Rectangle bottomLine = new Rectangle(CollisionBox.X + 15, CollisionBox.Y + CollisionBox.Height, CollisionBox.Width - 30, 1);
+            Rectangle bottomLine = new Rectangle(CollisionBox.X + 3, CollisionBox.Y + CollisionBox.Height, CollisionBox.Width - 6, 1);
             Rectangle rightLine = new Rectangle(CollisionBox.X + CollisionBox.Width, CollisionBox.Y + 8, 1, CollisionBox.Height - 16);
             Rectangle leftLine = new Rectangle(CollisionBox.X, CollisionBox.Y + 8, 1, CollisionBox.Height - 16);
 
