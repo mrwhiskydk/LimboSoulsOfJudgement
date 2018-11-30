@@ -33,12 +33,16 @@ namespace LimboSoulsOfJudgement
         public static Random rnd = new Random();
         public static Crosshair mouse;
         private Texture2D backGround;
-        public static bool triggerVendor = false;
 
         private static GraphicsDeviceManager graphics;
 
         //Insert GameWorld fields below
         private float gravityStrength = 7f;
+        public static bool triggerVendor = false;
+        //Fields below is used for Fade in and out Image
+        private int alphaValue = 0;
+        private static int fadeIncrease = 3;
+        private double fadeDelay = 0;    //default is .010;
 
         public static Rectangle ScreenSize
         {
@@ -184,8 +188,25 @@ namespace LimboSoulsOfJudgement
 
             gameObjects.AddRange(toBeAdded);
             toBeAdded.Clear();
+            
+           
+            if (triggerVendor)
+            {
+                alphaValue += fadeIncrease;
+                fadeDelay += gameTime.ElapsedGameTime.TotalSeconds; 
+            }
+            //else
+            //{
+            //    fadeIncrease -= 1;
+            //}
 
+            //alphaValue += fadeIncrease;
 
+            //if (alphaValue >= 255 || alphaValue <= 0)
+
+            //{
+            //    fadeIncrease *= -1;
+            //}
 
             camera.Position = new Vector2(MathHelper.Lerp(camera.Position.X, player.Position.X, 0.25f), MathHelper.Lerp(camera.Position.Y, player.Position.Y, 0.25f)); 
             base.Update(gameTime);
@@ -211,13 +232,16 @@ namespace LimboSoulsOfJudgement
                 DrawCollisionBox(go);
 #endif
             }
+            
 
             vendorUIRect = new Rectangle(0, 0, vendorUI.Width, vendorUI.Height);
             vendorUIPosition = new Vector2(camera.Position.X + 350, camera.Position.Y - 300);
+            Color fadeColorIn = new Color(255, 255, 255, (int)MathHelper.Clamp(alphaValue, 0, 255));
             if (triggerVendor)
-            {
-                spriteBatch.Draw(vendorUI, vendorUIPosition, vendorUIRect, Color.White, 0, Vector2.Zero, 1, SpriteEffects.None, 1);
+            {               
+                spriteBatch.Draw(vendorUI, vendorUIPosition, vendorUIRect, fadeColorIn, 0, Vector2.Zero, 1, SpriteEffects.None, 1);
             }
+            
 
             spriteBatch.End();
             base.Draw(gameTime);
