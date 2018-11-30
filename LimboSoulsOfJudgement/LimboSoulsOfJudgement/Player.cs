@@ -200,7 +200,7 @@ namespace LimboSoulsOfJudgement
 
                 if (bottomLine.Intersects(otherObject.CollisionBox) && Gravity is true)
                 {
-                    position.Y -= + 7;
+                    position.Y -= 7;
                     Gravity = false;
                 }
             }
