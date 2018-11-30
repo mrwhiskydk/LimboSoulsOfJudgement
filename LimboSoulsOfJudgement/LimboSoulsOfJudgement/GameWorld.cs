@@ -28,7 +28,10 @@ namespace LimboSoulsOfJudgement
         private Level level1;
 
         private Texture2D vendorUI;
+        private Texture2D vendorBtn;
+        private Rectangle vendorBtnRect;
         private Rectangle vendorUIRect;
+        private Vector2 vendorBtnPos;
         private Vector2 vendorUIPosition;
         public static Random rnd = new Random();
         public static Crosshair mouse;
@@ -67,8 +70,10 @@ namespace LimboSoulsOfJudgement
         public GameWorld()
         {
             graphics = new GraphicsDeviceManager(this);
-            graphics.PreferredBackBufferWidth = 1920;  // set this value to the desired width of your window
-            graphics.PreferredBackBufferHeight = 1080;   // set this value to the desired height of your window
+            graphics.PreferredBackBufferWidth = 1600;  // set this value to the desired width of your window
+            graphics.PreferredBackBufferHeight = 900;   // set this value to the desired height of your window
+            graphics.ToggleFullScreen();
+            graphics.ApplyChanges();
             graphics.ApplyChanges();
             Content.RootDirectory = "Content";
             _content = Content;
@@ -112,7 +117,7 @@ namespace LimboSoulsOfJudgement
             {
                 new Platform(new Vector2((i * 128), 1050), "MediumBlock");
             }
-            platform = new Platform(new Vector2(850, 850), "SmallBlock");
+            platform = new Platform(new Vector2(850, 920), "MediumBlock");
             player = new Player();
             minorEnemy = new MinorEnemy(new Vector2(1700,700));
             camera = new Camera();
@@ -127,10 +132,16 @@ namespace LimboSoulsOfJudgement
             new Platform(new Vector2(2000, 350), "MediumBlock");
             new Platform(new Vector2(1500, 600), "MediumBlock");
             new Platform(new Vector2(2000, 750), "MediumBlock");
+            new Lava(new Vector2(722, 920), "MediumLava");
+            new Platform(new Vector2(594, 920), "MediumBlock");
+            new Chain(new Vector2(730, 570), "chain");
+            new Chain(new Vector2(730, 500), "chain");
+            new Chain(new Vector2(730, 430), "chain");
 
             //Load Vendor & Vendor UI
             vendor = new Vendor(1, 1, new Vector2(300, 750), "VendorTest");
             vendorUI = Content.Load<Texture2D>("VendorUITest");
+            vendorBtn = Content.Load<Texture2D>("buttonUITest");
 
             mouse = new Crosshair();
             camera.Position = player.Position;
@@ -234,12 +245,17 @@ namespace LimboSoulsOfJudgement
             }
             
 
-            vendorUIRect = new Rectangle(0, 0, vendorUI.Width, vendorUI.Height);
-            vendorUIPosition = new Vector2(camera.Position.X + 350, camera.Position.Y - 300);
+            vendorUIRect = new Rectangle(0, 0, vendorUI.Width, vendorUI.Height);    //Sets the rectangle of vendor UI
+            vendorUIPosition = new Vector2(camera.Position.X + 350, camera.Position.Y - 300);   //Sets the default position of vendor UI
+
+            vendorBtnRect = new Rectangle(0, 0, vendorBtn.Width, vendorBtn.Height);     //Sets the rectangle of the vendor button
+            vendorBtnPos = new Vector2(vendorUIPosition.X + 70, vendorUIPosition.Y + 270);     //Sets the default position of the vendor button
+
             Color fadeColorIn = new Color(255, 255, 255, (int)MathHelper.Clamp(alphaValue, 0, 255));
             if (triggerVendor)
             {               
                 spriteBatch.Draw(vendorUI, vendorUIPosition, vendorUIRect, fadeColorIn, 0, Vector2.Zero, 1, SpriteEffects.None, 1);
+                spriteBatch.Draw(vendorBtn, vendorBtnPos, vendorBtnRect, fadeColorIn, 0, Vector2.Zero, 1, SpriteEffects.None, 1);
             }
             
 
