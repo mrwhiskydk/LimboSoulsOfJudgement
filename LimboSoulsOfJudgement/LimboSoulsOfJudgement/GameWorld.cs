@@ -28,7 +28,10 @@ namespace LimboSoulsOfJudgement
         private Level level1;
 
         private Texture2D vendorUI;
+        private Texture2D vendorBtn;
+        private Rectangle vendorBtnRect;
         private Rectangle vendorUIRect;
+        private Vector2 vendorBtnPos;
         private Vector2 vendorUIPosition;
         public static Random rnd = new Random();
         public static Crosshair mouse;
@@ -131,6 +134,7 @@ namespace LimboSoulsOfJudgement
             //Load Vendor & Vendor UI
             vendor = new Vendor(1, 1, new Vector2(300, 750), "VendorTest");
             vendorUI = Content.Load<Texture2D>("VendorUITest");
+            vendorBtn = Content.Load<Texture2D>("buttonUITest");
 
             mouse = new Crosshair();
             camera.Position = player.Position;
@@ -234,12 +238,17 @@ namespace LimboSoulsOfJudgement
             }
             
 
-            vendorUIRect = new Rectangle(0, 0, vendorUI.Width, vendorUI.Height);
-            vendorUIPosition = new Vector2(camera.Position.X + 350, camera.Position.Y - 300);
+            vendorUIRect = new Rectangle(0, 0, vendorUI.Width, vendorUI.Height);    //Sets the rectangle of vendor UI
+            vendorUIPosition = new Vector2(camera.Position.X + 350, camera.Position.Y - 300);   //Sets the default position of vendor UI
+
+            vendorBtnRect = new Rectangle(0, 0, vendorBtn.Width, vendorBtn.Height);     //Sets the rectangle of the vendor button
+            vendorBtnPos = new Vector2(vendorUIPosition.X + 70, vendorUIPosition.Y + 270);     //Sets the default position of the vendor button
+
             Color fadeColorIn = new Color(255, 255, 255, (int)MathHelper.Clamp(alphaValue, 0, 255));
             if (triggerVendor)
             {               
                 spriteBatch.Draw(vendorUI, vendorUIPosition, vendorUIRect, fadeColorIn, 0, Vector2.Zero, 1, SpriteEffects.None, 1);
+                spriteBatch.Draw(vendorBtn, vendorBtnPos, vendorBtnRect, fadeColorIn, 0, Vector2.Zero, 1, SpriteEffects.None, 1);
             }
             
 
