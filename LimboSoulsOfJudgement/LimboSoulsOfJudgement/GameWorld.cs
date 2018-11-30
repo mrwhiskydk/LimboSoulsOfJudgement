@@ -247,8 +247,9 @@ namespace LimboSoulsOfJudgement
             Color fadeColorIn = new Color(255, 255, 255, (int)MathHelper.Clamp(alphaValue, 0, 255));
             if (triggerVendor)
             {               
-                spriteBatch.Draw(vendorUI, vendorUIPosition, vendorUIRect, fadeColorIn, 0, Vector2.Zero, 1, SpriteEffects.None, 1);
-                spriteBatch.Draw(vendorBtn, vendorBtnPos, vendorBtnRect, fadeColorIn, 0, Vector2.Zero, 1, SpriteEffects.None, 1);
+                spriteBatch.Draw(vendorUI, vendorUIPosition, vendorUIRect, fadeColorIn, 0, Vector2.Zero, 1, SpriteEffects.None, 0.991f);
+                spriteBatch.Draw(vendorBtn, vendorBtnPos, vendorBtnRect, fadeColorIn, 0, Vector2.Zero, 1, SpriteEffects.None, 0.991f);
+                IsMouseVisible = true;
             }
             
 
