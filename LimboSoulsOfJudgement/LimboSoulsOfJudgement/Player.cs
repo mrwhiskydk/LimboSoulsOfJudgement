@@ -24,7 +24,7 @@ namespace LimboSoulsOfJudgement
         /// </summary>
         public bool isImmortal;
 
-        private const float jumpPower = 1150;
+        private const float jumpPower = 1600;
         private double jumpForce = jumpPower;
 
         //private float maxJumpTime = 2f;
@@ -60,6 +60,7 @@ namespace LimboSoulsOfJudgement
             collisionMovement = movementSpeed * gameTime.ElapsedGameTime.TotalSeconds;
 
             HandleMovement(gameTime);
+            climb = false;
 
             HandleJumping(gameTime);
 
@@ -95,7 +96,7 @@ namespace LimboSoulsOfJudgement
                     isJumping = false;
                 }
             }
-            else if (!isJumping && climb == false)
+            else if (!isJumping)
             {
                 gravity = true;
             }
@@ -247,10 +248,7 @@ namespace LimboSoulsOfJudgement
             {
                 climb = true;
                 gravity = false;
-            }
-            else
-            {
-                climb = false;
+                jumpForce = 0;
             }
         }
 
