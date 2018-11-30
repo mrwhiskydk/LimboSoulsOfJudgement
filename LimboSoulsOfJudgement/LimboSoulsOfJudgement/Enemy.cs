@@ -13,11 +13,11 @@ namespace LimboSoulsOfJudgement
 
         public int enemyHealth;
         /// <summary>
-        /// 
+        /// The value of an enemies soul
         /// </summary>
         public int enemySouls;
         /// <summary>
-        /// 
+        /// The number of souls an enemy drops
         /// </summary>
         protected int soulCount;
 

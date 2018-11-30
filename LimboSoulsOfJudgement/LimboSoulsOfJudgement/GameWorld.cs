@@ -40,7 +40,7 @@ namespace LimboSoulsOfJudgement
         private static GraphicsDeviceManager graphics;
 
         //Insert GameWorld fields below
-        private float gravityStrength = 7f;
+        private float gravityStrength = 12f;
         public static bool triggerVendor = false;
         //Fields below is used for Fade in and out Image
         private int alphaValue = 0;
@@ -123,19 +123,14 @@ namespace LimboSoulsOfJudgement
             Soul soul = new Soul(3, 6, new Vector2(100, 900), "Soul",3);
             Soul soul2 = new Soul(3, 6, new Vector2(130, 900), "Soul",2);
             Soul soul3 = new Soul(3, 6, new Vector2(160, 900), "Soul",1);
-            new Platform(new Vector2(2000, 850), "MediumBlock");
-            new Platform(new Vector2(2000, 650), "MediumBlock");
-            new Platform(new Vector2(1850, 250), "MediumBlock");
-            new Platform(new Vector2(2000, 590), "MediumBlock");
-            new Platform(new Vector2(2000, 470), "MediumBlock");
-            new Platform(new Vector2(2000, 350), "MediumBlock");
-            new Platform(new Vector2(1500, 600), "MediumBlock");
-            new Platform(new Vector2(2000, 750), "MediumBlock");
+            new Platform(new Vector2(2000, 857), "BigBlock");
             new Lava(new Vector2(722, 920), "MediumLava");
+            new Platform(new Vector2(594, 920), "MediumBlock");
             new Platform(new Vector2(594, 920), "MediumBlock");
             new Chain(new Vector2(730, 570), "chain");
             new Chain(new Vector2(730, 500), "chain");
             new Chain(new Vector2(730, 430), "chain");
+
 
             //Load Vendor & Vendor UI
             vendor = new Vendor(1, 1, new Vector2(300, 750), "VendorTest");
@@ -231,18 +226,19 @@ namespace LimboSoulsOfJudgement
             GraphicsDevice.Clear(Color.DarkGray);
             spriteBatch.Begin(SpriteSortMode.Deferred, null, null, null, null, null, camera.viewMatrix);
             spriteBatch.Draw(backGround, new Vector2(camera.Position.X - ScreenSize.Width*0.5f, camera.Position.Y - ScreenSize.Height * 0.5f), null, Color.White, 0f, Vector2.Zero, 1f, SpriteEffects.None, 0.01f);
-            spriteBatch.DrawString(font, $"Souls: {player.currentSouls}", new Vector2(camera.Position.X - 900, camera.Position.Y - 515), Color.White, 0f, Vector2.Zero, 1f, SpriteEffects.None, 0.991f);
-            spriteBatch.DrawString(font, $"Health: {player.Health}", new Vector2(camera.Position.X - 900, camera.Position.Y - 500), Color.White, 0f, Vector2.Zero, 1f, SpriteEffects.None, 0.991f);
-            spriteBatch.DrawString(font, $"Coordinates: X: {Mouse.GetState().X - camera.viewMatrix.Translation.X}   Y: {Mouse.GetState().Y - camera.viewMatrix.Translation.Y}", new Vector2(camera.Position.X, camera.Position.Y - 500), Color.White, 0f, Vector2.Zero, 1f, SpriteEffects.None, 0.991f);
+
 
             foreach (GameObject go in gameObjects)
             {
                 go.Draw(spriteBatch);
+
 #if DEBUG
                 DrawCollisionBox(go);
 #endif
             }
-            
+            spriteBatch.DrawString(font, $"Souls: {player.currentSouls}", new Vector2(camera.Position.X - 750, camera.Position.Y - 425), Color.White, 0f, Vector2.Zero, 1f, SpriteEffects.None, 0.991f);
+            spriteBatch.DrawString(font, $"Health: {player.Health}", new Vector2(camera.Position.X - 750, camera.Position.Y - 400), Color.White, 0f, Vector2.Zero, 1f, SpriteEffects.None, 0.991f);
+            spriteBatch.DrawString(font, $"Coordinates: X: {Mouse.GetState().X - camera.viewMatrix.Translation.X}   Y: {Mouse.GetState().Y - camera.viewMatrix.Translation.Y}", new Vector2(camera.Position.X, camera.Position.Y - 500), Color.White, 0f, Vector2.Zero, 1f, SpriteEffects.None, 0.991f);
 
             vendorUIRect = new Rectangle(0, 0, vendorUI.Width, vendorUI.Height);    //Sets the rectangle of vendor UI
             vendorUIPosition = new Vector2(camera.Position.X + 150, camera.Position.Y - 400);   //Sets the default position of vendor UI
