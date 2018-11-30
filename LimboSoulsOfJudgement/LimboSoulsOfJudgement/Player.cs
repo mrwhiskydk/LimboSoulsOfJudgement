@@ -178,7 +178,7 @@ namespace LimboSoulsOfJudgement
 
             if (attackTimer >= Weapon.currentAttackRate)
             {
-                if (Mouse.GetState().LeftButton == ButtonState.Pressed)
+                if (Mouse.GetState().LeftButton == ButtonState.Pressed && !GameWorld.triggerVendor)
                 {
                     weapon.Attack();
                     attackTimer = 0;

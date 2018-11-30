@@ -241,7 +241,7 @@ namespace LimboSoulsOfJudgement
             spriteBatch.DrawString(font, $"Coordinates: X: {Mouse.GetState().X - camera.viewMatrix.Translation.X}   Y: {Mouse.GetState().Y - camera.viewMatrix.Translation.Y}", new Vector2(camera.Position.X, camera.Position.Y - 500), Color.White, 0f, Vector2.Zero, 1f, SpriteEffects.None, 0.991f);
 
             vendorUIRect = new Rectangle(0, 0, vendorUI.Width, vendorUI.Height);    //Sets the rectangle of vendor UI
-            vendorUIPosition = new Vector2(camera.Position.X + 350, camera.Position.Y - 300);   //Sets the default position of vendor UI
+            vendorUIPosition = new Vector2(camera.Position.X + 150, camera.Position.Y - 400);   //Sets the default position of vendor UI
 
             vendorBtnRect = new Rectangle(0, 0, vendorBtn.Width, vendorBtn.Height);     //Sets the rectangle of the vendor button
             vendorBtnPos = new Vector2(vendorUIPosition.X + 70, vendorUIPosition.Y + 270);     //Sets the default position of the vendor button
@@ -249,8 +249,13 @@ namespace LimboSoulsOfJudgement
             Color fadeColorIn = new Color(255, 255, 255, (int)MathHelper.Clamp(alphaValue, 0, 255));
             if (triggerVendor)
             {               
-                spriteBatch.Draw(vendorUI, vendorUIPosition, vendorUIRect, fadeColorIn, 0, Vector2.Zero, 1, SpriteEffects.None, 1);
-                spriteBatch.Draw(vendorBtn, vendorBtnPos, vendorBtnRect, fadeColorIn, 0, Vector2.Zero, 1, SpriteEffects.None, 1);
+                spriteBatch.Draw(vendorUI, vendorUIPosition, vendorUIRect, fadeColorIn, 0, Vector2.Zero, 1, SpriteEffects.None, 0.991f);
+                spriteBatch.Draw(vendorBtn, vendorBtnPos, vendorBtnRect, fadeColorIn, 0, Vector2.Zero, 1, SpriteEffects.None, 0.991f);
+                IsMouseVisible = true;
+            }
+            else
+            {
+                IsMouseVisible = false;
             }
             
 
