@@ -72,8 +72,7 @@ namespace LimboSoulsOfJudgement
             graphics = new GraphicsDeviceManager(this);
             graphics.PreferredBackBufferWidth = 1600;  // set this value to the desired width of your window
             graphics.PreferredBackBufferHeight = 900;   // set this value to the desired height of your window
-            graphics.ToggleFullScreen();
-            graphics.ApplyChanges();
+            //graphics.ToggleFullScreen();
             graphics.ApplyChanges();
             Content.RootDirectory = "Content";
             _content = Content;
@@ -246,7 +245,7 @@ namespace LimboSoulsOfJudgement
             
 
             vendorUIRect = new Rectangle(0, 0, vendorUI.Width, vendorUI.Height);    //Sets the rectangle of vendor UI
-            vendorUIPosition = new Vector2(camera.Position.X + 350, camera.Position.Y - 300);   //Sets the default position of vendor UI
+            vendorUIPosition = new Vector2(camera.Position.X + 150, camera.Position.Y - 400);   //Sets the default position of vendor UI
 
             vendorBtnRect = new Rectangle(0, 0, vendorBtn.Width, vendorBtn.Height);     //Sets the rectangle of the vendor button
             vendorBtnPos = new Vector2(vendorUIPosition.X + 70, vendorUIPosition.Y + 270);     //Sets the default position of the vendor button
@@ -257,6 +256,10 @@ namespace LimboSoulsOfJudgement
                 spriteBatch.Draw(vendorUI, vendorUIPosition, vendorUIRect, fadeColorIn, 0, Vector2.Zero, 1, SpriteEffects.None, 0.991f);
                 spriteBatch.Draw(vendorBtn, vendorBtnPos, vendorBtnRect, fadeColorIn, 0, Vector2.Zero, 1, SpriteEffects.None, 0.991f);
                 IsMouseVisible = true;
+            }
+            else
+            {
+                IsMouseVisible = false;
             }
             
 
