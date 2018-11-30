@@ -7,7 +7,7 @@ using Microsoft.Xna.Framework;
 
 namespace LimboSoulsOfJudgement
 {
-    public class Chain : Platform
+    public class Chain : GameObject
     {
         public Chain(Vector2 startPosition, string spriteName) : base(startPosition, spriteName)
         {

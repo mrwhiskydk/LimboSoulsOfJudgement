@@ -63,8 +63,10 @@ namespace LimboSoulsOfJudgement
         public GameWorld()
         {
             graphics = new GraphicsDeviceManager(this);
-            graphics.PreferredBackBufferWidth = 1920;  // set this value to the desired width of your window
-            graphics.PreferredBackBufferHeight = 1080;   // set this value to the desired height of your window
+            graphics.PreferredBackBufferWidth = 1280;  // set this value to the desired width of your window
+            graphics.PreferredBackBufferHeight = 720;   // set this value to the desired height of your window
+            graphics.ToggleFullScreen();
+            graphics.ApplyChanges();
             graphics.ApplyChanges();
             Content.RootDirectory = "Content";
             _content = Content;
@@ -108,7 +110,7 @@ namespace LimboSoulsOfJudgement
             {
                 new Platform(new Vector2((i * 128), 1050), "MediumBlock");
             }
-            platform = new Platform(new Vector2(850, 850), "SmallBlock");
+            platform = new Platform(new Vector2(850, 920), "MediumBlock");
             player = new Player();
             minorEnemy = new MinorEnemy(new Vector2(1700,700));
             camera = new Camera();
@@ -123,6 +125,11 @@ namespace LimboSoulsOfJudgement
             new Platform(new Vector2(2000, 350), "MediumBlock");
             new Platform(new Vector2(1500, 600), "MediumBlock");
             new Platform(new Vector2(2000, 750), "MediumBlock");
+            new Lava(new Vector2(722, 920), "MediumLava");
+            new Platform(new Vector2(594, 920), "MediumBlock");
+            new Chain(new Vector2(730, 570), "chain");
+            new Chain(new Vector2(730, 500), "chain");
+            new Chain(new Vector2(730, 430), "chain");
 
             //Load Vendor & Vendor UI
             vendor = new Vendor(1, 1, new Vector2(300, 750), "VendorTest");

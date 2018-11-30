@@ -14,6 +14,16 @@ namespace LimboSoulsOfJudgement
         public int currentSouls;
         private double collisionMovement; // Used for collision so you dont need gameTime in DoCollision
 
+        private bool climb = false;
+
+        private bool takingDamage = false;
+        private float immortalDuration = 1.0f;
+        private double immortalTime;
+        /// <summary>
+        /// Sets player immunity on and off
+        /// </summary>
+        public bool isImmortal;
+
         private const float jumpPower = 1150;
         private double jumpForce = jumpPower;
 
@@ -54,7 +64,14 @@ namespace LimboSoulsOfJudgement
             HandleJumping(gameTime);
 
             HandleWeapons(gameTime);
-            
+
+            immortalTime += gameTime.ElapsedGameTime.TotalSeconds;  //Adding +1 second to immortalTime, until it reaches 3 seconds
+            if (immortalTime > immortalDuration)
+            {
+                isImmortal = false;
+                immortalTime = 0;   //Upon reaching 3 seconds, immortalTime is reset to 0
+            }
+
         }
 
         /* Method that handles jump functionality of the Player
@@ -73,12 +90,12 @@ namespace LimboSoulsOfJudgement
                     jumpForce -= gameTime.ElapsedGameTime.TotalSeconds * 1500;
                 }
 
-                if (jumpTime >= jumpForce)
+                if (jumpTime >= jumpForce && climb == false)
                 {
                     isJumping = false;
                 }
             }
-            else if (!isJumping)
+            else if (!isJumping && climb == false)
             {
                 gravity = true;
             }
@@ -91,6 +108,7 @@ namespace LimboSoulsOfJudgement
         protected override void HandleMovement(GameTime gameTime)
         {
             gravity = true;
+            
 
             //Statement that checks if Player is moving to the left
             if (Keyboard.GetState().IsKeyDown(Keys.A))
@@ -110,6 +128,19 @@ namespace LimboSoulsOfJudgement
             if (Keyboard.GetState().IsKeyDown(Keys.Space) && canJump) 
             {
                 isJumping = true;
+            }
+
+            if (climb == true)
+            {
+                if (Keyboard.GetState().IsKeyDown(Keys.W))
+                {
+                    position.Y -= (float)(0.7 * movementSpeed * gameTime.ElapsedGameTime.TotalSeconds);
+                }
+
+                if (Keyboard.GetState().IsKeyDown(Keys.S))
+                {
+                    position.Y += (float)(0.7 * movementSpeed * gameTime.ElapsedGameTime.TotalSeconds);
+                }
             }
 
         }
@@ -205,9 +236,39 @@ namespace LimboSoulsOfJudgement
                 }
             }
 
-            if (otherObject is Lava)
+            if (otherObject is Lava && isImmortal == false)
             {
                 health -= 10;
+                takingDamage = true;
+                isImmortal = true;
+            }
+
+            if (otherObject is Chain)
+            {
+                climb = true;
+                gravity = false;
+            }
+            else
+            {
+                climb = false;
+            }
+        }
+
+        public override void Draw(SpriteBatch spriteBatch)
+        {
+            base.Draw(spriteBatch);
+            if (isImmortal == true && facingRight == false && takingDamage == true)
+            {
+
+                spriteBatch.Draw(sprite, position, animationRectangles[currentAnimationIndex], Color.Red, rotation, new Vector2(animationRectangles[currentAnimationIndex].Width * 0.5f, animationRectangles[currentAnimationIndex].Height * 0.5f), 1f, SpriteEffects.FlipHorizontally, 0.95f);
+
+            }
+
+            if (isImmortal == true && facingRight == true && takingDamage == true)
+            {
+
+                spriteBatch.Draw(sprite, position, animationRectangles[currentAnimationIndex], Color.Red, rotation, new Vector2(animationRectangles[currentAnimationIndex].Width * 0.5f, animationRectangles[currentAnimationIndex].Height * 0.5f), 1f, SpriteEffects.None, 0.95f);
+
             }
         }
 

@@ -7,7 +7,7 @@ using Microsoft.Xna.Framework;
 
 namespace LimboSoulsOfJudgement
 {
-    public class Lava : Platform
+    public class Lava : GameObject
     {
         public Lava(Vector2 startPosition, string spriteName) : base(startPosition, spriteName)
         {
