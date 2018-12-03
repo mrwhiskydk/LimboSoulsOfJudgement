@@ -30,5 +30,14 @@ namespace LimboSoulsOfJudgement
             
             
         }
+
+        public bool Click(GameObject obj)
+        {
+            if (this.CollisionBox.Intersects(obj.CollisionBox))
+            {
+                return true;
+            }
+            return false;
+        }
     }
 }

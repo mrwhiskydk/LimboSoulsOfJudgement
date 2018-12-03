@@ -40,7 +40,7 @@ namespace LimboSoulsOfJudgement
         private static GraphicsDeviceManager graphics;
 
         //Insert GameWorld fields below
-        private float gravityStrength = 12f;
+        public static float gravityStrength = 12f;
         public static bool triggerVendor = false;
         //Fields below is used for Fade in and out Image
         private int alphaValue = 0;
@@ -187,18 +187,20 @@ namespace LimboSoulsOfJudgement
                 alphaValue += fadeIncrease;
                 fadeDelay += gameTime.ElapsedGameTime.TotalSeconds;
             }
-            else
-            {
-                fadeIncrease -= 1;
-            }
+
+            //else
+            //{
+            //    fadeIncrease -= 1;
+            //}
 
             alphaValue += fadeIncrease;
 
             if (alphaValue >= 255 || alphaValue <= 0)
 
-            {
-                fadeIncrease *= -1;
-            }
+            //{
+            //    fadeIncrease *= -1;
+            //}
+            
 
             camera.Position = new Vector2(MathHelper.Lerp(camera.Position.X, player.Position.X, 0.25f), MathHelper.Lerp(camera.Position.Y, player.Position.Y, 0.25f)); 
             base.Update(gameTime);

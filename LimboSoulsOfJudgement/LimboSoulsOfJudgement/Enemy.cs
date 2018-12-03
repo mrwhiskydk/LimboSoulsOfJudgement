@@ -37,10 +37,9 @@ namespace LimboSoulsOfJudgement
         private double patrolTime;
         private float patrolDuration = 6f;
         private double collisionMovement;
-        private const float jumpPower = 1150;
+        private const float jumpPower = 1600;
         private double jumpForce = jumpPower;
         private double jumpTime;
-        private bool canJump = false;   //Controls wether the Player can jump or not
         private bool isJumping = false;
 
 
@@ -101,9 +100,19 @@ namespace LimboSoulsOfJudgement
             }
             collisionMovement = movementSpeed * gameTime.ElapsedGameTime.TotalSeconds;
             HandleJumping(gameTime);
-            if (GameWorld.player.climb is true)
+
+            // if player is on a chain and the enemy is aggro'ed, jump after the player and set goVertically to true
+            if (GameWorld.player.climb is true && aggro is true)
             {
+                if (GameWorld.player.Position.Y < position.Y && Math.Abs(position.X - GameWorld.player.Position.X) < 50)
+                {
+                    isJumping = true;
+                }
                 goVertically = true;
+            }
+            else
+            {
+                goVertically = false;
             }
         }
 
@@ -187,33 +196,66 @@ namespace LimboSoulsOfJudgement
                 GameWorld.RemoveGameObject(arrow);
             }
 
+            Rectangle topLine = new Rectangle(CollisionBox.X, CollisionBox.Y, CollisionBox.Width, 1);
             Rectangle rightLine = new Rectangle(CollisionBox.X + CollisionBox.Width, CollisionBox.Y + 12, 1, CollisionBox.Height - 24);
             Rectangle leftLine = new Rectangle(CollisionBox.X, CollisionBox.Y + 12, 1, CollisionBox.Height - 24);
             Rectangle bottomLine = new Rectangle(CollisionBox.X + 3, CollisionBox.Y + CollisionBox.Height, CollisionBox.Width - 6, 1);
 
             if (otherObject is Platform)
             {
-                if (rightLine.Intersects(otherObject.CollisionBox) && rightLine.Intersects(GameWorld.player.CollisionBox) is false)
+                if (rightLine.Intersects(otherObject.CollisionBox))
                 {
+                    if (CollisionBox.Intersects(GameWorld.player.CollisionBox) is false)
+                    {
+                        isJumping = true;
+                    }
                     position.X -= (float)collisionMovement;
                     Gravity = true;
-                    isJumping = true;
                 }
 
-                if (leftLine.Intersects(otherObject.CollisionBox) && leftLine.Intersects(GameWorld.player.CollisionBox) is false)
+                if (leftLine.Intersects(otherObject.CollisionBox))
                 {
+                    if (CollisionBox.Intersects(GameWorld.player.CollisionBox) is false)
+                    {
+                        isJumping = true;
+                    }
                     position.X += (float)collisionMovement;
                     Gravity = true;
-                    isJumping = true;
                 }
 
                 if (bottomLine.Intersects(otherObject.CollisionBox) && Gravity is true)
                 {
-                    position.Y -= +7;
-                    canJump = true;
+                    position.Y -= GameWorld.gravityStrength;
+                    gravity = false;
+                    
+                }
+
+                if (bottomLine.Intersects(otherObject.CollisionBox))
+                {
                     jumpForce = jumpPower;
                 }
 
+                if (topLine.Intersects(otherObject.CollisionBox))
+                {
+                    jumpForce = 0;
+                    Gravity = true;
+                }
+
+            }
+
+            //if the enemy is on a chain and goVertically is true, climb after the player
+            if (otherObject is Chain && goVertically is true)
+            {
+                if (position.Y > GameWorld.player.Position.Y)
+                {
+                    position.Y -= (float)(0.7 * collisionMovement);
+                }
+                if (position.Y < GameWorld.player.Position.Y)
+                {
+                    position.Y += (float)(0.7 * collisionMovement);
+                }
+                gravity = false;
+                jumpForce = 0;
             }
 
         }

@@ -43,6 +43,7 @@
   <ItemGroup>
     <Compile Include="Ability.cs" />
     <Compile Include="AnimatedGameObject.cs" />
+    <Compile Include="Arm.cs" />
     <Compile Include="BossEnemy.cs" />
     <Compile Include="Camera.cs" />
     <Compile Include="Chain.cs" />
