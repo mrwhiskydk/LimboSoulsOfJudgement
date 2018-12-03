@@ -10,10 +10,11 @@ namespace LimboSoulsOfJudgement
     public class MeleeWeapon : Weapon
     {
         private bool isAttacking = false;
+        private float rotSpeed;
 
         public MeleeWeapon() : base("sword")
         {
-
+            rotation += MathHelper.ToRadians(180);
         }
 
         public override void Attack()
@@ -27,11 +28,17 @@ namespace LimboSoulsOfJudgement
             {
                 if (!isAttacking)
                 {
-                    position = new Vector2(GameWorld.player.Position.X, GameWorld.player.Position.Y - 100);
+                    //position = GameWorld.player.Position;
+                }
+                else
+                {
+                    rotation += (float)gameTime.ElapsedGameTime.TotalSeconds;
+                    rotSpeed += (float)gameTime.ElapsedGameTime.TotalSeconds;
+                    Vector2 localSword = new Vector2(0, 200);
+                    Matrix swordMatrix = Matrix.CreateRotationZ(rotSpeed) * Matrix.CreateTranslation(new Vector3(GameWorld.player.Position, 0f));
+                    position = Vector2.Transform(localSword, swordMatrix);
                 }
             }
-            
-            
         }
 
         public override void DoCollision(GameObject otherObject)

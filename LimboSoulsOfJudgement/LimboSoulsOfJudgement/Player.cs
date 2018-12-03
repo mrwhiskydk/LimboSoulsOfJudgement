@@ -9,6 +9,7 @@ namespace LimboSoulsOfJudgement
         MeleeWeapon melee = new MeleeWeapon();
         RangedWeapon ranged = new RangedWeapon();
         Weapon weapon;
+        Arm arm = new Arm();
         private bool canSwitchWeapons = true;
         private double attackTimer = 0;
         public int currentSouls;
@@ -36,8 +37,9 @@ namespace LimboSoulsOfJudgement
             movementSpeed = 450;
 
             //Weapon setup
-            weapon = ranged;
+            weapon = melee;
             weapon.equipped = true;
+
         }
 
         /// <summary>
@@ -205,16 +207,6 @@ namespace LimboSoulsOfJudgement
                 }
             }
         }
-
-        /// <summary>
-        /// Draws the Player sprite in a specific way.
-        /// </summary>
-        /// <param name="spriteBatch">The spritebatch that is used for drawing</param>
-        public override void Draw(SpriteBatch spriteBatch)
-        {
-            spriteBatch.Draw(sprite, position, animationRectangles[currentAnimationIndex], Color.White, rotation, new Vector2(animationRectangles[currentAnimationIndex].Width * 0.5f, animationRectangles[currentAnimationIndex].Height * 0.5f), 1f, SpriteEffects.None, 0.99f);
-        }
-
     }
 }
      

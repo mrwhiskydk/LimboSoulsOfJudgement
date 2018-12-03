@@ -25,5 +25,14 @@ namespace LimboSoulsOfJudgement
         {
             spriteBatch.Draw(sprite, position, null, Color.White, rotation, new Vector2(sprite.Width * 0.5f, sprite.Height * 0.5f), 1f, SpriteEffects.None, 1f);
         }
+
+        public bool Click(GameObject obj)
+        {
+            if (this.CollisionBox.Intersects(obj.CollisionBox))
+            {
+                return true;
+            }
+            return false;
+        }
     }
 }
