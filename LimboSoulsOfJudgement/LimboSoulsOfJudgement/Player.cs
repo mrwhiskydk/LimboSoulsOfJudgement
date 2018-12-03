@@ -16,7 +16,7 @@ namespace LimboSoulsOfJudgement
         private double collisionMovement; // Used for collision so you dont need gameTime in DoCollision
 
         public bool climb = false;
-
+        //public bool svim = false;
         private bool takingDamage = false;
         private float immortalDuration = 1.0f;
         private double immortalTime;
@@ -37,7 +37,7 @@ namespace LimboSoulsOfJudgement
         /// <summary>
         /// Player constructor that sets player animation values, position and sprite name
         /// </summary>
-        public Player() : base(5, 5, new Vector2(GameWorld.ScreenSize.Width / 2, GameWorld.ScreenSize.Height/2), "PlayerIdle")
+        public Player() : base(5, 5, new Vector2(200, 500), "PlayerIdle")
         {
             //Maximum amount of Player health
             maxHealth = 100;
@@ -145,6 +145,14 @@ namespace LimboSoulsOfJudgement
                     position.Y += (float)(0.7 * movementSpeed * gameTime.ElapsedGameTime.TotalSeconds);
                 }
             }
+            //if (svim == true)
+            //{
+            //    movementSpeed -= 250;
+            //}
+            //else
+            //{
+            //    movementSpeed = 500;
+            //}
 
         }
 
@@ -199,8 +207,8 @@ namespace LimboSoulsOfJudgement
             // Creates small collisionboxes around the player to be used for collision
             Rectangle topLine = new Rectangle(CollisionBox.X, CollisionBox.Y, CollisionBox.Width, 1);
             Rectangle bottomLine = new Rectangle(CollisionBox.X + 10, CollisionBox.Y + CollisionBox.Height, CollisionBox.Width - 20, 1);
-            Rectangle rightLine = new Rectangle(CollisionBox.X + CollisionBox.Width, CollisionBox.Y + 8, 1, CollisionBox.Height - 16);
-            Rectangle leftLine = new Rectangle(CollisionBox.X, CollisionBox.Y + 8, 1, CollisionBox.Height - 16);
+            Rectangle rightLine = new Rectangle(CollisionBox.X + CollisionBox.Width, CollisionBox.Y + 15, 1, CollisionBox.Height - 30);
+            Rectangle leftLine = new Rectangle(CollisionBox.X, CollisionBox.Y + 15, 1, CollisionBox.Height - 30);
 
             // If the player stands on a platform, make him able to jump
             if (bottomLine.Intersects(otherObject.CollisionBox) && otherObject is Platform)
@@ -209,6 +217,7 @@ namespace LimboSoulsOfJudgement
                 canJump = true;
                 isJumping = false;
             }
+
 
             // If the small collsionboxes intesects with a platform move the player in the opposite direction. 
             if (otherObject is Platform)
@@ -234,9 +243,10 @@ namespace LimboSoulsOfJudgement
 
                 if (bottomLine.Intersects(otherObject.CollisionBox) && Gravity is true)
                 {
-                    position.Y -= 7;
+                    position.Y -= GameWorld.gravityStrength;
                     Gravity = false;
                 }
+
             }
 
 
@@ -245,6 +255,7 @@ namespace LimboSoulsOfJudgement
                 health -= 10;
                 takingDamage = true;
                 isImmortal = true;
+                //svim = true;
             }
 
             if (otherObject is Chain)
