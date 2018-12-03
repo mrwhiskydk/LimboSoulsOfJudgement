@@ -14,7 +14,6 @@ namespace LimboSoulsOfJudgement
         public static float currentAttackRate = 1;
         protected int damage = 1;
         public bool equipped = false;
-        protected Vector2 offset;
 
         public Weapon(string spriteName) : base(spriteName)
         {
@@ -30,7 +29,7 @@ namespace LimboSoulsOfJudgement
         {
             if (equipped)
             {
-                spriteBatch.Draw(sprite, position, null, Color.White, rotation, new Vector2(sprite.Width * 0.5f, sprite.Height * 0.5f), 1f, SpriteEffects.None, 0.91f);
+                spriteBatch.Draw(sprite, position, null, Color.White, rotation, new Vector2(sprite.Width * 0.5f, sprite.Height * 0.5f), 1f, SpriteEffects.None, 0.81f);
             }
         }
     }

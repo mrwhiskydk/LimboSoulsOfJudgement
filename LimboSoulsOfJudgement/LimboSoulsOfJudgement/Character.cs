@@ -36,9 +36,6 @@ namespace LimboSoulsOfJudgement
             }
         }
 
-
-
-
         /// <summary>
         /// Property that sets the max health value of the current GameObject
         /// </summary>

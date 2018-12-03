@@ -113,7 +113,7 @@ namespace LimboSoulsOfJudgement
         public virtual void Draw(SpriteBatch spriteBatch)
         {
 
-            spriteBatch.Draw(sprite, position, null, Color.White, rotation, new Vector2(sprite.Width * 0.5f, sprite.Height * 0.5f), 1f, new SpriteEffects(), 0f);
+            spriteBatch.Draw(sprite, position, null, Color.White, rotation, new Vector2(sprite.Width * 0.5f, sprite.Height * 0.5f), 1f, new SpriteEffects(), 0.5f);
 
 
         }
