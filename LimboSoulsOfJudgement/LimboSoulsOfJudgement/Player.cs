@@ -9,6 +9,7 @@ namespace LimboSoulsOfJudgement
         MeleeWeapon melee = new MeleeWeapon();
         RangedWeapon ranged = new RangedWeapon();
         Weapon weapon;
+        Arm arm = new Arm();
         private bool canSwitchWeapons = true;
         private double attackTimer = 0;
         public int currentSouls;
@@ -47,8 +48,9 @@ namespace LimboSoulsOfJudgement
             movementSpeed = 500;
 
             //Weapon setup
-            weapon = ranged;
+            weapon = melee;
             weapon.equipped = true;
+
         }
 
         /// <summary>
@@ -273,7 +275,6 @@ namespace LimboSoulsOfJudgement
 
             }
         }
-
     }
 }
      
