@@ -14,6 +14,8 @@ namespace LimboSoulsOfJudgement
         private double attackTimer = 0;
         public int currentSouls;
         private double collisionMovement; // Used for collision so you dont need gameTime in DoCollision
+        private float roofCollision;
+        private bool hittingRoof = false;
 
         public bool climb = false;
 
@@ -89,13 +91,19 @@ namespace LimboSoulsOfJudgement
                 jumpTime += gameTime.ElapsedGameTime.TotalSeconds;
                 if (jumpTime <= jumpForce)
                 {
-                    position.Y -= (float)(jumpForce * gameTime.ElapsedGameTime.TotalSeconds);
+                    if (hittingRoof is false)
+                    {
+                        position.Y -= (float)(jumpForce * gameTime.ElapsedGameTime.TotalSeconds);
+                    }
                     jumpForce -= gameTime.ElapsedGameTime.TotalSeconds * 1500;
+
+                    //roofCollision = (float)(jumpForce * gameTime.ElapsedGameTime.TotalSeconds);
                 }
 
                 if (jumpTime >= jumpForce && climb == false)
                 {
                     isJumping = false;
+                    gravity = true;
                 }
             }
             else if (!isJumping)
@@ -228,9 +236,15 @@ namespace LimboSoulsOfJudgement
 
                 if (topLine.Intersects(otherObject.CollisionBox))
                 {
-                    jumpForce = 0;
+                    //position.Y += roofCollision;
+                    //jumpForce = jumpForce * 0.9;
                     canJump = false;
-                    Gravity = true;
+                    Gravity = false;
+                    hittingRoof = true;
+                }
+                if (topLine.Intersects(otherObject.CollisionBox) && jumpForce < 1)
+                {
+                    hittingRoof = false;
                 }
 
                 if (bottomLine.Intersects(otherObject.CollisionBox) && Gravity is true)
