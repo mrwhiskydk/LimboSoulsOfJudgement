@@ -15,7 +15,7 @@ namespace LimboSoulsOfJudgement
         private double collisionMovement; // Used for collision so you dont need gameTime in DoCollision
 
         public bool climb = false;
-
+        //public bool svim = false;
         private bool takingDamage = false;
         private float immortalDuration = 1.0f;
         private double immortalTime;
@@ -36,7 +36,7 @@ namespace LimboSoulsOfJudgement
         /// <summary>
         /// Player constructor that sets player animation values, position and sprite name
         /// </summary>
-        public Player() : base(5, 5, new Vector2(GameWorld.ScreenSize.Width / 2, GameWorld.ScreenSize.Height/2), "PlayerIdle")
+        public Player() : base(5, 5, new Vector2(200, 500), "PlayerIdle")
         {
             //Maximum amount of Player health
             maxHealth = 100;
@@ -143,6 +143,14 @@ namespace LimboSoulsOfJudgement
                     position.Y += (float)(0.7 * movementSpeed * gameTime.ElapsedGameTime.TotalSeconds);
                 }
             }
+            //if (svim == true)
+            //{
+            //    movementSpeed -= 250;
+            //}
+            //else
+            //{
+            //    movementSpeed = 500;
+            //}
 
         }
 
@@ -243,6 +251,7 @@ namespace LimboSoulsOfJudgement
                 health -= 10;
                 takingDamage = true;
                 isImmortal = true;
+                //svim = true;
             }
 
             if (otherObject is Chain)

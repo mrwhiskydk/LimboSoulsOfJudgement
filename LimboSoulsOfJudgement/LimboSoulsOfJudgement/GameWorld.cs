@@ -66,16 +66,17 @@ namespace LimboSoulsOfJudgement
 
 
 
-
         public GameWorld()
         {
             graphics = new GraphicsDeviceManager(this);
             graphics.PreferredBackBufferWidth = 1600;  // set this value to the desired width of your window
             graphics.PreferredBackBufferHeight = 900;   // set this value to the desired height of your window
             //graphics.ToggleFullScreen();
+            graphics.GraphicsProfile = GraphicsProfile.HiDef;
             graphics.ApplyChanges();
             Content.RootDirectory = "Content";
             _content = Content;
+
         }
 
         public static void AddGameObject(GameObject go)
@@ -112,28 +113,14 @@ namespace LimboSoulsOfJudgement
             font = Content.Load<SpriteFont>("ExampleFont");
             backGround = Content.Load<Texture2D>("GreyBackground");
             collisionTexture = Content.Load<Texture2D>("CollisionTexture");
-            for (int i = 0; i < 28; i++)
-            {
-                new Platform(new Vector2((i * 128), 1050), "MediumBlock");
-            }
-            platform = new Platform(new Vector2(850, 920), "MediumBlock");
+
             player = new Player();
             minorEnemy = new MinorEnemy(new Vector2(1700,700));
             camera = new Camera();
-            Soul soul = new Soul(3, 6, new Vector2(100, 900), "Soul",3);
-            Soul soul2 = new Soul(3, 6, new Vector2(130, 900), "Soul",2);
-            Soul soul3 = new Soul(3, 6, new Vector2(160, 900), "Soul",1);
-            new Platform(new Vector2(2000, 857), "BigBlock");
-            new Lava(new Vector2(722, 920), "MediumLava");
-            new Platform(new Vector2(594, 920), "MediumBlock");
-            new Platform(new Vector2(594, 920), "MediumBlock");
-            new Chain(new Vector2(730, 570), "chain");
-            new Chain(new Vector2(730, 500), "chain");
-            new Chain(new Vector2(730, 430), "chain");
 
 
             //Load Vendor & Vendor UI
-            vendor = new Vendor(1, 1, new Vector2(300, 750), "VendorTest");
+            vendor = new Vendor(1, 1, new Vector2(400, 430), "VendorTest");
             vendorUI = Content.Load<Texture2D>("VendorUITest");
             vendorBtn = Content.Load<Texture2D>("buttonUITest");
 
@@ -193,25 +180,25 @@ namespace LimboSoulsOfJudgement
 
             gameObjects.AddRange(toBeAdded);
             toBeAdded.Clear();
-            
-           
+
+
             if (triggerVendor)
             {
                 alphaValue += fadeIncrease;
-                fadeDelay += gameTime.ElapsedGameTime.TotalSeconds; 
+                fadeDelay += gameTime.ElapsedGameTime.TotalSeconds;
             }
-            //else
-            //{
-            //    fadeIncrease -= 1;
-            //}
+            else
+            {
+                fadeIncrease -= 1;
+            }
 
-            //alphaValue += fadeIncrease;
+            alphaValue += fadeIncrease;
 
-            //if (alphaValue >= 255 || alphaValue <= 0)
+            if (alphaValue >= 255 || alphaValue <= 0)
 
-            //{
-            //    fadeIncrease *= -1;
-            //}
+            {
+                fadeIncrease *= -1;
+            }
 
             camera.Position = new Vector2(MathHelper.Lerp(camera.Position.X, player.Position.X, 0.25f), MathHelper.Lerp(camera.Position.Y, player.Position.Y, 0.25f)); 
             base.Update(gameTime);
@@ -248,7 +235,7 @@ namespace LimboSoulsOfJudgement
 
             Color fadeColorIn = new Color(255, 255, 255, (int)MathHelper.Clamp(alphaValue, 0, 255));
             if (triggerVendor)
-            {               
+            {
                 spriteBatch.Draw(vendorUI, vendorUIPosition, vendorUIRect, fadeColorIn, 0, Vector2.Zero, 1, SpriteEffects.None, 0.991f);
                 spriteBatch.Draw(vendorBtn, vendorBtnPos, vendorBtnRect, fadeColorIn, 0, Vector2.Zero, 1, SpriteEffects.None, 0.991f);
                 IsMouseVisible = true;
@@ -257,7 +244,7 @@ namespace LimboSoulsOfJudgement
             {
                 IsMouseVisible = false;
             }
-            
+
 
             spriteBatch.End();
             base.Draw(gameTime);
