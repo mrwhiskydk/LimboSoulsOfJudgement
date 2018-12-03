@@ -133,6 +133,7 @@ namespace LimboSoulsOfJudgement
             new Chain(new Vector2(730, 360), "chain");
             new Chain(new Vector2(730, 290), "chain");
             new Chain(new Vector2(730, 220), "chain");
+            new Platform(new Vector2(500, 420), "MediumBlock");
             gameObjects.Add(new Platform(new Vector2(1300, 950), "MediumBlock"));
 
 

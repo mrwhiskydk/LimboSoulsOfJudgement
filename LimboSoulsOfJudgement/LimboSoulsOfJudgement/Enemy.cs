@@ -101,6 +101,7 @@ namespace LimboSoulsOfJudgement
             collisionMovement = movementSpeed * gameTime.ElapsedGameTime.TotalSeconds;
             HandleJumping(gameTime);
 
+            // if player is on a chain and the enemy is aggro'ed, jump after the player and set goVertically to true
             if (GameWorld.player.climb is true && aggro is true)
             {
                 if (GameWorld.player.Position.Y < position.Y && Math.Abs(position.X - GameWorld.player.Position.X) < 50)
@@ -195,6 +196,7 @@ namespace LimboSoulsOfJudgement
                 GameWorld.RemoveGameObject(arrow);
             }
 
+            Rectangle topLine = new Rectangle(CollisionBox.X, CollisionBox.Y, CollisionBox.Width, 1);
             Rectangle rightLine = new Rectangle(CollisionBox.X + CollisionBox.Width, CollisionBox.Y + 12, 1, CollisionBox.Height - 24);
             Rectangle leftLine = new Rectangle(CollisionBox.X, CollisionBox.Y + 12, 1, CollisionBox.Height - 24);
             Rectangle bottomLine = new Rectangle(CollisionBox.X + 3, CollisionBox.Y + CollisionBox.Height, CollisionBox.Width - 6, 1);
@@ -203,14 +205,20 @@ namespace LimboSoulsOfJudgement
             {
                 if (rightLine.Intersects(otherObject.CollisionBox))
                 {
-                    isJumping = true;
+                    if (CollisionBox.Intersects(GameWorld.player.CollisionBox) is false)
+                    {
+                        isJumping = true;
+                    }
                     position.X -= (float)collisionMovement;
                     Gravity = true;
                 }
 
                 if (leftLine.Intersects(otherObject.CollisionBox))
                 {
-                    isJumping = true;
+                    if (CollisionBox.Intersects(GameWorld.player.CollisionBox) is false)
+                    {
+                        isJumping = true;
+                    }
                     position.X += (float)collisionMovement;
                     Gravity = true;
                 }
@@ -227,8 +235,15 @@ namespace LimboSoulsOfJudgement
                     jumpForce = jumpPower;
                 }
 
+                if (topLine.Intersects(otherObject.CollisionBox))
+                {
+                    jumpForce = 0;
+                    Gravity = true;
+                }
+
             }
 
+            //if the enemy is on a chain and goVertically is true, climb after the player
             if (otherObject is Chain && goVertically is true)
             {
                 if (position.Y > GameWorld.player.Position.Y)
