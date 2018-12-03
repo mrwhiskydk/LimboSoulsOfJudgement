@@ -14,7 +14,6 @@ namespace LimboSoulsOfJudgement
         private double attackTimer = 0;
         public int currentSouls;
         private double collisionMovement; // Used for collision so you dont need gameTime in DoCollision
-        private Vector2 oldPos;
 
         public bool climb = false;
 
