@@ -6,9 +6,9 @@ namespace LimboSoulsOfJudgement
 {
     public class Player : Character
     {
-        MeleeWeapon melee = new MeleeWeapon();
-        RangedWeapon ranged = new RangedWeapon();
-        Weapon weapon;
+        public MeleeWeapon melee = new MeleeWeapon();
+        public RangedWeapon ranged = new RangedWeapon();
+        public Weapon weapon;
         Arm arm = new Arm();
         private bool canSwitchWeapons = true;
         private double attackTimer = 0;
