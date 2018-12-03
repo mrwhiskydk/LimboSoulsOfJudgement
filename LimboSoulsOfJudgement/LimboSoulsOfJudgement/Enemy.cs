@@ -12,9 +12,13 @@ namespace LimboSoulsOfJudgement
         public int enemyDamage;
 
         public int enemyHealth;
-
-        protected int enemySouls;
-
+        /// <summary>
+        /// The value of an enemies soul
+        /// </summary>
+        public int enemySouls;
+        /// <summary>
+        /// The number of souls an enemy drops
+        /// </summary>
         protected int soulCount;
 
         /// <summary>
@@ -32,6 +36,14 @@ namespace LimboSoulsOfJudgement
 
         private double patrolTime;
         private float patrolDuration = 6f;
+        private double collisionMovement;
+        private const float jumpPower = 1150;
+        private double jumpForce = jumpPower;
+        private double jumpTime;
+        private bool canJump = false;   //Controls wether the Player can jump or not
+        private bool isJumping = false;
+
+
 
         /// <summary>
         /// Enemy constructor that sets animation values, position and sprite names of MinorEnemy and BossEnemy
@@ -82,12 +94,39 @@ namespace LimboSoulsOfJudgement
 
                 for (int i = 0; i < soulCount; i++)
                 {
-                         GameWorld.AddGameObject(new Soul(3, 6, new Vector2(position.X, position.Y), "Soul", enemySouls));                    
+                    GameWorld.AddGameObject(new Soul(3, 6, new Vector2(position.X, position.Y), "Soul", enemySouls));                    
                 }
                 GameWorld.RemoveGameObject(this);
                
             }
+            collisionMovement = movementSpeed * gameTime.ElapsedGameTime.TotalSeconds;
+            HandleJumping(gameTime);
+            if (GameWorld.player.climb is true)
+            {
+                goVertically = true;
+            }
+        }
 
+        private void HandleJumping(GameTime gameTime)
+        {
+            if (isJumping)
+            {
+                jumpTime += gameTime.ElapsedGameTime.TotalSeconds;
+                if (jumpTime <= jumpForce)
+                {
+                    position.Y -= (float)(jumpForce * gameTime.ElapsedGameTime.TotalSeconds);
+                    jumpForce -= gameTime.ElapsedGameTime.TotalSeconds * 1500;
+                }
+
+                if (jumpTime >= jumpForce)
+                {
+                    isJumping = false;
+                }
+            }
+            else if (!isJumping)
+            {
+                gravity = true;
+            }
         }
 
         /// <summary>
@@ -147,6 +186,36 @@ namespace LimboSoulsOfJudgement
                 enemyHealth -= arrow.damage;
                 GameWorld.RemoveGameObject(arrow);
             }
+
+            Rectangle rightLine = new Rectangle(CollisionBox.X + CollisionBox.Width, CollisionBox.Y + 12, 1, CollisionBox.Height - 24);
+            Rectangle leftLine = new Rectangle(CollisionBox.X, CollisionBox.Y + 12, 1, CollisionBox.Height - 24);
+            Rectangle bottomLine = new Rectangle(CollisionBox.X + 3, CollisionBox.Y + CollisionBox.Height, CollisionBox.Width - 6, 1);
+
+            if (otherObject is Platform)
+            {
+                if (rightLine.Intersects(otherObject.CollisionBox) && rightLine.Intersects(GameWorld.player.CollisionBox) is false)
+                {
+                    position.X -= (float)collisionMovement;
+                    Gravity = true;
+                    isJumping = true;
+                }
+
+                if (leftLine.Intersects(otherObject.CollisionBox) && leftLine.Intersects(GameWorld.player.CollisionBox) is false)
+                {
+                    position.X += (float)collisionMovement;
+                    Gravity = true;
+                    isJumping = true;
+                }
+
+                if (bottomLine.Intersects(otherObject.CollisionBox) && Gravity is true)
+                {
+                    position.Y -= +7;
+                    canJump = true;
+                    jumpForce = jumpPower;
+                }
+
+            }
+
         }
 
     }

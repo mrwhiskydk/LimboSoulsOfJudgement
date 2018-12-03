@@ -14,29 +14,38 @@ namespace LimboSoulsOfJudgement
     public class GameWorld : Game
     {
         private SpriteBatch spriteBatch;
-        private List<GameObject> gameObjects = new List<GameObject>();
+        public static List<GameObject> gameObjects = new List<GameObject>();
         private static List<GameObject> toBeAdded = new List<GameObject>();
         private static List<GameObject> toBeRemoved = new List<GameObject>();
         public static Player player;
         private Texture2D collisionTexture;
         private Platform platform;
         private MinorEnemy minorEnemy;
-        private Camera camera;
+        public static Camera camera;
         private SpriteFont font;
         private Vendor vendor;
 
+        private Level level1;
+
         private Texture2D vendorUI;
+        private Texture2D vendorBtn;
+        private Rectangle vendorBtnRect;
         private Rectangle vendorUIRect;
+        private Vector2 vendorBtnPos;
         private Vector2 vendorUIPosition;
         public static Random rnd = new Random();
         public static Crosshair mouse;
-
-        public static bool triggerVendor = false;
+        private Texture2D backGround;
 
         private static GraphicsDeviceManager graphics;
 
         //Insert GameWorld fields below
-        private float gravityStrength = 7f;
+        private float gravityStrength = 12f;
+        public static bool triggerVendor = false;
+        //Fields below is used for Fade in and out Image
+        private int alphaValue = 0;
+        private static int fadeIncrease = 3;
+        private double fadeDelay = 0;    //default is .010;
 
         public static Rectangle ScreenSize
         {
@@ -61,8 +70,9 @@ namespace LimboSoulsOfJudgement
         public GameWorld()
         {
             graphics = new GraphicsDeviceManager(this);
-            graphics.PreferredBackBufferWidth = 1920;  // set this value to the desired width of your window
-            graphics.PreferredBackBufferHeight = 1080;   // set this value to the desired height of your window
+            graphics.PreferredBackBufferWidth = 1600;  // set this value to the desired width of your window
+            graphics.PreferredBackBufferHeight = 900;   // set this value to the desired height of your window
+            //graphics.ToggleFullScreen();
             graphics.ApplyChanges();
             Content.RootDirectory = "Content";
             _content = Content;
@@ -100,33 +110,37 @@ namespace LimboSoulsOfJudgement
             // Create a new SpriteBatch, which can be used to draw textures.
             spriteBatch = new SpriteBatch(GraphicsDevice);
             font = Content.Load<SpriteFont>("ExampleFont");
+            backGround = Content.Load<Texture2D>("GreyBackground");
             collisionTexture = Content.Load<Texture2D>("CollisionTexture");
             for (int i = 0; i < 28; i++)
             {
                 new Platform(new Vector2((i * 128), 1050), "MediumBlock");
             }
-            platform = new Platform(new Vector2(850, 850), "SmallBlock");
+            platform = new Platform(new Vector2(850, 920), "MediumBlock");
             player = new Player();
-            minorEnemy = new MinorEnemy();
+            minorEnemy = new MinorEnemy(new Vector2(1700,700));
             camera = new Camera();
             Soul soul = new Soul(3, 6, new Vector2(100, 900), "Soul",3);
             Soul soul2 = new Soul(3, 6, new Vector2(130, 900), "Soul",2);
             Soul soul3 = new Soul(3, 6, new Vector2(160, 900), "Soul",1);
-            new Platform(new Vector2(2000, 850), "MediumBlock");
-            new Platform(new Vector2(2000, 650), "MediumBlock");
-            new Platform(new Vector2(1850, 250), "MediumBlock");
-            new Platform(new Vector2(2000, 590), "MediumBlock");
-            new Platform(new Vector2(2000, 470), "MediumBlock");
-            new Platform(new Vector2(2000, 350), "MediumBlock");
-            new Platform(new Vector2(1500, 600), "MediumBlock");
-            new Platform(new Vector2(2000, 750), "MediumBlock");
+            new Platform(new Vector2(2000, 857), "BigBlock");
+            new Lava(new Vector2(722, 920), "MediumLava");
+            new Platform(new Vector2(594, 920), "MediumBlock");
+            new Platform(new Vector2(594, 920), "MediumBlock");
+            new Chain(new Vector2(730, 570), "chain");
+            new Chain(new Vector2(730, 500), "chain");
+            new Chain(new Vector2(730, 430), "chain");
+
 
             //Load Vendor & Vendor UI
             vendor = new Vendor(1, 1, new Vector2(300, 750), "VendorTest");
             vendorUI = Content.Load<Texture2D>("VendorUITest");
+            vendorBtn = Content.Load<Texture2D>("buttonUITest");
 
             mouse = new Crosshair();
             camera.Position = player.Position;
+
+            level1 = new Level();
         }
 
 
@@ -179,8 +193,27 @@ namespace LimboSoulsOfJudgement
 
             gameObjects.AddRange(toBeAdded);
             toBeAdded.Clear();
+            
+           
+            if (triggerVendor)
+            {
+                alphaValue += fadeIncrease;
+                fadeDelay += gameTime.ElapsedGameTime.TotalSeconds; 
+            }
 
+            //else
+            //{
+            //    fadeIncrease -= 1;
+            //}
 
+            //alphaValue += fadeIncrease;
+
+            //if (alphaValue >= 255 || alphaValue <= 0)
+
+            //{
+            //    fadeIncrease *= -1;
+            //}
+            
 
             camera.Position = new Vector2(MathHelper.Lerp(camera.Position.X, player.Position.X, 0.25f), MathHelper.Lerp(camera.Position.Y, player.Position.Y, 0.25f)); 
             base.Update(gameTime);
@@ -192,23 +225,41 @@ namespace LimboSoulsOfJudgement
         /// <param name="gameTime">Provides a snapshot of timing values.</param>
         protected override void Draw(GameTime gameTime)
         {
-            GraphicsDevice.Clear(Color.CornflowerBlue);
-            spriteBatch.Begin(SpriteSortMode.FrontToBack, null, null, null, null, null, camera.viewMatrix);
-            spriteBatch.DrawString(font, $"Souls: {player.currentSouls}", new Vector2(camera.Position.X, camera.Position.Y), Color.White, 0f, Vector2.Zero, 1f, SpriteEffects.None, 0.991f);
+            GraphicsDevice.Clear(Color.DarkGray);
+            spriteBatch.Begin(SpriteSortMode.Deferred, null, null, null, null, null, camera.viewMatrix);
+            spriteBatch.Draw(backGround, new Vector2(camera.Position.X - ScreenSize.Width*0.5f, camera.Position.Y - ScreenSize.Height * 0.5f), null, Color.White, 0f, Vector2.Zero, 1f, SpriteEffects.None, 0.01f);
+
+
             foreach (GameObject go in gameObjects)
             {
                 go.Draw(spriteBatch);
+
 #if DEBUG
                 DrawCollisionBox(go);
 #endif
             }
+            spriteBatch.DrawString(font, $"Souls: {player.currentSouls}", new Vector2(camera.Position.X - 750, camera.Position.Y - 425), Color.White, 0f, Vector2.Zero, 1f, SpriteEffects.None, 0.991f);
+            spriteBatch.DrawString(font, $"Health: {player.Health}", new Vector2(camera.Position.X - 750, camera.Position.Y - 400), Color.White, 0f, Vector2.Zero, 1f, SpriteEffects.None, 0.991f);
+            spriteBatch.DrawString(font, $"Coordinates: X: {Mouse.GetState().X - camera.viewMatrix.Translation.X}   Y: {Mouse.GetState().Y - camera.viewMatrix.Translation.Y}", new Vector2(camera.Position.X, camera.Position.Y - 500), Color.White, 0f, Vector2.Zero, 1f, SpriteEffects.None, 0.991f);
 
-            vendorUIRect = new Rectangle(0, 0, vendorUI.Width, vendorUI.Height);
-            vendorUIPosition = new Vector2(player.Position.X + 350, player.Position.Y - 300);
+            vendorUIRect = new Rectangle(0, 0, vendorUI.Width, vendorUI.Height);    //Sets the rectangle of vendor UI
+            vendorUIPosition = new Vector2(camera.Position.X + 150, camera.Position.Y - 400);   //Sets the default position of vendor UI
+
+            vendorBtnRect = new Rectangle(0, 0, vendorBtn.Width, vendorBtn.Height);     //Sets the rectangle of the vendor button
+            vendorBtnPos = new Vector2(vendorUIPosition.X + 70, vendorUIPosition.Y + 270);     //Sets the default position of the vendor button
+
+            Color fadeColorIn = new Color(255, 255, 255, (int)MathHelper.Clamp(alphaValue, 0, 255));
             if (triggerVendor)
-            {
-                spriteBatch.Draw(vendorUI, vendorUIPosition, vendorUIRect, Color.White, 0, Vector2.Zero, 1, SpriteEffects.None, 1);
+            {               
+                spriteBatch.Draw(vendorUI, vendorUIPosition, vendorUIRect, fadeColorIn, 0, Vector2.Zero, 1, SpriteEffects.None, 0.991f);
+                spriteBatch.Draw(vendorBtn, vendorBtnPos, vendorBtnRect, fadeColorIn, 0, Vector2.Zero, 1, SpriteEffects.None, 0.991f);
+                IsMouseVisible = true;
             }
+            else
+            {
+                IsMouseVisible = false;
+            }
+            
 
             spriteBatch.End();
             base.Draw(gameTime);

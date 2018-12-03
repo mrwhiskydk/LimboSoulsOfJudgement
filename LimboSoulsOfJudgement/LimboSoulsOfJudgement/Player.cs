@@ -13,9 +13,19 @@ namespace LimboSoulsOfJudgement
         private bool canSwitchWeapons = true;
         private double attackTimer = 0;
         public int currentSouls;
-        private double collisionMovement;
+        private double collisionMovement; // Used for collision so you dont need gameTime in DoCollision
 
-        private const float jumpPower = 1150;
+        public bool climb = false;
+
+        private bool takingDamage = false;
+        private float immortalDuration = 1.0f;
+        private double immortalTime;
+        /// <summary>
+        /// Sets player immunity on and off
+        /// </summary>
+        public bool isImmortal;
+
+        private const float jumpPower = 1600;
         private double jumpForce = jumpPower;
 
         //private float maxJumpTime = 2f;
@@ -34,7 +44,7 @@ namespace LimboSoulsOfJudgement
             health = maxHealth;
 
             //Player movementspeed amount
-            movementSpeed = 450;
+            movementSpeed = 500;
 
             //Weapon setup
             weapon = melee;
@@ -52,11 +62,19 @@ namespace LimboSoulsOfJudgement
             collisionMovement = movementSpeed * gameTime.ElapsedGameTime.TotalSeconds;
 
             HandleMovement(gameTime);
+            climb = false;
 
             HandleJumping(gameTime);
 
             HandleWeapons(gameTime);
-            
+
+            immortalTime += gameTime.ElapsedGameTime.TotalSeconds;  //Adding +1 second to immortalTime, until it reaches 3 seconds
+            if (immortalTime > immortalDuration)
+            {
+                isImmortal = false;
+                immortalTime = 0;   //Upon reaching 3 seconds, immortalTime is reset to 0
+            }
+
         }
 
         /* Method that handles jump functionality of the Player
@@ -75,7 +93,7 @@ namespace LimboSoulsOfJudgement
                     jumpForce -= gameTime.ElapsedGameTime.TotalSeconds * 1500;
                 }
 
-                if (jumpTime >= jumpForce)
+                if (jumpTime >= jumpForce && climb == false)
                 {
                     isJumping = false;
                 }
@@ -93,6 +111,7 @@ namespace LimboSoulsOfJudgement
         protected override void HandleMovement(GameTime gameTime)
         {
             gravity = true;
+            
 
             //Statement that checks if Player is moving to the left
             if (Keyboard.GetState().IsKeyDown(Keys.A))
@@ -112,6 +131,19 @@ namespace LimboSoulsOfJudgement
             if (Keyboard.GetState().IsKeyDown(Keys.Space) && canJump) 
             {
                 isJumping = true;
+            }
+
+            if (climb == true)
+            {
+                if (Keyboard.GetState().IsKeyDown(Keys.W))
+                {
+                    position.Y -= (float)(0.7 * movementSpeed * gameTime.ElapsedGameTime.TotalSeconds);
+                }
+
+                if (Keyboard.GetState().IsKeyDown(Keys.S))
+                {
+                    position.Y += (float)(0.7 * movementSpeed * gameTime.ElapsedGameTime.TotalSeconds);
+                }
             }
 
         }
@@ -148,7 +180,7 @@ namespace LimboSoulsOfJudgement
 
             if (attackTimer >= Weapon.currentAttackRate)
             {
-                if (Mouse.GetState().LeftButton == ButtonState.Pressed)
+                if (Mouse.GetState().LeftButton == ButtonState.Pressed && !GameWorld.triggerVendor)
                 {
                     weapon.Attack();
                     attackTimer = 0;
@@ -166,7 +198,7 @@ namespace LimboSoulsOfJudgement
 
             // Creates small collisionboxes around the player to be used for collision
             Rectangle topLine = new Rectangle(CollisionBox.X, CollisionBox.Y, CollisionBox.Width, 1);
-            Rectangle bottomLine = new Rectangle(CollisionBox.X + 15, CollisionBox.Y + CollisionBox.Height, CollisionBox.Width - 30, 1);
+            Rectangle bottomLine = new Rectangle(CollisionBox.X + 10, CollisionBox.Y + CollisionBox.Height, CollisionBox.Width - 20, 1);
             Rectangle rightLine = new Rectangle(CollisionBox.X + CollisionBox.Width, CollisionBox.Y + 8, 1, CollisionBox.Height - 16);
             Rectangle leftLine = new Rectangle(CollisionBox.X, CollisionBox.Y + 8, 1, CollisionBox.Height - 16);
 
@@ -202,9 +234,42 @@ namespace LimboSoulsOfJudgement
 
                 if (bottomLine.Intersects(otherObject.CollisionBox) && Gravity is true)
                 {
-                    position.Y -= + 7;
+                    position.Y -= 7;
                     Gravity = false;
                 }
+            }
+
+
+            if (otherObject is Lava && isImmortal == false)
+            {
+                health -= 10;
+                takingDamage = true;
+                isImmortal = true;
+            }
+
+            if (otherObject is Chain)
+            {
+                climb = true;
+                gravity = false;
+                jumpForce = 0;
+            }
+        }
+
+        public override void Draw(SpriteBatch spriteBatch)
+        {
+            base.Draw(spriteBatch);
+            if (isImmortal == true && facingRight == false && takingDamage == true)
+            {
+
+                spriteBatch.Draw(sprite, position, animationRectangles[currentAnimationIndex], Color.Red, rotation, new Vector2(animationRectangles[currentAnimationIndex].Width * 0.5f, animationRectangles[currentAnimationIndex].Height * 0.5f), 1f, SpriteEffects.FlipHorizontally, 0.95f);
+
+            }
+
+            if (isImmortal == true && facingRight == true && takingDamage == true)
+            {
+
+                spriteBatch.Draw(sprite, position, animationRectangles[currentAnimationIndex], Color.Red, rotation, new Vector2(animationRectangles[currentAnimationIndex].Width * 0.5f, animationRectangles[currentAnimationIndex].Height * 0.5f), 1f, SpriteEffects.None, 0.95f);
+
             }
         }
     }
