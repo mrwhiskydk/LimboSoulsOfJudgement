@@ -250,10 +250,10 @@ namespace LimboSoulsOfJudgement
                     Gravity = false;
                     hittingRoof = true;
                 }
-                if (topLine.Intersects(otherObject.CollisionBox) && jumpForce < 1)
-                {
-                    hittingRoof = false;
-                }
+                //if (topLine.Intersects(otherObject.CollisionBox) && jumpForce < 1)
+                //{
+                //    hittingRoof = false;
+                //}
 
                 if (bottomLine.Intersects(otherObject.CollisionBox) && Gravity is true)
                 {
