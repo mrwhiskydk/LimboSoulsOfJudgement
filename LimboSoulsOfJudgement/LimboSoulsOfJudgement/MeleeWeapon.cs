@@ -26,6 +26,7 @@ namespace LimboSoulsOfJudgement
             isAttacking = true;
         }
 
+
         public override Rectangle CollisionBox
         {
             get
@@ -37,7 +38,7 @@ namespace LimboSoulsOfJudgement
                 }
                 else
                 {
-                    return new Rectangle((int)(position.X - sprite.Width * 0.5), (int)(position.Y - sprite.Height * 0.5), sprite.Width, sprite.Height);
+                    return new Rectangle();
                 }
             }
         }
