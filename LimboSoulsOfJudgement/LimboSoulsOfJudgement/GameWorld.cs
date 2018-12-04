@@ -73,7 +73,7 @@ namespace LimboSoulsOfJudgement
             graphics = new GraphicsDeviceManager(this);
             graphics.PreferredBackBufferWidth = 1600;  // set this value to the desired width of your window
             graphics.PreferredBackBufferHeight = 900;   // set this value to the desired height of your window
-            graphics.ToggleFullScreen();
+            //graphics.ToggleFullScreen();
             graphics.GraphicsProfile = GraphicsProfile.HiDef;
             graphics.ApplyChanges();
             Content.RootDirectory = "Content";
@@ -219,6 +219,7 @@ namespace LimboSoulsOfJudgement
             GraphicsDevice.Clear(Color.DarkGray);
             spriteBatch.Begin(SpriteSortMode.FrontToBack, null, null, null, null, null, camera.viewMatrix);
             spriteBatch.Draw(backGround, new Vector2(camera.Position.X - ScreenSize.Width*0.5f, camera.Position.Y - ScreenSize.Height * 0.5f), null, Color.White, 0f, Vector2.Zero, 1f, SpriteEffects.None, 0.01f);
+            spriteBatch.Draw(shadow, new Vector2(camera.Position.X - ScreenSize.Width * 0.5f, camera.Position.Y - ScreenSize.Height * 0.5f), null, Color.White, 0f, new Vector2(160, 80), 1f, SpriteEffects.None, 0.03f);
             spriteBatch.Draw(evilAura, new Vector2(camera.Position.X - ScreenSize.Width * 0.5f, camera.Position.Y - ScreenSize.Height * 0.5f), null, Color.White, 0f, new Vector2(160, 80), 1f, SpriteEffects.None, 0.02f);
 
 
@@ -230,7 +231,6 @@ namespace LimboSoulsOfJudgement
                 DrawCollisionBox(go);
 #endif
             }
-            spriteBatch.Draw(shadow, new Vector2(camera.Position.X - ScreenSize.Width*0.5f, camera.Position.Y - ScreenSize.Height*0.5f), null, Color.White, 0f, new Vector2(160, 80), 1f, SpriteEffects.None, 1);
             spriteBatch.DrawString(font, $"Souls: {player.currentSouls}", new Vector2(camera.Position.X - 750, camera.Position.Y - 425), Color.White, 0f, Vector2.Zero, 1f, SpriteEffects.None, 0.991f);
             spriteBatch.DrawString(font, $"Health: {player.Health}", new Vector2(camera.Position.X - 750, camera.Position.Y - 400), Color.White, 0f, Vector2.Zero, 1f, SpriteEffects.None, 0.991f);
             spriteBatch.DrawString(font, $"Coordinates: X: {Mouse.GetState().X - camera.viewMatrix.Translation.X}   Y: {Mouse.GetState().Y - camera.viewMatrix.Translation.Y}", new Vector2(camera.Position.X, camera.Position.Y - 500), Color.White, 0f, Vector2.Zero, 1f, SpriteEffects.None, 0.991f);

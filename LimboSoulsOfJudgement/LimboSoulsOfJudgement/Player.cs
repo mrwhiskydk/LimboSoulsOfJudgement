@@ -19,13 +19,6 @@ namespace LimboSoulsOfJudgement
 
         public bool climb = false;
         //public bool svim = false;
-        private bool takingDamage = false;
-        private float immortalDuration = 1.0f;
-        private double immortalTime;
-        /// <summary>
-        /// Sets player immunity on and off
-        /// </summary>
-        public bool isImmortal;
 
         private const float jumpPower = 1600;
         private double jumpForce = jumpPower;
@@ -33,7 +26,6 @@ namespace LimboSoulsOfJudgement
         //private float maxJumpTime = 2f;
         private double jumpTime;
 
-        private bool canJump = false;   //Controls wether the Player can jump or not
         private bool isJumping = false;
 
         /// <summary>
@@ -70,12 +62,16 @@ namespace LimboSoulsOfJudgement
 
             HandleWeapons(gameTime);
 
-            immortalTime += gameTime.ElapsedGameTime.TotalSeconds;  //Adding +1 second to immortalTime, until it reaches 3 seconds
-            if (immortalTime > immortalDuration)
+            if (isImmortal)
             {
-                isImmortal = false;
-                immortalTime = 0;   //Upon reaching 3 seconds, immortalTime is reset to 0
+                immortalTime += gameTime.ElapsedGameTime.TotalSeconds;  //Adding +1 second to immortalTime, until it reaches 3 seconds
+                if (immortalTime > immortalDuration)
+                {
+                    isImmortal = false;
+                    immortalTime = 0;   //Upon reaching 3 seconds, immortalTime is reset to 0
+                }
             }
+
 
         }
 
@@ -266,6 +262,13 @@ namespace LimboSoulsOfJudgement
 
             }
 
+            if (otherObject is Enemy && isImmortal == false)
+            {
+                Enemy enemy = (Enemy)otherObject;
+                health -= enemy.enemyDamage;
+                isImmortal = true;
+                takingDamage = true;
+            }
 
             if (otherObject is Lava && isImmortal == false)
             {
@@ -282,7 +285,6 @@ namespace LimboSoulsOfJudgement
                 jumpForce = 0;
             }
         }
-
         public override void Draw(SpriteBatch spriteBatch)
         {
             base.Draw(spriteBatch);

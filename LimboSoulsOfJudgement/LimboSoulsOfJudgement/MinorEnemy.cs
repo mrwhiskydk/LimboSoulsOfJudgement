@@ -20,8 +20,9 @@ namespace LimboSoulsOfJudgement
         /// <param name="spriteName"></param>
         public MinorEnemy(Vector2 position) : base(5, 5, position, "Boss")
         {
-            movementSpeed = 100;
-            enemyHealth = 3;
+            movementSpeed = 200;
+            enemyHealth = 50;
+            enemyDamage = 10;
             enemySouls = 1;
             soulCount = 3;
             this.position = position;
