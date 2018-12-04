@@ -14,7 +14,6 @@ namespace LimboSoulsOfJudgement
         private double attackTimer = 0;
         public int currentSouls;
         private double collisionMovement; // Used for collision so you dont need gameTime in DoCollision
-        private float roofCollision;
         private bool hittingRoof = false;
 
         public bool climb = false;
@@ -91,23 +90,29 @@ namespace LimboSoulsOfJudgement
                 jumpTime += gameTime.ElapsedGameTime.TotalSeconds;
                 if (jumpTime <= jumpForce)
                 {
-                    //if (hittingRoof is false)
-                    //{
+                    if (hittingRoof is false)
+                    {
                         position.Y -= (float)(jumpForce * gameTime.ElapsedGameTime.TotalSeconds);
-                    //}
+                    }
+                    else
+                    {
+                        gravity = false;
+                        jumpForce -= gameTime.ElapsedGameTime.TotalSeconds * 3000;
+                    }
                     jumpForce -= gameTime.ElapsedGameTime.TotalSeconds * 1500;
                 }
 
                 if (jumpTime >= jumpForce && climb == false)
                 {
                     isJumping = false;
-                    gravity = true;
+                    Gravity = true;
                     hittingRoof = false;
                 }
             }
             else if (!isJumping)
             {
                 gravity = true;
+                hittingRoof = false;
             }
         }
 
@@ -212,7 +217,7 @@ namespace LimboSoulsOfJudgement
             base.DoCollision(otherObject);
 
             // Creates small collisionboxes around the player to be used for collision
-            Rectangle topLine = new Rectangle(CollisionBox.X + 5, CollisionBox.Y, CollisionBox.Width - 10, 1);
+            Rectangle topLine = new Rectangle(CollisionBox.X + 8, CollisionBox.Y, CollisionBox.Width - 16, 1);
             Rectangle bottomLine = new Rectangle(CollisionBox.X + 10, CollisionBox.Y + CollisionBox.Height, CollisionBox.Width - 20, 1);
             Rectangle rightLine = new Rectangle(CollisionBox.X + CollisionBox.Width, CollisionBox.Y + 15, 1, CollisionBox.Height - 30);
             Rectangle leftLine = new Rectangle(CollisionBox.X, CollisionBox.Y + 15, 1, CollisionBox.Height - 30);
@@ -226,42 +231,53 @@ namespace LimboSoulsOfJudgement
             }
 
 
-            // If the small collsionboxes intesects with a platform move the player in the opposite direction. 
+            // If the small collsionboxes intersects with a platform move the player in the opposite direction. 
             if (otherObject is Platform)
             {
                 if (rightLine.Intersects(otherObject.CollisionBox))
                 {
+                    Gravity = true;
                     position.X -= (float)collisionMovement;
-                    Gravity = true;
+                   
                 }
-
-                if (leftLine.Intersects(otherObject.CollisionBox))
+                else if (leftLine.Intersects(otherObject.CollisionBox))
                 {
-                    position.X += (float)collisionMovement;
                     Gravity = true;
+                    position.X += (float)collisionMovement;
+
+                    
                 }
 
                 if (topLine.Intersects(otherObject.CollisionBox))
                 {
-                    //position.Y += roofCollision;
-                    jumpForce = 0;
+                    // Makes so the player does not stay stuck to the roof
+                    if (hittingRoof is false)
+                    {
+                        Gravity = true;
+                    }
                     canJump = false;
-                    Gravity = true;
-                }
+                    hittingRoof = true;
+                   
 
-                //if (topLine.Intersects(otherObject.CollisionBox) && isJumping)
-                //{
-                //    hittingRoof = true;
-                //}
-                //else
-                //{
-                //    hittingRoof = false;
-                //}
+
+                }
 
                 if (bottomLine.Intersects(otherObject.CollisionBox) && Gravity is true)
                 {
                     position.Y -= GameWorld.gravityStrength;
                     Gravity = false;
+                }
+
+                if (bottomLine.Intersects(otherObject.CollisionBox) && (leftLine.Intersects(otherObject.CollisionBox) is false || (rightLine.Intersects(otherObject.CollisionBox) is false)))
+                {
+
+                    //position.Y -= 1;
+                    while (CollisionBox.Intersects(otherObject.CollisionBox))
+                    {
+                        position.Y -= 1;
+                    }
+                    position.Y += 1;
+
                 }
 
             }
