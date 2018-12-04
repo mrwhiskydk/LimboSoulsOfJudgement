@@ -39,5 +39,14 @@ namespace LimboSoulsOfJudgement
             }
             return false;
         }
+
+        public bool RightOfPlayer()
+        {
+            if (GameWorld.player.Position.X - position.X >= 0)
+            {
+                return false;
+            }
+            return true;
+        }
     }
 }

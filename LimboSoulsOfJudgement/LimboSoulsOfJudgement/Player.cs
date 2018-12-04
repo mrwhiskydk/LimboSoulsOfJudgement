@@ -6,14 +6,16 @@ namespace LimboSoulsOfJudgement
 {
     public class Player : Character
     {
-        MeleeWeapon melee = new MeleeWeapon();
-        RangedWeapon ranged = new RangedWeapon();
-        Weapon weapon;
+        public MeleeWeapon melee = new MeleeWeapon();
+        public RangedWeapon ranged = new RangedWeapon();
+        public Weapon weapon;
         Arm arm = new Arm();
         private bool canSwitchWeapons = true;
         private double attackTimer = 0;
         public int currentSouls;
         private double collisionMovement; // Used for collision so you dont need gameTime in DoCollision
+        private float roofCollision;
+        private bool hittingRoof = false;
 
         public bool climb = false;
         //public bool svim = false;
@@ -89,13 +91,18 @@ namespace LimboSoulsOfJudgement
                 jumpTime += gameTime.ElapsedGameTime.TotalSeconds;
                 if (jumpTime <= jumpForce)
                 {
-                    position.Y -= (float)(jumpForce * gameTime.ElapsedGameTime.TotalSeconds);
+                    //if (hittingRoof is false)
+                    //{
+                        position.Y -= (float)(jumpForce * gameTime.ElapsedGameTime.TotalSeconds);
+                    //}
                     jumpForce -= gameTime.ElapsedGameTime.TotalSeconds * 1500;
                 }
 
                 if (jumpTime >= jumpForce && climb == false)
                 {
                     isJumping = false;
+                    gravity = true;
+                    hittingRoof = false;
                 }
             }
             else if (!isJumping)
@@ -205,7 +212,7 @@ namespace LimboSoulsOfJudgement
             base.DoCollision(otherObject);
 
             // Creates small collisionboxes around the player to be used for collision
-            Rectangle topLine = new Rectangle(CollisionBox.X, CollisionBox.Y, CollisionBox.Width, 1);
+            Rectangle topLine = new Rectangle(CollisionBox.X + 5, CollisionBox.Y, CollisionBox.Width - 10, 1);
             Rectangle bottomLine = new Rectangle(CollisionBox.X + 10, CollisionBox.Y + CollisionBox.Height, CollisionBox.Width - 20, 1);
             Rectangle rightLine = new Rectangle(CollisionBox.X + CollisionBox.Width, CollisionBox.Y + 15, 1, CollisionBox.Height - 30);
             Rectangle leftLine = new Rectangle(CollisionBox.X, CollisionBox.Y + 15, 1, CollisionBox.Height - 30);
@@ -236,10 +243,20 @@ namespace LimboSoulsOfJudgement
 
                 if (topLine.Intersects(otherObject.CollisionBox))
                 {
+                    //position.Y += roofCollision;
                     jumpForce = 0;
                     canJump = false;
                     Gravity = true;
                 }
+
+                //if (topLine.Intersects(otherObject.CollisionBox) && isJumping)
+                //{
+                //    hittingRoof = true;
+                //}
+                //else
+                //{
+                //    hittingRoof = false;
+                //}
 
                 if (bottomLine.Intersects(otherObject.CollisionBox) && Gravity is true)
                 {
