@@ -26,6 +26,7 @@ namespace LimboSoulsOfJudgement
             isAttacking = true;
         }
 
+
         public override Rectangle CollisionBox
         {
             get

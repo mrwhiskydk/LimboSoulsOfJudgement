@@ -184,9 +184,10 @@ namespace LimboSoulsOfJudgement
         {
             base.DoCollision(otherObject);
 
-            if (otherObject is Player)
+            if (otherObject is Weapon)
             {
-
+                Weapon weapon = (Weapon)otherObject;
+                enemyHealth -= weapon.damage;
             }
 
             if (otherObject is Projectile)

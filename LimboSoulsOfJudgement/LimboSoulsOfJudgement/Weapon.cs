@@ -12,7 +12,7 @@ namespace LimboSoulsOfJudgement
     {
         protected float attackRate = 1;
         public static float currentAttackRate = 1;
-        protected int damage = 1;
+        public int damage;
         public bool equipped = false;
 
         public Weapon(string spriteName) : base(spriteName)
