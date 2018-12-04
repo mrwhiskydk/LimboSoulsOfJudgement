@@ -91,19 +91,18 @@ namespace LimboSoulsOfJudgement
                 jumpTime += gameTime.ElapsedGameTime.TotalSeconds;
                 if (jumpTime <= jumpForce)
                 {
-                    if (hittingRoof is false)
-                    {
+                    //if (hittingRoof is false)
+                    //{
                         position.Y -= (float)(jumpForce * gameTime.ElapsedGameTime.TotalSeconds);
-                    }
+                    //}
                     jumpForce -= gameTime.ElapsedGameTime.TotalSeconds * 1500;
-
-                    //roofCollision = (float)(jumpForce * gameTime.ElapsedGameTime.TotalSeconds);
                 }
 
                 if (jumpTime >= jumpForce && climb == false)
                 {
                     isJumping = false;
                     gravity = true;
+                    hittingRoof = false;
                 }
             }
             else if (!isJumping)
@@ -213,7 +212,7 @@ namespace LimboSoulsOfJudgement
             base.DoCollision(otherObject);
 
             // Creates small collisionboxes around the player to be used for collision
-            Rectangle topLine = new Rectangle(CollisionBox.X, CollisionBox.Y, CollisionBox.Width, 1);
+            Rectangle topLine = new Rectangle(CollisionBox.X + 5, CollisionBox.Y, CollisionBox.Width - 10, 1);
             Rectangle bottomLine = new Rectangle(CollisionBox.X + 10, CollisionBox.Y + CollisionBox.Height, CollisionBox.Width - 20, 1);
             Rectangle rightLine = new Rectangle(CollisionBox.X + CollisionBox.Width, CollisionBox.Y + 15, 1, CollisionBox.Height - 30);
             Rectangle leftLine = new Rectangle(CollisionBox.X, CollisionBox.Y + 15, 1, CollisionBox.Height - 30);
@@ -245,12 +244,16 @@ namespace LimboSoulsOfJudgement
                 if (topLine.Intersects(otherObject.CollisionBox))
                 {
                     //position.Y += roofCollision;
-                    //jumpForce = jumpForce * 0.9;
+                    jumpForce = 0;
                     canJump = false;
-                    Gravity = false;
-                    hittingRoof = true;
+                    Gravity = true;
                 }
-                //if (topLine.Intersects(otherObject.CollisionBox) && jumpForce < 1)
+
+                //if (topLine.Intersects(otherObject.CollisionBox) && isJumping)
+                //{
+                //    hittingRoof = true;
+                //}
+                //else
                 //{
                 //    hittingRoof = false;
                 //}
