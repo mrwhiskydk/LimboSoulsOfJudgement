@@ -9,7 +9,7 @@ using Microsoft.Xna.Framework.Input;
 
 namespace LimboSoulsOfJudgement
 {
-    class Arm : GameObject
+    public class Arm : GameObject
     {
         public Arm() : base("PlayerArm")
         {
