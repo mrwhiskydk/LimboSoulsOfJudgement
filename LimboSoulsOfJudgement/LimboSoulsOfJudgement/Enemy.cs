@@ -228,9 +228,9 @@ namespace LimboSoulsOfJudgement
         {
             base.DoCollision(otherObject);
 
-            if (otherObject is Weapon && isImmortal == false)
+            if (otherObject is MeleeWeapon && isImmortal == false)
             {
-                Weapon weapon = (Weapon)otherObject;
+                MeleeWeapon weapon = (MeleeWeapon)otherObject;
                 enemyHealth -= weapon.damage;
                 isImmortal = true;
                 takingDamage = true;
@@ -241,7 +241,7 @@ namespace LimboSoulsOfJudgement
             {
                 Projectile arrow = (Projectile)otherObject;
                 enemyHealth -= arrow.damage;
-                GameWorld.RemoveGameObject(arrow);
+                arrow.Destroy();
                 knockback = true;
             }
 

@@ -61,6 +61,8 @@ namespace LimboSoulsOfJudgement
 
             HandleWeapons(gameTime);
 
+            HandleAbilities(gameTime);
+
             if (isImmortal)
             {
                 immortalTime += gameTime.ElapsedGameTime.TotalSeconds;  //Adding +1 second to immortalTime, until it reaches 3 seconds
@@ -70,8 +72,6 @@ namespace LimboSoulsOfJudgement
                     immortalTime = 0;   //Upon reaching 3 seconds, immortalTime is reset to 0
                 }
             }
-
-
         }
 
         /* Method that handles jump functionality of the Player
@@ -202,6 +202,16 @@ namespace LimboSoulsOfJudgement
                     attackTimer = 0;
                 }
             }
+        }
+
+        public void HandleAbilities(GameTime gameTime)
+        {
+            if (Keyboard.GetState().IsKeyDown(Keys.Q))
+            {
+                Vector2 dir = new Vector2(GameWorld.mouse.Position.X, GameWorld.mouse.Position.Y) - position;
+                new LightningBolt(position, dir);
+            }
+            
         }
 
         /// <summary>
