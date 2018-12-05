@@ -194,7 +194,7 @@ namespace LimboSoulsOfJudgement
             {
                 Projectile arrow = (Projectile)otherObject;
                 enemyHealth -= arrow.damage;
-                GameWorld.RemoveGameObject(arrow);
+                arrow.Destroy();
             }
 
             Rectangle topLine = new Rectangle(CollisionBox.X, CollisionBox.Y, CollisionBox.Width, 1);
