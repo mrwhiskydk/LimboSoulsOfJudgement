@@ -17,7 +17,7 @@ namespace LimboSoulsOfJudgement
 
         public RangedWeapon() : base("bow")
         {
-            
+            damage = 5;
         }
 
         public override void Attack()
