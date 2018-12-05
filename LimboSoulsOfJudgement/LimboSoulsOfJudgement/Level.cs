@@ -213,11 +213,62 @@ namespace LimboSoulsOfJudgement
             }
 
 
-
             new Platform(new Vector2(-512, 2048), "VerticalFrame");
             new Platform(new Vector2(6272, 2048), "VerticalFrame");
             new Platform(new Vector2(2880, 4096), "HorizontalFrame");
             new Platform(new Vector2(2880, -512), "HorizontalFrame");
+
         }
+
+        /// <summary>
+        /// A method for placing platforms in a level
+        /// </summary>
+        /// <param name="s">The size of the platform. Either 1 for small, 2 for medium or 3 for big</param>
+        /// <param name="d">The direction the blocks are placed. Either 1 for Horizontal or 2 for vertical</param>
+        /// <param name="x">Where on the x-axis the platform should be placed</param>
+        /// <param name="y">Where on the y-axis the platform should be placed</param>
+        /// <param name="z">How many platforms should be placed beside eachother</param>
+        private void PlacePlatform(int s, int d, int x, int y, int z)
+        {
+            string name = "MediumBlock";
+
+            if (s == 1)
+            {
+                name = "SmallBlock";
+                s = 64;
+            }
+
+            else if (s == 2)
+            {
+                name = "MediumBlock";
+                s = 128;
+            }
+
+            else if (s == 3)
+            {
+                name = "BigBlock";
+                s = 256;
+            }
+
+            if (d == 1)
+            {
+                for (int i = 0; i < z; i++)
+                {
+                    new Platform(new Vector2((x * 64) + (i * s), (y * 64)), $"{name}");
+                    
+                }
+            }
+
+            if (d == 2)
+            {
+                for (int i = 0; i < z; i++)
+                {
+                    new Platform(new Vector2((x * 64) + (i * s), (y * 64)), $"{name}");
+                }
+            }
+
+        }
+
     }
+
 }
