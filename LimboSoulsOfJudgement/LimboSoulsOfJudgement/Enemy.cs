@@ -4,6 +4,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using Microsoft.Xna.Framework;
+using Microsoft.Xna.Framework.Graphics;
 
 namespace LimboSoulsOfJudgement
 {
@@ -34,13 +35,23 @@ namespace LimboSoulsOfJudgement
         /// </summary>
         protected bool goVertically;
 
+        /// <summary>
+        /// Checks if an enemy should be knocked back by the players weapon
+        /// </summary>
+        protected bool knockback = false;
+
+        protected double knockbackTime;
+
+        protected float knockbackDuration = 0.5f;
+
         private double patrolTime;
-        private float patrolDuration = 6f;
+        private float patrolDuration = 4f;
         private double collisionMovement;
         private const float jumpPower = 1600;
         private double jumpForce = jumpPower;
         private double jumpTime;
         private bool isJumping = false;
+
 
 
 
@@ -63,6 +74,17 @@ namespace LimboSoulsOfJudgement
         public override void Update(GameTime gameTime)
         {
             base.Update(gameTime);
+            if (isImmortal)
+            {
+            immortalTime += gameTime.ElapsedGameTime.TotalSeconds;  //Adding +1 second to immortalTime, until it reaches 3 seconds
+            if (immortalTime > immortalDuration)
+            {
+                isImmortal = false;
+                immortalTime = 0;   //Upon reaching 3 seconds, immortalTime is reset to 0
+            }
+            }
+
+
             if (GameWorld.player.Position.X + 500 <= Position.X || GameWorld.player.Position.X - 500 >= Position.X )
             {
                 goHorizontally = false;
@@ -113,6 +135,28 @@ namespace LimboSoulsOfJudgement
             else
             {
                 goVertically = false;
+            }
+
+            if (knockback)
+            {
+                knockbackTime += gameTime.ElapsedGameTime.TotalSeconds;
+                if (GameWorld.player.Position.X < position.X)
+                {
+                    position.Y += (float)(movementSpeed * gameTime.ElapsedGameTime.TotalSeconds);
+                    position.X += (float)(2*movementSpeed * gameTime.ElapsedGameTime.TotalSeconds);
+
+                }
+                if (GameWorld.player.Position.X > position.X)
+                { 
+                    position.Y += (float)(movementSpeed * gameTime.ElapsedGameTime.TotalSeconds);
+                    position.X -= (float)(2*movementSpeed * gameTime.ElapsedGameTime.TotalSeconds);
+
+                }
+                if (knockbackTime > knockbackDuration)
+                {
+                    knockback = false;
+                    knockbackTime = 0;
+                }
             }
         }
 
@@ -184,17 +228,21 @@ namespace LimboSoulsOfJudgement
         {
             base.DoCollision(otherObject);
 
-            if (otherObject is Weapon)
+            if (otherObject is MeleeWeapon && isImmortal == false)
             {
-                Weapon weapon = (Weapon)otherObject;
+                MeleeWeapon weapon = (MeleeWeapon)otherObject;
                 enemyHealth -= weapon.damage;
+                isImmortal = true;
+                takingDamage = true;
+                knockback = true;
             }
 
             if (otherObject is Projectile)
             {
                 Projectile arrow = (Projectile)otherObject;
                 enemyHealth -= arrow.damage;
-                GameWorld.RemoveGameObject(arrow);
+                arrow.Destroy();
+                knockback = true;
             }
 
             Rectangle topLine = new Rectangle(CollisionBox.X, CollisionBox.Y, CollisionBox.Width, 1);
@@ -204,6 +252,7 @@ namespace LimboSoulsOfJudgement
 
             if (otherObject is Platform)
             {
+                canJump = true;
                 if (rightLine.Intersects(otherObject.CollisionBox))
                 {
                     if (CollisionBox.Intersects(GameWorld.player.CollisionBox) is false)
@@ -260,6 +309,5 @@ namespace LimboSoulsOfJudgement
             }
 
         }
-
     }
 }

@@ -9,7 +9,7 @@ namespace LimboSoulsOfJudgement
         public MeleeWeapon melee = new MeleeWeapon();
         public RangedWeapon ranged = new RangedWeapon();
         public Weapon weapon;
-        Arm arm = new Arm();
+        public Arm arm = new Arm();
         private bool canSwitchWeapons = true;
         private double attackTimer = 0;
         public int currentSouls;
@@ -18,13 +18,6 @@ namespace LimboSoulsOfJudgement
 
         public bool climb = false;
         //public bool svim = false;
-        private bool takingDamage = false;
-        private float immortalDuration = 1.0f;
-        private double immortalTime;
-        /// <summary>
-        /// Sets player immunity on and off
-        /// </summary>
-        public bool isImmortal;
 
         private const float jumpPower = 1600;
         private double jumpForce = jumpPower;
@@ -32,7 +25,6 @@ namespace LimboSoulsOfJudgement
         //private float maxJumpTime = 2f;
         private double jumpTime;
 
-        private bool canJump = false;   //Controls wether the Player can jump or not
         private bool isJumping = false;
 
         /// <summary>
@@ -69,13 +61,17 @@ namespace LimboSoulsOfJudgement
 
             HandleWeapons(gameTime);
 
-            immortalTime += gameTime.ElapsedGameTime.TotalSeconds;  //Adding +1 second to immortalTime, until it reaches 3 seconds
-            if (immortalTime > immortalDuration)
-            {
-                isImmortal = false;
-                immortalTime = 0;   //Upon reaching 3 seconds, immortalTime is reset to 0
-            }
+            HandleAbilities(gameTime);
 
+            if (isImmortal)
+            {
+                immortalTime += gameTime.ElapsedGameTime.TotalSeconds;  //Adding +1 second to immortalTime, until it reaches 3 seconds
+                if (immortalTime > immortalDuration)
+                {
+                    isImmortal = false;
+                    immortalTime = 0;   //Upon reaching 3 seconds, immortalTime is reset to 0
+                }
+            }
         }
 
         /* Method that handles jump functionality of the Player
@@ -208,6 +204,16 @@ namespace LimboSoulsOfJudgement
             }
         }
 
+        public void HandleAbilities(GameTime gameTime)
+        {
+            if (Keyboard.GetState().IsKeyDown(Keys.Q))
+            {
+                Vector2 dir = new Vector2(GameWorld.mouse.Position.X, GameWorld.mouse.Position.Y) - position;
+                new LightningBolt(position, dir);
+            }
+            
+        }
+
         /// <summary>
         /// Method that handles player collision with other GameObjects
         /// </summary>
@@ -281,6 +287,13 @@ namespace LimboSoulsOfJudgement
 
             }
 
+            if (otherObject is Enemy && isImmortal == false)
+            {
+                Enemy enemy = (Enemy)otherObject;
+                health -= enemy.enemyDamage;
+                isImmortal = true;
+                takingDamage = true;
+            }
 
             if (otherObject is Lava && isImmortal == false)
             {
@@ -297,7 +310,6 @@ namespace LimboSoulsOfJudgement
                 jumpForce = 0;
             }
         }
-
         public override void Draw(SpriteBatch spriteBatch)
         {
             base.Draw(spriteBatch);

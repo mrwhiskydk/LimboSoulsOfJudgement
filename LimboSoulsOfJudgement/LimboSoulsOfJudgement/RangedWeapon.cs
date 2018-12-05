@@ -17,11 +17,12 @@ namespace LimboSoulsOfJudgement
 
         public RangedWeapon() : base("bow")
         {
-            
+            damage = 5;
         }
 
         public override void Attack()
         {
+            //How many projectiles to fire. Can be used in the future if a bow shoots more than 1 arrow at a time. Would need to add some spread then so they dont all stack on each other
             Vector2 dir = new Vector2(GameWorld.mouse.Position.X, GameWorld.mouse.Position.Y) - position;
 
             for (int i = 0; i < amountToFire; i++)
@@ -37,9 +38,10 @@ namespace LimboSoulsOfJudgement
 
             if (equipped)
             {
-                float angle = (float)Math.Atan2(GameWorld.mouse.Position.X - position.X, GameWorld.mouse.Position.Y - GameWorld.player.Position.Y);
+                //Orbit bow around player according to mouse
+                float angle = (float)Math.Atan2(GameWorld.mouse.Position.X - position.X, GameWorld.mouse.Position.Y - position.Y);
                 position = GameWorld.player.Position + new Vector2(offset * (float)Math.Sin(angle), offset * (float)Math.Cos(angle));
-
+                //Rotate bow according to mouse
                 Vector2 dir = new Vector2(GameWorld.mouse.Position.X, GameWorld.mouse.Position.Y) - position;
                 if (dir != Vector2.Zero)
                 {

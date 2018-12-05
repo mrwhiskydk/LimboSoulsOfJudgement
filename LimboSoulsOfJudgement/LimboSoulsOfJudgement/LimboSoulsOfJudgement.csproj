@@ -53,6 +53,7 @@
     <Compile Include="GameWorld.cs" />
     <Compile Include="GameObject.cs" />
     <Compile Include="Lava.cs" />
+    <Compile Include="LightningBolt.cs" />
     <Compile Include="MinorEnemy.cs" />
     <Compile Include="Player.cs" />
     <Compile Include="Level.cs" />
