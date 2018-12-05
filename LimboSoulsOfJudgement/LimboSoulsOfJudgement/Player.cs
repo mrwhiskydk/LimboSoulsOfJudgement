@@ -270,8 +270,7 @@ namespace LimboSoulsOfJudgement
 
                 if (bottomLine.Intersects(otherObject.CollisionBox) && (leftLine.Intersects(otherObject.CollisionBox) is false || (rightLine.Intersects(otherObject.CollisionBox) is false)))
                 {
-
-                    //position.Y -= 1;
+                    // Makes the player get ontop of the platform and not halfway indside like in the begining, this also fixed collsion bug
                     while (CollisionBox.Intersects(otherObject.CollisionBox))
                     {
                         position.Y -= 1;
