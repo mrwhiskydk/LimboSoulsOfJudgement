@@ -87,14 +87,14 @@ namespace LimboSoulsOfJudgement
         public override void DoCollision(GameObject otherObject)
         {
             base.DoCollision(otherObject);
-            Rectangle topLine = new Rectangle(CollisionBox.X, CollisionBox.Y, CollisionBox.Width, 1);
-            Rectangle rightLine = new Rectangle(CollisionBox.X + CollisionBox.Width, CollisionBox.Y + 12, 1, CollisionBox.Height - 24);
-            Rectangle leftLine = new Rectangle(CollisionBox.X, CollisionBox.Y + 12, 1, CollisionBox.Height - 24);
-            Rectangle bottomLine = new Rectangle(CollisionBox.X + 3, CollisionBox.Y + CollisionBox.Height, CollisionBox.Width - 6, 1);
+            Rectangle topLine = new Rectangle(CollisionBox.X + 8, CollisionBox.Y, CollisionBox.Width - 16, 1);
+            Rectangle bottomLine = new Rectangle(CollisionBox.X + 10, CollisionBox.Y + CollisionBox.Height, CollisionBox.Width - 20, 1);
+            Rectangle rightLine = new Rectangle(CollisionBox.X + CollisionBox.Width, CollisionBox.Y + 15, 1, CollisionBox.Height - 30);
+            Rectangle leftLine = new Rectangle(CollisionBox.X, CollisionBox.Y + 15, 1, CollisionBox.Height - 30);
 
             if (otherObject is Platform)
             {
-                canJump = true;
+                
                 if (rightLine.Intersects(otherObject.CollisionBox))
                 {
                     if (CollisionBox.Intersects(GameWorld.player.CollisionBox) is false)
@@ -125,22 +125,34 @@ namespace LimboSoulsOfJudgement
                     }
                 }
 
-                if (bottomLine.Intersects(otherObject.CollisionBox) && Gravity is true)
-                {
-                    position.Y -= GameWorld.gravityStrength;
-                    gravity = false;
+                //if (bottomLine.Intersects(otherObject.CollisionBox) && Gravity is true)
+                //{
+                //    position.Y -= GameWorld.gravityStrength;
+                //    gravity = false;
 
-                }
+                //}
 
                 if (bottomLine.Intersects(otherObject.CollisionBox))
                 {
                     jumpForce = jumpPower;
+                    canJump = true;
                 }
 
                 if (topLine.Intersects(otherObject.CollisionBox))
                 {
                     jumpForce = 0;
                     Gravity = true;
+                }
+
+                if (bottomLine.Intersects(otherObject.CollisionBox) && (leftLine.Intersects(otherObject.CollisionBox) is false || (rightLine.Intersects(otherObject.CollisionBox) is false)))
+                {
+                    // Makes the player get ontop of the platform and not halfway inside like in the begining, this also fixed collsion bug
+                    while (CollisionBox.Intersects(otherObject.CollisionBox))
+                    {
+                        position.Y -= 1;
+                    }
+                    position.Y += 1;
+
                 }
 
             }
