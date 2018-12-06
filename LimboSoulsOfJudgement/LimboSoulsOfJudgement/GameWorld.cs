@@ -19,8 +19,6 @@ namespace LimboSoulsOfJudgement
         private static List<GameObject> toBeRemoved = new List<GameObject>();
         public static Player player;
         private Texture2D collisionTexture;
-        private Platform platform;
-        private MinorEnemy minorEnemy;
         public static Camera camera;
         private SpriteFont font;
         private Vendor vendor;
@@ -38,7 +36,6 @@ namespace LimboSoulsOfJudgement
         private Texture2D backGround;
         private Texture2D shadow;
         private Texture2D evilAura;
-
         private static GraphicsDeviceManager graphics;
 
         //Insert GameWorld fields below
@@ -117,9 +114,7 @@ namespace LimboSoulsOfJudgement
             shadow = Content.Load<Texture2D>("Darkness");
             evilAura = Content.Load<Texture2D>("EvilAura");
             collisionTexture = Content.Load<Texture2D>("CollisionTexture");
-
             player = new Player();
-            minorEnemy = new MinorEnemy(new Vector2(1700,700));
             camera = new Camera();
 
 
@@ -156,7 +151,6 @@ namespace LimboSoulsOfJudgement
         {
             if (GamePad.GetState(PlayerIndex.One).Buttons.Back == ButtonState.Pressed || Keyboard.GetState().IsKeyDown(Keys.Escape))
                 Exit();
-
 
             foreach (GameObject go in gameObjects)
             {
@@ -219,8 +213,8 @@ namespace LimboSoulsOfJudgement
             GraphicsDevice.Clear(Color.DarkGray);
             spriteBatch.Begin(SpriteSortMode.FrontToBack, null, null, null, null, null, camera.viewMatrix);
             spriteBatch.Draw(backGround, new Vector2(camera.Position.X - ScreenSize.Width*0.5f, camera.Position.Y - ScreenSize.Height * 0.5f), null, Color.White, 0f, Vector2.Zero, 1f, SpriteEffects.None, 0.01f);
-            spriteBatch.Draw(shadow, new Vector2(camera.Position.X - ScreenSize.Width * 0.5f, camera.Position.Y - ScreenSize.Height * 0.5f), null, Color.White, 0f, new Vector2(160, 80), 1f, SpriteEffects.None, 0.03f);
-            spriteBatch.Draw(evilAura, new Vector2(camera.Position.X - ScreenSize.Width * 0.5f, camera.Position.Y - ScreenSize.Height * 0.5f), null, Color.White, 0f, new Vector2(160, 80), 1f, SpriteEffects.None, 0.02f);
+            spriteBatch.Draw(shadow, new Vector2(camera.Position.X - ScreenSize.Width * 0.5f, camera.Position.Y - ScreenSize.Height * 0.5f), null, Color.White, 0f, new Vector2(160, 80), 1f, SpriteEffects.None, 0.99f);
+            //spriteBatch.Draw(evilAura, new Vector2(camera.Position.X - ScreenSize.Width * 0.5f, camera.Position.Y - ScreenSize.Height * 0.5f), null, Color.White, 0f, new Vector2(160, 80), 1f, SpriteEffects.None, 0.02f);
 
 
             foreach (GameObject go in gameObjects)

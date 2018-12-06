@@ -83,15 +83,5 @@ namespace LimboSoulsOfJudgement
                 }
             }
         }
-
-        public override void DoCollision(GameObject otherObject)
-        {
-            if (otherObject is Enemy)
-            {
-                
-            }
-
-            base.DoCollision(otherObject);
-        }
     }
 }

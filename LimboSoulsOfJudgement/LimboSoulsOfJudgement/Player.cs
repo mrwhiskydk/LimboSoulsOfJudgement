@@ -24,7 +24,7 @@ namespace LimboSoulsOfJudgement
 
         //private float maxJumpTime = 2f;
         private double jumpTime;
-
+        public float lifeSteal = 0.5f;
         private bool isJumping = false;
 
         /// <summary>
@@ -36,6 +36,7 @@ namespace LimboSoulsOfJudgement
             maxHealth = 100;
             health = maxHealth;
 
+            
             //Player movementspeed amount
             movementSpeed = 500;
 
