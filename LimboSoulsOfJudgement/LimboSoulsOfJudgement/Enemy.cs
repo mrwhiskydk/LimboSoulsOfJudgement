@@ -90,32 +90,11 @@ namespace LimboSoulsOfJudgement
                     immortalTime = 0;   //Upon reaching 3 seconds, immortalTime is reset to 0
                 }
             }
-
-            if (GameWorld.player.Position.X + 300 <= Position.X || GameWorld.player.Position.X - 300 >= Position.X )
-            {
-                goHorizontally = false;
-                goVertically = false;
-            }
-            else
-            {
-                goHorizontally = true;
-            }
-
-            if (goHorizontally == true && enemyHealth > 0)
+            if (Vector2.Distance(position, GameWorld.player.Position) < 500)
             {
                 aggro = true;
             }
-
-            if (GameWorld.player.Position.Y + 300 <= Position.Y || GameWorld.player.Position.Y - 300 >= Position.Y)
-            {
-
-                goVertically = false;
-                goHorizontally = false;
-            }
-            else
-            {
-                goVertically = true;
-            }
+           
 
             if (enemyHealth <= 0)
             {
@@ -127,23 +106,27 @@ namespace LimboSoulsOfJudgement
                 GameWorld.RemoveGameObject(this);
                
             }
+
             collisionMovement = movementSpeed * gameTime.ElapsedGameTime.TotalSeconds;
+
             knockbackMovement = (float)(knockbackDistance * movementSpeed * gameTime.ElapsedGameTime.TotalSeconds);
+
             if (knockback)
             {
                 knockbackTime += gameTime.ElapsedGameTime.TotalSeconds;
+
                 if (GameWorld.player.Position.X < position.X)
                 {
-                    position.Y += (float)(movementSpeed * gameTime.ElapsedGameTime.TotalSeconds);
+                    isJumping = true;
                     position.X += (float)(knockbackDistance * movementSpeed * gameTime.ElapsedGameTime.TotalSeconds);
-
                 }
+
                 if (GameWorld.player.Position.X > position.X)
-                { 
-                    position.Y += (float)(movementSpeed * gameTime.ElapsedGameTime.TotalSeconds);
+                {
+                    isJumping = true;
                     position.X -= (float)(knockbackDistance * movementSpeed * gameTime.ElapsedGameTime.TotalSeconds);
-
                 }
+
                 if (knockbackTime > knockbackDuration)
                 {
                     knockback = false;
@@ -205,7 +188,7 @@ namespace LimboSoulsOfJudgement
                 isImmortal = true;
                 takingDamage = true;
                 knockback = true;
-                knockbackDistance = 2;
+                knockbackDistance = 2f;
             }
 
             if (otherObject is Projectile)
@@ -214,7 +197,7 @@ namespace LimboSoulsOfJudgement
                 enemyHealth -= arrow.damage;
                 arrow.Destroy();
                 knockback = true;
-                knockbackDistance = 1.4f;
+                knockbackDistance = 1.5f;
                 aggro = true;
             }           
            

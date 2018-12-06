@@ -223,11 +223,11 @@ namespace LimboSoulsOfJudgement
             new MinorEnemy(new Vector2(69 * 64, 18 * 64));
             new MinorEnemy(new Vector2(65 * 64, 28 * 64));
             new MinorEnemy(new Vector2(71 * 64, 28 * 64));
-            new MinorEnemy(new Vector2(3 * 64, 61 * 64));
-            new MinorEnemy(new Vector2(11 * 64, 61 * 64));
-            new MinorEnemy(new Vector2(19 * 64, 61 * 64));
-            new MinorEnemy(new Vector2(27 * 64, 61 * 64));
-            new MinorEnemy(new Vector2(35 * 64, 61 * 64));
+            new MinorEnemy(new Vector2(3 * 64, 55 * 64));
+            new MinorEnemy(new Vector2(11 * 64, 55 * 64));
+            new MinorEnemy(new Vector2(19 * 64, 55 * 64));
+            new MinorEnemy(new Vector2(27 * 64, 55 * 64));
+            new MinorEnemy(new Vector2(35 * 64, 55 * 64));
 
 
             // Boss
