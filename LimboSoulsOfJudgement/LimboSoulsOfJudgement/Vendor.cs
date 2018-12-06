@@ -47,13 +47,12 @@ namespace LimboSoulsOfJudgement
                 otherObject = go;
                 if (otherObject.IsColliding(this) && otherObject is Player)
                 {
-                    GameWorld.triggerVendor = true;
+                    GameWorld.triggerVendor = true;                   
                 }
-                else if(GameWorld.player.IsColliding(this) == false)
+                else if(!GameWorld.player.IsColliding(this))
                 {
-                    GameWorld.triggerVendor = false;
+                    GameWorld.triggerVendor = false;                  
                 }
-
             }
         }
 

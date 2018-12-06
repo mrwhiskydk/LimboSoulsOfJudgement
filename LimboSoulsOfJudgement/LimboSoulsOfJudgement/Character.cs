@@ -11,8 +11,8 @@ namespace LimboSoulsOfJudgement
 {
     public abstract class Character : AnimatedGameObject
     {
-        protected int health;
-        protected int maxHealth;
+        public int health;
+        public int maxHealth;
         protected float movementSpeed;
 
         protected bool takingDamage = false;
@@ -41,21 +41,25 @@ namespace LimboSoulsOfJudgement
                     isImmortal = true;
                 }
 
-                if (value >= maxHealth)
-                {
-                    health = maxHealth;
-                }
-                else
-                {
-                    health = value;
-                }
+                health = value;
+                
             }
         }
 
         /// <summary>
         /// Property that sets the max health value of the current GameObject
         /// </summary>
-        protected int MaxHealth { get; set; }
+        public int MaxHealth
+        {
+            get
+            {
+                return maxHealth;
+            }
+            set
+            {
+                maxHealth = value;
+            }
+        }
 
         /// <summary>
         /// Character Constructor that enables gravity as default
