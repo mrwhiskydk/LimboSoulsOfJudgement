@@ -48,7 +48,7 @@ namespace LimboSoulsOfJudgement
         /// <summary>
         /// The distance an enemy should be knocked back when hit
         /// </summary>
-        public int knockbackDistance = 2;
+        public float knockbackDistance;
 
         protected double knockbackMovement;
         protected double patrolTime;
@@ -91,7 +91,7 @@ namespace LimboSoulsOfJudgement
                 }
             }
 
-            if (GameWorld.player.Position.X + 500 <= Position.X || GameWorld.player.Position.X - 500 >= Position.X )
+            if (GameWorld.player.Position.X + 300 <= Position.X || GameWorld.player.Position.X - 300 >= Position.X )
             {
                 goHorizontally = false;
                 goVertically = false;
@@ -205,6 +205,7 @@ namespace LimboSoulsOfJudgement
                 isImmortal = true;
                 takingDamage = true;
                 knockback = true;
+                knockbackDistance = 2;
             }
 
             if (otherObject is Projectile)
@@ -213,6 +214,8 @@ namespace LimboSoulsOfJudgement
                 enemyHealth -= arrow.damage;
                 arrow.Destroy();
                 knockback = true;
+                knockbackDistance = 1.4f;
+                aggro = true;
             }           
            
         }

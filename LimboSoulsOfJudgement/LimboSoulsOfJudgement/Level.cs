@@ -158,8 +158,8 @@ namespace LimboSoulsOfJudgement
             new Platform(new Vector2((84 * 64), (48 * 64)), "SmallBlock");
             new Platform(new Vector2((85 * 64), (48 * 64)), "SmallBlock");
             new Platform(new Vector2(9 * 64, 27 * 64), "MediumBlock");
-            new Platform(new Vector2(39 * 64, 11 * 64), "MediumBlock");
-            new Platform(new Vector2(44 * 64, 11 * 64), "MediumBlock");
+            new Platform(new Vector2(39 * 64, 9 * 64), "MediumBlock");
+            new Platform(new Vector2(45 * 64, 9 * 64), "MediumBlock");
             new Platform(new Vector2(3776, 768), "MediumBlock");
             new Platform(new Vector2(3392, 704), "MediumBlock");
             new Platform(new Vector2(3520, 704), "MediumBlock");
@@ -217,12 +217,18 @@ namespace LimboSoulsOfJudgement
 
             // Minor Enemies
             new MinorEnemy(new Vector2(27 * 64, 10 * 64));
-            new MinorEnemy(new Vector2(41 * 64, 14 * 64));
-            new MinorEnemy(new Vector2(47 * 64, 14 * 64));
+            new MinorEnemy(new Vector2(40 * 64, 14 * 64));
+            new MinorEnemy(new Vector2(46 * 64, 14 * 64));
             new MinorEnemy(new Vector2(65 * 64, 18 * 64));
             new MinorEnemy(new Vector2(69 * 64, 18 * 64));
             new MinorEnemy(new Vector2(65 * 64, 28 * 64));
             new MinorEnemy(new Vector2(71 * 64, 28 * 64));
+            new MinorEnemy(new Vector2(3 * 64, 61 * 64));
+            new MinorEnemy(new Vector2(11 * 64, 61 * 64));
+            new MinorEnemy(new Vector2(19 * 64, 61 * 64));
+            new MinorEnemy(new Vector2(27 * 64, 61 * 64));
+            new MinorEnemy(new Vector2(35 * 64, 61 * 64));
+
 
             // Boss
             new BossEnemy();
