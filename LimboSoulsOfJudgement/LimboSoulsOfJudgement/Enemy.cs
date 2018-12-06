@@ -134,13 +134,13 @@ namespace LimboSoulsOfJudgement
                 knockbackTime += gameTime.ElapsedGameTime.TotalSeconds;
                 if (GameWorld.player.Position.X < position.X)
                 {
-                    position.Y += (float)(movementSpeed * gameTime.ElapsedGameTime.TotalSeconds);
+                    position.Y += (float)(movementSpeed * gameTime.ElapsedGameTime.TotalSeconds) + GameWorld.gravityStrength;
                     position.X += (float)(knockbackDistance * movementSpeed * gameTime.ElapsedGameTime.TotalSeconds);
 
                 }
                 if (GameWorld.player.Position.X > position.X)
                 { 
-                    position.Y += (float)(movementSpeed * gameTime.ElapsedGameTime.TotalSeconds);
+                    position.Y += (float)(movementSpeed * gameTime.ElapsedGameTime.TotalSeconds) + GameWorld.gravityStrength;
                     position.X -= (float)(knockbackDistance * movementSpeed * gameTime.ElapsedGameTime.TotalSeconds);
 
                 }
