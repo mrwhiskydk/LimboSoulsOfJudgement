@@ -199,7 +199,7 @@ namespace LimboSoulsOfJudgement
             //    fadeIncrease *= -1;
             //}
             
-
+            
             camera.Position = new Vector2(MathHelper.Lerp(camera.Position.X, player.Position.X, 0.25f), MathHelper.Lerp(camera.Position.Y, player.Position.Y, 0.25f)); 
             base.Update(gameTime);
         }

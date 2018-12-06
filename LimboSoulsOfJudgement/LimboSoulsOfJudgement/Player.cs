@@ -10,6 +10,7 @@ namespace LimboSoulsOfJudgement
         public RangedWeapon ranged = new RangedWeapon();
         public Weapon weapon;
         public Arm arm = new Arm();
+        public Ability lightningBolt = new LightningBolt();
         private bool canSwitchWeapons = true;
         private double attackTimer = 0;
         public int currentSouls;
@@ -87,14 +88,14 @@ namespace LimboSoulsOfJudgement
                 jumpTime += gameTime.ElapsedGameTime.TotalSeconds;
                 if (jumpTime <= jumpForce)
                 {
-                    if (hittingRoof is false)
+                    if (hittingRoof is false )
                     {
                         position.Y -= (float)(jumpForce * gameTime.ElapsedGameTime.TotalSeconds);
                     }
                     else
                     {
                         gravity = false;
-                        jumpForce -= gameTime.ElapsedGameTime.TotalSeconds * 3000;
+                        jumpForce -= gameTime.ElapsedGameTime.TotalSeconds * 6000;
                     }
                     jumpForce -= gameTime.ElapsedGameTime.TotalSeconds * 1500;
                 }
@@ -110,6 +111,7 @@ namespace LimboSoulsOfJudgement
             {
                 gravity = true;
                 hittingRoof = false;
+                jumpTime = 0;
             }
         }
 
@@ -209,8 +211,7 @@ namespace LimboSoulsOfJudgement
         {
             if (Keyboard.GetState().IsKeyDown(Keys.Q))
             {
-                Vector2 dir = new Vector2(GameWorld.mouse.Position.X, GameWorld.mouse.Position.Y) - position;
-                new LightningBolt(position, dir);
+                lightningBolt.Use();
             }
             
         }
@@ -237,6 +238,12 @@ namespace LimboSoulsOfJudgement
                 isJumping = false;
             }
 
+            if (otherObject is Chain)
+            {
+                climb = true;
+                Gravity = false;
+                jumpForce = 0; // makes so the player cant jump on the chain
+            }
 
             // If the small collsionboxes intersects with a platform move the player in the opposite direction. 
             if (otherObject is Platform)
@@ -251,34 +258,41 @@ namespace LimboSoulsOfJudgement
                 {
                     Gravity = true;
                     position.X += (float)collisionMovement;
-
-                    
                 }
 
                 if (topLine.Intersects(otherObject.CollisionBox))
                 {
+                    // Used to prevent the player from going into a platform on the top of a chain
+                    if (Gravity is false)
+                    {
+                        position.Y += (float)(0.7f * collisionMovement);
+                    }
+
                     // Makes so the player does not stay stuck to the roof
-                    if (hittingRoof is false)
+                    if (hittingRoof is false && climb is false)
                     {
                         Gravity = true;
                     }
                     canJump = false;
                     hittingRoof = true;
-                   
 
-
+                    // Makes so the player does not get "sucked" to the roof with small jumps
+                    if (jumpTime < 0.15f)
+                    {
+                        isJumping = false;
+                    }
                 }
 
-                if (bottomLine.Intersects(otherObject.CollisionBox) && Gravity is true)
-                {
-                    position.Y -= GameWorld.gravityStrength;
-                    Gravity = false;
-                }
+                // Maybe not used anymore
+                //if (bottomLine.Intersects(otherObject.CollisionBox) && Gravity is true)
+                //{
+                //    position.Y -= GameWorld.gravityStrength; 
+                //    Gravity = false;
+                //}
 
                 if (bottomLine.Intersects(otherObject.CollisionBox) && (leftLine.Intersects(otherObject.CollisionBox) is false || (rightLine.Intersects(otherObject.CollisionBox) is false)))
                 {
-
-                    //position.Y -= 1;
+                    // Makes the player get ontop of the platform and not halfway indside like in the begining, this also fixed collsion bug
                     while (CollisionBox.Intersects(otherObject.CollisionBox))
                     {
                         position.Y -= 1;
@@ -303,13 +317,6 @@ namespace LimboSoulsOfJudgement
                 takingDamage = true;
                 isImmortal = true;
                 //svim = true;
-            }
-
-            if (otherObject is Chain)
-            {
-                climb = true;
-                gravity = false;
-                jumpForce = 0;
             }
         }
         public override void Draw(SpriteBatch spriteBatch)
