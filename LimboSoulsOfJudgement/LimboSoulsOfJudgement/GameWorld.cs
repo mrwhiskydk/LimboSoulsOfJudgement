@@ -118,7 +118,7 @@ namespace LimboSoulsOfJudgement
             camera = new Camera();
 
             //Load Vendor & Vendor UI
-            vendor = new Vendor(1, 1, new Vector2(300, 750), "VendorTest");
+            vendor = new Vendor(1, 1, new Vector2(600, 450), "VendorTest");
 
             ui = new UI();
             badKarmaButton = new BadKarmaButton();
@@ -183,24 +183,7 @@ namespace LimboSoulsOfJudgement
             toBeAdded.Clear();
             
            
-            //if (triggerVendor)
-            //{
-            //    alphaValue += fadeIncrease;
-            //    fadeDelay += gameTime.ElapsedGameTime.TotalSeconds; 
-            //}
-
-            //else
-            //{
-            //    fadeIncrease -= 1;
-            //}
-
-            alphaValue += fadeIncrease;
-
-            if (alphaValue >= 255 || alphaValue <= 0)
-
-            //{
-            //    fadeIncrease *= -1;
-            //}
+            
             
             
             camera.Position = new Vector2(MathHelper.Lerp(camera.Position.X, player.Position.X, 0.25f), MathHelper.Lerp(camera.Position.Y, player.Position.Y, 0.25f)); 

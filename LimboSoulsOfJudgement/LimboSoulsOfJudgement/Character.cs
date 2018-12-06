@@ -41,14 +41,8 @@ namespace LimboSoulsOfJudgement
                     isImmortal = true;
                 }
 
-                if (value >= maxHealth)
-                {
-                    health = maxHealth;
-                }
-                else
-                {
-                    health = value;
-                }
+                health = value;
+                
             }
         }
 
