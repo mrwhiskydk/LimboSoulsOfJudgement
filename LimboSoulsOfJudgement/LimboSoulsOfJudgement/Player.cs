@@ -6,43 +6,38 @@ namespace LimboSoulsOfJudgement
 {
     public class Player : Character
     {
-        MeleeWeapon melee = new MeleeWeapon();
-        RangedWeapon ranged = new RangedWeapon();
-        Weapon weapon;
-        Arm arm = new Arm();
+        public MeleeWeapon melee = new MeleeWeapon();
+        public RangedWeapon ranged = new RangedWeapon();
+        public Weapon weapon;
+        public Arm arm = new Arm();
+        public Ability lightningBolt = new LightningBolt();
         private bool canSwitchWeapons = true;
         private double attackTimer = 0;
         public int currentSouls;
         private double collisionMovement; // Used for collision so you dont need gameTime in DoCollision
+        private bool hittingRoof = false;
 
         public bool climb = false;
-
-        private bool takingDamage = false;
-        private float immortalDuration = 1.0f;
-        private double immortalTime;
-        /// <summary>
-        /// Sets player immunity on and off
-        /// </summary>
-        public bool isImmortal;
+        //public bool svim = false;
 
         private const float jumpPower = 1600;
         private double jumpForce = jumpPower;
 
         //private float maxJumpTime = 2f;
         private double jumpTime;
-
-        private bool canJump = false;   //Controls wether the Player can jump or not
+        public float lifeSteal = 0.5f;
         private bool isJumping = false;
 
         /// <summary>
         /// Player constructor that sets player animation values, position and sprite name
         /// </summary>
-        public Player() : base(5, 5, new Vector2(GameWorld.ScreenSize.Width / 2, GameWorld.ScreenSize.Height/2), "PlayerIdle")
+        public Player() : base(5, 5, new Vector2(200, 500), "PlayerIdle")
         {
             //Maximum amount of Player health
             maxHealth = 100;
             health = maxHealth;
 
+            
             //Player movementspeed amount
             movementSpeed = 500;
 
@@ -68,13 +63,17 @@ namespace LimboSoulsOfJudgement
 
             HandleWeapons(gameTime);
 
-            immortalTime += gameTime.ElapsedGameTime.TotalSeconds;  //Adding +1 second to immortalTime, until it reaches 3 seconds
-            if (immortalTime > immortalDuration)
-            {
-                isImmortal = false;
-                immortalTime = 0;   //Upon reaching 3 seconds, immortalTime is reset to 0
-            }
+            HandleAbilities(gameTime);
 
+            if (isImmortal)
+            {
+                immortalTime += gameTime.ElapsedGameTime.TotalSeconds;  //Adding +1 second to immortalTime, until it reaches 3 seconds
+                if (immortalTime > immortalDuration)
+                {
+                    isImmortal = false;
+                    immortalTime = 0;   //Upon reaching 3 seconds, immortalTime is reset to 0
+                }
+            }
         }
 
         /* Method that handles jump functionality of the Player
@@ -89,18 +88,30 @@ namespace LimboSoulsOfJudgement
                 jumpTime += gameTime.ElapsedGameTime.TotalSeconds;
                 if (jumpTime <= jumpForce)
                 {
-                    position.Y -= (float)(jumpForce * gameTime.ElapsedGameTime.TotalSeconds);
+                    if (hittingRoof is false )
+                    {
+                        position.Y -= (float)(jumpForce * gameTime.ElapsedGameTime.TotalSeconds);
+                    }
+                    else
+                    {
+                        gravity = false;
+                        jumpForce -= gameTime.ElapsedGameTime.TotalSeconds * 6000;
+                    }
                     jumpForce -= gameTime.ElapsedGameTime.TotalSeconds * 1500;
                 }
 
                 if (jumpTime >= jumpForce && climb == false)
                 {
                     isJumping = false;
+                    Gravity = true;
+                    hittingRoof = false;
                 }
             }
             else if (!isJumping)
             {
                 gravity = true;
+                hittingRoof = false;
+                jumpTime = 0;
             }
         }
 
@@ -145,6 +156,14 @@ namespace LimboSoulsOfJudgement
                     position.Y += (float)(0.7 * movementSpeed * gameTime.ElapsedGameTime.TotalSeconds);
                 }
             }
+            //if (svim == true)
+            //{
+            //    movementSpeed -= 250;
+            //}
+            //else
+            //{
+            //    movementSpeed = 500;
+            //}
 
         }
 
@@ -188,6 +207,15 @@ namespace LimboSoulsOfJudgement
             }
         }
 
+        public void HandleAbilities(GameTime gameTime)
+        {
+            if (Keyboard.GetState().IsKeyDown(Keys.Q))
+            {
+                lightningBolt.Use();
+            }
+            
+        }
+
         /// <summary>
         /// Method that handles player collision with other GameObjects
         /// </summary>
@@ -197,10 +225,10 @@ namespace LimboSoulsOfJudgement
             base.DoCollision(otherObject);
 
             // Creates small collisionboxes around the player to be used for collision
-            Rectangle topLine = new Rectangle(CollisionBox.X, CollisionBox.Y, CollisionBox.Width, 1);
+            Rectangle topLine = new Rectangle(CollisionBox.X + 8, CollisionBox.Y, CollisionBox.Width - 16, 1);
             Rectangle bottomLine = new Rectangle(CollisionBox.X + 10, CollisionBox.Y + CollisionBox.Height, CollisionBox.Width - 20, 1);
-            Rectangle rightLine = new Rectangle(CollisionBox.X + CollisionBox.Width, CollisionBox.Y + 8, 1, CollisionBox.Height - 16);
-            Rectangle leftLine = new Rectangle(CollisionBox.X, CollisionBox.Y + 8, 1, CollisionBox.Height - 16);
+            Rectangle rightLine = new Rectangle(CollisionBox.X + CollisionBox.Width, CollisionBox.Y + 15, 1, CollisionBox.Height - 30);
+            Rectangle leftLine = new Rectangle(CollisionBox.X, CollisionBox.Y + 15, 1, CollisionBox.Height - 30);
 
             // If the player stands on a platform, make him able to jump
             if (bottomLine.Intersects(otherObject.CollisionBox) && otherObject is Platform)
@@ -210,51 +238,87 @@ namespace LimboSoulsOfJudgement
                 isJumping = false;
             }
 
-            // If the small collsionboxes intesects with a platform move the player in the opposite direction. 
+            if (otherObject is Chain)
+            {
+                climb = true;
+                Gravity = false;
+                jumpForce = 0; // makes so the player cant jump on the chain
+            }
+
+            // If the small collsionboxes intersects with a platform move the player in the opposite direction. 
             if (otherObject is Platform)
             {
                 if (rightLine.Intersects(otherObject.CollisionBox))
                 {
+                    Gravity = true;
                     position.X -= (float)collisionMovement;
-                    Gravity = true;
+                   
                 }
-
-                if (leftLine.Intersects(otherObject.CollisionBox))
+                else if (leftLine.Intersects(otherObject.CollisionBox))
                 {
-                    position.X += (float)collisionMovement;
                     Gravity = true;
+                    position.X += (float)collisionMovement;
                 }
 
                 if (topLine.Intersects(otherObject.CollisionBox))
                 {
-                    jumpForce = 0;
+                    // Used to prevent the player from going into a platform on the top of a chain
+                    if (Gravity is false)
+                    {
+                        position.Y += (float)(0.7f * collisionMovement);
+                    }
+
+                    // Makes so the player does not stay stuck to the roof
+                    if (hittingRoof is false && climb is false)
+                    {
+                        Gravity = true;
+                    }
                     canJump = false;
-                    Gravity = true;
+                    hittingRoof = true;
+
+                    // Makes so the player does not get "sucked" to the roof with small jumps
+                    if (jumpTime < 0.15f)
+                    {
+                        isJumping = false;
+                    }
                 }
 
-                if (bottomLine.Intersects(otherObject.CollisionBox) && Gravity is true)
+                // Maybe not used anymore
+                //if (bottomLine.Intersects(otherObject.CollisionBox) && Gravity is true)
+                //{
+                //    position.Y -= GameWorld.gravityStrength; 
+                //    Gravity = false;
+                //}
+
+                if (bottomLine.Intersects(otherObject.CollisionBox) && (leftLine.Intersects(otherObject.CollisionBox) is false || (rightLine.Intersects(otherObject.CollisionBox) is false)))
                 {
-                    position.Y -= 7;
-                    Gravity = false;
+                    // Makes the player get ontop of the platform and not halfway indside like in the begining, this also fixed collsion bug
+                    while (CollisionBox.Intersects(otherObject.CollisionBox))
+                    {
+                        position.Y -= 1;
+                    }
+                    position.Y += 1;
+
                 }
+
             }
 
+            if (otherObject is Enemy && isImmortal == false)
+            {
+                Enemy enemy = (Enemy)otherObject;
+                health -= enemy.enemyDamage;
+                isImmortal = true;
+                takingDamage = true;
+            }
 
             if (otherObject is Lava && isImmortal == false)
             {
                 health -= 10;
                 takingDamage = true;
                 isImmortal = true;
-            }
-
-            if (otherObject is Chain)
-            {
-                climb = true;
-                gravity = false;
-                jumpForce = 0;
+                //svim = true;
             }
         }
-
         public override void Draw(SpriteBatch spriteBatch)
         {
             base.Draw(spriteBatch);

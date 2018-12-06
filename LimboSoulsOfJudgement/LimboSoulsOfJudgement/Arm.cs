@@ -9,7 +9,7 @@ using Microsoft.Xna.Framework.Input;
 
 namespace LimboSoulsOfJudgement
 {
-    class Arm : GameObject
+    public class Arm : GameObject
     {
         public Arm() : base("PlayerArm")
         {
@@ -19,18 +19,68 @@ namespace LimboSoulsOfJudgement
         public override void Update(GameTime gameTime)
         {
             //arm stuff
-            position = GameWorld.player.Position;
-            Vector2 dir = new Vector2(Mouse.GetState().Position.X, Mouse.GetState().Position.Y) - position;
-            if (dir != Vector2.Zero)
+            if (GameWorld.player.weapon is RangedWeapon)
             {
-                dir.Normalize();
+                Vector2 dir = new Vector2(GameWorld.mouse.Position.X, GameWorld.mouse.Position.Y) - position;
+                if (dir != Vector2.Zero)
+                {
+                    dir.Normalize();
+                }
+                rotation = (float)System.Math.Atan2(dir.Y, dir.X) + MathHelper.ToRadians(-90);
             }
-            rotation = (float)System.Math.Atan2(dir.Y, dir.X) + MathHelper.ToRadians(-90);
+            
+
+            if (GameWorld.player.weapon is MeleeWeapon)
+            {
+                if (GameWorld.player.melee.isAttacking)
+                {
+                    if (GameWorld.mouse.RightOfPlayer())
+                    {
+                        rotation = MathHelper.ToRadians(270);
+                    }
+                    else
+                    {
+                        rotation = MathHelper.ToRadians(90);
+                    }
+                    
+                }
+                else
+                {
+                    rotation = MathHelper.ToRadians(180);
+                }
+            }
+
+            position = GameWorld.player.Position;
         }
 
         public override void Draw(SpriteBatch spriteBatch)
         {
-            spriteBatch.Draw(sprite, position, null, Color.White, rotation, new Vector2((sprite.Width - sprite.Width) + 0.1f, sprite.Height * 0.5f), 1f, new SpriteEffects(), 0f);
+            if (GameWorld.player.weapon is RangedWeapon)
+            {
+                if (GameWorld.mouse.RightOfPlayer())
+                {
+                    spriteBatch.Draw(sprite, position, null, Color.White, rotation, new Vector2(sprite.Width * 0.5f, -1), 1f, SpriteEffects.None, 0.82f);
+                }
+                else
+                {
+                    spriteBatch.Draw(sprite, position, null, Color.White, rotation, new Vector2(sprite.Width * 0.5f, -1), 1f, SpriteEffects.FlipHorizontally, 0.82f);
+                }
+            }
+            else if (GameWorld.player.weapon is MeleeWeapon && GameWorld.player.melee.isAttacking)
+            {
+                if (GameWorld.mouse.RightOfPlayer())
+                {
+                    spriteBatch.Draw(sprite, position, null, Color.White, rotation, new Vector2(sprite.Width * 0.5f, -1), 1f, SpriteEffects.None, 0.82f);
+                }
+                else
+                {
+                    spriteBatch.Draw(sprite, position, null, Color.White, rotation, new Vector2(sprite.Width * 0.5f, -1), 1f, SpriteEffects.FlipHorizontally, 0.82f);
+                }
+            }
+            else
+            {
+                spriteBatch.Draw(sprite, position, null, Color.White, rotation, new Vector2(sprite.Width * 0.5f, -1), 1f, SpriteEffects.None, 0.82f);
+            }
         }
     }
 }

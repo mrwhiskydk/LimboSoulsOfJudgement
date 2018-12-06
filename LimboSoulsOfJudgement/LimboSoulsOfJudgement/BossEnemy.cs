@@ -17,19 +17,47 @@ namespace LimboSoulsOfJudgement
         /// <param name="animationFPS"></param>
         /// <param name="startPostion"></param>
         /// <param name="spriteName"></param>
-        public BossEnemy(int frameCount, float animationFPS, Vector2 startPostion, string spriteName) : base(frameCount, animationFPS, startPostion, spriteName)
+        public BossEnemy() : base(5, 5, new Vector2(5750, 3328), "Boss")
         {
+            movementSpeed = 300;
+            enemyHealth = 200;
+            enemyDamage = 20;
+            enemySouls = 50;
+            soulCount = 10;
+            patrolDuration = 2f;
         }
+
 
         /// <summary>
         /// Method that updates game logic of the current BossEnemy GameObject
         /// </summary>
-        /// <param name="gameTime"></param>
+        /// <param name="gameTime">Time elapsed since last call in the update</param>
         public override void Update(GameTime gameTime)
         {
             base.Update(gameTime);
+            HandleMovement(gameTime);
+
+            if (goVertically == true && enemyHealth > 0)
+            {
+                aggro = true;
+            }
         }
 
+
+        protected override void HandleMovement(GameTime gameTime)
+        {
+            base.HandleMovement(gameTime);
+            Gravity = false;
+            if (aggro == true && GameWorld.player.Position.Y < position.Y)
+            {
+                position.Y -= (float)(movementSpeed * gameTime.ElapsedGameTime.TotalSeconds);
+            }
+
+            if (goVertically == true && GameWorld.player.Position.Y > position.Y)
+            {
+                position.Y += (float)(movementSpeed * gameTime.ElapsedGameTime.TotalSeconds);
+            }
+        }
 
     }
 }

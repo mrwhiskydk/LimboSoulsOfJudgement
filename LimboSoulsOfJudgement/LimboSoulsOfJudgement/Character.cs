@@ -1,5 +1,6 @@
 ﻿using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Content;
+using Microsoft.Xna.Framework.Graphics;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -14,6 +15,16 @@ namespace LimboSoulsOfJudgement
         public int maxHealth;
         protected float movementSpeed;
 
+        protected bool takingDamage = false;
+        protected float immortalDuration = 1.0f;
+        protected double immortalTime;
+        /// <summary>
+        /// Sets characters immunity on and off
+        /// </summary>
+        protected bool isImmortal;
+
+        protected bool canJump = false;   //Controls wether the Player can jump or not
+
         /// <summary>
         /// Property that sets the health value of the current GameObject
         /// </summary>
@@ -25,20 +36,21 @@ namespace LimboSoulsOfJudgement
             }
             set
             {
-                health = value;
-                //if (value >= maxHealth)
-                //{
-                //    health = maxHealth;
-                //}
-                //else
-                //{
-                //    health = value;
-                //}
+                if (takingDamage)
+                {
+                    isImmortal = true;
+                }
+
+                if (value >= maxHealth)
+                {
+                    health = maxHealth;
+                }
+                else
+                {
+                    health = value;
+                }
             }
         }
-
-
-
 
         /// <summary>
         /// Property that sets the max health value of the current GameObject
@@ -77,5 +89,6 @@ namespace LimboSoulsOfJudgement
         /// Abstract method used in Player and Enemy to secure individual movement functionality between each class
         /// </summary>
         protected abstract void HandleMovement(GameTime gameTime);
+
     }
 }

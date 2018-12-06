@@ -19,8 +19,6 @@ namespace LimboSoulsOfJudgement
         private static List<GameObject> toBeRemoved = new List<GameObject>();
         public static Player player;
         private Texture2D collisionTexture;
-        private Platform platform;
-        private MinorEnemy minorEnemy;
         public static Camera camera;
         public static SpriteFont font;
         public static Vendor vendor;
@@ -36,11 +34,12 @@ namespace LimboSoulsOfJudgement
         public static Random rnd = new Random();
         public static Crosshair mouse;
         private Texture2D backGround;
-
+        private Texture2D shadow;
+        private Texture2D evilAura;
         private static GraphicsDeviceManager graphics;
 
         //Insert GameWorld fields below
-        private float gravityStrength = 12f;
+        public static float gravityStrength = 12f;
         public static bool triggerVendor = false;
         //Fields below is used for Fade in and out Image
         //private int alphaValue = 0;
@@ -66,16 +65,17 @@ namespace LimboSoulsOfJudgement
 
 
 
-
         public GameWorld()
         {
             graphics = new GraphicsDeviceManager(this);
             graphics.PreferredBackBufferWidth = 1600;  // set this value to the desired width of your window
             graphics.PreferredBackBufferHeight = 900;   // set this value to the desired height of your window
             //graphics.ToggleFullScreen();
+            graphics.GraphicsProfile = GraphicsProfile.HiDef;
             graphics.ApplyChanges();
             Content.RootDirectory = "Content";
             _content = Content;
+
         }
 
         public static void AddGameObject(GameObject go)
@@ -111,25 +111,11 @@ namespace LimboSoulsOfJudgement
             spriteBatch = new SpriteBatch(GraphicsDevice);
             font = Content.Load<SpriteFont>("ExampleFont");
             backGround = Content.Load<Texture2D>("GreyBackground");
+            shadow = Content.Load<Texture2D>("Darkness");
+            evilAura = Content.Load<Texture2D>("EvilAura");
             collisionTexture = Content.Load<Texture2D>("CollisionTexture");
-            for (int i = 0; i < 28; i++)
-            {
-                new Platform(new Vector2((i * 128), 1050), "MediumBlock");
-            }
-            platform = new Platform(new Vector2(850, 920), "MediumBlock");
             player = new Player();
-            minorEnemy = new MinorEnemy(new Vector2(1700,700));
             camera = new Camera();
-            Soul soul = new Soul(3, 6, new Vector2(100, 900), "Soul",3);
-            Soul soul2 = new Soul(3, 6, new Vector2(130, 900), "Soul",2);
-            Soul soul3 = new Soul(3, 6, new Vector2(160, 900), "Soul",1);
-            new Platform(new Vector2(2000, 857), "BigBlock");
-            new Lava(new Vector2(722, 920), "MediumLava");
-            new Platform(new Vector2(594, 920), "MediumBlock");
-            new Platform(new Vector2(594, 920), "MediumBlock");
-            new Chain(new Vector2(730, 570), "chain");
-            new Chain(new Vector2(730, 500), "chain");
-            new Chain(new Vector2(730, 430), "chain");
 
             //Load Vendor & Vendor UI
             vendor = new Vendor(1, 1, new Vector2(300, 750), "VendorTest");
@@ -167,7 +153,6 @@ namespace LimboSoulsOfJudgement
         {
             if (GamePad.GetState(PlayerIndex.One).Buttons.Back == ButtonState.Pressed || Keyboard.GetState().IsKeyDown(Keys.Escape))
                 Exit();
-
 
             foreach (GameObject go in gameObjects)
             {
@@ -209,15 +194,15 @@ namespace LimboSoulsOfJudgement
             //    fadeIncrease -= 1;
             //}
 
-            //alphaValue += fadeIncrease;
+            alphaValue += fadeIncrease;
 
-            //if (alphaValue >= 255 || alphaValue <= 0)
+            if (alphaValue >= 255 || alphaValue <= 0)
 
             //{
             //    fadeIncrease *= -1;
             //}
             
-
+            
             camera.Position = new Vector2(MathHelper.Lerp(camera.Position.X, player.Position.X, 0.25f), MathHelper.Lerp(camera.Position.Y, player.Position.Y, 0.25f)); 
             base.Update(gameTime);
         }
@@ -229,8 +214,10 @@ namespace LimboSoulsOfJudgement
         protected override void Draw(GameTime gameTime)
         {
             GraphicsDevice.Clear(Color.DarkGray);
-            spriteBatch.Begin(SpriteSortMode.Deferred, null, null, null, null, null, camera.viewMatrix);
+            spriteBatch.Begin(SpriteSortMode.FrontToBack, null, null, null, null, null, camera.viewMatrix);
             spriteBatch.Draw(backGround, new Vector2(camera.Position.X - ScreenSize.Width*0.5f, camera.Position.Y - ScreenSize.Height * 0.5f), null, Color.White, 0f, Vector2.Zero, 1f, SpriteEffects.None, 0.01f);
+            spriteBatch.Draw(shadow, new Vector2(camera.Position.X - ScreenSize.Width * 0.5f, camera.Position.Y - ScreenSize.Height * 0.5f), null, Color.White, 0f, new Vector2(160, 80), 1f, SpriteEffects.None, 0.99f);
+            //spriteBatch.Draw(evilAura, new Vector2(camera.Position.X - ScreenSize.Width * 0.5f, camera.Position.Y - ScreenSize.Height * 0.5f), null, Color.White, 0f, new Vector2(160, 80), 1f, SpriteEffects.None, 0.02f);
 
 
             foreach (GameObject go in gameObjects)
