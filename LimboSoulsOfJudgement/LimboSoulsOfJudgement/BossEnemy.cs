@@ -37,10 +37,6 @@ namespace LimboSoulsOfJudgement
             base.Update(gameTime);
             HandleMovement(gameTime);
 
-            if (goVertically == true && enemyHealth > 0)
-            {
-                aggro = true;
-            }
         }
 
 

@@ -19,6 +19,7 @@ namespace LimboSoulsOfJudgement
         public override void Update(GameTime gameTime)
         {
             position = new Vector2(Mouse.GetState().X - GameWorld.camera.viewMatrix.Translation.X, Mouse.GetState().Y - GameWorld.camera.viewMatrix.Translation.Y);
+            Click(GameWorld.ui);
         }
 
         public override void Draw(SpriteBatch spriteBatch)
@@ -36,7 +37,7 @@ namespace LimboSoulsOfJudgement
         /// <returns>Boolean: true or false</returns>
         public bool Click(GameObject obj)
         {
-            if (this.CollisionBox.Intersects(obj.CollisionBox))
+            if (this.CollisionBox.Intersects(obj.CollisionBox) && Mouse.GetState().LeftButton == ButtonState.Pressed)
             {
                 return true;
             }
