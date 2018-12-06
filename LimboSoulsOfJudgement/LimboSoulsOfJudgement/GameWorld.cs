@@ -22,17 +22,17 @@ namespace LimboSoulsOfJudgement
         private Platform platform;
         private MinorEnemy minorEnemy;
         public static Camera camera;
-        private SpriteFont font;
-        private Vendor vendor;
+        public static SpriteFont font;
+        public static Vendor vendor;
+        public static UI ui;
+        //Button Fields below
+        public static Button button;
+        public static BadKarmaButton badKarmaButton;
+        public static UpgradeHealthBtn upgradeHealthBtn;
+        
 
         private Level level1;
 
-        private Texture2D vendorUI;
-        private Texture2D vendorBtn;
-        private Rectangle vendorBtnRect;
-        private Rectangle vendorUIRect;
-        private Vector2 vendorBtnPos;
-        private Vector2 vendorUIPosition;
         public static Random rnd = new Random();
         public static Crosshair mouse;
         private Texture2D backGround;
@@ -43,9 +43,9 @@ namespace LimboSoulsOfJudgement
         private float gravityStrength = 12f;
         public static bool triggerVendor = false;
         //Fields below is used for Fade in and out Image
-        private int alphaValue = 0;
-        private static int fadeIncrease = 3;
-        private double fadeDelay = 0;    //default is .010;
+        //private int alphaValue = 0;
+        //private static int fadeIncrease = 3;
+        //private double fadeDelay = 0;    //default is .010;
 
         public static Rectangle ScreenSize
         {
@@ -131,11 +131,13 @@ namespace LimboSoulsOfJudgement
             new Chain(new Vector2(730, 500), "chain");
             new Chain(new Vector2(730, 430), "chain");
 
-
             //Load Vendor & Vendor UI
             vendor = new Vendor(1, 1, new Vector2(300, 750), "VendorTest");
-            vendorUI = Content.Load<Texture2D>("VendorUITest");
-            vendorBtn = Content.Load<Texture2D>("buttonUITest");
+
+            ui = new UI();
+            badKarmaButton = new BadKarmaButton();
+            upgradeHealthBtn = new UpgradeHealthBtn();
+
 
             mouse = new Crosshair();
             camera.Position = player.Position;
@@ -184,6 +186,7 @@ namespace LimboSoulsOfJudgement
                     }
                 }
             }
+            
 
             foreach (GameObject go in toBeRemoved)
             {
@@ -195,11 +198,11 @@ namespace LimboSoulsOfJudgement
             toBeAdded.Clear();
             
            
-            if (triggerVendor)
-            {
-                alphaValue += fadeIncrease;
-                fadeDelay += gameTime.ElapsedGameTime.TotalSeconds; 
-            }
+            //if (triggerVendor)
+            //{
+            //    alphaValue += fadeIncrease;
+            //    fadeDelay += gameTime.ElapsedGameTime.TotalSeconds; 
+            //}
 
             //else
             //{
@@ -239,27 +242,23 @@ namespace LimboSoulsOfJudgement
 #endif
             }
             spriteBatch.DrawString(font, $"Souls: {player.currentSouls}", new Vector2(camera.Position.X - 750, camera.Position.Y - 425), Color.White, 0f, Vector2.Zero, 1f, SpriteEffects.None, 0.991f);
-            spriteBatch.DrawString(font, $"Health: {player.Health}", new Vector2(camera.Position.X - 750, camera.Position.Y - 400), Color.White, 0f, Vector2.Zero, 1f, SpriteEffects.None, 0.991f);
+            spriteBatch.DrawString(font, $"Health: {player.health} / {player.maxHealth}", new Vector2(camera.Position.X - 750, camera.Position.Y - 400), Color.White, 0f, Vector2.Zero, 1f, SpriteEffects.None, 0.991f);
             spriteBatch.DrawString(font, $"Coordinates: X: {Mouse.GetState().X - camera.viewMatrix.Translation.X}   Y: {Mouse.GetState().Y - camera.viewMatrix.Translation.Y}", new Vector2(camera.Position.X, camera.Position.Y - 500), Color.White, 0f, Vector2.Zero, 1f, SpriteEffects.None, 0.991f);
-
-            vendorUIRect = new Rectangle(0, 0, vendorUI.Width, vendorUI.Height);    //Sets the rectangle of vendor UI
-            vendorUIPosition = new Vector2(camera.Position.X + 150, camera.Position.Y - 400);   //Sets the default position of vendor UI
-
-            vendorBtnRect = new Rectangle(0, 0, vendorBtn.Width, vendorBtn.Height);     //Sets the rectangle of the vendor button
-            vendorBtnPos = new Vector2(vendorUIPosition.X + 70, vendorUIPosition.Y + 270);     //Sets the default position of the vendor button
-
-            Color fadeColorIn = new Color(255, 255, 255, (int)MathHelper.Clamp(alphaValue, 0, 255));
-            if (triggerVendor)
-            {               
-                spriteBatch.Draw(vendorUI, vendorUIPosition, vendorUIRect, fadeColorIn, 0, Vector2.Zero, 1, SpriteEffects.None, 0.991f);
-                spriteBatch.Draw(vendorBtn, vendorBtnPos, vendorBtnRect, fadeColorIn, 0, Vector2.Zero, 1, SpriteEffects.None, 0.991f);
-                IsMouseVisible = true;
-            }
-            else
+                       
+            if (triggerVendor && badKarmaButton.maxStatValue <= badKarmaButton.currentStatValue)
             {
-                IsMouseVisible = false;
+                spriteBatch.DrawString(font, "MAX BAD KARMA", new Vector2(badKarmaButton.Position.X - 70, badKarmaButton.Position.Y + -55), Color.White, 0f, Vector2.Zero, 1f, SpriteEffects.None, 0.991f);
             }
-            
+            else if (triggerVendor && badKarmaButton.maxStatValue > badKarmaButton.currentStatValue)
+            {
+                spriteBatch.DrawString(font, $"Vendor Karma Value: {badKarmaButton.currentStatValue} / {badKarmaButton.maxStatValue}", new Vector2(badKarmaButton.Position.X - 95, badKarmaButton.Position.Y - 55), Color.White, 0f, Vector2.Zero, 1f, SpriteEffects.None, 0.991f);
+            }
+
+            if(triggerVendor && upgradeHealthBtn.maxStatValue > upgradeHealthBtn.currentStatValue)
+            {
+                spriteBatch.DrawString(font, $"Player Health Value: {upgradeHealthBtn.currentStatValue} / {upgradeHealthBtn.maxStatValue}", new Vector2(badKarmaButton.Position.X - 105, badKarmaButton.Position.Y - 165), Color.White, 0f, Vector2.Zero, 1f, SpriteEffects.None, 0.991f);
+            }
+
 
             spriteBatch.End();
             base.Draw(gameTime);
