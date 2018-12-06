@@ -7,12 +7,34 @@ using Microsoft.Xna.Framework.Graphics;
 
 namespace LimboSoulsOfJudgement
 {
-    public class Ability : AnimatedGameObject
+    public abstract class Ability : GameObject
     {
-        public Ability(int frameCount, float animationFPS, Vector2 startPostion, string spriteName) : base(frameCount, animationFPS, startPostion, spriteName)
+        protected double cooldown;
+        protected double cooldownTimer;
+
+        public Ability(Vector2 startPosition, string spriteName) : base(startPosition, spriteName)
         {
 
         }
+
+        public override void Update(GameTime gameTime)
+        {
+            if (cooldownTimer < cooldown)
+            {
+                cooldownTimer += gameTime.ElapsedGameTime.TotalSeconds;
+            }
+        }
+
+        public virtual void Use()
+        {
+            if (cooldownTimer >= cooldown)
+            {
+                UseAbility();
+                cooldownTimer = 0;
+            }
+        }
+
+        public abstract void UseAbility();
 
         public override void Draw(SpriteBatch spriteBatch)
         {

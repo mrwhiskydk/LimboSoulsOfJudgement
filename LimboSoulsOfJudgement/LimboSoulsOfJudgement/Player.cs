@@ -10,6 +10,7 @@ namespace LimboSoulsOfJudgement
         public RangedWeapon ranged = new RangedWeapon();
         public Weapon weapon;
         public Arm arm = new Arm();
+        public Ability lightningBolt = new LightningBolt();
         private bool canSwitchWeapons = true;
         private double attackTimer = 0;
         public int currentSouls;
@@ -209,8 +210,7 @@ namespace LimboSoulsOfJudgement
         {
             if (Keyboard.GetState().IsKeyDown(Keys.Q))
             {
-                Vector2 dir = new Vector2(GameWorld.mouse.Position.X, GameWorld.mouse.Position.Y) - position;
-                new LightningBolt(position, dir);
+                lightningBolt.Use();
             }
             
         }
