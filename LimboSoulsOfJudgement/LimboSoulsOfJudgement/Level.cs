@@ -158,8 +158,8 @@ namespace LimboSoulsOfJudgement
             new Platform(new Vector2((84 * 64), (48 * 64)), "SmallBlock");
             new Platform(new Vector2((85 * 64), (48 * 64)), "SmallBlock");
             new Platform(new Vector2(9 * 64, 27 * 64), "MediumBlock");
-            new Platform(new Vector2(39 * 64, 11 * 64), "MediumBlock");
-            new Platform(new Vector2(44 * 64, 11 * 64), "MediumBlock");
+            new Platform(new Vector2(39 * 64, 9 * 64), "MediumBlock");
+            new Platform(new Vector2(45 * 64, 9 * 64), "MediumBlock");
             new Platform(new Vector2(3776, 768), "MediumBlock");
             new Platform(new Vector2(3392, 704), "MediumBlock");
             new Platform(new Vector2(3520, 704), "MediumBlock");
@@ -172,8 +172,10 @@ namespace LimboSoulsOfJudgement
 
 
             // Trapdoor
-            new Platform(new Vector2(63 * 64, 43 * 64), "MediumBlock");
-            new Platform(new Vector2(65 * 64, 43 * 64), "MediumBlock");
+            new Trapdoor(new Vector2(63 * 64, 43 * 64), "MediumBlock");
+            new Trapdoor(new Vector2(65 * 64, 43 * 64), "MediumBlock");
+            
+
 
             //Chains
             for (int i = 0; i < 15; i++)
@@ -192,6 +194,7 @@ namespace LimboSoulsOfJudgement
             {
                 new Chain(new Vector2(5200, 2468 + i * 70), "chain");
             }
+
             //Lava
             for (int i = 0; i < 6; i++)
             {
@@ -206,18 +209,29 @@ namespace LimboSoulsOfJudgement
                 new Lava(new Vector2((55 * 64) + i * 128, (33 * 64)), "MediumLava");
             }
 
-            //first "cave" entrance
-            for (int i = 0; i < 6; i++)
-            {
-                
-            }
-
-
+            // Frame
             new Platform(new Vector2(-512, 2048), "VerticalFrame");
             new Platform(new Vector2(6272, 2048), "VerticalFrame");
             new Platform(new Vector2(2880, 4096), "HorizontalFrame");
             new Platform(new Vector2(2880, -512), "HorizontalFrame");
 
+            // Minor Enemies
+            new MinorEnemy(new Vector2(27 * 64, 10 * 64));
+            new MinorEnemy(new Vector2(40 * 64, 14 * 64));
+            new MinorEnemy(new Vector2(46 * 64, 14 * 64));
+            new MinorEnemy(new Vector2(65 * 64, 18 * 64));
+            new MinorEnemy(new Vector2(69 * 64, 18 * 64));
+            new MinorEnemy(new Vector2(65 * 64, 28 * 64));
+            new MinorEnemy(new Vector2(71 * 64, 28 * 64));
+            new MinorEnemy(new Vector2(3 * 64, 55 * 64));
+            new MinorEnemy(new Vector2(11 * 64, 55 * 64));
+            new MinorEnemy(new Vector2(19 * 64, 55 * 64));
+            new MinorEnemy(new Vector2(27 * 64, 55 * 64));
+            new MinorEnemy(new Vector2(35 * 64, 55 * 64));
+
+
+            // Boss
+            new BossEnemy();
         }
 
         /// <summary>

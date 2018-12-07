@@ -8,7 +8,7 @@ using Microsoft.Xna.Framework.Graphics;
 
 namespace LimboSoulsOfJudgement
 {
-    public class Enemy : Character
+    public abstract class Enemy : Character
     {
         public int enemyDamage;
 
@@ -21,11 +21,10 @@ namespace LimboSoulsOfJudgement
         /// The number of souls an enemy drops
         /// </summary>
         protected int soulCount;
-
         /// <summary>
         /// If true, the enemy will follow the player until it dies
         /// </summary>
-        public bool aggro = false;
+        protected bool aggro = false;
         /// <summary>
         /// Checks if an enemy should go after the player horizontally
         /// </summary>
@@ -34,23 +33,31 @@ namespace LimboSoulsOfJudgement
         /// Checks if an enemy should go after the player vertically
         /// </summary>
         protected bool goVertically;
-
         /// <summary>
         /// Checks if an enemy should be knocked back by the players weapon
         /// </summary>
         protected bool knockback = false;
-
+        /// <summary>
+        /// 
+        /// </summary>
         protected double knockbackTime;
+        /// <summary>
+        /// How long an enemy is knocked back 
+        /// </summary>
+        protected float knockbackDuration = 0.7f;
+        /// <summary>
+        /// The distance an enemy should be knocked back when hit
+        /// </summary>
+        public float knockbackDistance;
 
-        protected float knockbackDuration = 0.5f;
-
-        private double patrolTime;
-        private float patrolDuration = 4f;
-        private double collisionMovement;
-        private const float jumpPower = 1600;
-        private double jumpForce = jumpPower;
-        private double jumpTime;
-        private bool isJumping = false;
+        protected double knockbackMovement;
+        protected double patrolTime;
+        protected float patrolDuration;
+        protected double collisionMovement;
+        protected const float jumpPower = 1600;
+        protected double jumpForce = jumpPower;
+        protected double jumpTime;
+        protected bool isJumping = false;
 
 
 
@@ -76,39 +83,18 @@ namespace LimboSoulsOfJudgement
             base.Update(gameTime);
             if (isImmortal)
             {
-            immortalTime += gameTime.ElapsedGameTime.TotalSeconds;  //Adding +1 second to immortalTime, until it reaches 3 seconds
-            if (immortalTime > immortalDuration)
-            {
-                isImmortal = false;
-                immortalTime = 0;   //Upon reaching 3 seconds, immortalTime is reset to 0
+                immortalTime += gameTime.ElapsedGameTime.TotalSeconds;  //Adding +1 second to immortalTime, until it reaches 3 seconds
+                if (immortalTime > immortalDuration)
+                {
+                    isImmortal = false;
+                    immortalTime = 0;   //Upon reaching 3 seconds, immortalTime is reset to 0
+                }
             }
-            }
-
-
-            if (GameWorld.player.Position.X + 500 <= Position.X || GameWorld.player.Position.X - 500 >= Position.X )
-            {
-                goHorizontally = false;
-                goVertically = false;
-            }
-            else
-            {
-                goHorizontally = true;
-            }
-            if (goHorizontally == true && enemyHealth > 0)
+            if (Vector2.Distance(position, GameWorld.player.Position) < 500)
             {
                 aggro = true;
             }
-
-            if (GameWorld.player.Position.Y + 500 <= Position.Y || GameWorld.player.Position.Y - 500 >= Position.Y)
-            {
-
-                goVertically = false;
-                goHorizontally = false;
-            }
-            else
-            {
-                goVertically = true;
-            }
+           
 
             if (enemyHealth <= 0)
             {
@@ -120,65 +106,32 @@ namespace LimboSoulsOfJudgement
                 GameWorld.RemoveGameObject(this);
                
             }
-            collisionMovement = movementSpeed * gameTime.ElapsedGameTime.TotalSeconds;
-            HandleJumping(gameTime);
 
-            // if player is on a chain and the enemy is aggro'ed, jump after the player and set goVertically to true
-            if (GameWorld.player.climb is true && aggro is true)
-            {
-                if (GameWorld.player.Position.Y < position.Y && Math.Abs(position.X - GameWorld.player.Position.X) < 50)
-                {
-                    isJumping = true;
-                }
-                goVertically = true;
-            }
-            else
-            {
-                goVertically = false;
-            }
+            collisionMovement = movementSpeed * gameTime.ElapsedGameTime.TotalSeconds;
+
+            knockbackMovement = (float)(knockbackDistance * movementSpeed * gameTime.ElapsedGameTime.TotalSeconds);
 
             if (knockback)
             {
                 knockbackTime += gameTime.ElapsedGameTime.TotalSeconds;
+
                 if (GameWorld.player.Position.X < position.X)
                 {
-                    position.Y += (float)(movementSpeed * gameTime.ElapsedGameTime.TotalSeconds);
-                    position.X += (float)(2*movementSpeed * gameTime.ElapsedGameTime.TotalSeconds);
-
+                    isJumping = true;
+                    position.X += (float)(knockbackDistance * movementSpeed * gameTime.ElapsedGameTime.TotalSeconds);
                 }
+
                 if (GameWorld.player.Position.X > position.X)
-                { 
-                    position.Y += (float)(movementSpeed * gameTime.ElapsedGameTime.TotalSeconds);
-                    position.X -= (float)(2*movementSpeed * gameTime.ElapsedGameTime.TotalSeconds);
-
+                {
+                    isJumping = true;
+                    position.X -= (float)(knockbackDistance * movementSpeed * gameTime.ElapsedGameTime.TotalSeconds);
                 }
+
                 if (knockbackTime > knockbackDuration)
                 {
                     knockback = false;
                     knockbackTime = 0;
                 }
-            }
-        }
-
-        private void HandleJumping(GameTime gameTime)
-        {
-            if (isJumping)
-            {
-                jumpTime += gameTime.ElapsedGameTime.TotalSeconds;
-                if (jumpTime <= jumpForce)
-                {
-                    position.Y -= (float)(jumpForce * gameTime.ElapsedGameTime.TotalSeconds);
-                    jumpForce -= gameTime.ElapsedGameTime.TotalSeconds * 1500;
-                }
-
-                if (jumpTime >= jumpForce)
-                {
-                    isJumping = false;
-                }
-            }
-            else if (!isJumping)
-            {
-                gravity = true;
             }
         }
 
@@ -190,23 +143,23 @@ namespace LimboSoulsOfJudgement
         {
             patrolTime += gameTime.ElapsedGameTime.TotalSeconds;
 
-            if (aggro == false)
-            {
-                if (patrolTime < 3f)
-                {
-                    facingRight = false;
-                    position.X += (float)(movementSpeed * gameTime.ElapsedGameTime.TotalSeconds);
-                }
-                if (patrolTime > 3f)
-                {
-                    facingRight = true;
-                    position.X -= (float)(movementSpeed * gameTime.ElapsedGameTime.TotalSeconds);
-                }
-                if (patrolTime > patrolDuration)
-                {
-                    patrolTime = 0;
-                }
-            }
+            //if (aggro == false)
+            //{
+            //    if (patrolTime < patrolDuration)
+            //    {
+            //        facingRight = false;
+            //        position.X += (float)(movementSpeed * gameTime.ElapsedGameTime.TotalSeconds);
+            //    }
+            //    if (patrolTime > patrolDuration)
+            //    {
+            //        facingRight = true;
+            //        position.X -= (float)(movementSpeed * gameTime.ElapsedGameTime.TotalSeconds);
+            //    }
+            //    if (patrolTime > patrolDuration * 2)
+            //    {
+            //        patrolTime = 0;
+            //    }
+            //}
                     
             if (aggro == true && GameWorld.player.Position.X < position.X)
             {
@@ -235,6 +188,7 @@ namespace LimboSoulsOfJudgement
                 isImmortal = true;
                 takingDamage = true;
                 knockback = true;
+                knockbackDistance = 2f;
             }
 
             if (otherObject is Projectile)
@@ -243,71 +197,10 @@ namespace LimboSoulsOfJudgement
                 enemyHealth -= arrow.damage;
                 arrow.Destroy();
                 knockback = true;
-            }
-
-            Rectangle topLine = new Rectangle(CollisionBox.X, CollisionBox.Y, CollisionBox.Width, 1);
-            Rectangle rightLine = new Rectangle(CollisionBox.X + CollisionBox.Width, CollisionBox.Y + 12, 1, CollisionBox.Height - 24);
-            Rectangle leftLine = new Rectangle(CollisionBox.X, CollisionBox.Y + 12, 1, CollisionBox.Height - 24);
-            Rectangle bottomLine = new Rectangle(CollisionBox.X + 3, CollisionBox.Y + CollisionBox.Height, CollisionBox.Width - 6, 1);
-
-            if (otherObject is Platform)
-            {
-                canJump = true;
-                if (rightLine.Intersects(otherObject.CollisionBox))
-                {
-                    if (CollisionBox.Intersects(GameWorld.player.CollisionBox) is false)
-                    {
-                        isJumping = true;
-                    }
-                    position.X -= (float)collisionMovement;
-                    Gravity = true;
-                }
-
-                if (leftLine.Intersects(otherObject.CollisionBox))
-                {
-                    if (CollisionBox.Intersects(GameWorld.player.CollisionBox) is false)
-                    {
-                        isJumping = true;
-                    }
-                    position.X += (float)collisionMovement;
-                    Gravity = true;
-                }
-
-                if (bottomLine.Intersects(otherObject.CollisionBox) && Gravity is true)
-                {
-                    position.Y -= GameWorld.gravityStrength;
-                    gravity = false;
-                    
-                }
-
-                if (bottomLine.Intersects(otherObject.CollisionBox))
-                {
-                    jumpForce = jumpPower;
-                }
-
-                if (topLine.Intersects(otherObject.CollisionBox))
-                {
-                    jumpForce = 0;
-                    Gravity = true;
-                }
-
-            }
-
-            //if the enemy is on a chain and goVertically is true, climb after the player
-            if (otherObject is Chain && goVertically is true)
-            {
-                if (position.Y > GameWorld.player.Position.Y)
-                {
-                    position.Y -= (float)(0.7 * collisionMovement);
-                }
-                if (position.Y < GameWorld.player.Position.Y)
-                {
-                    position.Y += (float)(0.7 * collisionMovement);
-                }
-                gravity = false;
-                jumpForce = 0;
-            }
-
+                knockbackDistance = 1.5f;
+                aggro = true;
+            }           
+           
         }
     }
 }
