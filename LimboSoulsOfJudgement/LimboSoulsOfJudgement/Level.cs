@@ -217,18 +217,18 @@ namespace LimboSoulsOfJudgement
             new Platform(new Vector2(2880, -512), "HorizontalFrame");
 
             // Minor Enemies
-            new MinorEnemy(new Vector2(27 * 64, 10 * 64));
-            new MinorEnemy(new Vector2(40 * 64, 14 * 64));
-            new MinorEnemy(new Vector2(46 * 64, 14 * 64));
-            new MinorEnemy(new Vector2(65 * 64, 18 * 64));
-            new MinorEnemy(new Vector2(69 * 64, 18 * 64));
-            new MinorEnemy(new Vector2(65 * 64, 28 * 64));
-            new MinorEnemy(new Vector2(71 * 64, 28 * 64));
-            new MinorEnemy(new Vector2(3 * 64, 55 * 64));
-            new MinorEnemy(new Vector2(11 * 64, 55 * 64));
-            new MinorEnemy(new Vector2(19 * 64, 55 * 64));
-            new MinorEnemy(new Vector2(27 * 64, 55 * 64));
-            new MinorEnemy(new Vector2(35 * 64, 55 * 64));
+            new MinorEnemy(new Vector2(27 * 64, 10 * 64), "SmallDevil");
+            new MinorEnemy(new Vector2(40 * 64, 14 * 64), "SmallDevil");
+            new MinorEnemy(new Vector2(46 * 64, 14 * 64), "SmallDevil");
+            new MinorEnemy(new Vector2(65 * 64, 18 * 64), "SmallDevil");
+            new MinorEnemy(new Vector2(69 * 64, 18 * 64), "SmallDevil");
+            new MinorEnemy(new Vector2(65 * 64, 28 * 64), "SmallDevil");
+            new MinorEnemy(new Vector2(71 * 64, 28 * 64), "SmallDevil");
+            new MinorEnemy(new Vector2(3 * 64, 55 * 64), "SmallDevil");
+            new MinorEnemy(new Vector2(11 * 64, 55 * 64), "SmallDevil");
+            new MinorEnemy(new Vector2(19 * 64, 55 * 64), "SmallDevil");
+            new MinorEnemy(new Vector2(27 * 64, 55 * 64), "SmallDevil");
+            new MinorEnemy(new Vector2(35 * 64, 55 * 64), "SmallDevil");
 
 
             // Boss

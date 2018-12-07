@@ -46,11 +46,27 @@ namespace LimboSoulsOfJudgement
                 }
                 else
                 {
-                    rotation = MathHelper.ToRadians(180);
+                    if (GameWorld.player.facingRight is true)
+                    {
+                        rotation = MathHelper.ToRadians(210);
+                    }
+                    else
+                    {
+                        rotation = MathHelper.ToRadians(150);
+                    }
+
                 }
             }
 
-            position = GameWorld.player.Position;
+            if (GameWorld.player.facingRight is true)
+            {
+                position = new Vector2(GameWorld.player.Position.X + 15, GameWorld.player.Position.Y - 30);
+            }
+            else
+            {
+                position = new Vector2(GameWorld.player.Position.X - 15, GameWorld.player.Position.Y - 30);
+            }
+            
         }
 
         public override void Draw(SpriteBatch spriteBatch)
