@@ -45,6 +45,7 @@ namespace LimboSoulsOfJudgement
 
             base.Update(gameTime);
         }
+        
 
         /// <summary>
         /// Virtual Method that enables Button click, purchase and upgrades of Player stats

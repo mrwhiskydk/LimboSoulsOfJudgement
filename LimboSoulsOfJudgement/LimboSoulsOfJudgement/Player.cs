@@ -15,7 +15,7 @@ namespace LimboSoulsOfJudgement
         private double attackTimer = 0;
         public int currentSouls;
         private double collisionMovement; // Used for collision so you dont need gameTime in DoCollision
-        private bool hittingRoof = false;
+        private bool hittingRoof = false; 
 
         public bool climb = false;
         //public bool svim = false;
@@ -58,6 +58,7 @@ namespace LimboSoulsOfJudgement
 
             HandleMovement(gameTime);
             climb = false;
+            canJump = false;
 
             HandleJumping(gameTime);
 
@@ -245,9 +246,10 @@ namespace LimboSoulsOfJudgement
                 jumpForce = 0; // makes so the player cant jump on the chain
             }
 
-            // If the small collsionboxes intersects with a platform move the player in the opposite direction. 
+            // If the small collisionboxes intersects with a platform move the player in the opposite direction. 
             if (otherObject is Platform)
             {
+
                 if (rightLine.Intersects(otherObject.CollisionBox))
                 {
                     Gravity = true;
@@ -282,6 +284,8 @@ namespace LimboSoulsOfJudgement
                         isJumping = false;
                     }
                 }
+
+                
 
                 // Maybe not used anymore
                 //if (bottomLine.Intersects(otherObject.CollisionBox) && Gravity is true)

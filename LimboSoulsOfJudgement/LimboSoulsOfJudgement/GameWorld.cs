@@ -123,12 +123,12 @@ namespace LimboSoulsOfJudgement
             ui = new UI();
             badKarmaButton = new BadKarmaButton();
             upgradeHealthBtn = new UpgradeHealthBtn();
+            level1 = new Level();
 
 
             mouse = new Crosshair();
             camera.Position = player.Position;
 
-            level1 = new Level();
         }
 
 
@@ -181,8 +181,11 @@ namespace LimboSoulsOfJudgement
 
             gameObjects.AddRange(toBeAdded);
             toBeAdded.Clear();
-            
-           
+
+            if (level1.boss.enemyHealth <= 0)
+            {
+                vendor.Position = new Vector2(5300, 3328);
+            }
             
             
             
