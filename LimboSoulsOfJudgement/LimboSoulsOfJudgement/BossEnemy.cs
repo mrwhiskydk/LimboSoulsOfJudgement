@@ -17,12 +17,12 @@ namespace LimboSoulsOfJudgement
         /// <param name="animationFPS"></param>
         /// <param name="startPostion"></param>
         /// <param name="spriteName"></param>
-        public BossEnemy() : base(5, 5, new Vector2(5750, 3328), "Boss")
+        public BossEnemy() : base(5, 5, new Vector2(5550, 3328), "Boss")
         {
             movementSpeed = 300;
-            enemyHealth = 200;
-            enemyDamage = 20;
-            enemySouls = 50;
+            enemyHealth = (int)(200 * GameWorld.levelCount);
+            enemyDamage = (int)(20 * GameWorld.levelCount);
+            enemySouls = (int)(50 * GameWorld.levelCount);
             soulCount = 10;
             patrolDuration = 2f;
         }
@@ -36,7 +36,37 @@ namespace LimboSoulsOfJudgement
         {
             base.Update(gameTime);
             HandleMovement(gameTime);
+            knockbackMovement = (float)(knockbackDistance * movementSpeed * gameTime.ElapsedGameTime.TotalSeconds);
+            if (knockback)
+            {
+                knockbackTime += gameTime.ElapsedGameTime.TotalSeconds;
 
+                if (GameWorld.player.Position.X < position.X)
+                {
+                    position.X += (float)(knockbackDistance * movementSpeed * gameTime.ElapsedGameTime.TotalSeconds);
+                }
+
+                if (GameWorld.player.Position.X > position.X)
+                {
+                    position.X -= (float)(knockbackDistance * movementSpeed * gameTime.ElapsedGameTime.TotalSeconds);
+                }
+
+                if (GameWorld.player.Position.Y < position.Y)
+                {
+                    position.Y += (float)(knockbackDistance * movementSpeed * gameTime.ElapsedGameTime.TotalSeconds);
+                }
+
+                if (GameWorld.player.Position.Y > position.Y)
+                {
+                    position.Y -= (float)(knockbackDistance * movementSpeed * gameTime.ElapsedGameTime.TotalSeconds);
+                }
+
+                if (knockbackTime > knockbackDuration)
+                {
+                    knockback = false;
+                    knockbackTime = 0;
+                }
+            }
         }
 
 
@@ -49,7 +79,7 @@ namespace LimboSoulsOfJudgement
                 position.Y -= (float)(movementSpeed * gameTime.ElapsedGameTime.TotalSeconds);
             }
 
-            if (goVertically == true && GameWorld.player.Position.Y > position.Y)
+            if (aggro == true && GameWorld.player.Position.Y > position.Y)
             {
                 position.Y += (float)(movementSpeed * gameTime.ElapsedGameTime.TotalSeconds);
             }

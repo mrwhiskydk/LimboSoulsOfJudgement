@@ -21,9 +21,9 @@ namespace LimboSoulsOfJudgement
         public MinorEnemy(Vector2 position) : base(3, 6, position, "SmallDevil")
         {
             movementSpeed = 200;
-            enemyHealth = 50;
-            enemyDamage = 10;
-            enemySouls = 20;
+            enemyHealth = (int)(50 * GameWorld.levelCount);
+            enemyDamage = (int)(10 * GameWorld.levelCount);
+            enemySouls = (int)(20 * GameWorld.levelCount);
             soulCount = 3;
             patrolDuration = 2f;
             this.position = position;
@@ -53,13 +53,31 @@ namespace LimboSoulsOfJudgement
             }
 
             collisionMovement = movementSpeed * gameTime.ElapsedGameTime.TotalSeconds;
-        }
 
+            knockbackMovement = (float)(knockbackDistance * movementSpeed * gameTime.ElapsedGameTime.TotalSeconds);
 
-        protected override void HandleMovement(GameTime gameTime)
-        {
-            base.HandleMovement(gameTime);
+            if (knockback)
+            {
+                knockbackTime += gameTime.ElapsedGameTime.TotalSeconds;
+                if (GameWorld.player.Position.X < position.X)
+                {
+                    isJumping = true;
+                    position.X += (float)(knockbackDistance * movementSpeed * gameTime.ElapsedGameTime.TotalSeconds);
+                }
 
+                if (GameWorld.player.Position.X > position.X)
+                {
+                    isJumping = true;
+                    position.X -= (float)(knockbackDistance * movementSpeed * gameTime.ElapsedGameTime.TotalSeconds);
+                }
+
+                if (knockbackTime > knockbackDuration)
+                {
+                    knockback = false;
+                    knockbackTime = 0;
+                }
+
+            }
         }
 
         private void HandleJumping(GameTime gameTime)
@@ -154,7 +172,6 @@ namespace LimboSoulsOfJudgement
                     position.Y += 1;
 
                 }
-
             }
 
             //if the enemy is on a chain and goVertically is true, climb after the player

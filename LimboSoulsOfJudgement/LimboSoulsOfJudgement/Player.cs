@@ -22,7 +22,7 @@ namespace LimboSoulsOfJudgement
 
         private const float jumpPower = 1600;
         private double jumpForce = jumpPower;
-
+        public int playerLives = 3;
         //private float maxJumpTime = 2f;
         private double jumpTime;
         public float lifeSteal = 0.5f;
