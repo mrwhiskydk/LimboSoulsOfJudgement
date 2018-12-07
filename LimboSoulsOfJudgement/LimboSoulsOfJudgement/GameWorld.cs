@@ -175,7 +175,7 @@ namespace LimboSoulsOfJudgement
             {
                 foreach (var item in gameObjects)
                 {
-                    if (item is Player is false && item is Vendor is false && item is Crosshair is false && item is UI is false && item is Button is false && item is Weapon is false)
+                    if (item is Player is false && item is Vendor is false && item is Crosshair is false && item is UI is false && item is Button is false && item is Weapon is false && item is Arm is false)
                     {
                         item.Destroy();
                     }
