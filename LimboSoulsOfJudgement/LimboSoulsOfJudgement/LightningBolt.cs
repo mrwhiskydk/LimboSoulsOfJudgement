@@ -12,7 +12,7 @@ namespace LimboSoulsOfJudgement
     {
         
 
-        public LightningBolt() : base(new Vector2(300, 300), "LightningBolt")
+        public LightningBolt() : base(new Vector2(-1000, -1000), "LightningBolt")
         {
             cooldown = 1;
             cooldownTimer = cooldown;

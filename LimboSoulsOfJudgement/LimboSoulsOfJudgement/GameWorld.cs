@@ -17,12 +17,15 @@ namespace LimboSoulsOfJudgement
         public static List<GameObject> gameObjects = new List<GameObject>();
         private static List<GameObject> toBeAdded = new List<GameObject>();
         private static List<GameObject> toBeRemoved = new List<GameObject>();
+        public static List<GameObjectPassive> gameObjectsPassive = new List<GameObjectPassive>();
+        public static List<GameObjectPassive> toBeRemovedPassive = new List<GameObjectPassive>();
         public static Player player;
         private Texture2D collisionTexture;
         public static Camera camera;
         public static SpriteFont font;
         public static Vendor vendor;
         public static UI ui;
+        //public static UIAbilityBar uiAbilityBar;
         //Button Fields below
         public static Button button;
         public static BadKarmaButton badKarmaButton;
@@ -120,9 +123,13 @@ namespace LimboSoulsOfJudgement
             //Load Vendor & Vendor UI
             vendor = new Vendor(1, 1, new Vector2(600, 450), "VendorTest");
 
+            //uiAbilityBar = new UIAbilityBar();
+
             ui = new UI();
             badKarmaButton = new BadKarmaButton();
             upgradeHealthBtn = new UpgradeHealthBtn();
+
+
 
 
             mouse = new Crosshair();
@@ -171,6 +178,11 @@ namespace LimboSoulsOfJudgement
                     }
                 }
             }
+
+            foreach (GameObjectPassive go in gameObjectsPassive)
+            {
+                go.Update(gameTime);
+            }
             
 
             foreach (GameObject go in toBeRemoved)
@@ -181,12 +193,19 @@ namespace LimboSoulsOfJudgement
 
             gameObjects.AddRange(toBeAdded);
             toBeAdded.Clear();
-            
-           
-            
-            
-            
+
+
+            foreach (GameObjectPassive go in toBeRemovedPassive)
+            {
+                gameObjectsPassive.Remove(go);
+            }
+            toBeRemovedPassive.Clear();
+
+
+
+
             camera.Position = new Vector2(MathHelper.Lerp(camera.Position.X, player.Position.X, 0.25f), MathHelper.Lerp(camera.Position.Y, player.Position.Y, 0.25f)); 
+            
             base.Update(gameTime);
         }
 
@@ -202,7 +221,6 @@ namespace LimboSoulsOfJudgement
             spriteBatch.Draw(shadow, new Vector2(camera.Position.X - ScreenSize.Width * 0.5f, camera.Position.Y - ScreenSize.Height * 0.5f), null, Color.White, 0f, new Vector2(160, 80), 1f, SpriteEffects.None, 0.99f);
             //spriteBatch.Draw(evilAura, new Vector2(camera.Position.X - ScreenSize.Width * 0.5f, camera.Position.Y - ScreenSize.Height * 0.5f), null, Color.White, 0f, new Vector2(160, 80), 1f, SpriteEffects.None, 0.02f);
 
-
             foreach (GameObject go in gameObjects)
             {
                 go.Draw(spriteBatch);
@@ -211,6 +229,12 @@ namespace LimboSoulsOfJudgement
                 DrawCollisionBox(go);
 #endif
             }
+
+            foreach (GameObjectPassive go in gameObjectsPassive)
+            {
+                go.Draw(spriteBatch);
+            }
+
             spriteBatch.DrawString(font, $"Souls: {player.currentSouls}", new Vector2(camera.Position.X - 750, camera.Position.Y - 425), Color.White, 0f, Vector2.Zero, 1f, SpriteEffects.None, 0.991f);
             spriteBatch.DrawString(font, $"Health: {player.health} / {player.maxHealth}", new Vector2(camera.Position.X - 750, camera.Position.Y - 400), Color.White, 0f, Vector2.Zero, 1f, SpriteEffects.None, 0.991f);
             spriteBatch.DrawString(font, $"Coordinates: X: {Mouse.GetState().X - camera.viewMatrix.Translation.X}   Y: {Mouse.GetState().Y - camera.viewMatrix.Translation.Y}", new Vector2(camera.Position.X, camera.Position.Y - 500), Color.White, 0f, Vector2.Zero, 1f, SpriteEffects.None, 0.991f);
@@ -230,7 +254,9 @@ namespace LimboSoulsOfJudgement
             }
 
 
+
             spriteBatch.End();
+
             base.Draw(gameTime);
         }
 
