@@ -281,17 +281,22 @@ namespace LimboSoulsOfJudgement
             //Text Completed Purchase of Evil Melee Weapon
             if(triggerVendor && evilWeaponBtn.maxStatValue <= evilWeaponBtn.currentStatValue)
             {
-                spriteBatch.DrawString(font, $"EVIL WEAPON PURCHASED", new Vector2(evilWeaponBtn.Position.X - 68, evilWeaponBtn.Position.Y - 55), Color.White, 0f, Vector2.Zero, 1f, SpriteEffects.None, 0.991f);
+                spriteBatch.DrawString(font, $"EVIL WEAPON PURCHASED", new Vector2(evilWeaponBtn.Position.X - 62, evilWeaponBtn.Position.Y - 55), Color.White, 0f, Vector2.Zero, 1f, SpriteEffects.None, 0.991f);
             }
             //Text Purchase of Evil Melee Weapon
             else if(triggerVendor && evilWeaponBtn.maxStatValue >= evilWeaponBtn.currentStatValue)
             {
-                spriteBatch.DrawString(font, $"BUY EVIL MELEE WEAPON", new Vector2(evilWeaponBtn.Position.X - 68, evilWeaponBtn.Position.Y - 55), Color.White, 0f, Vector2.Zero, 1f, SpriteEffects.None, 0.991f);
+                spriteBatch.DrawString(font, $"BUY EVIL MELEE WEAPON", new Vector2(evilWeaponBtn.Position.X - 62, evilWeaponBtn.Position.Y - 55), Color.White, 0f, Vector2.Zero, 1f, SpriteEffects.None, 0.991f);
+            }
+            //Text Completed Purchase of Good Melee Weapon
+            if(triggerVendor && goodWeaponBtn.maxStatValue <= goodWeaponBtn.currentStatValue)
+            {
+                spriteBatch.DrawString(font, $"GOOD WEAPON PURCHASED", new Vector2(evilWeaponBtn.Position.X - 298, evilWeaponBtn.Position.Y - 55), Color.White, 0f, Vector2.Zero, 1f, SpriteEffects.None, 0.991f);
             }
             //Text Purchase of Good Melee Weapon
-            if (triggerVendor && goodWeaponBtn.maxStatValue >= goodWeaponBtn.currentStatValue)
+            else if (triggerVendor && goodWeaponBtn.maxStatValue >= goodWeaponBtn.currentStatValue)
             {
-                spriteBatch.DrawString(font, $"Good Melee Weapon: {goodWeaponBtn.currentStatValue} / {goodWeaponBtn.maxStatValue}", new Vector2(evilWeaponBtn.Position.X - 266, evilWeaponBtn.Position.Y - 55), Color.White, 0f, Vector2.Zero, 1f, SpriteEffects.None, 0.991f);
+                spriteBatch.DrawString(font, $"BUY GOOD MELEE WEAPON", new Vector2(evilWeaponBtn.Position.X - 298, evilWeaponBtn.Position.Y - 55), Color.White, 0f, Vector2.Zero, 1f, SpriteEffects.None, 0.991f);
             }
             //Text Purchase of Good Karma
             if (triggerVendor && goodKarmaButton.maxStatValue >= goodKarmaButton.currentStatValue)

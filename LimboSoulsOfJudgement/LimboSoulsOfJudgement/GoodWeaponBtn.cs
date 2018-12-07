@@ -12,16 +12,20 @@ namespace LimboSoulsOfJudgement
     /// </summary>
     public class GoodWeaponBtn : Button
     {
+        public int weaponStatIncrease = 10;
 
         /// <summary>
         /// GoodWeaponBtn Constructor, that sets the default position and sprite name values
         /// </summary>
         public GoodWeaponBtn() : base(new Vector2(GameWorld.ui.Position.X - 75, GameWorld.ui.Position.Y - 70), "buttonUITest")
         {
+            weaponActive = false;   //Set to false as default until the weapon has been purchased
+
             currentStatValue = 0;
             maxStatValue = 1;
-            statCost = 60;
-            statIncrease = 1;
+            karmaRequirements = 30;
+            statCost = 20;
+            statIncrease = 1;   //statIncrease in this class are for the UI 'stat' increase purpose only
         }
 
         /// <summary>
@@ -30,7 +34,11 @@ namespace LimboSoulsOfJudgement
         /// <param name="gameTime">Time elapsed since last call in the update</param>
         public override void Update(GameTime gameTime)
         {
-            base.Update(gameTime);
+            //Statement that checks if current amount of good karma has reached the required karma value in order to begin purchasing process
+            if (GameWorld.goodKarmaButton.currentKarma >= karmaRequirements)
+            {
+                base.Update(gameTime);
+            }
         }
 
         /// <summary>
@@ -39,7 +47,27 @@ namespace LimboSoulsOfJudgement
         /// <param name="gameTime">Time elapsed since last call in the update</param>
         public override void UpgradeStat(GameTime gameTime)
         {
-            base.UpgradeStat(gameTime);
+            mouseClicked += gameTime.ElapsedGameTime.TotalSeconds;
+            if (GameWorld.mouse.Click(this) && GameWorld.triggerVendor && mouseClicked > nextClick)
+            {
+                if (GameWorld.player.currentSouls < statCost)    //Returns if the current amount of Player souls is less than the cost of the Stat
+                {
+                    return;
+                }
+                currentStatValue += statIncrease;   //Adds value to the current amount of Karma equal to its stat cost
+                if (!GameWorld.evilWeaponBtn.weaponActive)
+                {
+                    GameWorld.player.melee.damage += weaponStatIncrease;
+                }
+                else
+                {
+                    GameWorld.player.melee.damage += 0;
+                }
+
+                GameWorld.player.currentSouls -= statCost;  //Substracts player soul value equal to current buttons stat cost
+                weaponActive = true;    //Sets the value to true, since purchase is complete
+                mouseClicked = 0;
+            }
         }
     }
 }

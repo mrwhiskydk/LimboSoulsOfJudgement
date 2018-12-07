@@ -11,19 +11,21 @@ namespace LimboSoulsOfJudgement
     /// Public Class that represents functionality and game logic of the 'EvilWeaponBtn' Button
     /// </summary>
     public class EvilWeaponBtn : Button
-    {
+    {              
         //Actual value increase of player melee weapon damage
-        private int weaponStatIncrease = 10;
+        public int weaponStatIncrease = 10;
 
         /// <summary>
         /// EvilWeaponBtn Constructor, that sets the default position and sprite name values
         /// </summary>
         public EvilWeaponBtn() : base(new Vector2(GameWorld.ui.Position.X + 75, GameWorld.ui.Position.Y - 70), "buttonUITest")
         {
+            weaponActive = false;   //Set to false as default until the weapon has been purchased
+
             currentStatValue = 0;
             maxStatValue = 1;
-            karmaRequirements = 25;
-            statCost = 60;
+            karmaRequirements = 30;
+            statCost = 20;
             statIncrease = 1;   //statIncrease in this class are for the UI 'stat' increase purpose only
         }
 
@@ -37,8 +39,7 @@ namespace LimboSoulsOfJudgement
             if (GameWorld.badKarmaButton.currentKarma >= karmaRequirements)
             {
                 base.Update(gameTime);
-            }
-                 
+            }              
         }
 
         /// <summary>
@@ -55,8 +56,17 @@ namespace LimboSoulsOfJudgement
                     return;
                 }
                 currentStatValue += statIncrease;   //Adds value to the current amount of Karma equal to its stat cost
-                GameWorld.player.melee.damage += weaponStatIncrease;
+                if (!GameWorld.goodWeaponBtn.weaponActive)
+                {
+                    GameWorld.player.melee.damage += weaponStatIncrease;
+                }
+                else
+                {
+                    GameWorld.player.melee.damage += 0;
+                }
+                
                 GameWorld.player.currentSouls -= statCost;  //Substracts player soul value equal to current buttons stat cost
+                weaponActive = true;    //Sets the value to true, since purchase is complete
                 mouseClicked = 0;
             }
         }
