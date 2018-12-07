@@ -6,11 +6,11 @@ namespace LimboSoulsOfJudgement
 {
     public class Player : Character
     {
-        public MeleeWeapon melee = new MeleeWeapon();
+        public MeleeWeapon melee;
         public RangedWeapon ranged = new RangedWeapon();
         public Weapon weapon;
-        public static Arm arm = new Arm();
-        public Ability lightningBolt = new LightningBolt();
+        public static Arm arm;
+        public Ability ability1;
         private bool canSwitchWeapons = true;
         private double attackTimer = 0;
         public int currentSouls;
@@ -33,6 +33,10 @@ namespace LimboSoulsOfJudgement
         /// </summary>
         public Player() : base(5, 5, new Vector2(200, 500), "PlayerIdle")
         {
+            arm = new Arm();
+            melee = new MeleeWeapon();
+            ability1 = new LightningBolt();
+
             //Maximum amount of Player health
             maxHealth = 100;
             health = maxHealth;
@@ -210,11 +214,11 @@ namespace LimboSoulsOfJudgement
 
         public void HandleAbilities(GameTime gameTime)
         {
+            //ability1.Position = UIAbilityBar.abilitySlot1;
             if (Keyboard.GetState().IsKeyDown(Keys.Q))
             {
-                lightningBolt.Use();
+                ability1.Use();
             }
-            
         }
 
         /// <summary>
@@ -329,14 +333,14 @@ namespace LimboSoulsOfJudgement
             if (isImmortal == true && facingRight == false && takingDamage == true)
             {
 
-                spriteBatch.Draw(sprite, position, animationRectangles[currentAnimationIndex], Color.Red, rotation, new Vector2(animationRectangles[currentAnimationIndex].Width * 0.5f, animationRectangles[currentAnimationIndex].Height * 0.5f), 1f, SpriteEffects.FlipHorizontally, 0.95f);
+                spriteBatch.Draw(sprite, position, animationRectangles[currentAnimationIndex], Color.Red, rotation, new Vector2(animationRectangles[currentAnimationIndex].Width * 0.5f, animationRectangles[currentAnimationIndex].Height * 0.5f), 1f, SpriteEffects.FlipHorizontally, 0.1f);
 
             }
 
             if (isImmortal == true && facingRight == true && takingDamage == true)
             {
 
-                spriteBatch.Draw(sprite, position, animationRectangles[currentAnimationIndex], Color.Red, rotation, new Vector2(animationRectangles[currentAnimationIndex].Width * 0.5f, animationRectangles[currentAnimationIndex].Height * 0.5f), 1f, SpriteEffects.None, 0.95f);
+                spriteBatch.Draw(sprite, position, animationRectangles[currentAnimationIndex], Color.Red, rotation, new Vector2(animationRectangles[currentAnimationIndex].Width * 0.5f, animationRectangles[currentAnimationIndex].Height * 0.5f), 1f, SpriteEffects.None, 0.1f);
 
             }
         }

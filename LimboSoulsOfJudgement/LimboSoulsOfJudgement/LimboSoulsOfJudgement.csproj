@@ -52,6 +52,7 @@
     <Compile Include="Character.cs" />
     <Compile Include="Crosshair.cs" />
     <Compile Include="Enemy.cs" />
+    <Compile Include="GameObjectPassive.cs" />
     <Compile Include="EvilWeaponBtn.cs" />
     <Compile Include="GameWorld.cs" />
     <Compile Include="GameObject.cs" />
@@ -72,6 +73,7 @@
     <Compile Include="Soul.cs" />
     <Compile Include="Trapdoor.cs" />
     <Compile Include="UI.cs" />
+    <Compile Include="UIAbilityBar.cs" />
     <Compile Include="UpgradeHealthBtn.cs" />
     <Compile Include="Vendor.cs" />
     <Compile Include="Weapon.cs" />
