@@ -8,36 +8,41 @@ using Microsoft.Xna.Framework;
 namespace LimboSoulsOfJudgement
 {
     /// <summary>
-    /// Public Class that represents the functionality and game logic of the UpgradeHealthBtn
+    /// Public Class that represents functionality and game logic of the 'EvilWeaponBtn' Button
     /// </summary>
-    public class UpgradeHealthBtn : Button
+    public class EvilWeaponBtn : Button
     {
+        //Actual value increase of player melee weapon damage
+        private int weaponStatIncrease = 10;
 
-        
         /// <summary>
-        /// UpgradeHealthBtn Constructor, that sets the default position and sprite name values
+        /// EvilWeaponBtn Constructor, that sets the default position and sprite name values
         /// </summary>
-        public UpgradeHealthBtn() : base(new Vector2(GameWorld.ui.Position.X - 73, GameWorld.ui.Position.Y + 30), "buttonUITest")
+        public EvilWeaponBtn() : base(new Vector2(GameWorld.ui.Position.X + 75, GameWorld.ui.Position.Y - 70), "buttonUITest")
         {
-            currentStatValue = GameWorld.player.maxHealth;
-            maxStatValue = 300;
-            statCost = 2;
-            statIncrease = 5;
+            currentStatValue = 0;
+            maxStatValue = 1;
+            karmaRequirements = 25;
+            statCost = 60;
+            statIncrease = 1;   //statIncrease in this class are for the UI 'stat' increase purpose only
         }
 
         /// <summary>
-        /// Updates the UpgradeHealthBtn game logic
+        /// Updates the EvilWeaponBtn's game logic
         /// </summary>
         /// <param name="gameTime">Time elapsed since last call in the update</param>
         public override void Update(GameTime gameTime)
         {
-            base.Update(gameTime);
+            //Statement that checks if current amount of bad karma has reached the required karma value in order to begin purchasing process
+            if (GameWorld.badKarmaButton.currentKarma >= karmaRequirements)
+            {
+                base.Update(gameTime);
+            }
+                 
         }
 
         /// <summary>
         /// Overridden UpgradeStat Method that sets its game logic
-        /// Increases the player's max health equal to its statIncease value
-        /// Sets the player's current health equal to the increased max health upon purchase
         /// </summary>
         /// <param name="gameTime">Time elapsed since last call in the update</param>
         public override void UpgradeStat(GameTime gameTime)
@@ -49,11 +54,10 @@ namespace LimboSoulsOfJudgement
                 {
                     return;
                 }
-                currentStatValue += statIncrease;   //Updates the vendor UI's stat increase 
-                GameWorld.player.maxHealth += statIncrease; //Actual increase of player values
-                GameWorld.player.health = GameWorld.player.maxHealth;   //Sets current player health equal to increased player health
+                currentStatValue += statIncrease;   //Adds value to the current amount of Karma equal to its stat cost
+                GameWorld.player.melee.damage += weaponStatIncrease;
                 GameWorld.player.currentSouls -= statCost;  //Substracts player soul value equal to current buttons stat cost
-                mouseClicked = 0;   //Resets the mouseClicked value once value calculations has finished
+                mouseClicked = 0;
             }
         }
     }

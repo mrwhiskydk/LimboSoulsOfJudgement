@@ -13,10 +13,35 @@ namespace LimboSoulsOfJudgement
     /// </summary>
     public abstract class Button : GameObject
     {
+        /// <summary>
+        /// Sets the current Stat value, of the current button.
+        /// Has no impact and/or changes to the player stat itself
+        /// </summary>
         public int currentStatValue;
+
+        /// <summary>
+        /// Sets the maximum amount of stat value, that currentStatValue is able to reach
+        /// </summary>
         public int maxStatValue;
 
+        /// <summary>
+        /// Sets the maximum aomunt of karma value required in order to buy specific weapons and stat upgrades. Used in both Good and Evil button classes 
+        /// </summary>
+        public int karmaRequirements;
+
+        /// <summary>
+        /// Sets the current amount of karma value gained through both Good and Evil button classes
+        /// </summary>
+        public int currentKarma;
+
+        /// <summary>
+        /// Sets Soul Cost value, of the current Stat. Substracts value of current player souls equal to its cost amount.
+        /// </summary>
         public int statCost;
+
+        /// <summary>
+        /// Sets the actual increase amount of value to the player stat values
+        /// </summary>
         public int statIncrease;
 
         protected float nextClick = 0.3f;
@@ -25,8 +50,8 @@ namespace LimboSoulsOfJudgement
         /// <summary>
         /// Default Constructor that sets the start position and sprite name values of the current Button GameObject
         /// </summary>
-        /// <param name="startPosition"></param>
-        /// <param name="spriteName"></param>
+        /// <param name="startPosition">Sets the default start position of the current Button GameObject</param>
+        /// <param name="spriteName">Sets the default sprite name of the current Button GameObject</param>
         public Button(Vector2 startPosition, string spriteName) : base(startPosition, spriteName)
         {
             
@@ -84,5 +109,7 @@ namespace LimboSoulsOfJudgement
                 spriteBatch.Draw(sprite, position, null, Color.White, rotation, new Vector2(sprite.Width * 0.5f, sprite.Height * 0.5f), 1f, new SpriteEffects(), 0.03f);
             }
         }
+
+        
     }
 }
