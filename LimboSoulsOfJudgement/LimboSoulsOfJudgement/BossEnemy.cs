@@ -83,6 +83,7 @@ namespace LimboSoulsOfJudgement
             {
                 position.Y += (float)(movementSpeed * gameTime.ElapsedGameTime.TotalSeconds);
             }
+
         }
 
     }

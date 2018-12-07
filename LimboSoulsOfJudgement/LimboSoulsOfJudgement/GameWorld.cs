@@ -219,8 +219,11 @@ namespace LimboSoulsOfJudgement
 
             gameObjects.AddRange(toBeAdded);
             toBeAdded.Clear();
-            
-           
+
+            if (level1.boss.enemyHealth <= 0)
+            {
+                vendor.Position = new Vector2(5300, 3328);
+            }
             
             
             
