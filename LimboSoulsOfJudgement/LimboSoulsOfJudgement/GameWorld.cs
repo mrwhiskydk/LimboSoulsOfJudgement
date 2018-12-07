@@ -213,6 +213,7 @@ namespace LimboSoulsOfJudgement
                 }
 
                 go.Update(gameTime);
+                
                 foreach (GameObject other in gameObjects)
                 {
                     if (go != other && go.IsColliding(other))
@@ -221,7 +222,6 @@ namespace LimboSoulsOfJudgement
                     }
                 }
             }
-            
 
             foreach (GameObject go in toBeRemoved)
             {
@@ -236,9 +236,9 @@ namespace LimboSoulsOfJudgement
             {
                 vendor.Position = new Vector2(5300, 3328);
             }
+
             
-            
-            
+
             camera.Position = new Vector2(MathHelper.Lerp(camera.Position.X, player.Position.X, 0.25f), MathHelper.Lerp(camera.Position.Y, player.Position.Y, 0.25f)); 
             base.Update(gameTime);
         }
