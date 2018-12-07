@@ -23,6 +23,8 @@ namespace LimboSoulsOfJudgement
         public static SpriteFont font;
         public static Vendor vendor;
         public static UI ui;
+        public static Weapon weapon;
+        public static MeleeWeapon meleeWeapon;
         //Button Fields below
         public static Button button;
         public static BadKarmaButton badKarmaButton;
@@ -30,6 +32,11 @@ namespace LimboSoulsOfJudgement
         public static float levelCount = 1;
         public bool levelReset = false;
         public bool playerAlive = true;
+        public static GoodKarmaButton goodKarmaButton;
+        public static EvilWeaponBtn evilWeaponBtn;
+        public static GoodWeaponBtn goodWeaponBtn;
+        
+
         private Level level1;
         private bool addLevel = true;
 
@@ -135,6 +142,9 @@ namespace LimboSoulsOfJudgement
             ui = new UI();
             badKarmaButton = new BadKarmaButton();
             upgradeHealthBtn = new UpgradeHealthBtn();
+            goodKarmaButton = new GoodKarmaButton();
+            evilWeaponBtn = new EvilWeaponBtn();
+            goodWeaponBtn = new GoodWeaponBtn();
 
 
             mouse = new Crosshair();
@@ -175,7 +185,7 @@ namespace LimboSoulsOfJudgement
             {
                 foreach (var item in gameObjects)
                 {
-                    if (item is Player is false && item is Vendor is false && item is Crosshair is false && item is UI is false && item is Button is false && item is Weapon is false)
+                    if (item is Player is false && item is Vendor is false && item is Crosshair is false && item is UI is false && item is Button is false && item is Weapon is false && item is Arm is false)
                     {
                         item.Destroy();
                     }
@@ -253,6 +263,7 @@ namespace LimboSoulsOfJudgement
 #endif
             }
             spriteBatch.DrawString(font, $"Souls: {player.currentSouls}", new Vector2(camera.Position.X - 750, camera.Position.Y - 425), Color.White, 0f, Vector2.Zero, 1f, SpriteEffects.None, 0.991f);
+            spriteBatch.DrawString(font, $"Melee Weapon Damage: {player.melee.damage}", new Vector2(camera.Position.X - 750, camera.Position.Y - 350), Color.White, 0f, Vector2.Zero, 1f, SpriteEffects.None, 0.991f);
             spriteBatch.DrawString(font, $"Health: {player.health} / {player.maxHealth}", new Vector2(camera.Position.X - 750, camera.Position.Y - 400), Color.White, 0f, Vector2.Zero, 1f, SpriteEffects.None, 0.991f);
             spriteBatch.DrawString(font, $"Lives: {player.playerLives}", new Vector2(camera.Position.X - 750, camera.Position.Y - 375), Color.White, 0f, Vector2.Zero, 1f, SpriteEffects.None, 0.991f);
 
@@ -262,14 +273,40 @@ namespace LimboSoulsOfJudgement
             {
                 spriteBatch.DrawString(font, "MAX BAD KARMA", new Vector2(badKarmaButton.Position.X - 70, badKarmaButton.Position.Y + -55), Color.White, 0f, Vector2.Zero, 1f, SpriteEffects.None, 0.991f);
             }
-            else if (triggerVendor && badKarmaButton.maxStatValue > badKarmaButton.currentStatValue)
+            //Text Purchase of Bad Karma
+            else if (triggerVendor && badKarmaButton.maxStatValue >= badKarmaButton.currentStatValue)
             {
-                spriteBatch.DrawString(font, $"Vendor Karma Value: {badKarmaButton.currentStatValue} / {badKarmaButton.maxStatValue}", new Vector2(badKarmaButton.Position.X - 95, badKarmaButton.Position.Y - 55), Color.White, 0f, Vector2.Zero, 1f, SpriteEffects.None, 0.991f);
+                spriteBatch.DrawString(font, $"Demonic Karma Value: {badKarmaButton.currentStatValue} / {badKarmaButton.maxStatValue}", new Vector2(badKarmaButton.Position.X - 68, badKarmaButton.Position.Y - 55), Color.White, 0f, Vector2.Zero, 1f, SpriteEffects.None, 0.991f);
             }
-
-            if(triggerVendor && upgradeHealthBtn.maxStatValue > upgradeHealthBtn.currentStatValue)
+            //Text Completed Purchase of Evil Melee Weapon
+            if(triggerVendor && evilWeaponBtn.maxStatValue <= evilWeaponBtn.currentStatValue)
             {
-                spriteBatch.DrawString(font, $"Player Health Value: {upgradeHealthBtn.currentStatValue} / {upgradeHealthBtn.maxStatValue}", new Vector2(badKarmaButton.Position.X - 105, badKarmaButton.Position.Y - 165), Color.White, 0f, Vector2.Zero, 1f, SpriteEffects.None, 0.991f);
+                spriteBatch.DrawString(font, $"EVIL WEAPON PURCHASED", new Vector2(evilWeaponBtn.Position.X - 62, evilWeaponBtn.Position.Y - 55), Color.White, 0f, Vector2.Zero, 1f, SpriteEffects.None, 0.991f);
+            }
+            //Text Purchase of Evil Melee Weapon
+            else if(triggerVendor && evilWeaponBtn.maxStatValue >= evilWeaponBtn.currentStatValue)
+            {
+                spriteBatch.DrawString(font, $"BUY EVIL MELEE WEAPON", new Vector2(evilWeaponBtn.Position.X - 62, evilWeaponBtn.Position.Y - 55), Color.White, 0f, Vector2.Zero, 1f, SpriteEffects.None, 0.991f);
+            }
+            //Text Completed Purchase of Good Melee Weapon
+            if(triggerVendor && goodWeaponBtn.maxStatValue <= goodWeaponBtn.currentStatValue)
+            {
+                spriteBatch.DrawString(font, $"GOOD WEAPON PURCHASED", new Vector2(evilWeaponBtn.Position.X - 298, evilWeaponBtn.Position.Y - 55), Color.White, 0f, Vector2.Zero, 1f, SpriteEffects.None, 0.991f);
+            }
+            //Text Purchase of Good Melee Weapon
+            else if (triggerVendor && goodWeaponBtn.maxStatValue >= goodWeaponBtn.currentStatValue)
+            {
+                spriteBatch.DrawString(font, $"BUY GOOD MELEE WEAPON", new Vector2(evilWeaponBtn.Position.X - 298, evilWeaponBtn.Position.Y - 55), Color.White, 0f, Vector2.Zero, 1f, SpriteEffects.None, 0.991f);
+            }
+            //Text Purchase of Good Karma
+            if (triggerVendor && goodKarmaButton.maxStatValue >= goodKarmaButton.currentStatValue)
+            {
+                spriteBatch.DrawString(font, $"Angel Karma Value: {goodKarmaButton.maxStatValue} / {goodKarmaButton.currentStatValue}", new Vector2(goodKarmaButton.Position.X - 114, goodKarmaButton.Position.Y - 55), Color.White, 0f, Vector2.Zero, 1f, SpriteEffects.None, 0.991f);
+            }
+            //Text Purchase Max Player Health
+            if(triggerVendor && upgradeHealthBtn.maxStatValue >= upgradeHealthBtn.currentStatValue)
+            {
+                spriteBatch.DrawString(font, $"Player Health Value: {upgradeHealthBtn.currentStatValue} / {upgradeHealthBtn.maxStatValue}", new Vector2(upgradeHealthBtn.Position.X - 134, upgradeHealthBtn.Position.Y - 55), Color.White, 0f, Vector2.Zero, 1f, SpriteEffects.None, 0.991f);
             }
 
 
