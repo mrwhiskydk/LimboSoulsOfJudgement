@@ -9,7 +9,7 @@ namespace LimboSoulsOfJudgement
         public MeleeWeapon melee;
         public RangedWeapon ranged = new RangedWeapon();
         public Weapon weapon;
-        public Arm arm;
+        public static Arm arm;
         public Ability ability1;
         private bool canSwitchWeapons = true;
         private double attackTimer = 0;
