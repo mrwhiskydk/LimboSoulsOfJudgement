@@ -23,7 +23,7 @@ namespace LimboSoulsOfJudgement
 
             currentStatValue = 0;
             maxStatValue = 1;
-            karmaRequirements = 30;
+            karmaRequirements = 3;
             statCost = 20;
             statIncrease = 1;   //statIncrease in this class are for the UI 'stat' increase purpose only
         }

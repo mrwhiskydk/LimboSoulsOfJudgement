@@ -30,15 +30,16 @@ namespace LimboSoulsOfJudgement
         public static BadKarmaButton badKarmaButton;
         public static UpgradeHealthBtn upgradeHealthBtn;
         public static float levelCount = 1;
-        public bool levelReset = false;
+        public static bool levelReset = false;
         public bool playerAlive = true;
         public static GoodKarmaButton goodKarmaButton;
         public static EvilWeaponBtn evilWeaponBtn;
         public static GoodWeaponBtn goodWeaponBtn;
+        public static ResetButton resetButton;
         
 
         private Level level1;
-        private bool addLevel = true;
+        public static bool addLevel = true;
 
         public static Random rnd = new Random();
         public static Crosshair mouse;
@@ -137,7 +138,7 @@ namespace LimboSoulsOfJudgement
             camera = new Camera();
 
             //Load Vendor & Vendor UI
-            vendor = new Vendor(1, 1, new Vector2(600, 450), "VendorTest");
+            vendor = new Vendor(1, 1, new Vector2(600, 350), "VendorTest");
 
             ui = new UI();
             badKarmaButton = new BadKarmaButton();
@@ -145,6 +146,7 @@ namespace LimboSoulsOfJudgement
             goodKarmaButton = new GoodKarmaButton();
             evilWeaponBtn = new EvilWeaponBtn();
             goodWeaponBtn = new GoodWeaponBtn();
+            resetButton = new ResetButton();
 
 
             mouse = new Crosshair();
@@ -271,7 +273,7 @@ namespace LimboSoulsOfJudgement
                        
             if (triggerVendor && badKarmaButton.maxStatValue <= badKarmaButton.currentStatValue)
             {
-                spriteBatch.DrawString(font, "MAX BAD KARMA", new Vector2(badKarmaButton.Position.X - 70, badKarmaButton.Position.Y + -55), Color.White, 0f, Vector2.Zero, 1f, SpriteEffects.None, 0.991f);
+                spriteBatch.DrawString(font, "MAX BAD KARMA!", new Vector2(badKarmaButton.Position.X - 70, badKarmaButton.Position.Y + -55), Color.White, 0f, Vector2.Zero, 1f, SpriteEffects.None, 0.991f);
             }
             //Text Purchase of Bad Karma
             else if (triggerVendor && badKarmaButton.maxStatValue >= badKarmaButton.currentStatValue)
@@ -298,8 +300,13 @@ namespace LimboSoulsOfJudgement
             {
                 spriteBatch.DrawString(font, $"BUY GOOD MELEE WEAPON", new Vector2(evilWeaponBtn.Position.X - 298, evilWeaponBtn.Position.Y - 55), Color.White, 0f, Vector2.Zero, 1f, SpriteEffects.None, 0.991f);
             }
+            //Text Completed Purchase of Good Karma
+            if(triggerVendor && goodKarmaButton.maxStatValue <= goodKarmaButton.currentStatValue)
+            {
+                spriteBatch.DrawString(font, $"MAX GOOD KARMA!", new Vector2(goodKarmaButton.Position.X - 114, goodKarmaButton.Position.Y - 55), Color.White, 0f, Vector2.Zero, 1f, SpriteEffects.None, 0.991f);
+            }
             //Text Purchase of Good Karma
-            if (triggerVendor && goodKarmaButton.maxStatValue >= goodKarmaButton.currentStatValue)
+            else if (triggerVendor && goodKarmaButton.maxStatValue >= goodKarmaButton.currentStatValue)
             {
                 spriteBatch.DrawString(font, $"Angel Karma Value: {goodKarmaButton.maxStatValue} / {goodKarmaButton.currentStatValue}", new Vector2(goodKarmaButton.Position.X - 114, goodKarmaButton.Position.Y - 55), Color.White, 0f, Vector2.Zero, 1f, SpriteEffects.None, 0.991f);
             }
@@ -308,7 +315,11 @@ namespace LimboSoulsOfJudgement
             {
                 spriteBatch.DrawString(font, $"Player Health Value: {upgradeHealthBtn.currentStatValue} / {upgradeHealthBtn.maxStatValue}", new Vector2(upgradeHealthBtn.Position.X - 134, upgradeHealthBtn.Position.Y - 55), Color.White, 0f, Vector2.Zero, 1f, SpriteEffects.None, 0.991f);
             }
-
+            //Text Description of the Reset Button
+            if (triggerVendor)
+            {
+                spriteBatch.DrawString(font, "RESET LEVEL!", new Vector2(resetButton.Position.X - 60, resetButton.Position.Y - 55), Color.White, 0f, Vector2.Zero, 1f, SpriteEffects.None, 0.991f);
+            }
 
             spriteBatch.End();
             base.Draw(gameTime);
