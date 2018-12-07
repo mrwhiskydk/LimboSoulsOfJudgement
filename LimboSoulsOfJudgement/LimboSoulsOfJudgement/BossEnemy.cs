@@ -17,7 +17,7 @@ namespace LimboSoulsOfJudgement
         /// <param name="animationFPS"></param>
         /// <param name="startPostion"></param>
         /// <param name="spriteName"></param>
-        public BossEnemy() : base(5, 5, new Vector2(5550, 3328), "Boss")
+        public BossEnemy(string spriteName) : base(5, 5, new Vector2(5550, 3328), spriteName)
         {
             movementSpeed = 300;
             enemyHealth = (int)(200 * GameWorld.levelCount);

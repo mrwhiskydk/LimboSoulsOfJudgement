@@ -58,7 +58,7 @@ namespace LimboSoulsOfJudgement
         protected double jumpForce = jumpPower;
         protected double jumpTime;
         protected bool isJumping = false;
-
+        
 
 
 

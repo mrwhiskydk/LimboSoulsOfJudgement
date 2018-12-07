@@ -23,6 +23,7 @@ namespace LimboSoulsOfJudgement
             maxStatValue = 50;
             statCost = 5;
             statIncrease = 1;
+            currentKarma = 0;
         }
 
         /// <summary>
@@ -41,6 +42,7 @@ namespace LimboSoulsOfJudgement
         public override void UpgradeStat(GameTime gameTime)
         {
             base.UpgradeStat(gameTime);
+            currentKarma += currentStatValue;
         }
     }
 }
