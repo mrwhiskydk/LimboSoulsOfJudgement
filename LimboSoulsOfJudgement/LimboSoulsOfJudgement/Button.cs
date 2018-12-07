@@ -44,6 +44,11 @@ namespace LimboSoulsOfJudgement
         /// </summary>
         public int statIncrease;
 
+        /// <summary>
+        /// Checks wether or not the current Weapon has been purchased and is equipped by the player
+        /// </summary>
+        public bool weaponActive;
+
         protected float nextClick = 0.3f;
         protected double mouseClicked;
 

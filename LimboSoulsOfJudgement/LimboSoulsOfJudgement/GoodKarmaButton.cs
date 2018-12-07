@@ -22,7 +22,8 @@ namespace LimboSoulsOfJudgement
             currentStatValue = 0;
             maxStatValue = 50;
             statCost = 5;
-            statIncrease = 1;
+            statIncrease = 3;
+
             currentKarma = 0;
         }
 
@@ -42,6 +43,8 @@ namespace LimboSoulsOfJudgement
         public override void UpgradeStat(GameTime gameTime)
         {
             base.UpgradeStat(gameTime);
+
+            //Adds the same amount of gained stat value to the current karma, in order for later purchases of Good Stats and Weapons
             currentKarma += currentStatValue;
         }
     }

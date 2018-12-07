@@ -13,7 +13,7 @@ namespace LimboSoulsOfJudgement
         public bool isAttacking = false;
         private double attackTime = 0.2;
         private double attackTimer = 0;
-        private Vector2 offsetIdle = new Vector2(0, -135);
+        private Vector2 offsetIdle = new Vector2(40, -125);
         private Vector2 offsetAttack = new Vector2(135, 0);
 
         public MeleeWeapon() : base("sword")
@@ -50,8 +50,17 @@ namespace LimboSoulsOfJudgement
                 //Hold the sword above the player
                 if (!isAttacking)
                 {
-                    position = GameWorld.player.Position + offsetIdle;
-                    rotation = MathHelper.ToRadians(0);
+                    if (GameWorld.player.facingRight is true)
+                    {
+                        position = Player.arm.Position + offsetIdle;
+                        rotation = MathHelper.ToRadians(0);
+                    }
+                    else
+                    {
+                        position = Player.arm.Position +  new Vector2(offsetIdle.X - offsetIdle.X * 2, offsetIdle.Y);
+                        rotation = MathHelper.ToRadians(0);
+                    }
+                    
                 }
                 //set the position to a "stabby" position
                 else
@@ -65,12 +74,12 @@ namespace LimboSoulsOfJudgement
 
                     if (GameWorld.mouse.RightOfPlayer())
                     {
-                        position = GameWorld.player.Position + offsetAttack;
+                        position = Player.arm.Position + offsetAttack;
                         rotation = MathHelper.ToRadians(90);
                     }
                     else
                     {
-                        position = GameWorld.player.Position - offsetAttack;
+                        position = Player.arm.Position - offsetAttack;
                         rotation = MathHelper.ToRadians(270);
                     }
                     
@@ -82,6 +91,19 @@ namespace LimboSoulsOfJudgement
                     */
                 }
             }
+        }
+
+        public override void Draw(SpriteBatch spriteBatch)
+        {
+            //The color of the sword is drawn red, if the purchase of a Evil Weapon is complete
+            if (GameWorld.evilWeaponBtn.weaponActive)
+            {
+                spriteBatch.Draw(sprite, position, null, Color.Red, rotation, new Vector2(sprite.Width * 0.5f, sprite.Height * 0.5f), 1f, SpriteEffects.None, 0.81f);
+            }
+            else
+            {
+                base.Draw(spriteBatch);
+            }           
         }
     }
 }

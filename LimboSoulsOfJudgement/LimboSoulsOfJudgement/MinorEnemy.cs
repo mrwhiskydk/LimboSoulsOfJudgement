@@ -26,7 +26,7 @@ namespace LimboSoulsOfJudgement
             enemySouls = (int)(20 * GameWorld.levelCount);
             soulCount = 3;
             patrolDuration = 2f;
-            this.position = position;
+            this.position = position; 
         }
 
         /// <summary>
