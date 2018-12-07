@@ -44,7 +44,7 @@ namespace LimboSoulsOfJudgement
         /// <summary>
         /// How long an enemy is knocked back 
         /// </summary>
-        protected float knockbackDuration = 0.7f;
+        protected float knockbackDuration = 0.6f;
         /// <summary>
         /// The distance an enemy should be knocked back when hit
         /// </summary>
@@ -58,7 +58,7 @@ namespace LimboSoulsOfJudgement
         protected double jumpForce = jumpPower;
         protected double jumpTime;
         protected bool isJumping = false;
-
+        
 
 
 
@@ -109,30 +109,6 @@ namespace LimboSoulsOfJudgement
 
             collisionMovement = movementSpeed * gameTime.ElapsedGameTime.TotalSeconds;
 
-            knockbackMovement = (float)(knockbackDistance * movementSpeed * gameTime.ElapsedGameTime.TotalSeconds);
-
-            if (knockback)
-            {
-                knockbackTime += gameTime.ElapsedGameTime.TotalSeconds;
-
-                if (GameWorld.player.Position.X < position.X)
-                {
-                    isJumping = true;
-                    position.X += (float)(knockbackDistance * movementSpeed * gameTime.ElapsedGameTime.TotalSeconds);
-                }
-
-                if (GameWorld.player.Position.X > position.X)
-                {
-                    isJumping = true;
-                    position.X -= (float)(knockbackDistance * movementSpeed * gameTime.ElapsedGameTime.TotalSeconds);
-                }
-
-                if (knockbackTime > knockbackDuration)
-                {
-                    knockback = false;
-                    knockbackTime = 0;
-                }
-            }
         }
 
         /// <summary>
@@ -141,7 +117,7 @@ namespace LimboSoulsOfJudgement
         /// <param name="gameTime">Time elapsed since last call in the update</param>
         protected override void HandleMovement(GameTime gameTime)
         {
-            patrolTime += gameTime.ElapsedGameTime.TotalSeconds;
+            //patrolTime += gameTime.ElapsedGameTime.TotalSeconds;
 
             //if (aggro == false)
             //{

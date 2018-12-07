@@ -8,6 +8,7 @@ namespace LimboSoulsOfJudgement
 {
     public class Level
     {
+        public BossEnemy boss;
         public Level()
         {
             //Platforms
@@ -210,28 +211,58 @@ namespace LimboSoulsOfJudgement
             }
 
             // Frame
-            new Platform(new Vector2(-512, 2048), "VerticalFrame");
+            new Platform(new Vector2(-511, 2048), "VerticalFrame");
             new Platform(new Vector2(6272, 2048), "VerticalFrame");
             new Platform(new Vector2(2880, 4096), "HorizontalFrame");
             new Platform(new Vector2(2880, -512), "HorizontalFrame");
 
             // Minor Enemies
-            new MinorEnemy(new Vector2(27 * 64, 10 * 64));
-            new MinorEnemy(new Vector2(40 * 64, 14 * 64));
-            new MinorEnemy(new Vector2(46 * 64, 14 * 64));
-            new MinorEnemy(new Vector2(65 * 64, 18 * 64));
-            new MinorEnemy(new Vector2(69 * 64, 18 * 64));
-            new MinorEnemy(new Vector2(65 * 64, 28 * 64));
-            new MinorEnemy(new Vector2(71 * 64, 28 * 64));
-            new MinorEnemy(new Vector2(3 * 64, 55 * 64));
-            new MinorEnemy(new Vector2(11 * 64, 55 * 64));
-            new MinorEnemy(new Vector2(19 * 64, 55 * 64));
-            new MinorEnemy(new Vector2(27 * 64, 55 * 64));
-            new MinorEnemy(new Vector2(35 * 64, 55 * 64));
+            if (GameWorld.badKarmaButton.currentKarma < GameWorld.goodKarmaButton.currentKarma)
+            {
+                new MinorEnemy(new Vector2(27 * 64, 10 * 64), "SmallDevil");
+                new MinorEnemy(new Vector2(40 * 64, 14 * 64), "SmallDevil");
+                new MinorEnemy(new Vector2(46 * 64, 14 * 64), "SmallDevil");
+                new MinorEnemy(new Vector2(65 * 64, 18 * 64), "SmallDevil");
+                new MinorEnemy(new Vector2(69 * 64, 18 * 64), "SmallDevil");
+                new MinorEnemy(new Vector2(65 * 64, 28 * 64), "SmallDevil");
+                new MinorEnemy(new Vector2(71 * 64, 28 * 64), "SmallDevil");
+                new MinorEnemy(new Vector2(3 * 64, 55 * 64), "SmallDevil");
+                new MinorEnemy(new Vector2(11 * 64, 55 * 64), "SmallDevil");
+                new MinorEnemy(new Vector2(19 * 64, 55 * 64), "SmallDevil");
+                new MinorEnemy(new Vector2(27 * 64, 55 * 64), "SmallDevil");
+                new MinorEnemy(new Vector2(35 * 64, 55 * 64), "SmallDevil");
+            }
+            else 
+            {
+                new MinorEnemy(new Vector2(27 * 64, 10 * 64), "SmallAngel");
+                new MinorEnemy(new Vector2(40 * 64, 14 * 64), "SmallAngel");
+                new MinorEnemy(new Vector2(46 * 64, 14 * 64), "SmallAngel");
+                new MinorEnemy(new Vector2(65 * 64, 18 * 64), "SmallAngel");
+                new MinorEnemy(new Vector2(69 * 64, 18 * 64), "SmallAngel");
+                new MinorEnemy(new Vector2(65 * 64, 28 * 64), "SmallAngel");
+                new MinorEnemy(new Vector2(71 * 64, 28 * 64), "SmallAngel");
+                new MinorEnemy(new Vector2(3 * 64, 55 * 64), "SmallAngel");
+                new MinorEnemy(new Vector2(11 * 64, 55 * 64), "SmallAngel");
+                new MinorEnemy(new Vector2(19 * 64, 55 * 64), "SmallAngel");
+                new MinorEnemy(new Vector2(27 * 64, 55 * 64), "SmallAngel");
+                new MinorEnemy(new Vector2(35 * 64, 55 * 64), "SmallAngel");
+            }
+
 
 
             // Boss
-            new BossEnemy();
+            if (GameWorld.badKarmaButton.currentKarma < GameWorld.goodKarmaButton.currentKarma)
+            {
+                boss = new BossEnemy("Boss");
+            }
+            else 
+            {
+                boss = new BossEnemy("GoodBoss");
+            }
+
+
+
+
         }
 
         /// <summary>

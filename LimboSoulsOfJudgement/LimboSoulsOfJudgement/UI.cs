@@ -26,9 +26,9 @@ namespace LimboSoulsOfJudgement
 
         public override void Update(GameTime gameTime)
         {
-            gravity = false;
-
             base.Update(gameTime);
+
+            
         }
 
 
