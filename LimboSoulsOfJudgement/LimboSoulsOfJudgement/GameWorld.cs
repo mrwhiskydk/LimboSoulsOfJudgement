@@ -29,12 +29,16 @@ namespace LimboSoulsOfJudgement
         public static Button button;
         public static BadKarmaButton badKarmaButton;
         public static UpgradeHealthBtn upgradeHealthBtn;
+        public static float levelCount = 1;
+        public bool levelReset = false;
+        public bool playerAlive = true;
         public static GoodKarmaButton goodKarmaButton;
         public static EvilWeaponBtn evilWeaponBtn;
         public static GoodWeaponBtn goodWeaponBtn;
         
 
         private Level level1;
+        private bool addLevel = true;
 
         public static Random rnd = new Random();
         public static Crosshair mouse;
@@ -119,7 +123,17 @@ namespace LimboSoulsOfJudgement
             shadow = Content.Load<Texture2D>("Darkness");
             evilAura = Content.Load<Texture2D>("EvilAura");
             collisionTexture = Content.Load<Texture2D>("CollisionTexture");
-            player = new Player();
+
+            if (playerAlive == true)
+            {
+                player = new Player();
+            }
+            else
+            {
+                RemoveGameObject(player);
+                player = new Player();
+            }
+
             camera = new Camera();
 
             //Load Vendor & Vendor UI
@@ -136,7 +150,7 @@ namespace LimboSoulsOfJudgement
             mouse = new Crosshair();
             camera.Position = player.Position;
 
-            level1 = new Level();
+            
         }
 
 
@@ -161,6 +175,32 @@ namespace LimboSoulsOfJudgement
         {
             if (GamePad.GetState(PlayerIndex.One).Buttons.Back == ButtonState.Pressed || Keyboard.GetState().IsKeyDown(Keys.Escape))
                 Exit();
+
+            if (levelReset == false && addLevel == true)
+            {
+                level1 = new Level();
+                addLevel = false;
+            }
+            else if (levelReset == true)
+            {
+                foreach (var item in gameObjects)
+                {
+                    if (item is Player is false && item is Vendor is false && item is Crosshair is false && item is UI is false && item is Button is false && item is Weapon is false)
+                    {
+                        item.Destroy();
+                    }
+                }
+                levelReset = false;
+                player.health = player.MaxHealth;
+                player.Position = new Vector2(200, 500);
+            }
+
+            if (player.health <= 0)
+            {
+                levelReset = true;
+                addLevel = true;
+                player.playerLives -= 1;
+            }
 
             foreach (GameObject go in gameObjects)
             {
@@ -189,8 +229,11 @@ namespace LimboSoulsOfJudgement
 
             gameObjects.AddRange(toBeAdded);
             toBeAdded.Clear();
-            
-           
+
+            if (level1.boss.enemyHealth <= 0)
+            {
+                vendor.Position = new Vector2(5300, 3328);
+            }
             
             
             
@@ -222,6 +265,8 @@ namespace LimboSoulsOfJudgement
             spriteBatch.DrawString(font, $"Souls: {player.currentSouls}", new Vector2(camera.Position.X - 750, camera.Position.Y - 425), Color.White, 0f, Vector2.Zero, 1f, SpriteEffects.None, 0.991f);
             spriteBatch.DrawString(font, $"Melee Weapon Damage: {player.melee.damage}", new Vector2(camera.Position.X - 750, camera.Position.Y - 375), Color.White, 0f, Vector2.Zero, 1f, SpriteEffects.None, 0.991f);
             spriteBatch.DrawString(font, $"Health: {player.health} / {player.maxHealth}", new Vector2(camera.Position.X - 750, camera.Position.Y - 400), Color.White, 0f, Vector2.Zero, 1f, SpriteEffects.None, 0.991f);
+            spriteBatch.DrawString(font, $"Lives: {player.playerLives}", new Vector2(camera.Position.X - 750, camera.Position.Y - 375), Color.White, 0f, Vector2.Zero, 1f, SpriteEffects.None, 0.991f);
+
             spriteBatch.DrawString(font, $"Coordinates: X: {Mouse.GetState().X - camera.viewMatrix.Translation.X}   Y: {Mouse.GetState().Y - camera.viewMatrix.Translation.Y}", new Vector2(camera.Position.X, camera.Position.Y - 500), Color.White, 0f, Vector2.Zero, 1f, SpriteEffects.None, 0.991f);
                        
             if (triggerVendor && badKarmaButton.maxStatValue <= badKarmaButton.currentStatValue)

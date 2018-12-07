@@ -8,6 +8,7 @@ namespace LimboSoulsOfJudgement
 {
     public class Level
     {
+        public BossEnemy boss;
         public Level()
         {
             //Platforms
@@ -210,7 +211,7 @@ namespace LimboSoulsOfJudgement
             }
 
             // Frame
-            new Platform(new Vector2(-512, 2048), "VerticalFrame");
+            new Platform(new Vector2(-511, 2048), "VerticalFrame");
             new Platform(new Vector2(6272, 2048), "VerticalFrame");
             new Platform(new Vector2(2880, 4096), "HorizontalFrame");
             new Platform(new Vector2(2880, -512), "HorizontalFrame");
@@ -231,7 +232,7 @@ namespace LimboSoulsOfJudgement
 
 
             // Boss
-            new BossEnemy();
+            boss = new BossEnemy();
         }
 
         /// <summary>
