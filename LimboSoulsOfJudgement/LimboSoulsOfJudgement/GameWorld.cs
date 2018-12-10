@@ -31,7 +31,7 @@ namespace LimboSoulsOfJudgement
         public static UpgradeHealthBtn upgradeHealthBtn;
         public static float levelCount = 1;
         public static bool levelReset = false;
-        public bool playerAlive = true;
+        public bool playerAlive;
         public static GoodKarmaButton goodKarmaButton;
         public static EvilWeaponBtn evilWeaponBtn;
         public static GoodWeaponBtn goodWeaponBtn;
