@@ -24,7 +24,7 @@ namespace LimboSoulsOfJudgement
         protected bool isImmortal;
 
         protected bool canJump = false;   //Controls wether the Player can jump or not
-
+        
         /// <summary>
         /// Property that sets the health value of the current GameObject
         /// </summary>
@@ -40,8 +40,12 @@ namespace LimboSoulsOfJudgement
                 {
                     isImmortal = true;
                 }
-
+                
                 health = value;
+                if (health > maxHealth)
+                {
+                    health = maxHealth;
+                }
                 
             }
         }

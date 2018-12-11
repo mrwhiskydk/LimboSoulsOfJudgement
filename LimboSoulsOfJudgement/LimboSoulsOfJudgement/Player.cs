@@ -25,8 +25,27 @@ namespace LimboSoulsOfJudgement
         public int playerLives = 3;
         //private float maxJumpTime = 2f;
         private double jumpTime;
-        public float lifeSteal = 0.5f;
         private bool isJumping = false;
+
+        // Special-stats
+        /// <summary>
+        /// Percentage of maxHealth added every 3 seconds, needs to be +0.01 of the desired percentage. dunno why
+        /// </summary>
+        public float healthRegen = 0.08f;
+        private double healthRegenTimer;
+        /// <summary>
+        /// Percentage of damage added to player health
+        /// </summary>
+        public float lifeSteal = 1f;
+        /// <summary>
+        /// Percentage chance of dealing critDmgModifier damage
+        /// </summary>
+        public float critChance = 0.01f;
+        /// <summary>
+        /// Percentage of original damage the player crits
+        /// </summary>
+        public float critDmgModifier = 1.5f;
+
 
         /// <summary>
         /// Player constructor that sets player animation values, position and sprite name
@@ -59,6 +78,13 @@ namespace LimboSoulsOfJudgement
         {
             base.Update(gameTime);
             collisionMovement = movementSpeed * gameTime.ElapsedGameTime.TotalSeconds;
+
+            healthRegenTimer += gameTime.ElapsedGameTime.TotalSeconds;
+            if (healthRegenTimer > 3)
+            {
+                Health += (int)(healthRegen * maxHealth);
+                healthRegenTimer = 0;
+            }
 
             HandleMovement(gameTime);
             climb = false;
