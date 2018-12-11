@@ -50,6 +50,11 @@ namespace LimboSoulsOfJudgement
         /// </summary>
         public float knockbackDistance;
 
+        /// <summary>
+        /// Checks if the code for (aggro if enemy is aggro'ed nearby) should be run
+        /// </summary>
+        private bool aggroCheck = true;
+
         protected double knockbackMovement;
         protected double patrolTime;
         protected float patrolDuration;
@@ -90,9 +95,31 @@ namespace LimboSoulsOfJudgement
                     immortalTime = 0;   //Upon reaching 3 seconds, immortalTime is reset to 0
                 }
             }
-            if (Vector2.Distance(position, GameWorld.player.Position) < 500)
+
+            if (Vector2.Distance(position, GameWorld.player.Position) < 500 && aggro is false)
             {
                 aggro = true;
+            }
+
+            if (aggroCheck is true && aggro is true)
+            {
+                List<Enemy> tempEnemyList = new List<Enemy>();
+
+                foreach (GameObject item in GameWorld.gameObjects)
+                {
+                    if (item is Enemy)
+                    {
+                        tempEnemyList.Add((Enemy)item);
+                    }
+                }
+                foreach (Enemy item in tempEnemyList)
+                {
+                    if (Vector2.Distance(position, item.position) < 500)
+                    {
+                        item.aggro = true;
+                    }
+                }
+                aggroCheck = false;
             }
            
 

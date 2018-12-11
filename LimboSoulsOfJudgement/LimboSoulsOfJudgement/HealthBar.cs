@@ -13,6 +13,10 @@ namespace LimboSoulsOfJudgement
         public Texture2D healthBarTexture;
         private Rectangle healthBarSize;
 
+        /// <summary>
+        /// HealthBar constructor that sets the position and sprite
+        /// </summary>
+        /// <param name="startPosition">The initial position of the HealthBar</param>
         public HealthBar(Vector2 startPosition) : base(startPosition, "healthBar")
         {
             position = startPosition;

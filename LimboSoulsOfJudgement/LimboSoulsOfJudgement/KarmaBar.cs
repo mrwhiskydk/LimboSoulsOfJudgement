@@ -14,11 +14,19 @@ namespace LimboSoulsOfJudgement
         private Rectangle karmaBarSize;
         float size;
 
+        /// <summary>
+        /// KarmaBar constructor that sets the position and sprite
+        /// </summary>
+        /// <param name="startPosition">The initial position of the HealthBar</param>
         public KarmaBar(Vector2 startPosition) : base(startPosition, "karmaBar")
         {
             position = startPosition;
         }
 
+        /// <summary>
+        /// Update method that updates the position of the karmabar and the size based on how much good karma in comparison to bad karma.
+        /// </summary>
+        /// <param name="gameTime"></param>
         public override void Update(GameTime gameTime)
         {
             
@@ -41,9 +49,13 @@ namespace LimboSoulsOfJudgement
 
             position = new Vector2(GameWorld.camera.Position.X - karmaBarTexture.Width * 0.5f, GameWorld.ScreenSize.Y - GameWorld.camera.viewMatrix.Translation.Y + 100);
             karmaBarSize = new Rectangle((int)(position.X - karmaBarTexture.Width * 0.5), (int)(position.Y - karmaBarTexture.Height * 0.5), (int)size, karmaBarTexture.Height);
-
+            
         }
 
+        /// <summary>
+        /// Draw method that draws the karmabar
+        /// </summary>
+        /// <param name="spriteBatch"></param>
         public override void Draw(SpriteBatch spriteBatch)
         {
             spriteBatch.Draw(karmaBarTexture, position, karmaBarSize, Color.White, 0f, Vector2.Zero, 1f, SpriteEffects.None, 0.992f);
