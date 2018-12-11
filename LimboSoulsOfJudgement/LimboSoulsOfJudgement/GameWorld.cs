@@ -41,6 +41,10 @@ namespace LimboSoulsOfJudgement
         public static HealthBar healthBar;
         public static Texture2D healthBarOutline;
 
+        // KarmaBar
+        public static KarmaBar karmaBar;
+        public static Texture2D karmaBarOutline;
+
 
         private Level level1;
         public static bool addLevel = true;
@@ -146,9 +150,15 @@ namespace LimboSoulsOfJudgement
             goodWeaponBtn = new GoodWeaponBtn();
             resetButton = new ResetButton();
 
+            // Healthbar
             healthBar = new HealthBar(Vector2.Zero);
             healthBar.healthBarTexture = Content.Load<Texture2D>("healthbar");
             healthBarOutline = Content.Load<Texture2D>("healthBarOutline");
+
+            //karmabar
+            karmaBar = new KarmaBar(Vector2.Zero);
+            karmaBar.karmaBarTexture = Content.Load<Texture2D>("karmaBar");
+            karmaBarOutline = Content.Load<Texture2D>("karmaBarOutline");
 
 
 
@@ -190,7 +200,7 @@ namespace LimboSoulsOfJudgement
             {
                 foreach (var item in gameObjects)
                 {
-                    if (item is Player is false && item is Vendor is false && item is Crosshair is false && item is UI is false && item is Button is false && item is Weapon is false && item is Arm is false && !(item is HealthBar))
+                    if (item is Player is false && item is Vendor is false && item is Crosshair is false && item is UI is false && item is Button is false && item is Weapon is false && item is Arm is false && !(item is HealthBar) && !(item is KarmaBar))
                     {
                         item.Destroy();
                     }
@@ -319,7 +329,7 @@ namespace LimboSoulsOfJudgement
                 go.Draw(spriteBatch);
 
 #if DEBUG
-                DrawCollisionBox(go);
+                //DrawCollisionBox(go);
 #endif
             }
 
