@@ -41,7 +41,7 @@ namespace LimboSoulsOfJudgement
             // if player is on a chain and the enemy is aggro'ed, jump after the player and set goVertically to true
             if (GameWorld.player.climb is true && aggro is true)
             {
-                if (GameWorld.player.Position.Y < position.Y && Math.Abs(position.X - GameWorld.player.Position.X) < 50)
+                if (GameWorld.player.Position.Y < position.Y && Math.Abs(position.X - GameWorld.player.Position.X) < 80)
                 {
                     isJumping = true;
                 }
@@ -110,7 +110,7 @@ namespace LimboSoulsOfJudgement
             Rectangle rightLine = new Rectangle(CollisionBox.X + CollisionBox.Width, CollisionBox.Y + 15, 1, CollisionBox.Height - 30);
             Rectangle leftLine = new Rectangle(CollisionBox.X, CollisionBox.Y + 15, 1, CollisionBox.Height - 30);
 
-            if (otherObject is Platform)
+            if (otherObject is Platform || otherObject is MinorEnemy)
             {
                 
                 if (rightLine.Intersects(otherObject.CollisionBox))

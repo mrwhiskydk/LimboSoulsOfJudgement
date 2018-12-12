@@ -19,12 +19,14 @@ namespace LimboSoulsOfJudgement
         private static List<GameObject> toBeRemoved = new List<GameObject>();
         public static List<GameObjectPassive> gameObjectsPassive = new List<GameObjectPassive>();
         public static List<GameObjectPassive> toBeRemovedPassive = new List<GameObjectPassive>();
+        public static UIAbilityBar uiAbilityBar;
         public static Player player;
         private Texture2D collisionTexture;
         public static Camera camera;
         public static SpriteFont font;
         public static Vendor vendor;
         public static UI ui;
+        
         //Button Fields below
         public static Button button;
         public static BadKarmaButton badKarmaButton;
@@ -40,6 +42,10 @@ namespace LimboSoulsOfJudgement
         // Healthbar
         public static HealthBar healthBar;
         public static Texture2D healthBarOutline;
+
+        // KarmaBar
+        public static KarmaBar karmaBar;
+        public static Texture2D karmaBarOutline;
 
 
         private Level level1;
@@ -132,13 +138,14 @@ namespace LimboSoulsOfJudgement
             collisionTexture = Content.Load<Texture2D>("CollisionTexture");
             
 
-            camera = new Camera();
-
             //Load Vendor & Vendor UI
             vendor = new Vendor(1, 1, new Vector2(600, 350), "VendorTest");
-
+            uiAbilityBar = new UIAbilityBar();
             player = new Player();
             ui = new UI();
+            
+            camera = new Camera();
+            
             badKarmaButton = new BadKarmaButton();
             upgradeHealthBtn = new UpgradeHealthBtn();
             goodKarmaButton = new GoodKarmaButton();
@@ -146,14 +153,19 @@ namespace LimboSoulsOfJudgement
             goodWeaponBtn = new GoodWeaponBtn();
             resetButton = new ResetButton();
 
+            // Healthbar
             healthBar = new HealthBar(Vector2.Zero);
             healthBar.healthBarTexture = Content.Load<Texture2D>("healthbar");
             healthBarOutline = Content.Load<Texture2D>("healthBarOutline");
 
+            //karmabar
+            karmaBar = new KarmaBar(Vector2.Zero);
+            karmaBar.karmaBarTexture = Content.Load<Texture2D>("karmaBar");
+            karmaBarOutline = Content.Load<Texture2D>("karmaBarOutline");
+
 
 
             mouse = new Crosshair();
-            camera.Position = player.Position;
 
             
         }
@@ -190,7 +202,7 @@ namespace LimboSoulsOfJudgement
             {
                 foreach (var item in gameObjects)
                 {
-                    if (item is Player is false && item is Vendor is false && item is Crosshair is false && item is UI is false && item is Button is false && item is Weapon is false && item is Arm is false && !(item is HealthBar))
+                    if (item is Player is false && item is Vendor is false && item is Crosshair is false && item is UI is false && item is Button is false && item is Weapon is false && item is Arm is false && !(item is HealthBar) && !(item is KarmaBar))
                     {
                         item.Destroy();
                     }
@@ -254,12 +266,14 @@ namespace LimboSoulsOfJudgement
                 }
             }
 
+            camera.Position = new Vector2(MathHelper.Lerp(camera.Position.X, player.Position.X, 0.25f), MathHelper.Lerp(camera.Position.Y, player.Position.Y, 0.25f));
+
             foreach (GameObjectPassive go in gameObjectsPassive)
             {
                 go.Update(gameTime);
             }
-            
 
+            
             foreach (GameObject go in toBeRemoved)
             {
                 gameObjects.Remove(go);
@@ -268,6 +282,7 @@ namespace LimboSoulsOfJudgement
 
             gameObjects.AddRange(toBeAdded);
             toBeAdded.Clear();
+
 
 
             foreach (GameObjectPassive go in toBeRemovedPassive)
@@ -285,9 +300,8 @@ namespace LimboSoulsOfJudgement
                 vendor.Position = new Vector2(5300, 3328);
             }
 
-            
 
-            camera.Position = new Vector2(MathHelper.Lerp(camera.Position.X, player.Position.X, 0.25f), MathHelper.Lerp(camera.Position.Y, player.Position.Y, 0.25f)); 
+
             
 
             base.Update(gameTime);
@@ -319,7 +333,7 @@ namespace LimboSoulsOfJudgement
                 go.Draw(spriteBatch);
 
 #if DEBUG
-                DrawCollisionBox(go);
+                //DrawCollisionBox(go);
 #endif
             }
 
@@ -334,7 +348,6 @@ namespace LimboSoulsOfJudgement
             spriteBatch.DrawString(font, $"Lives: {player.playerLives}", new Vector2(camera.Position.X - 750, camera.Position.Y - 375), Color.White, 0f, Vector2.Zero, 1f, SpriteEffects.None, 0.991f);
             spriteBatch.DrawString(font, $"Coordinates: X: {Mouse.GetState().X - camera.viewMatrix.Translation.X}   Y: {Mouse.GetState().Y - camera.viewMatrix.Translation.Y}", new Vector2(camera.Position.X, camera.Position.Y - 500), Color.White, 0f, Vector2.Zero, 1f, SpriteEffects.None, 0.991f);
             spriteBatch.DrawString(font, $"Press E to interact", new Vector2(vendor.Position.X - 60, vendor.Position.Y - 120), Color.White, 0f, Vector2.Zero, 1f, SpriteEffects.None, 0.991f);
-
 
             if (triggerVendor && badKarmaButton.maxStatValue <= badKarmaButton.currentStatValue)
             {

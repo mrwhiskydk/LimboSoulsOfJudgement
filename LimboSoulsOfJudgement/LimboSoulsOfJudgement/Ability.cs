@@ -7,7 +7,7 @@ using Microsoft.Xna.Framework.Graphics;
 
 namespace LimboSoulsOfJudgement
 {
-    public abstract class Ability : GameObject
+    public abstract class Ability : GameObjectPassive
     {
         protected double cooldown;
         protected double cooldownTimer;

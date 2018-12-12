@@ -59,6 +59,7 @@
     <Compile Include="GoodKarmaButton.cs" />
     <Compile Include="GoodWeaponBtn.cs" />
     <Compile Include="HealthBar.cs" />
+    <Compile Include="KarmaBar.cs" />
     <Compile Include="Lava.cs" />
     <Compile Include="LightningBolt.cs" />
     <Compile Include="MinorEnemy.cs" />
