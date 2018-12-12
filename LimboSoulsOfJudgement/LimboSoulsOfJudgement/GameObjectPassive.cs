@@ -15,6 +15,7 @@ namespace LimboSoulsOfJudgement
         protected float rotation;
         protected Vector2 position;
         protected int test = 0;
+        public Vector2 Position { get => position; set => position = value; }
 
         /// <summary>
         /// Property for the position of current GameObject

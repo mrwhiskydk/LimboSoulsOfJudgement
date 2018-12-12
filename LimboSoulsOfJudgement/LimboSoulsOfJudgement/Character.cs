@@ -39,6 +39,7 @@ namespace LimboSoulsOfJudgement
                 if (takingDamage)
                 {
                     isImmortal = true;
+                    takingDamage = false;
                 }
                 
                 health = value;
