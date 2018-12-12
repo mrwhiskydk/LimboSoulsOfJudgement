@@ -7,7 +7,7 @@ namespace LimboSoulsOfJudgement
     public class Player : Character
     {
         public MeleeWeapon melee;
-        public RangedWeapon ranged = new RangedWeapon();
+        public RangedWeapon ranged;
         public Weapon weapon;
         public static Arm arm;
         public Ability ability1;
@@ -55,6 +55,7 @@ namespace LimboSoulsOfJudgement
         {
             arm = new Arm();
             melee = new MeleeWeapon();
+            ranged = new RangedWeapon();
             ability1 = new LightningBolt();
 
             //Maximum amount of Player health

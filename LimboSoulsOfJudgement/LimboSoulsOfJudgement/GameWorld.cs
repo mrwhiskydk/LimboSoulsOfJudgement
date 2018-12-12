@@ -289,7 +289,9 @@ namespace LimboSoulsOfJudgement
                 }
             }
 
+            //manually updating classes with important order
             camera.Position = new Vector2(MathHelper.Lerp(camera.Position.X, player.Position.X, 0.25f), MathHelper.Lerp(camera.Position.Y, player.Position.Y, 0.25f));
+            mouse.Update(gameTime);
 
             foreach (GameObjectPassive go in gameObjectsPassive)
             {
@@ -359,6 +361,9 @@ namespace LimboSoulsOfJudgement
                 //DrawCollisionBox(go);
 #endif
             }
+
+            //Manually drawing classes with important order
+            mouse.Draw(spriteBatch);
 
             foreach (GameObjectPassive go in gameObjectsPassive)
             {
