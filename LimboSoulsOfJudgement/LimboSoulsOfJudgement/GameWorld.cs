@@ -19,12 +19,14 @@ namespace LimboSoulsOfJudgement
         private static List<GameObject> toBeRemoved = new List<GameObject>();
         public static List<GameObjectPassive> gameObjectsPassive = new List<GameObjectPassive>();
         public static List<GameObjectPassive> toBeRemovedPassive = new List<GameObjectPassive>();
+        public static UIAbilityBar uiAbilityBar;
         public static Player player;
         private Texture2D collisionTexture;
         public static Camera camera;
         public static SpriteFont font;
         public static Vendor vendor;
         public static UI ui;
+        
         //Button Fields below
         public static Button button;
         public static BadKarmaButton badKarmaButton;
@@ -136,13 +138,14 @@ namespace LimboSoulsOfJudgement
             collisionTexture = Content.Load<Texture2D>("CollisionTexture");
             
 
-            camera = new Camera();
-
             //Load Vendor & Vendor UI
             vendor = new Vendor(1, 1, new Vector2(600, 350), "VendorTest");
-
+            uiAbilityBar = new UIAbilityBar();
             player = new Player();
             ui = new UI();
+            
+            camera = new Camera();
+            
             badKarmaButton = new BadKarmaButton();
             upgradeHealthBtn = new UpgradeHealthBtn();
             goodKarmaButton = new GoodKarmaButton();
@@ -163,7 +166,6 @@ namespace LimboSoulsOfJudgement
 
 
             mouse = new Crosshair();
-            camera.Position = player.Position;
 
             
         }
@@ -264,12 +266,14 @@ namespace LimboSoulsOfJudgement
                 }
             }
 
+            camera.Position = new Vector2(MathHelper.Lerp(camera.Position.X, player.Position.X, 0.25f), MathHelper.Lerp(camera.Position.Y, player.Position.Y, 0.25f));
+
             foreach (GameObjectPassive go in gameObjectsPassive)
             {
                 go.Update(gameTime);
             }
-            
 
+            
             foreach (GameObject go in toBeRemoved)
             {
                 gameObjects.Remove(go);
@@ -278,6 +282,7 @@ namespace LimboSoulsOfJudgement
 
             gameObjects.AddRange(toBeAdded);
             toBeAdded.Clear();
+
 
 
             foreach (GameObjectPassive go in toBeRemovedPassive)
@@ -295,9 +300,8 @@ namespace LimboSoulsOfJudgement
                 vendor.Position = new Vector2(5300, 3328);
             }
 
-            
 
-            camera.Position = new Vector2(MathHelper.Lerp(camera.Position.X, player.Position.X, 0.25f), MathHelper.Lerp(camera.Position.Y, player.Position.Y, 0.25f)); 
+
             
 
             base.Update(gameTime);

@@ -12,7 +12,7 @@ namespace LimboSoulsOfJudgement
     {
         
 
-        public LightningBolt() : base(new Vector2(-1000, -1000), "LightningBolt")
+        public LightningBolt() : base(new Vector2(300, 300), "LightningBolt")
         {
             cooldown = 1;
             cooldownTimer = cooldown;
@@ -24,6 +24,13 @@ namespace LimboSoulsOfJudgement
             Vector2 direction = new Vector2(GameWorld.mouse.Position.X, GameWorld.mouse.Position.Y) - playerPosition;
 
             new LightningBoltAbility(playerPosition, direction);
+        }
+
+        public override void Update(GameTime gameTime)
+        {
+            
+            base.Update(gameTime);
+            position = UIAbilityBar.abilitySlot1;
         }
 
 
@@ -55,6 +62,15 @@ namespace LimboSoulsOfJudgement
                 if (timeAlive >= 3)
                 {
                     Destroy();
+                }
+            }
+
+            public override void DoCollision(GameObject otherObject)
+            {
+                if (otherObject is Enemy)
+                {
+                    Enemy obj = (Enemy)otherObject;
+                    obj.enemyHealth -= damage;
                 }
             }
         }
