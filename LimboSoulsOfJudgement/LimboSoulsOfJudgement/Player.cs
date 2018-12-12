@@ -31,12 +31,12 @@ namespace LimboSoulsOfJudgement
         /// <summary>
         /// Percentage of maxHealth added every 3 seconds, needs to be +0.01 of the desired percentage. dunno why
         /// </summary>
-        public float healthRegen = 0.08f;
+        public float healthRegen = 0.02f;
         private double healthRegenTimer;
         /// <summary>
         /// Percentage of damage added to player health
         /// </summary>
-        public float lifeSteal = 1f;
+        public float lifeSteal = 0.1f;
         /// <summary>
         /// Percentage chance of dealing critDmgModifier damage
         /// </summary>

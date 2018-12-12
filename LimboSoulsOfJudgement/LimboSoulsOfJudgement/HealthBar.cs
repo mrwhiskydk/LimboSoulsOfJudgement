@@ -8,7 +8,7 @@ using Microsoft.Xna.Framework.Graphics;
 
 namespace LimboSoulsOfJudgement
 {
-    public class HealthBar : GameObject
+    public class HealthBar : GameObjectPassive
     {
         public Texture2D healthBarTexture;
         private Rectangle healthBarSize;
