@@ -15,6 +15,7 @@ namespace LimboSoulsOfJudgement
         protected float rotation;
         protected Vector2 position;
         protected int test = 0;
+        public Vector2 Position { get => position; set => position = value; }
 
 
         /// <summary>
@@ -52,7 +53,7 @@ namespace LimboSoulsOfJudgement
         /// <param name="spriteBatch">The spritebatch to use for drawing</param>
         public virtual void Draw(SpriteBatch spriteBatch)
         {
-            spriteBatch.Draw(sprite, new Vector2(position.X + 1, position.Y), null, Color.White, rotation, new Vector2(sprite.Width * 0.5f, sprite.Height * 0.5f), 1f, SpriteEffects.None, 0.6f);
+            spriteBatch.Draw(sprite, new Vector2(position.X, position.Y), null, Color.White, rotation, new Vector2(sprite.Width * 0.5f, sprite.Height * 0.5f), 1f, SpriteEffects.None, 0.7f);
         }
     }
 }

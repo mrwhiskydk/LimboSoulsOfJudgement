@@ -18,7 +18,7 @@ namespace LimboSoulsOfJudgement
         /// <summary>
         /// Default Constructor that sets the values of current UI GameObject
         /// </summary>
-        public UI() : base(1, 1, new Vector2(GameWorld.vendor.Position.X - 300, GameWorld.vendor.Position.Y - 10), "VendorUITest")
+        public UI() : base(1, 1, new Vector2(GameWorld.vendor.Position.X, GameWorld.vendor.Position.Y + 120), "VendorUITest")
         {
 
         }
@@ -37,7 +37,7 @@ namespace LimboSoulsOfJudgement
            
             if (GameWorld.triggerVendor)
             {
-                spriteBatch.Draw(sprite, position, null, Color.White, rotation, new Vector2(sprite.Width * 0.5f, sprite.Height * 0.5f), 1f, new SpriteEffects(), 0.02f);
+                spriteBatch.Draw(sprite, position, null, Color.White, rotation, new Vector2(sprite.Width * 0.5f, sprite.Height * 0.5f), 1f, new SpriteEffects(), 0.994f);
             }
 
         }
