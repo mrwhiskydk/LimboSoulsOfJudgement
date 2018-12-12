@@ -76,7 +76,11 @@
     <Compile Include="Trapdoor.cs" />
     <Compile Include="UI.cs" />
     <Compile Include="UIAbilityBar.cs" />
+    <Compile Include="UpgradeCritChanceBtn.cs" />
+    <Compile Include="UpgradeCritDamageBtn.cs" />
     <Compile Include="UpgradeHealthBtn.cs" />
+    <Compile Include="UpgradeHealthRegenBtn.cs" />
+    <Compile Include="UpgradeLifetealBtn.cs" />
     <Compile Include="Vendor.cs" />
     <Compile Include="Weapon.cs" />
   </ItemGroup>

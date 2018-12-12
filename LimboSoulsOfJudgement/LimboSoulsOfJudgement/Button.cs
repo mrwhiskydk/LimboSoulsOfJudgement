@@ -75,7 +75,7 @@ namespace LimboSoulsOfJudgement
 
             base.Update(gameTime);
         }
-        
+
 
         /// <summary>
         /// Virtual Method that enables Button click, purchase and upgrades of Player stats
@@ -84,21 +84,8 @@ namespace LimboSoulsOfJudgement
         /// Enables purchase of current stat if player soul currency is equal to the stat cost as a minimum
         /// </summary>
         /// <param name="gameTime">Time elapsed since last call in the update</param>
-        public virtual void UpgradeStat(GameTime gameTime)
-        {
-            mouseClicked += gameTime.ElapsedGameTime.TotalSeconds;
-            if (GameWorld.mouse.Click(this) && GameWorld.triggerVendor && mouseClicked > nextClick)
-            {
-                if (GameWorld.player.currentSouls < statCost)    //Returns if the current amount of Player souls is less than the cost of the Stat
-                {
-                    return;
-                }
-                currentKarma += currentStatValue;
-                currentStatValue += statIncrease;   //Adds value to the current amount of Karma equal to its stat cost               
-                GameWorld.player.currentSouls -= statCost;  //Substracts player soul value equal to current buttons stat cost
-                mouseClicked = 0;
-            }
-        }
+        public abstract void UpgradeStat(GameTime gameTime);
+        
 
         /// <summary>
         /// overridden Draw method that draws the button half transparent if pressed

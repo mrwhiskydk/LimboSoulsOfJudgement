@@ -13,7 +13,7 @@ namespace LimboSoulsOfJudgement
         public Ability ability1;
         private bool canSwitchWeapons = true;
         private double attackTimer = 0;
-        public int currentSouls;
+        public int currentSouls = 100;
         private double collisionMovement; // Used for collision so you dont need gameTime in DoCollision
         private bool hittingRoof = false; 
 

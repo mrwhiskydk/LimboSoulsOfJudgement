@@ -17,7 +17,7 @@ namespace LimboSoulsOfJudgement
         /// <summary>
         /// UpgradeHealthBtn Constructor, that sets the default position and sprite name values
         /// </summary>
-        public UpgradeHealthBtn() : base(new Vector2(GameWorld.ui.Position.X - 73, GameWorld.ui.Position.Y + 30), "buttonUITest")
+        public UpgradeHealthBtn() : base(new Vector2(GameWorld.ui.Position.X, GameWorld.ui.Position.Y + 105), "buttonUITest")
         {
             currentStatValue = GameWorld.player.maxHealth;
             maxStatValue = 300;
