@@ -15,7 +15,6 @@ namespace LimboSoulsOfJudgement
         public int maxHealth;
         protected float movementSpeed;
 
-        protected bool takingDamage = false;
         protected float immortalDuration = 1.0f;
         protected double immortalTime;
         /// <summary>
@@ -36,10 +35,9 @@ namespace LimboSoulsOfJudgement
             }
             set
             {
-                if (takingDamage)
+                if (!isImmortal)
                 {
                     isImmortal = true;
-                    takingDamage = false;
                 }
                 
                 health = value;

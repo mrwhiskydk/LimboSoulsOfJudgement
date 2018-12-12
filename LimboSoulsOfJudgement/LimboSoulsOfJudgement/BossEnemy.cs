@@ -27,7 +27,7 @@ namespace LimboSoulsOfJudgement
         public BossEnemy(string spriteName) : base(5, 5, new Vector2(GameWorld.ScreenSize.Width * 0.5f, GameWorld.ScreenSize.Height * 0.5f), spriteName)
         {
             movementSpeed = 300;
-            enemyHealth = (int)(200 * GameWorld.levelCount);
+            health = (int)(200 * GameWorld.levelCount);
             enemyDamage = (int)(20 * GameWorld.levelCount);
             enemySouls = (int)(50 * GameWorld.levelCount);
             soulCount = 10;
