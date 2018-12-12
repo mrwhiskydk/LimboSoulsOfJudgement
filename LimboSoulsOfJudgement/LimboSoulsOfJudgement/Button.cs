@@ -93,6 +93,7 @@ namespace LimboSoulsOfJudgement
                 {
                     return;
                 }
+                currentKarma += currentStatValue;
                 currentStatValue += statIncrease;   //Adds value to the current amount of Karma equal to its stat cost               
                 GameWorld.player.currentSouls -= statCost;  //Substracts player soul value equal to current buttons stat cost
                 mouseClicked = 0;
@@ -107,11 +108,11 @@ namespace LimboSoulsOfJudgement
         {
             if (GameWorld.triggerVendor && GameWorld.mouse.Click(this))
             {
-                spriteBatch.Draw(sprite, position, null, Color.White * 0.5f, rotation, new Vector2(sprite.Width * 0.5f, sprite.Height * 0.5f), 1f, new SpriteEffects(), 0.03f);
+                spriteBatch.Draw(sprite, position, null, Color.White * 0.5f, rotation, new Vector2(sprite.Width * 0.5f, sprite.Height * 0.5f), 1f, new SpriteEffects(), 0.995f);
             }
             else if (GameWorld.triggerVendor)
             {
-                spriteBatch.Draw(sprite, position, null, Color.White, rotation, new Vector2(sprite.Width * 0.5f, sprite.Height * 0.5f), 1f, new SpriteEffects(), 0.03f);
+                spriteBatch.Draw(sprite, position, null, Color.White, rotation, new Vector2(sprite.Width * 0.5f, sprite.Height * 0.5f), 1f, new SpriteEffects(), 0.995f);
             }
         }
 

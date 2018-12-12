@@ -45,7 +45,7 @@ namespace LimboSoulsOfJudgement
             base.UpgradeStat(gameTime);
 
             //Adds the same amount of gained stat value to the current karma, in order for later purchases of Good Stats and Weapons
-            currentKarma += currentStatValue;
+            //currentKarma += currentStatValue;
         }
     }
 }
