@@ -20,7 +20,7 @@ namespace LimboSoulsOfJudgement
 
         public override void Update(GameTime gameTime)
         {
-            position = new Vector2(GameWorld.player.Position.X, GameWorld.player.Position.Y);
+            position = new Vector2(GameWorld.camera.Position.X, GameWorld.camera.Position.Y + GameWorld.ScreenSize.Height * 0.5f - sprite.Height / 2);
             abilitySlot1 = position;
         }
     }
