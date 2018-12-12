@@ -8,7 +8,7 @@ using Microsoft.Xna.Framework.Graphics;
 
 namespace LimboSoulsOfJudgement
 {
-    public class HealthBar : GameObject
+    public class HealthBar : GameObjectPassive
     {
         public Texture2D healthBarTexture;
         private Rectangle healthBarSize;
@@ -19,7 +19,6 @@ namespace LimboSoulsOfJudgement
         /// <param name="startPosition">The initial position of the HealthBar</param>
         public HealthBar(Vector2 startPosition) : base(startPosition, "healthBar")
         {
-            position = startPosition;
 
         }
 

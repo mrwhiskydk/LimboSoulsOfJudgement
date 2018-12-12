@@ -8,7 +8,7 @@ using System.Threading.Tasks;
 
 namespace LimboSoulsOfJudgement
 {
-    public class KarmaBar : GameObject
+    public class KarmaBar : GameObjectPassive
     {
         public Texture2D karmaBarTexture;
         private Rectangle karmaBarSize;
@@ -20,7 +20,7 @@ namespace LimboSoulsOfJudgement
         /// <param name="startPosition">The initial position of the HealthBar</param>
         public KarmaBar(Vector2 startPosition) : base(startPosition, "karmaBar")
         {
-            position = startPosition;
+            
         }
 
         /// <summary>
