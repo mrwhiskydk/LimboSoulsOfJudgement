@@ -79,12 +79,17 @@ namespace LimboSoulsOfJudgement
             base.Update(gameTime);
             collisionMovement = movementSpeed * gameTime.ElapsedGameTime.TotalSeconds;
 
-            healthRegenTimer += gameTime.ElapsedGameTime.TotalSeconds;
-            if (healthRegenTimer > 3)
+            // If the player is under maxHealth activate healthRegen
+            if (Health < maxHealth)
             {
-                Health += (int)(healthRegen * maxHealth);
-                healthRegenTimer = 0;
+                healthRegenTimer += gameTime.ElapsedGameTime.TotalSeconds;
+                if (healthRegenTimer > 3)
+                {
+                    Health += (int)(healthRegen * maxHealth);
+                    healthRegenTimer = 0;
+                }
             }
+            
 
             HandleMovement(gameTime);
             climb = false;
