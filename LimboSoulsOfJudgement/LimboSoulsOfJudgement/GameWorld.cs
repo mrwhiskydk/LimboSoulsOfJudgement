@@ -49,8 +49,13 @@ namespace LimboSoulsOfJudgement
 
 
         private Level level1;
+
+        public static int stage = 1;
+        public static bool teleport = false;
+        public static Level level;
         public static bool addLevel = true;
 
+        private Portal portal;
         public static Random rnd = new Random();
         public static Crosshair mouse;
         private Texture2D backGround;
@@ -162,8 +167,9 @@ namespace LimboSoulsOfJudgement
             karmaBar = new KarmaBar(Vector2.Zero);
             karmaBar.karmaBarTexture = Content.Load<Texture2D>("karmaBar");
             karmaBarOutline = Content.Load<Texture2D>("karmaBarOutline");
+            portal = new Portal(new Vector2(87 * 64, 55 * 64));
 
-
+            new EditButton();
 
             mouse = new Crosshair();
 
@@ -193,10 +199,18 @@ namespace LimboSoulsOfJudgement
             if (GamePad.GetState(PlayerIndex.One).Buttons.Back == ButtonState.Pressed || Keyboard.GetState().IsKeyDown(Keys.Escape))
                 Exit();
 
+            if (teleport == true)
+            {
+                levelReset = true;
+                addLevel = true;
+                teleport = false;
+            }
+
             if (levelReset == false && addLevel == true)
             {
-                level1 = new Level();
+                level = new Level();
                 addLevel = false;
+
             }
             else if (levelReset == true)
             {
@@ -208,8 +222,17 @@ namespace LimboSoulsOfJudgement
                     }
                 }
                 levelReset = false;
+
                 player.health = player.MaxHealth;
-                player.Position = new Vector2(200, 500);
+                if (stage == 1)
+                {
+                    player.Position = new Vector2(200, 500);
+                }
+                if (stage == 10)
+                {
+                    player.Position = new Vector2(ScreenSize.Width * 0.5f, 13 * 128);
+                }
+
             }
 
             if (player.playerLives > 0)
@@ -295,10 +318,10 @@ namespace LimboSoulsOfJudgement
 
 
 
-            if (level1.boss.enemyHealth <= 0)
-            {
-                vendor.Position = new Vector2(5300, 3328);
-            }
+            //if (level1.boss.enemyHealth <= 0)
+            //{
+            //    vendor.Position = new Vector2(5300, 3328);
+            //}
 
 
 
@@ -342,6 +365,7 @@ namespace LimboSoulsOfJudgement
                 go.Draw(spriteBatch);
             }
 
+            spriteBatch.DrawString(font, "Press E", new Vector2(portal.Position.X - 30, portal.Position.Y - 100), Color.White, 0f, Vector2.Zero, 1f, SpriteEffects.None, 0.991f);
             spriteBatch.DrawString(font, $"Souls: {player.currentSouls}", new Vector2(camera.Position.X - 750, camera.Position.Y - 425), Color.White, 0f, Vector2.Zero, 1f, SpriteEffects.None, 0.991f);
             spriteBatch.DrawString(font, $"Melee Weapon Damage: {player.melee.damage}", new Vector2(camera.Position.X - 750, camera.Position.Y - 350), Color.White, 0f, Vector2.Zero, 1f, SpriteEffects.None, 0.991f);
             spriteBatch.DrawString(font, $"Health: {player.health} / {player.maxHealth}", new Vector2(healthBar.Position.X, healthBar.Position.Y), Color.White, 0f, Vector2.Zero, 1f, SpriteEffects.None, 0.993f);

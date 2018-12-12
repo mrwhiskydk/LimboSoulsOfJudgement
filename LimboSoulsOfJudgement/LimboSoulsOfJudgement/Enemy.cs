@@ -44,7 +44,7 @@ namespace LimboSoulsOfJudgement
         /// <summary>
         /// How long an enemy is knocked back 
         /// </summary>
-        protected float knockbackDuration = 0.6f;
+        protected float knockbackDuration;
         /// <summary>
         /// The distance an enemy should be knocked back when hit
         /// </summary>
