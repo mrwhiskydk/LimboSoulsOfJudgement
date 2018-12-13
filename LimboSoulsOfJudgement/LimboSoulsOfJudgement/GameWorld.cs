@@ -26,6 +26,7 @@ namespace LimboSoulsOfJudgement
         public static SpriteFont font;
         public static Vendor vendor;
         public static UI ui;
+        public static SpriteFont damageFont;
         
         //Button Fields below
         public static Button button;
@@ -145,7 +146,8 @@ namespace LimboSoulsOfJudgement
             evilAura = Content.Load<Texture2D>("EvilAura");
             goodAura = Content.Load<Texture2D>("GoodAura");
             collisionTexture = Content.Load<Texture2D>("CollisionTexture");
-            
+            damageFont = Content.Load<SpriteFont>("DamageFont");
+
 
             //Load Vendor & Vendor UI
             vendor = new Vendor();
@@ -337,7 +339,6 @@ namespace LimboSoulsOfJudgement
 
 
 
-            
 
             base.Update(gameTime);
         }
@@ -349,16 +350,16 @@ namespace LimboSoulsOfJudgement
         protected override void Draw(GameTime gameTime)
         {
             GraphicsDevice.Clear(Color.DarkGray);
-            spriteBatch.Begin(SpriteSortMode.FrontToBack, null, null, null, null, null, camera.viewMatrix);
+            spriteBatch.Begin(SpriteSortMode.FrontToBack, BlendState.AlphaBlend, null, null, null, null, camera.viewMatrix);
             spriteBatch.Draw(backGround, new Vector2(camera.Position.X - ScreenSize.Width * 0.5f, camera.Position.Y - ScreenSize.Height * 0.5f), null, Color.White, 0f, Vector2.Zero, 1f, SpriteEffects.None, 0.01f);
             spriteBatch.Draw(shadow, new Vector2(camera.Position.X - ScreenSize.Width * 0.5f, camera.Position.Y - ScreenSize.Height * 0.5f), null, Color.White, 0f, new Vector2(160, 80), 1f, SpriteEffects.None, 0.99f);
 
-            if (badKarmaButton.currentStatValue == badKarmaButton.maxStatValue)
+            if ((badKarmaButton.currentStatValue / badKarmaButton.maxStatValue) * 100 > 80 && badKarmaButton.currentStatValue > goodKarmaButton.currentStatValue)
             {
                 spriteBatch.Draw(evilAura, new Vector2(camera.Position.X - ScreenSize.Width * 0.5f, camera.Position.Y - ScreenSize.Height * 0.5f), null, Color.White, 0f, new Vector2(160, 80), 1f, SpriteEffects.None, 0.02f);
             }
 
-            if (goodKarmaButton.currentStatValue == goodKarmaButton.maxStatValue)
+            if ((goodKarmaButton.currentStatValue / goodKarmaButton.maxStatValue) * 100 > 80 && badKarmaButton.currentStatValue < goodKarmaButton.currentStatValue)
             {
                 spriteBatch.Draw(goodAura, new Vector2(camera.Position.X - ScreenSize.Width * 0.5f, camera.Position.Y - ScreenSize.Height * 0.5f), null, Color.White, 0f, new Vector2(160, 80), 1f, SpriteEffects.None, 0.02f);
             }
@@ -368,7 +369,7 @@ namespace LimboSoulsOfJudgement
                 go.Draw(spriteBatch);
 
 #if DEBUG
-                //DrawCollisionBox(go);
+                DrawCollisionBox(go);
 #endif
             }
 
@@ -409,6 +410,7 @@ namespace LimboSoulsOfJudgement
                 spriteBatch.DrawString(font, $"Demonic Karma Required: {evilWeaponBtn.karmaRequirements}", new Vector2(evilWeaponBtn.Position.X - 50, evilWeaponBtn.Position.Y + 55), Color.White, 0f, Vector2.Zero, 1f, SpriteEffects.None, 0.995f);
 
             }
+
 
             if (triggerVendor && badKarmaButton.maxStatValue <= badKarmaButton.currentStatValue)
             {

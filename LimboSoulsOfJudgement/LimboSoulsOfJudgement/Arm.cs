@@ -11,6 +11,7 @@ namespace LimboSoulsOfJudgement
 {
     public class Arm : GameObject
     {
+        public new float rotation;
         public Arm() : base("PlayerArm")
         {
             

@@ -121,6 +121,25 @@
 /processorParam:TextureFormat=Color
 /build:crosshair.png
 
+#begin damage.png
+/importer:TextureImporter
+/processor:TextureProcessor
+/processorParam:ColorKeyColor=255,0,255,255
+/processorParam:ColorKeyEnabled=True
+/processorParam:GenerateMipmaps=False
+/processorParam:PremultiplyAlpha=True
+/processorParam:ResizeToPowerOfTwo=False
+/processorParam:MakeSquare=False
+/processorParam:TextureFormat=Color
+/build:damage.png
+
+#begin DamageFont.spritefont
+/importer:FontDescriptionImporter
+/processor:FontDescriptionProcessor
+/processorParam:PremultiplyAlpha=True
+/processorParam:TextureFormat=Compressed
+/build:DamageFont.spritefont
+
 #begin Darkness.png
 /importer:TextureImporter
 /processor:TextureProcessor
