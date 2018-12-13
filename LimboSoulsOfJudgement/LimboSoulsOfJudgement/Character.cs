@@ -35,9 +35,16 @@ namespace LimboSoulsOfJudgement
             }
             set
             {
-                if (!isImmortal)
+                if (value < health)
                 {
-                    isImmortal = true;
+                    if (!isImmortal)
+                    {
+                        isImmortal = true;
+                        health = value;
+                    }
+                }
+                else
+                {
                     health = value;
                 }
                 
