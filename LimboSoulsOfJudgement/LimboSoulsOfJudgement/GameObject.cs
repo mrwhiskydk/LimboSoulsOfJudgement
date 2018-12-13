@@ -66,11 +66,17 @@ namespace LimboSoulsOfJudgement
         }
 
         /// <summary>
+        /// Specialized constructor for something like the Crosshair class where we need to update manually to ensure correct order
+        /// </summary>
+        public GameObject()
+        {
+
+        }
+
+        /// <summary>
         /// The default constructor for a GameObject
         /// </summary>
-        /// <param name="content">Reference to a ContentManager for loading resources</param>
         /// <param name="spriteName">The name of the texture resource the should be used for the sprite</param>
-        /// <exception cref="Microsoft.Xna.Framework.Content.ContentLoadException">Thrown if a matching texture cant be found for spriteName</exception>
         public GameObject(string spriteName) : this(Vector2.Zero, spriteName)
         {
 

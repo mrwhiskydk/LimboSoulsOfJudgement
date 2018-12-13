@@ -20,9 +20,27 @@ namespace LimboSoulsOfJudgement
         public int currentStatValue;
 
         /// <summary>
+        /// Sets the current Stat value, of the current button.
+        /// Used instead of currentStatValue, if current stat is to have decimal numbers
+        /// </summary>
+        public float currentFloatStatValue;
+
+        /// <summary>
         /// Sets the maximum amount of stat value, that currentStatValue is able to reach
         /// </summary>
         public int maxStatValue;
+
+        /// <summary>
+        /// Sets the maximum amount of stat value, that currentFloatStatValue is able to reach.
+        /// Used instead of maxStatValue, if current stat is to have decimal numbers
+        /// </summary>
+        public float maxFloatStatValue;
+
+        /// <summary>
+        /// Sets the actual increase amount of value to the player stat values.
+        /// Used instead of statIncrease, if current stat is to have decimal numbers
+        /// </summary>
+        public float regenStatIncrease;
 
         /// <summary>
         /// Sets the maximum aomunt of karma value required in order to buy specific weapons and stat upgrades. Used in both Good and Evil button classes 
@@ -49,7 +67,7 @@ namespace LimboSoulsOfJudgement
         /// </summary>
         public bool weaponActive;
 
-        protected float nextClick = 0.3f;
+        protected float nextClick = 0.2f;
         protected double mouseClicked;
 
         /// <summary>
@@ -75,30 +93,17 @@ namespace LimboSoulsOfJudgement
 
             base.Update(gameTime);
         }
-        
+
 
         /// <summary>
         /// Virtual Method that enables Button click, purchase and upgrades of Player stats
-        /// Handles  math calculations of soul currency, stat cost and stat increase
+        /// Handles math calculations of soul currency, stat cost and stat increase
         /// Adds a small time period between each click
         /// Enables purchase of current stat if player soul currency is equal to the stat cost as a minimum
         /// </summary>
         /// <param name="gameTime">Time elapsed since last call in the update</param>
-        public virtual void UpgradeStat(GameTime gameTime)
-        {
-            mouseClicked += gameTime.ElapsedGameTime.TotalSeconds;
-            if (GameWorld.mouse.Click(this) && GameWorld.triggerVendor && mouseClicked > nextClick)
-            {
-                if (GameWorld.player.currentSouls < statCost)    //Returns if the current amount of Player souls is less than the cost of the Stat
-                {
-                    return;
-                }
-                currentKarma += currentStatValue;
-                currentStatValue += statIncrease;   //Adds value to the current amount of Karma equal to its stat cost               
-                GameWorld.player.currentSouls -= statCost;  //Substracts player soul value equal to current buttons stat cost
-                mouseClicked = 0;
-            }
-        }
+        public abstract void UpgradeStat(GameTime gameTime);
+        
 
         /// <summary>
         /// overridden Draw method that draws the button half transparent if pressed

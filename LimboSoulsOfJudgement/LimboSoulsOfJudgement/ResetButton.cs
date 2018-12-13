@@ -18,7 +18,7 @@ namespace LimboSoulsOfJudgement
         /// </summary>
         /// <param name="startPosition"></param>
         /// <param name="spriteName"></param>
-        public ResetButton() : base(new Vector2(GameWorld.ui.Position.X - 20, GameWorld.ui.Position.Y + 150), "buttonUITest")
+        public ResetButton() : base(new Vector2(GameWorld.ui.Position.X - - 515, GameWorld.ui.Position.Y + 150), "buttonUITest")
         {
 
         }

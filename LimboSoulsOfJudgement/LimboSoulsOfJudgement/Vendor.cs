@@ -22,7 +22,7 @@ namespace LimboSoulsOfJudgement
         /// <param name="animationFPS"></param>
         /// <param name="startPostion"></param>
         /// <param name="spriteName"></param>
-        public Vendor(int frameCount, float animationFPS, Vector2 startPostion, string spriteName) : base(frameCount, animationFPS, startPostion, spriteName)
+        public Vendor() : base(4, 4, new Vector2(600, 350), "Vendor")
         {
 
         }
@@ -49,6 +49,23 @@ namespace LimboSoulsOfJudgement
 
             }
 
+            if (Vector2.Distance(position, GameWorld.player.Position) < 400)
+            {
+                State(4, "Vendor2");
+            }
+            else if (Vector2.Distance(position, GameWorld.player.Position) > 400)
+            {
+                State(4, "Vendor");
+            }
+
+            if (GameWorld.player.Position.X > position.X)
+            {
+                facingRight = false;
+            }
+            else if (GameWorld.player.Position.X < position.X)
+            {
+                facingRight = true;
+            }
             base.Update(gameTime);
         }
 

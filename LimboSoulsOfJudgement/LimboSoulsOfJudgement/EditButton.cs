@@ -35,7 +35,7 @@ namespace LimboSoulsOfJudgement
 
             if (otherObject is MeleeWeapon && GameWorld.player.editMode == false)
             {
-                editOn = true;
+                editOn = false;
             }
             if (otherObject is MeleeWeapon && GameWorld.player.editMode == true)
             {
