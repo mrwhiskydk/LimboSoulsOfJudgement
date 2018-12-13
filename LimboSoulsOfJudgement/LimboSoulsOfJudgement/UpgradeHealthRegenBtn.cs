@@ -33,7 +33,7 @@ namespace LimboSoulsOfJudgement
         /// <param name="gameTime">Time elapsed since last call in the update</param>
         public override void Update(GameTime gameTime)
         {
-            if (currentFloatStatValue < maxFloatStatValue)
+            if (currentFloatStatValue < maxFloatStatValue - regenStatIncrease)
             {
                 UpgradeStat(gameTime);
             }
