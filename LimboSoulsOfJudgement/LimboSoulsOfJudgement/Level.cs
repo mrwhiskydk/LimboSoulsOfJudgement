@@ -163,26 +163,22 @@ namespace LimboSoulsOfJudgement
                 new Platform(new Vector2(1344, 448), "MediumBlock");
 
 
-
-                // Trapdoor
-
-
                 //Chains
                 for (int i = 0; i < 15; i++)
                 {
-                    new Chain(new Vector2(4670, 35 + i * 70), "chain");
+                    new Chain(new Vector2(4670, 35 + i * 64), "chain");
                 }
                 for (int i = 0; i < 15; i++)
                 {
-                    new Chain(new Vector2(210, 1187 + i * 70), "chain");
+                    new Chain(new Vector2(210, 1187 + i * 64), "chain");
                 }
                 for (int i = 0; i < 16; i++)
                 {
-                    new Chain(new Vector2(1980, 2210 + i * 70), "chain");
+                    new Chain(new Vector2(1980, 2210 + i * 64), "chain");
                 }
                 for (int i = 0; i < 12; i++)
                 {
-                    new Chain(new Vector2(5200, 2468 + i * 70), "chain");
+                    new Chain(new Vector2(5200, 2468 + i * 64), "chain");
                 }
 
                 //Lava
@@ -221,7 +217,7 @@ namespace LimboSoulsOfJudgement
                     new MinorEnemy(new Vector2(27 * 64, 55 * 64), "SmallDevil");
                     new MinorEnemy(new Vector2(35 * 64, 55 * 64), "SmallDevil");
                 }
-                else
+                if (GameWorld.badKarmaButton.currentKarma > GameWorld.goodKarmaButton.currentKarma)
                 {
                     new MinorEnemy(new Vector2(27 * 64, 10 * 64), "SmallAngel");
                     new MinorEnemy(new Vector2(40 * 64, 14 * 64), "SmallAngel");
@@ -236,15 +232,110 @@ namespace LimboSoulsOfJudgement
                     new MinorEnemy(new Vector2(27 * 64, 55 * 64), "SmallAngel");
                     new MinorEnemy(new Vector2(35 * 64, 55 * 64), "SmallAngel");
                 }
+                if (GameWorld.badKarmaButton.currentKarma == GameWorld.goodKarmaButton.currentKarma)
+                {
+                    new MinorEnemy(new Vector2(27 * 64, 10 * 64), "Melee");
+                    new MinorEnemy(new Vector2(40 * 64, 14 * 64), "Melee");
+                    new MinorEnemy(new Vector2(46 * 64, 14 * 64), "Melee");
+                    new MinorEnemy(new Vector2(65 * 64, 18 * 64), "Melee");
+                    new MinorEnemy(new Vector2(69 * 64, 18 * 64), "Melee");
+                    new MinorEnemy(new Vector2(65 * 64, 28 * 64), "Melee");
+                    new MinorEnemy(new Vector2(71 * 64, 28 * 64), "Melee");
+                    new MinorEnemy(new Vector2(3 * 64, 55 * 64), "Melee");
+                    new MinorEnemy(new Vector2(11 * 64, 55 * 64), "Melee");
+                    new MinorEnemy(new Vector2(19 * 64, 55 * 64), "Melee");
+                    new MinorEnemy(new Vector2(27 * 64, 55 * 64), "Melee");
+                    new MinorEnemy(new Vector2(35 * 64, 55 * 64), "Melee");
+                }
+
 
             }
 
             if (GameWorld.stage == 10)
             {
+                // Frame
                 new Platform(new Vector2(-511, 2048), "VerticalFrame");
-                new Platform(new Vector2(65 * 64, 2048), "VerticalFrame");
-                new Platform(new Vector2(2880, 37 * 64), "HorizontalFrame");
+                new Platform(new Vector2(68 * 64, 2048), "VerticalFrame");
+                new Platform(new Vector2(2880, 40 * 64), "HorizontalFrame");
                 new Platform(new Vector2(2880, -512), "HorizontalFrame");
+
+                //Platforme
+                PlacePlatform(2, 1, 3, 31, 1);
+                PlacePlatform(2, 1, 9, 31, 1);
+                PlacePlatform(2, 1, 15, 31, 2);
+                PlacePlatform(2, 1, 23, 31, 1);
+                PlacePlatform(2, 1, 29, 31, 2);
+                PlacePlatform(2, 1, 37, 31, 1);
+                PlacePlatform(2, 1, 43, 31, 2);
+                PlacePlatform(2, 1, 51, 31, 1);
+                PlacePlatform(2, 1, 57, 31, 1);
+
+                PlacePlatform(2, 1, 3, 7, 2);
+                PlacePlatform(2, 1, 9, 9, 2);
+                PlacePlatform(2, 1, 15, 11, 2);
+                PlacePlatform(2, 1, 21, 13, 3);
+                PlacePlatform(2, 1, 27, 7, 4);
+                PlacePlatform(2, 1, 35, 13, 3);
+                PlacePlatform(2, 1, 43, 11, 2);
+                PlacePlatform(2, 1, 49, 9, 2);
+                PlacePlatform(2, 1, 55, 7, 2);
+
+                PlacePlatform(2, 1, 3, 15, 1);
+                PlacePlatform(2, 1, 7, 17, 2);
+                PlacePlatform(2, 1, 13, 19, 2);
+                PlacePlatform(2, 1, 19, 21, 2);
+                PlacePlatform(2, 1, 25, 23, 2);
+                PlacePlatform(2, 1, 33, 23, 2);
+                PlacePlatform(2, 1, 39, 21, 2);
+                PlacePlatform(2, 1, 45, 19, 2);
+                PlacePlatform(2, 1, 51, 17, 2);
+                PlacePlatform(2, 1, 57, 15, 1);
+
+
+                // Lava
+                for (int i = 0; i < 16; i++)
+                {
+                    new Lava(new Vector2((1 * 64), i * 128 + (1 * 64)), "MediumLava");
+                }
+                for (int i = 0; i < 2; i++)
+                {
+                    new Lava(new Vector2((5 * 64) + i * 128, (31 * 64)), "SurfaceLava");
+                }
+                for (int i = 0; i < 2; i++)
+                {
+                    new Lava(new Vector2((11 * 64) + i * 128, (31 * 64)), "SurfaceLava");
+                }
+                for (int i = 0; i < 2; i++)
+                {
+                    new Lava(new Vector2((19 * 64) + i * 128, (31 * 64)), "SurfaceLava");
+                }
+                for (int i = 0; i < 2; i++)
+                {
+                    new Lava(new Vector2((25 * 64) + i * 128, (31 * 64)), "SurfaceLava");
+                }
+                for (int i = 0; i < 2; i++)
+                {
+                    new Lava(new Vector2((33 * 64) + i * 128, (31 * 64)), "SurfaceLava");
+                }
+                for (int i = 0; i < 2; i++)
+                {
+                    new Lava(new Vector2((39 * 64) + i * 128, (31 * 64)), "SurfaceLava");
+                }
+                for (int i = 0; i < 2; i++)
+                {
+                    new Lava(new Vector2((47 * 64) + i * 128, (31 * 64)), "SurfaceLava");
+                }
+                for (int i = 0; i < 2; i++)
+                {
+                    new Lava(new Vector2((53 * 64) + i * 128, (31 * 64)), "SurfaceLava");
+                }
+                for (int i = 0; i < 16; i++)
+                {
+                    new Lava(new Vector2((59 * 64), i * 128 + (1 * 64)), "MediumLava");
+                }
+
+                // Chains
+
 
                 // Boss
                 if (GameWorld.badKarmaButton.currentKarma < GameWorld.goodKarmaButton.currentKarma)
@@ -261,10 +352,10 @@ namespace LimboSoulsOfJudgement
         /// <summary>
         /// A method for placing platforms in a level
         /// </summary>
-        /// <param name="s">The size of the platform. Either 1 for small, 2 for medium or 3 for big</param>
+        /// <param name="s">The type of the platform. 1 = small, 2 = medium , 3 = big, 4 = Trapdoor</param>
         /// <param name="d">The direction the blocks are placed. Either 1 for Horizontal or 2 for vertical</param>
-        /// <param name="x">Where on the x-axis the platform should be placed</param>
-        /// <param name="y">Where on the y-axis the platform should be placed</param>
+        /// <param name="x">Where on the x-axis, measured in times of 64, the platform should be placed</param>
+        /// <param name="y">Where on the y-axis, measured in times of 64, the platform should be placed</param>
         /// <param name="z">How many platforms should be placed beside eachother</param>
         private void PlacePlatform(int s, int d, int x, int y, int z)
         {
@@ -286,6 +377,12 @@ namespace LimboSoulsOfJudgement
             {
                 name = "BigBlock";
                 s = 256;
+            }
+
+            else if (s == 4)
+            {
+                name = "Trapdoor";
+                s = 128;
             }
 
             if (d == 1)
