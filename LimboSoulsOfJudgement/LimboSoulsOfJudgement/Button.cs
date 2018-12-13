@@ -20,9 +20,27 @@ namespace LimboSoulsOfJudgement
         public int currentStatValue;
 
         /// <summary>
+        /// Sets the current Stat value, of the current button.
+        /// Used instead of currentStatValue, if current stat is to have decimal numbers
+        /// </summary>
+        public float currentFloatStatValue;
+
+        /// <summary>
         /// Sets the maximum amount of stat value, that currentStatValue is able to reach
         /// </summary>
         public int maxStatValue;
+
+        /// <summary>
+        /// Sets the maximum amount of stat value, that currentFloatStatValue is able to reach.
+        /// Used instead of maxStatValue, if current stat is to have decimal numbers
+        /// </summary>
+        public float maxFloatStatValue;
+
+        /// <summary>
+        /// Sets the actual increase amount of value to the player stat values.
+        /// Used instead of statIncrease, if current stat is to have decimal numbers
+        /// </summary>
+        public float regenStatIncrease;
 
         /// <summary>
         /// Sets the maximum aomunt of karma value required in order to buy specific weapons and stat upgrades. Used in both Good and Evil button classes 
@@ -49,7 +67,7 @@ namespace LimboSoulsOfJudgement
         /// </summary>
         public bool weaponActive;
 
-        protected float nextClick = 0.3f;
+        protected float nextClick = 0.2f;
         protected double mouseClicked;
 
         /// <summary>
@@ -79,7 +97,7 @@ namespace LimboSoulsOfJudgement
 
         /// <summary>
         /// Virtual Method that enables Button click, purchase and upgrades of Player stats
-        /// Handles  math calculations of soul currency, stat cost and stat increase
+        /// Handles math calculations of soul currency, stat cost and stat increase
         /// Adds a small time period between each click
         /// Enables purchase of current stat if player soul currency is equal to the stat cost as a minimum
         /// </summary>

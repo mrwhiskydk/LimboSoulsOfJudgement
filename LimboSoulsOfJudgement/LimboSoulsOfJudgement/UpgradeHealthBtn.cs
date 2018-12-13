@@ -35,8 +35,8 @@ namespace LimboSoulsOfJudgement
         }
 
         /// <summary>
-        /// Overridden UpgradeStat Method that sets its game logic
-        /// Increases the player's max health equal to its statIncease value
+        /// Overridden UpgradeStat Method that sets its game logic.
+        /// Increases the player's max health equal to its statIncease value.
         /// Sets the player's current health equal to the increased max health upon purchase
         /// </summary>
         /// <param name="gameTime">Time elapsed since last call in the update</param>
