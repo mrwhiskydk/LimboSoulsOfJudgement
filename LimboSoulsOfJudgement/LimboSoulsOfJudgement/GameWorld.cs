@@ -148,7 +148,7 @@ namespace LimboSoulsOfJudgement
             
 
             //Load Vendor & Vendor UI
-            vendor = new Vendor(1, 1, new Vector2(600, 350), "VendorTest");
+            vendor = new Vendor();
             uiAbilityBar = new UIAbilityBar();
             player = new Player();
             ui = new UI();
@@ -206,6 +206,8 @@ namespace LimboSoulsOfJudgement
         {
             if (GamePad.GetState(PlayerIndex.One).Buttons.Back == ButtonState.Pressed || Keyboard.GetState().IsKeyDown(Keys.Escape))
                 Exit();
+            
+
 
             if (teleport == true)
             {
@@ -255,8 +257,8 @@ namespace LimboSoulsOfJudgement
                 }
                 levelReset = false;
                 addLevel = true;
-                vendor = new Vendor(1, 1, new Vector2(600, 450), "VendorTest");
-                player = new Player();
+                vendor = new Vendor();
+                player = new Player(playerFrameCount, playerAnimationFPS, $"{playerSpriteName}");
                 ui = new UI();
                 badKarmaButton = new BadKarmaButton();
                 upgradeHealthBtn = new UpgradeHealthBtn();

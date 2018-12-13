@@ -14,6 +14,7 @@ namespace LimboSoulsOfJudgement
         private double keyPressed;
 
         private bool vendorInteract = false;
+        private static string vendorSprite = "Vendor";
 
         /// <summary>
         /// Vendor Constructor, that sets vendor animation values, start position and sprite name 
@@ -22,7 +23,7 @@ namespace LimboSoulsOfJudgement
         /// <param name="animationFPS"></param>
         /// <param name="startPostion"></param>
         /// <param name="spriteName"></param>
-        public Vendor(int frameCount, float animationFPS, Vector2 startPostion, string spriteName) : base(frameCount, animationFPS, startPostion, spriteName)
+        public Vendor() : base(4, 4, new Vector2(600, 350), $"{vendorSprite}")
         {
 
         }
@@ -47,6 +48,15 @@ namespace LimboSoulsOfJudgement
                     keyPressed = 0; //Upon click, the value of keyPressed is reset to 0 to add another time window for the next click to be available
                 }
 
+            }
+
+            if (Vector2.Distance(position, GameWorld.player.Position) < 200)
+            {
+                vendorSprite = "Vendor2";
+            }
+            else if (Vector2.Distance(position, GameWorld.player.Position) > 200)
+            {
+                vendorSprite = "Vendor";
             }
 
             base.Update(gameTime);

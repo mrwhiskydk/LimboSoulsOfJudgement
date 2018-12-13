@@ -22,10 +22,15 @@ namespace LimboSoulsOfJudgement
         private bool goToBoss = false;
         private const float jumpPower = 1600;
         private double jumpForce = jumpPower;
+        /// <summary>
+        /// Det antal gange man kan dø før spillet starter helt forfra
+        /// </summary>
         public int playerLives = 3;
         //private float maxJumpTime = 2f;
         private double jumpTime;
-        private bool isJumping = false;
+        public bool isJumping = false;
+
+        public bool isRunning = false;
 
         // Special-stats
         /// <summary>
@@ -48,10 +53,11 @@ namespace LimboSoulsOfJudgement
 
 
         public bool editMode = false;
+
         /// <summary>
         /// Player constructor that sets player animation values, position and sprite name
         /// </summary>
-        public Player() : base(5, 5, new Vector2(200, 500), "PlayerIdle")
+        public Player() : base(5, 5,new Vector2(200, 500), "PlayerIdle")
         {
             arm = new Arm();
             melee = new MeleeWeapon();
@@ -69,7 +75,6 @@ namespace LimboSoulsOfJudgement
             //Weapon setup
             weapon = melee;
             weapon.equipped = true;
-
         }
 
         /// <summary>
@@ -91,7 +96,21 @@ namespace LimboSoulsOfJudgement
                     healthRegenTimer = 0;
                 }
             }
+
+            if (isJumping == true)
+            {
+                State(3, "PlayerJump");
+            }
+            else if (isRunning == true)
+            {
+                State(4, "PlayerRun");
+            }
             
+            else
+            {
+                State(5, "PlayerIdle");
+            }
+
 
             HandleMovement(gameTime);
             climb = false;
@@ -190,22 +209,31 @@ if (isJumping)
                 gravity = false;
             }
 
-            
+            isRunning = false;
 
             //Statement that checks if Player is moving to the left
             if (Keyboard.GetState().IsKeyDown(Keys.A))
             {
+                isRunning = true;
                 facingRight = false;
                 position.X -= (float)(movementSpeed * gameTime.ElapsedGameTime.TotalSeconds);
+            }
+            else
+            {
+                isRunning = false;
             }
 
             //Statement that checks if Player is moving to the right
             if (Keyboard.GetState().IsKeyDown(Keys.D))
             {
+                isRunning = true;
                 facingRight = true;
                 position.X += (float)(movementSpeed * gameTime.ElapsedGameTime.TotalSeconds);
             }
-
+            else
+            {
+                isRunning = false;
+            }
             //Statement that checks if the Player is jumping
             if (Keyboard.GetState().IsKeyDown(Keys.Space) && canJump) 
             {
@@ -397,13 +425,11 @@ if (isJumping)
                 Enemy enemy = (Enemy)otherObject;
                 health -= enemy.enemyDamage;
                 isImmortal = true;
-                takingDamage = true;
             }
 
             if (otherObject is Lava && isImmortal == false)
             {
                 health -= 10;
-                takingDamage = true;
                 isImmortal = true;
                 //svim = true;
             }
@@ -416,14 +442,14 @@ if (isJumping)
         public override void Draw(SpriteBatch spriteBatch)
         {
             base.Draw(spriteBatch);
-            if (isImmortal == true && facingRight == false && takingDamage == true)
+            if (isImmortal == true && facingRight == false)
             {
 
                 spriteBatch.Draw(sprite, position, animationRectangles[currentAnimationIndex], Color.Red, rotation, new Vector2(animationRectangles[currentAnimationIndex].Width * 0.5f, animationRectangles[currentAnimationIndex].Height * 0.5f), 1f, SpriteEffects.FlipHorizontally, 0.97f);
 
             }
 
-            if (isImmortal == true && facingRight == true && takingDamage == true)
+            if (isImmortal == true && facingRight == true)
             {
 
                 spriteBatch.Draw(sprite, position, animationRectangles[currentAnimationIndex], Color.Red, rotation, new Vector2(animationRectangles[currentAnimationIndex].Width * 0.5f, animationRectangles[currentAnimationIndex].Height * 0.5f), 1f, SpriteEffects.None, 0.97f);

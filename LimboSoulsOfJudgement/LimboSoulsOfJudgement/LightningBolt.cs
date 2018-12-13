@@ -76,7 +76,7 @@ namespace LimboSoulsOfJudgement
                 if (otherObject is Enemy)
                 {
                     Enemy obj = (Enemy)otherObject;
-                    obj.enemyHealth -= damage;
+                    obj.Health -= damage;
                 }
             }
         }

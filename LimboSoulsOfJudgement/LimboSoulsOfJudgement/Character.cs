@@ -15,7 +15,6 @@ namespace LimboSoulsOfJudgement
         public int maxHealth;
         protected float movementSpeed;
 
-        protected bool takingDamage = false;
         protected float immortalDuration = 1.0f;
         protected double immortalTime;
         /// <summary>
@@ -26,7 +25,7 @@ namespace LimboSoulsOfJudgement
         protected bool canJump = false;   //Controls wether the Player can jump or not
         
         /// <summary>
-        /// Property that sets the health value of the current GameObject
+        /// Property that sets the health value of the current GameObjectC:\Users\sein\source\repos\LimboSoulsOfJudgement\LimboSoulsOfJudgement\LimboSoulsOfJudgement\Character.cs
         /// </summary>
         public int Health
         {
@@ -36,13 +35,12 @@ namespace LimboSoulsOfJudgement
             }
             set
             {
-                if (takingDamage)
+                if (!isImmortal)
                 {
                     isImmortal = true;
-                    takingDamage = false;
+                    health = value;
                 }
                 
-                health = value;
                 if (health > maxHealth)
                 {
                     health = maxHealth;
