@@ -7,13 +7,13 @@ namespace LimboSoulsOfJudgement
     public class Player : Character
     {
         public MeleeWeapon melee;
-        public RangedWeapon ranged = new RangedWeapon();
+        public RangedWeapon ranged;
         public Weapon weapon;
         public static Arm arm;
         public Ability ability1;
         private bool canSwitchWeapons = true;
         private double attackTimer = 0;
-        public int currentSouls;
+        public int currentSouls = 100;
         private double collisionMovement; // Used for collision so you dont need gameTime in DoCollision
         private bool hittingRoof = false; 
 
@@ -60,6 +60,7 @@ namespace LimboSoulsOfJudgement
         {
             arm = new Arm();
             melee = new MeleeWeapon();
+            ranged = new RangedWeapon();
             ability1 = new LightningBolt();
 
             //Maximum amount of Player health
@@ -85,12 +86,17 @@ namespace LimboSoulsOfJudgement
             base.Update(gameTime);
             collisionMovement = movementSpeed * gameTime.ElapsedGameTime.TotalSeconds;
 
-            healthRegenTimer += gameTime.ElapsedGameTime.TotalSeconds;
-            if (healthRegenTimer > 3)
+            // If the player is under maxHealth activate healthRegen
+            if (Health < maxHealth)
             {
-                Health += (int)(healthRegen * maxHealth);
-                healthRegenTimer = 0;
+                healthRegenTimer += gameTime.ElapsedGameTime.TotalSeconds;
+                if (healthRegenTimer > 3)
+                {
+                    Health += (int)(healthRegen * maxHealth);
+                    healthRegenTimer = 0;
+                }
             }
+            
 
             HandleMovement(gameTime);
             climb = false;
@@ -398,13 +404,11 @@ if (isJumping)
                 Enemy enemy = (Enemy)otherObject;
                 health -= enemy.enemyDamage;
                 isImmortal = true;
-                takingDamage = true;
             }
 
             if (otherObject is Lava && isImmortal == false)
             {
                 health -= 10;
-                takingDamage = true;
                 isImmortal = true;
                 //svim = true;
             }
@@ -417,14 +421,14 @@ if (isJumping)
         public override void Draw(SpriteBatch spriteBatch)
         {
             base.Draw(spriteBatch);
-            if (isImmortal == true && facingRight == false && takingDamage == true)
+            if (isImmortal == true && facingRight == false)
             {
 
                 spriteBatch.Draw(sprite, position, animationRectangles[currentAnimationIndex], Color.Red, rotation, new Vector2(animationRectangles[currentAnimationIndex].Width * 0.5f, animationRectangles[currentAnimationIndex].Height * 0.5f), 1f, SpriteEffects.FlipHorizontally, 0.97f);
 
             }
 
-            if (isImmortal == true && facingRight == true && takingDamage == true)
+            if (isImmortal == true && facingRight == true)
             {
 
                 spriteBatch.Draw(sprite, position, animationRectangles[currentAnimationIndex], Color.Red, rotation, new Vector2(animationRectangles[currentAnimationIndex].Width * 0.5f, animationRectangles[currentAnimationIndex].Height * 0.5f), 1f, SpriteEffects.None, 0.97f);

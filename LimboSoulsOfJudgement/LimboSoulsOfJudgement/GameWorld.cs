@@ -38,6 +38,10 @@ namespace LimboSoulsOfJudgement
         public static EvilWeaponBtn evilWeaponBtn;
         public static GoodWeaponBtn goodWeaponBtn;
         public static ResetButton resetButton;
+        public static UpgradeHealthRegenBtn upgradeHealthRegenBtn;
+        public static UpgradeLifetealBtn upgradeLifestealBtn;
+        public static UpgradeCritChanceBtn upgradeCritChanceBtn;
+        public static UpgradeCritDamageBtn upgradeCritDamageBtn;
 
         // Healthbar
         public static HealthBar healthBar;
@@ -160,6 +164,10 @@ namespace LimboSoulsOfJudgement
             evilWeaponBtn = new EvilWeaponBtn();
             goodWeaponBtn = new GoodWeaponBtn();
             resetButton = new ResetButton();
+            upgradeHealthRegenBtn = new UpgradeHealthRegenBtn();
+            upgradeLifestealBtn = new UpgradeLifetealBtn();
+            upgradeCritChanceBtn = new UpgradeCritChanceBtn();
+            upgradeCritDamageBtn = new UpgradeCritDamageBtn();
 
             // Healthbar
             healthBar = new HealthBar(Vector2.Zero);
@@ -311,7 +319,9 @@ namespace LimboSoulsOfJudgement
                 }
             }
 
+            //manually updating classes with important order
             camera.Position = new Vector2(MathHelper.Lerp(camera.Position.X, player.Position.X, 0.25f), MathHelper.Lerp(camera.Position.Y, player.Position.Y, 0.25f));
+            mouse.Update(gameTime);
 
             foreach (GameObjectPassive go in gameObjectsPassive)
             {
@@ -382,6 +392,9 @@ namespace LimboSoulsOfJudgement
 #endif
             }
 
+            //Manually drawing classes with important order
+            mouse.Draw(spriteBatch);
+
             foreach (GameObjectPassive go in gameObjectsPassive)
             {
                 go.Draw(spriteBatch);
@@ -417,12 +430,12 @@ namespace LimboSoulsOfJudgement
             //Text Completed Purchase of Good Melee Weapon
             if(triggerVendor && goodWeaponBtn.maxStatValue <= goodWeaponBtn.currentStatValue)
             {
-                spriteBatch.DrawString(font, $"GOOD WEAPON PURCHASED", new Vector2(evilWeaponBtn.Position.X - 298, evilWeaponBtn.Position.Y - 55), Color.White, 0f, Vector2.Zero, 1f, SpriteEffects.None, 0.995f);
+                spriteBatch.DrawString(font, $"GOOD WEAPON PURCHASED", new Vector2(goodWeaponBtn.Position.X - 62, goodWeaponBtn.Position.Y - 55), Color.White, 0f, Vector2.Zero, 1f, SpriteEffects.None, 0.995f);
             }
             //Text Purchase of Good Melee Weapon
             else if (triggerVendor && goodWeaponBtn.maxStatValue >= goodWeaponBtn.currentStatValue)
             {
-                spriteBatch.DrawString(font, $"BUY GOOD MELEE WEAPON", new Vector2(evilWeaponBtn.Position.X - 298, evilWeaponBtn.Position.Y - 55), Color.White, 0f, Vector2.Zero, 1f, SpriteEffects.None, 0.995f);
+                spriteBatch.DrawString(font, $"BUY GOOD MELEE WEAPON", new Vector2(goodWeaponBtn.Position.X - 62, goodWeaponBtn.Position.Y - 55), Color.White, 0f, Vector2.Zero, 1f, SpriteEffects.None, 0.995f);
             }
             //Text Completed Purchase of Good Karma
             if(triggerVendor && goodKarmaButton.maxStatValue <= goodKarmaButton.currentStatValue)
@@ -439,6 +452,12 @@ namespace LimboSoulsOfJudgement
             {
                 spriteBatch.DrawString(font, $"Player Health Value: {upgradeHealthBtn.currentStatValue} / {upgradeHealthBtn.maxStatValue}", new Vector2(upgradeHealthBtn.Position.X - 134, upgradeHealthBtn.Position.Y - 55), Color.White, 0f, Vector2.Zero, 1f, SpriteEffects.None, 0.995f);
             }
+            //Text Purchase of Upgrade Health Regen
+            if (triggerVendor && upgradeHealthRegenBtn.maxStatValue >= upgradeHealthRegenBtn.currentStatValue)
+            {
+                spriteBatch.DrawString(font, $"Health Regen: {upgradeHealthRegenBtn.currentStatValue} / {upgradeHealthRegenBtn.maxStatValue}", new Vector2(upgradeHealthRegenBtn.Position.X - 68, upgradeHealthRegenBtn.Position.Y - 55), Color.White, 0f, Vector2.Zero, 1f, SpriteEffects.None, 0.995f);
+            }
+
             //Text Description of the Reset Button
             if (triggerVendor)
             {

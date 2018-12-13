@@ -19,7 +19,6 @@ namespace LimboSoulsOfJudgement
         /// <param name="startPosition">The initial position of the HealthBar</param>
         public HealthBar(Vector2 startPosition) : base(startPosition, "healthBar")
         {
-            position = startPosition;
 
         }
 

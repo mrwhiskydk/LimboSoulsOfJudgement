@@ -12,7 +12,6 @@ namespace LimboSoulsOfJudgement
     {
         public int enemyDamage;
 
-        public int enemyHealth;
         /// <summary>
         /// The value of an enemies soul
         /// </summary>
@@ -123,7 +122,7 @@ namespace LimboSoulsOfJudgement
             }
            
 
-            if (enemyHealth <= 0)
+            if (Health <= 0)
             {
 
                 for (int i = 0; i < soulCount; i++)
@@ -190,16 +189,14 @@ namespace LimboSoulsOfJudgement
 
                 if (GameWorld.rnd.Next(1, 101) <= 100 * GameWorld.player.critChance)
                 {
-                    enemyHealth -= (int)(weapon.damage * GameWorld.player.critDmgModifier);
+                    Health -= (int)(weapon.damage * GameWorld.player.critDmgModifier);
                 }
                 else
                 {
-                    enemyHealth -= weapon.damage;
+                    Health -= weapon.damage;
                 }
                 GameWorld.player.Health += (int)(weapon.damage * GameWorld.player.lifeSteal); // lifeSteal
 
-                isImmortal = true;
-                takingDamage = true;
                 knockback = true;
                 knockbackDistance = 2f;
             }
@@ -210,11 +207,11 @@ namespace LimboSoulsOfJudgement
 
                 if (GameWorld.rnd.Next(1, 101) <= 100 * GameWorld.player.critChance)
                 {
-                    enemyHealth -= (int)(arrow.damage * GameWorld.player.critDmgModifier);
+                    Health -= (int)(arrow.damage * GameWorld.player.critDmgModifier);
                 }
                 else
                 {
-                    enemyHealth -= arrow.damage;
+                    Health -= arrow.damage;
                 }
                 GameWorld.player.Health += (int)(arrow.damage * GameWorld.player.lifeSteal); // lifeSteal
 

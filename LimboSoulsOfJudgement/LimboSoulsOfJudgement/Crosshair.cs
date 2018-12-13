@@ -11,9 +11,9 @@ namespace LimboSoulsOfJudgement
 {
     public class Crosshair : GameObject
     {
-        public Crosshair() : base("Crosshair")
+        public Crosshair()
         {
-
+            sprite = GameWorld.ContentManager.Load<Texture2D>("Crosshair");
         }
 
         public override void Update(GameTime gameTime)

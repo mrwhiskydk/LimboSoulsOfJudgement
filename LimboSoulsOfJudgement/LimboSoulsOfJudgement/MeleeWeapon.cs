@@ -76,11 +76,13 @@ namespace LimboSoulsOfJudgement
                     {
                         position = Player.arm.Position + offsetAttack;
                         rotation = MathHelper.ToRadians(90);
+                        GameWorld.player.facingRight = true;
                     }
                     else
                     {
                         position = Player.arm.Position - offsetAttack;
                         rotation = MathHelper.ToRadians(270);
+                        GameWorld.player.facingRight = false;
                     }
                     
                     /*
