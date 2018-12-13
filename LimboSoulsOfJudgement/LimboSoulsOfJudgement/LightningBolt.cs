@@ -76,7 +76,14 @@ namespace LimboSoulsOfJudgement
                 if (otherObject is Enemy)
                 {
                     Enemy obj = (Enemy)otherObject;
+
+                    if (obj.isImmortal is false)
+                    {
+                        new Damage(new Vector2(position.X, position.Y - sprite.Height * 0.5f), damage);
+                    }
+
                     obj.Health -= damage;
+                    
                 }
             }
         }

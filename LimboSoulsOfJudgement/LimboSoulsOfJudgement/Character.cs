@@ -20,7 +20,7 @@ namespace LimboSoulsOfJudgement
         /// <summary>
         /// Sets characters immunity on and off
         /// </summary>
-        protected bool isImmortal;
+        public bool isImmortal;
 
         protected bool canJump = false;   //Controls wether the Player can jump or not
         

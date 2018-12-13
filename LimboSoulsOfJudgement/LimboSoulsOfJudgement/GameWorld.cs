@@ -26,6 +26,7 @@ namespace LimboSoulsOfJudgement
         public static SpriteFont font;
         public static Vendor vendor;
         public static UI ui;
+        public static SpriteFont damageFont;
         
         //Button Fields below
         public static Button button;
@@ -145,7 +146,8 @@ namespace LimboSoulsOfJudgement
             evilAura = Content.Load<Texture2D>("EvilAura");
             goodAura = Content.Load<Texture2D>("GoodAura");
             collisionTexture = Content.Load<Texture2D>("CollisionTexture");
-            
+            damageFont = Content.Load<SpriteFont>("DamageFont");
+
 
             //Load Vendor & Vendor UI
             vendor = new Vendor();
