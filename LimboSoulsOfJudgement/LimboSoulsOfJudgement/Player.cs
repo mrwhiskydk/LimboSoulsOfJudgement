@@ -53,6 +53,7 @@ namespace LimboSoulsOfJudgement
 
 
         public bool editMode = false;
+
         /// <summary>
         /// Player constructor that sets player animation values, position and sprite name
         /// </summary>
@@ -204,6 +205,10 @@ if (isJumping)
                 facingRight = false;
                 position.X -= (float)(movementSpeed * gameTime.ElapsedGameTime.TotalSeconds);
             }
+            else
+            {
+                isRunning = false;
+            }
 
             //Statement that checks if Player is moving to the right
             if (Keyboard.GetState().IsKeyDown(Keys.D))
@@ -212,7 +217,10 @@ if (isJumping)
                 facingRight = true;
                 position.X += (float)(movementSpeed * gameTime.ElapsedGameTime.TotalSeconds);
             }
-
+            else
+            {
+                isRunning = false;
+            }
             //Statement that checks if the Player is jumping
             if (Keyboard.GetState().IsKeyDown(Keys.Space) && canJump) 
             {

@@ -75,9 +75,9 @@ namespace LimboSoulsOfJudgement
         //private int alphaValue = 0;
         //private static int fadeIncrease = 3;
         //private double fadeDelay = 0;    //default is .010;
-        public int playerFrameCount;
-        public int playerAnimationFPS;
-        public string playerSpriteName;
+        public int playerFrameCount = 5;
+        public int playerAnimationFPS = 5;
+        public string playerSpriteName = "PlayerIdle";
 
         public static Rectangle ScreenSize
         {
@@ -151,9 +151,11 @@ namespace LimboSoulsOfJudgement
             
 
             //Load Vendor & Vendor UI
-            vendor = new Vendor(1, 1, new Vector2(600, 350), "VendorTest");
+            vendor = new Vendor();
             uiAbilityBar = new UIAbilityBar();
+
             player = new Player(playerFrameCount, playerAnimationFPS, $"{playerSpriteName}");
+
             ui = new UI();
             
             camera = new Camera();
@@ -277,7 +279,7 @@ namespace LimboSoulsOfJudgement
                 }
                 levelReset = false;
                 addLevel = true;
-                vendor = new Vendor(1, 1, new Vector2(600, 450), "VendorTest");
+                vendor = new Vendor();
                 player = new Player(playerFrameCount, playerAnimationFPS, $"{playerSpriteName}");
                 ui = new UI();
                 badKarmaButton = new BadKarmaButton();
