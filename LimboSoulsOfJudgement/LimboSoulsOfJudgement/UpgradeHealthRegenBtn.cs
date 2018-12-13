@@ -22,7 +22,7 @@ namespace LimboSoulsOfJudgement
             currentFloatStatValue = GameWorld.player.healthRegen;   //Sets the current regen stat value of the vendor, equal to the value of player health regen
             maxFloatStatValue = 1.00f;  //Sets the max regen stat amount, equal to 1
             statCost = 5;
-            regenStatIncrease = 0.02f;  //Sets the increase of the player health regen stat itself to 0.02 upon purchase
+            floatStatIncrease = 0.02f;  //Sets the increase of the player health regen stat itself to 0.02 upon purchase
 
         }
 
@@ -33,7 +33,8 @@ namespace LimboSoulsOfJudgement
         /// <param name="gameTime">Time elapsed since last call in the update</param>
         public override void Update(GameTime gameTime)
         {
-            if (currentFloatStatValue < maxFloatStatValue)
+            //Substracts the floatStatIncrease value amount, to avoid overreach of maximum amount
+            if (currentFloatStatValue < maxFloatStatValue - floatStatIncrease)
             {
                 UpgradeStat(gameTime);
             }
@@ -55,9 +56,10 @@ namespace LimboSoulsOfJudgement
                 {
                     return;
                 }
-                currentFloatStatValue += regenStatIncrease;   //Updates the vendor UI's stat increase 
-                GameWorld.player.healthRegen += regenStatIncrease; //Actual increase of player values
+                currentFloatStatValue += floatStatIncrease;   //Updates the vendor UI's stat increase 
+                GameWorld.player.healthRegen += floatStatIncrease; //Actual increase of player values
                 GameWorld.player.currentSouls -= statCost;  //Substracts player soul value equal to current buttons stat cost
+                statCost += 1;
                 mouseClicked = 0;   //Resets the mouseClicked value once value calculations has finished
             }
         }
