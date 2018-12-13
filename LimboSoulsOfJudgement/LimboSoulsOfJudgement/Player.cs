@@ -22,10 +22,15 @@ namespace LimboSoulsOfJudgement
         private bool goToBoss = false;
         private const float jumpPower = 1600;
         private double jumpForce = jumpPower;
+        /// <summary>
+        /// Det antal gange man kan dø før spillet starter helt forfra
+        /// </summary>
         public int playerLives = 3;
         //private float maxJumpTime = 2f;
         private double jumpTime;
-        private bool isJumping = false;
+        public bool isJumping = false;
+
+        public bool isRunning = false;
 
         // Special-stats
         /// <summary>
@@ -51,14 +56,14 @@ namespace LimboSoulsOfJudgement
         /// <summary>
         /// Player constructor that sets player animation values, position and sprite name
         /// </summary>
-        public Player() : base(5, 5, new Vector2(200, 500), "PlayerIdle")
+        public Player(int frameCount, int animationFPS, string spriteName) : base(frameCount, animationFPS,new Vector2(200, 500), spriteName)
         {
             arm = new Arm();
             melee = new MeleeWeapon();
             ability1 = new LightningBolt();
 
             //Maximum amount of Player health
-            maxHealth = 10000;
+            maxHealth = 100;
             health = maxHealth;
 
             
@@ -189,6 +194,7 @@ if (isJumping)
             //Statement that checks if Player is moving to the left
             if (Keyboard.GetState().IsKeyDown(Keys.A))
             {
+                isRunning = true;
                 facingRight = false;
                 position.X -= (float)(movementSpeed * gameTime.ElapsedGameTime.TotalSeconds);
             }
@@ -196,6 +202,7 @@ if (isJumping)
             //Statement that checks if Player is moving to the right
             if (Keyboard.GetState().IsKeyDown(Keys.D))
             {
+                isRunning = true;
                 facingRight = true;
                 position.X += (float)(movementSpeed * gameTime.ElapsedGameTime.TotalSeconds);
             }

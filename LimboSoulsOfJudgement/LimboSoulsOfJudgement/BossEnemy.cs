@@ -12,6 +12,8 @@ namespace LimboSoulsOfJudgement
         private bool battleMode = true;
         private bool charge;
         private bool deathRay;
+        private double abilityTime;
+        private float abilityDuration = 2f;
         private float battleModeDuration = 20f;
         private double battleModeTime;
        
@@ -66,14 +68,23 @@ namespace LimboSoulsOfJudgement
                 }
             }
 
-            if (battleMode == true)
+
+            
+            battleModeTime += gameTime.ElapsedGameTime.TotalSeconds;
+            if (battleModeTime > battleModeDuration)
             {
-                battleModeTime += gameTime.ElapsedGameTime.TotalSeconds;
-                if (battleModeTime > battleModeDuration)
-                {
-                    battleMode = false;
-                    battleModeTime = 0;
-                }
+                battleMode = false;
+                battleModeTime = 0;
+            }
+
+            if (charge == true)
+            {
+                movementSpeed = 600;
+
+            }
+            else if (charge == false)
+            {
+                movementSpeed = 300;
             }
 
         }
@@ -85,7 +96,7 @@ namespace LimboSoulsOfJudgement
             Gravity = false;
             if (battleMode is true)
             {
-                charge = false;
+
                 deathRay = false;
                 if (GameWorld.player.Position.Y < position.Y)
                 {
@@ -106,10 +117,12 @@ namespace LimboSoulsOfJudgement
                     facingRight = false;
                     position.X += (float)(movementSpeed * gameTime.ElapsedGameTime.TotalSeconds);
                 }
+                abilityTime = 0;
+
             }
             if (battleMode is false)
             {        
-                if (GameWorld.rnd.Next(1, 2) == 1)
+                if (GameWorld.rnd.Next(1, 3) == 1)
                 {
                     Position = new Vector2(2 * 128, 2 * 128);
                 }
@@ -117,27 +130,33 @@ namespace LimboSoulsOfJudgement
                 {
                     Position = new Vector2(27 * 128, 2 * 128);
                 }
-                if (GameWorld.rnd.Next(1,2)== 1)
+
+                abilityTime += gameTime.ElapsedGameTime.TotalSeconds;
+                if (abilityTime > abilityDuration)
                 {
+                    //if (GameWorld.rnd.Next(1, 3) == 1)
+                    //{
                     charge = true;
-                }
-                else
-                {
-                    deathRay = true;
+                    battleMode = true;
+                    //}
+                    //else
+                    //{
+                    //    deathRay = true;
+                    //}
+
                 }
 
-                if (charge == true)
-                {
-                    int distance = (int)Vector2.Distance(position, GameWorld.player.Position);
-                    Vector2 direction;
-                    direction = GameWorld.player.Position - position;
-                    direction.Normalize();
-                    position += direction;
-                }
-                if (deathRay == true)
-                {
-                    battleMode = true;
-                }
+                //if (charge == true)
+                //{
+                //    Vector2 direction;
+                //    direction = GameWorld.player.Position - position;
+                //    direction.Normalize();
+                //    position += direction;
+                //}
+                //if (deathRay == true)
+                //{
+                //    charge = true;
+                //}
 
             }
 
@@ -147,9 +166,10 @@ namespace LimboSoulsOfJudgement
         {
             base.DoCollision(otherObject);
 
-            if (otherObject is Player)
+            if (otherObject is Weapon || otherObject is Projectile)
             {
-                battleMode = true;                
+                battleMode = true;
+                charge = false;
             }
         }
     }

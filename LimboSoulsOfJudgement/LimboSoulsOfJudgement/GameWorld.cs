@@ -71,6 +71,9 @@ namespace LimboSoulsOfJudgement
         //private int alphaValue = 0;
         //private static int fadeIncrease = 3;
         //private double fadeDelay = 0;    //default is .010;
+        public int playerFrameCount;
+        public int playerAnimationFPS;
+        public string playerSpriteName;
 
         public static Rectangle ScreenSize
         {
@@ -146,7 +149,7 @@ namespace LimboSoulsOfJudgement
             //Load Vendor & Vendor UI
             vendor = new Vendor(1, 1, new Vector2(600, 350), "VendorTest");
             uiAbilityBar = new UIAbilityBar();
-            player = new Player();
+            player = new Player(playerFrameCount, playerAnimationFPS, $"{playerSpriteName}");
             ui = new UI();
             
             camera = new Camera();
@@ -198,6 +201,25 @@ namespace LimboSoulsOfJudgement
         {
             if (GamePad.GetState(PlayerIndex.One).Buttons.Back == ButtonState.Pressed || Keyboard.GetState().IsKeyDown(Keys.Escape))
                 Exit();
+            if (player.isRunning == true)
+            {
+                playerSpriteName = "PlayerRun";
+                playerFrameCount = 4;
+                playerAnimationFPS = 4;
+            }
+            else if (player.isJumping == true)
+            {
+                playerSpriteName = "PlayerJump";
+                playerFrameCount = 3;
+                playerAnimationFPS = 3;
+            }
+            else if (player.isRunning == false && player.isJumping == false)
+            {
+                playerSpriteName = "PlayerIdle";
+                playerFrameCount = 5;
+                playerAnimationFPS = 5;
+            }
+
 
             if (teleport == true)
             {
@@ -248,7 +270,7 @@ namespace LimboSoulsOfJudgement
                 levelReset = false;
                 addLevel = true;
                 vendor = new Vendor(1, 1, new Vector2(600, 450), "VendorTest");
-                player = new Player();
+                player = new Player(playerFrameCount, playerAnimationFPS, $"{playerSpriteName}");
                 ui = new UI();
                 badKarmaButton = new BadKarmaButton();
                 upgradeHealthBtn = new UpgradeHealthBtn();
