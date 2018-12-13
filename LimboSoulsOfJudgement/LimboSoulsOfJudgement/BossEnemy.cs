@@ -28,6 +28,7 @@ namespace LimboSoulsOfJudgement
         {
             movementSpeed = 300;
             health = (int)(200 * GameWorld.levelCount);
+            maxHealth = health;
             enemyDamage = (int)(20 * GameWorld.levelCount);
             enemySouls = (int)(50 * GameWorld.levelCount);
             soulCount = 10;
