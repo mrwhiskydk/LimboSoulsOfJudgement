@@ -61,9 +61,21 @@ namespace LimboSoulsOfJudgement
                 currentAnimationIndex = 0;
                 timeElapsed = 0;
             }
-
         }
 
+        public void State(int frameCount, string spriteName)
+        {
+            if (sprite.Name != spriteName)
+            {
+                sprite = GameWorld.ContentManager.Load<Texture2D>(spriteName);
+                animationRectangles = new Rectangle[frameCount];
+                for (int i = 0; i < frameCount; i++)
+                {
+                    animationRectangles[i] = new Rectangle(i * (sprite.Width / frameCount), 0, (sprite.Width / frameCount), sprite.Height);
+                }
+                currentAnimationIndex = 0;
+            }
+        }
 
 
         public override void Draw(SpriteBatch spriteBatch)

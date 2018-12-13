@@ -57,7 +57,7 @@ namespace LimboSoulsOfJudgement
         /// <summary>
         /// Player constructor that sets player animation values, position and sprite name
         /// </summary>
-        public Player(int frameCount, int animationFPS, string spriteName) : base(frameCount, animationFPS,new Vector2(200, 500), spriteName)
+        public Player() : base(5, 5,new Vector2(200, 500), "PlayerIdle")
         {
             arm = new Arm();
             melee = new MeleeWeapon();
@@ -75,7 +75,6 @@ namespace LimboSoulsOfJudgement
             //Weapon setup
             weapon = melee;
             weapon.equipped = true;
-
         }
 
         /// <summary>
@@ -97,7 +96,21 @@ namespace LimboSoulsOfJudgement
                     healthRegenTimer = 0;
                 }
             }
+
+            if (isJumping == true)
+            {
+                State(3, "PlayerJump");
+            }
+            else if (isRunning == true)
+            {
+                State(4, "PlayerRun");
+            }
             
+            else
+            {
+                State(5, "PlayerIdle");
+            }
+
 
             HandleMovement(gameTime);
             climb = false;
@@ -196,7 +209,7 @@ if (isJumping)
                 gravity = false;
             }
 
-            
+            isRunning = false;
 
             //Statement that checks if Player is moving to the left
             if (Keyboard.GetState().IsKeyDown(Keys.A))
