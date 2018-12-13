@@ -385,6 +385,7 @@ namespace LimboSoulsOfJudgement
             spriteBatch.DrawString(font, $"Lives: {player.playerLives}", new Vector2(camera.Position.X - 750, camera.Position.Y - 375), Color.White, 0f, Vector2.Zero, 1f, SpriteEffects.None, 0.991f);
             spriteBatch.DrawString(font, $"Coordinates: X: {Mouse.GetState().X - camera.viewMatrix.Translation.X}   Y: {Mouse.GetState().Y - camera.viewMatrix.Translation.Y}", new Vector2(camera.Position.X, camera.Position.Y - 500), Color.White, 0f, Vector2.Zero, 1f, SpriteEffects.None, 0.991f);
             spriteBatch.DrawString(font, $"Press E to interact", new Vector2(vendor.Position.X - 60, vendor.Position.Y - 120), Color.White, 0f, Vector2.Zero, 1f, SpriteEffects.None, 0.991f);
+            spriteBatch.DrawString(font, $"Health regen: {player.healthRegen.ToString("0.000")}", new Vector2(camera.Position.X - 750, camera.Position.Y - 325), Color.White, 0f, Vector2.Zero, 1f, SpriteEffects.None, 0.991f);
 
             if (triggerVendor && badKarmaButton.maxStatValue <= badKarmaButton.currentStatValue)
             {
@@ -430,10 +431,15 @@ namespace LimboSoulsOfJudgement
             {
                 spriteBatch.DrawString(font, $"Player Health Value: {upgradeHealthBtn.currentStatValue} / {upgradeHealthBtn.maxStatValue}", new Vector2(upgradeHealthBtn.Position.X - 134, upgradeHealthBtn.Position.Y - 55), Color.White, 0f, Vector2.Zero, 1f, SpriteEffects.None, 0.995f);
             }
-            //Text Purchase of Upgrade Health Regen
-            if (triggerVendor && upgradeHealthRegenBtn.maxStatValue >= upgradeHealthRegenBtn.currentStatValue)
+            //
+            if (triggerVendor && upgradeHealthRegenBtn.maxFloatStatValue <= upgradeHealthRegenBtn.currentFloatStatValue)
             {
-                spriteBatch.DrawString(font, $"Health Regen: {upgradeHealthRegenBtn.currentStatValue} / {upgradeHealthRegenBtn.maxStatValue}", new Vector2(upgradeHealthRegenBtn.Position.X - 68, upgradeHealthRegenBtn.Position.Y - 55), Color.White, 0f, Vector2.Zero, 1f, SpriteEffects.None, 0.995f);
+                spriteBatch.DrawString(font, $"Health Regen: {upgradeHealthRegenBtn.currentFloatStatValue.ToString("0.000")} / {upgradeHealthRegenBtn.maxFloatStatValue.ToString("0.00")}", new Vector2(upgradeHealthRegenBtn.Position.X - 68, upgradeHealthRegenBtn.Position.Y - 55), Color.White, 0f, Vector2.Zero, 1f, SpriteEffects.None, 0.995f);
+            }
+            //Text Purchase of Upgrade Health Regen,- text of currentRegenStatValue is using 'ToString("0.00")', in order to show a maximum of only 2 decimal numbers.
+            else if (triggerVendor && upgradeHealthRegenBtn.maxFloatStatValue >= upgradeHealthRegenBtn.currentFloatStatValue)
+            {
+                spriteBatch.DrawString(font, $"Health Regen: {upgradeHealthRegenBtn.currentFloatStatValue.ToString("0.000")} / {upgradeHealthRegenBtn.maxFloatStatValue.ToString("0.00")}", new Vector2(upgradeHealthRegenBtn.Position.X - 68, upgradeHealthRegenBtn.Position.Y - 55), Color.White, 0f, Vector2.Zero, 1f, SpriteEffects.None, 0.995f);
             }
 
             //Text Description of the Reset Button

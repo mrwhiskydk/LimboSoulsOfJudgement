@@ -13,7 +13,7 @@ namespace LimboSoulsOfJudgement
         public Ability ability1;
         private bool canSwitchWeapons = true;
         private double attackTimer = 0;
-        public int currentSouls = 100;
+        public int currentSouls = 10000;
         private double collisionMovement; // Used for collision so you dont need gameTime in DoCollision
         private bool hittingRoof = false; 
 
@@ -59,7 +59,7 @@ namespace LimboSoulsOfJudgement
             ability1 = new LightningBolt();
 
             //Maximum amount of Player health
-            maxHealth = 10000;
+            maxHealth = 100;
             health = maxHealth;
 
             
@@ -113,16 +113,16 @@ namespace LimboSoulsOfJudgement
                 }
             }
 
-            if (editMode == true)
-            {
-                movementSpeed = 1500;
-                maxHealth = 10000;
-            }
-            if (editMode == false)
-            {
-                movementSpeed = 500;
-                maxHealth = 100;                
-            }
+            //if (editMode == true)
+            //{
+            //    movementSpeed = 1500;
+            //    maxHealth = 10000;
+            //}
+            //if (editMode == false)
+            //{
+            //    movementSpeed = 500;
+            //    maxHealth = 100;                
+            //}
 
             if (goToBoss == true)
             {
