@@ -160,36 +160,36 @@ namespace LimboSoulsOfJudgement
         {
             if (editMode == false)
             {
-if (isJumping)
-            {
-                jumpTime += gameTime.ElapsedGameTime.TotalSeconds;
-                if (jumpTime <= jumpForce)
+                if (isJumping)
                 {
-                    if (hittingRoof is false )
+                    jumpTime += gameTime.ElapsedGameTime.TotalSeconds;
+                    if (jumpTime <= jumpForce)
                     {
-                        position.Y -= (float)(jumpForce * gameTime.ElapsedGameTime.TotalSeconds);
+                        if (hittingRoof is false)
+                        {
+                            position.Y -= (float)(jumpForce * gameTime.ElapsedGameTime.TotalSeconds);
+                        }
+                        else
+                        {
+                            gravity = false;
+                            jumpForce -= gameTime.ElapsedGameTime.TotalSeconds * 6000;
+                        }
+                        jumpForce -= gameTime.ElapsedGameTime.TotalSeconds * 1500;
                     }
-                    else
-                    {
-                        gravity = false;
-                        jumpForce -= gameTime.ElapsedGameTime.TotalSeconds * 6000;
-                    }
-                    jumpForce -= gameTime.ElapsedGameTime.TotalSeconds * 1500;
-                }
 
-                if (jumpTime >= jumpForce && climb == false)
-                {
-                    isJumping = false;
-                    Gravity = true;
-                    hittingRoof = false;
+                    if (jumpTime >= jumpForce && climb == false)
+                    {
+                        isJumping = false;
+                        Gravity = true;
+                        hittingRoof = false;
+                    }
                 }
-            }
-            else if (!isJumping)
-            {
-                gravity = true;
-                hittingRoof = false;
-                jumpTime = 0;
-            }
+                else if (!isJumping)
+                {
+                    gravity = true;
+                    hittingRoof = false;
+                    jumpTime = 0;
+                }
             }
             
         }

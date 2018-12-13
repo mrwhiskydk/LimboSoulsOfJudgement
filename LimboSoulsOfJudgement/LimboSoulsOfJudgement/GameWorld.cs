@@ -258,7 +258,7 @@ namespace LimboSoulsOfJudgement
                 levelReset = false;
                 addLevel = true;
                 vendor = new Vendor();
-                player = new Player(playerFrameCount, playerAnimationFPS, $"{playerSpriteName}");
+                player = new Player();
                 ui = new UI();
                 badKarmaButton = new BadKarmaButton();
                 upgradeHealthBtn = new UpgradeHealthBtn();
