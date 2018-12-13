@@ -12,7 +12,6 @@ namespace LimboSoulsOfJudgement
     /// </summary>
     public class UpgradeHealthBtn : Button
     {
-
         
         /// <summary>
         /// UpgradeHealthBtn Constructor, that sets the default position and sprite name values
@@ -21,7 +20,7 @@ namespace LimboSoulsOfJudgement
         {
             currentStatValue = GameWorld.player.maxHealth;
             maxStatValue = 300;
-            statCost = 2;
+            statCost = 5;
             statIncrease = 5;
         }
 
@@ -53,6 +52,7 @@ namespace LimboSoulsOfJudgement
                 GameWorld.player.maxHealth += statIncrease; //Actual increase of player values
                 GameWorld.player.health = GameWorld.player.maxHealth;   //Sets current player health equal to increased player health
                 GameWorld.player.currentSouls -= statCost;  //Substracts player soul value equal to current buttons stat cost
+                statCost += 1;
                 mouseClicked = 0;   //Resets the mouseClicked value once value calculations has finished
             }
         }

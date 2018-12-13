@@ -40,7 +40,7 @@ namespace LimboSoulsOfJudgement
         /// Sets the actual increase amount of value to the player stat values.
         /// Used instead of statIncrease, if current stat is to have decimal numbers
         /// </summary>
-        public float regenStatIncrease;
+        public float floatStatIncrease;
 
         /// <summary>
         /// Sets the maximum aomunt of karma value required in order to buy specific weapons and stat upgrades. Used in both Good and Evil button classes 

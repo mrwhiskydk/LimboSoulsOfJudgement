@@ -23,7 +23,7 @@ namespace LimboSoulsOfJudgement
         /// <summary>
         /// If true, the enemy will follow the player until it dies
         /// </summary>
-        protected bool aggro = false;
+        public bool aggro = false;
         /// <summary>
         /// Checks if an enemy should go after the player horizontally
         /// </summary>
@@ -48,6 +48,7 @@ namespace LimboSoulsOfJudgement
         /// The distance an enemy should be knocked back when hit
         /// </summary>
         public float knockbackDistance;
+        public int damageToDeal;
 
         /// <summary>
         /// Checks if the code for (aggro if enemy is aggro'ed nearby) should be run
@@ -189,13 +190,16 @@ namespace LimboSoulsOfJudgement
 
                 if (GameWorld.rnd.Next(1, 101) <= 100 * GameWorld.player.critChance)
                 {
-                    Health -= (int)(weapon.damage * GameWorld.player.critDmgModifier);
+                    damageToDeal = (int)(weapon.damage * GameWorld.player.critDmgModifier);
+                    Health -= damageToDeal;
                 }
                 else
                 {
-                    Health -= weapon.damage;
+                    damageToDeal = weapon.damage;
+                    Health -= damageToDeal;
                 }
                 GameWorld.player.Health += (int)(weapon.damage * GameWorld.player.lifeSteal); // lifeSteal
+                new Damage(new Vector2(position.X, CollisionBox.Top), damageToDeal);
 
                 knockback = true;
                 knockbackDistance = 2f;
@@ -207,20 +211,21 @@ namespace LimboSoulsOfJudgement
 
                 if (GameWorld.rnd.Next(1, 101) <= 100 * GameWorld.player.critChance)
                 {
-                    Health -= (int)(arrow.damage * GameWorld.player.critDmgModifier);
+                    damageToDeal = (int)(arrow.damage * GameWorld.player.critDmgModifier);
+                    Health -= damageToDeal;
                 }
                 else
                 {
-                    Health -= arrow.damage;
+                    damageToDeal = arrow.damage;
+                    Health -= damageToDeal;
                 }
                 GameWorld.player.Health += (int)(arrow.damage * GameWorld.player.lifeSteal); // lifeSteal
-
+                new Damage(new Vector2(position.X, position.Y - sprite.Height * 0.5f), damageToDeal);
                 arrow.Destroy();
                 knockback = true;
                 knockbackDistance = 1.5f;
                 aggro = true;
-            }           
-           
+            }
         }
     }
 }

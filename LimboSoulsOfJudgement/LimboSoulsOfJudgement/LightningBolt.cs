@@ -34,11 +34,6 @@ namespace LimboSoulsOfJudgement
             position = UIAbilityBar.abilitySlot1;
         }
 
-        public override void Draw(SpriteBatch spriteBatch)
-        {
-            spriteBatch.Draw(sprite, new Vector2(position.X, position.Y), null, Color.White, rotation, new Vector2(sprite.Width * 0.5f, sprite.Height * 0.5f), 1f, SpriteEffects.None, 0.981f);
-        }
-
 
         class LightningBoltAbility : AnimatedGameObject
         {
@@ -76,7 +71,15 @@ namespace LimboSoulsOfJudgement
                 if (otherObject is Enemy)
                 {
                     Enemy obj = (Enemy)otherObject;
+
+                    if (obj.isImmortal is false)
+                    {
+                        new Damage(new Vector2(position.X, position.Y - sprite.Height * 0.5f), damage);
+                    }
+
                     obj.Health -= damage;
+                    obj.aggro = true;
+                    
                 }
             }
         }

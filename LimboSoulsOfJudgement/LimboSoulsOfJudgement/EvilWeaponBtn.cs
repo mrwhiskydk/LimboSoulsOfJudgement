@@ -18,14 +18,14 @@ namespace LimboSoulsOfJudgement
         /// <summary>
         /// EvilWeaponBtn Constructor, that sets the default position and sprite name values
         /// </summary>
-        public EvilWeaponBtn() : base(new Vector2(GameWorld.ui.Position.X + 475, GameWorld.ui.Position.Y - 70), "buttonUITest")
+        public EvilWeaponBtn() : base(new Vector2(GameWorld.ui.Position.X + 475, GameWorld.ui.Position.Y - 105), "buttonUITest")
         {
             weaponActive = false;   //Set to false as default until the weapon has been purchased
 
             currentStatValue = 0;
             maxStatValue = 1;
-            karmaRequirements = 3;
-            statCost = 20;
+            karmaRequirements = 25;
+            statCost = 150;
             statIncrease = 1;   //statIncrease in this class are for the UI 'stat' increase purpose only
         }
 

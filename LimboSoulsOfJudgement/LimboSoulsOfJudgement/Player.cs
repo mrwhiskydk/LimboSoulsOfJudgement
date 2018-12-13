@@ -13,7 +13,7 @@ namespace LimboSoulsOfJudgement
         public Ability ability1;
         private bool canSwitchWeapons = true;
         private double attackTimer = 0;
-        public int currentSouls = 10000;
+        public int currentSouls;
         private double collisionMovement; // Used for collision so you dont need gameTime in DoCollision
         private bool hittingRoof = false; 
 
@@ -49,7 +49,7 @@ namespace LimboSoulsOfJudgement
         /// <summary>
         /// Percentage of original damage the player crits
         /// </summary>
-        public float critDmgModifier = 1.5f;
+        public float critDmgModifier = 0.5f;
 
 
         public bool editMode = false;
