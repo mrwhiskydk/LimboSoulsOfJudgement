@@ -357,7 +357,7 @@ namespace LimboSoulsOfJudgement
                 spriteBatch.Draw(evilAura, new Vector2(camera.Position.X - ScreenSize.Width * 0.5f, camera.Position.Y - ScreenSize.Height * 0.5f), null, Color.White, 0f, new Vector2(160, 80), 1f, SpriteEffects.None, 0.02f);
             }
 
-            if ((goodKarmaButton.currentStatValue / goodKarmaButton.maxStatValue) * 100 > 80 && badKarmaButton.currentStatValue > goodKarmaButton.currentStatValue)
+            if ((goodKarmaButton.currentStatValue / goodKarmaButton.maxStatValue) * 100 > 80 && badKarmaButton.currentStatValue < goodKarmaButton.currentStatValue)
             {
                 spriteBatch.Draw(goodAura, new Vector2(camera.Position.X - ScreenSize.Width * 0.5f, camera.Position.Y - ScreenSize.Height * 0.5f), null, Color.White, 0f, new Vector2(160, 80), 1f, SpriteEffects.None, 0.02f);
             }
