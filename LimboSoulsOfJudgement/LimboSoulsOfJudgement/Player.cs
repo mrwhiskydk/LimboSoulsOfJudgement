@@ -15,7 +15,8 @@ namespace LimboSoulsOfJudgement
         private double attackTimer = 0;
         public int currentSouls = 10000;
         private double collisionMovement; // Used for collision so you dont need gameTime in DoCollision
-        private bool hittingRoof = false; 
+        private bool hittingRoof = false;
+        private bool inAir;
 
         public bool climb = false;
         //public bool svim = false;
@@ -36,7 +37,7 @@ namespace LimboSoulsOfJudgement
         /// <summary>
         /// Percentage of maxHealth added every 3 seconds, needs to be +0.01 of the desired percentage. dunno why
         /// </summary>
-        public float healthRegen = 0.02f;
+        public float healthRegen = 0.00f;
         private double healthRegenTimer;
         /// <summary>
         /// Percentage of damage added to player health
@@ -97,7 +98,7 @@ namespace LimboSoulsOfJudgement
                 }
             }
 
-            if (isJumping == true || climb == true)
+            if (isJumping == true || climb == true || inAir)
             {
                 State(3, "PlayerJump");
             }
@@ -114,6 +115,7 @@ namespace LimboSoulsOfJudgement
             HandleMovement(gameTime);
             climb = false;
             canJump = false;
+            inAir = true;
 
             HandleJumping(gameTime);
 
@@ -338,13 +340,17 @@ namespace LimboSoulsOfJudgement
                 jumpForce = jumpPower;
                 canJump = true;
                 isJumping = false;
+                inAir = false;
             }
 
-            if (otherObject is Chain)
+            if (otherObject is Chain && isJumping is false || Keyboard.GetState().IsKeyDown(Keys.W))
             {
                 climb = true;
                 Gravity = false;
-                jumpForce = 0; // makes so the player cant jump on the chain
+                isJumping = false;
+                jumpForce = jumpPower;
+                canJump = true;
+                    
             }
 
             // If the small collisionboxes intersects with a platform move the player in the opposite direction. 

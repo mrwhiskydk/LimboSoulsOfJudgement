@@ -38,6 +38,15 @@ namespace LimboSoulsOfJudgement
 
             if (equipped)
             {
+                if (GameWorld.mouse.RightOfPlayer())
+                {
+                    GameWorld.player.facingRight = true;
+                }
+                else
+                {
+                    GameWorld.player.facingRight = false;
+                }
+
                 float angle;
                 // If the mouse is within 110 distance of the player, makes so the bow do not freak out.
                 if (Vector2.Distance(GameWorld.mouse.Position, Player.arm.Position) < 110)

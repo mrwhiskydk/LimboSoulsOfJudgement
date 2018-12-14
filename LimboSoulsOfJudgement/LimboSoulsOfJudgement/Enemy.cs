@@ -187,19 +187,7 @@ namespace LimboSoulsOfJudgement
             if (otherObject is MeleeWeapon && isImmortal == false)
             {
                 MeleeWeapon weapon = (MeleeWeapon)otherObject;
-
-                if (GameWorld.rnd.Next(1, 101) <= 100 * GameWorld.player.critChance)
-                {
-                    damageToDeal = (int)(weapon.damage * GameWorld.player.critDmgModifier);
-                    Health -= damageToDeal;
-                }
-                else
-                {
-                    damageToDeal = weapon.damage;
-                    Health -= damageToDeal;
-                }
-                GameWorld.player.Health += (int)(weapon.damage * GameWorld.player.lifeSteal); // lifeSteal
-                new Damage(new Vector2(position.X, CollisionBox.Top), damageToDeal);
+                Health -= weapon.damage;
 
                 knockback = true;
                 knockbackDistance = 2f;
@@ -208,19 +196,8 @@ namespace LimboSoulsOfJudgement
             if (otherObject is Projectile)
             {
                 Projectile arrow = (Projectile)otherObject;
+                Health -= arrow.damage;
 
-                if (GameWorld.rnd.Next(1, 101) <= 100 * GameWorld.player.critChance)
-                {
-                    damageToDeal = (int)(arrow.damage * GameWorld.player.critDmgModifier);
-                    Health -= damageToDeal;
-                }
-                else
-                {
-                    damageToDeal = arrow.damage;
-                    Health -= damageToDeal;
-                }
-                GameWorld.player.Health += (int)(arrow.damage * GameWorld.player.lifeSteal); // lifeSteal
-                new Damage(new Vector2(position.X, position.Y - sprite.Height * 0.5f), damageToDeal);
                 arrow.Destroy();
                 knockback = true;
                 knockbackDistance = 1.5f;

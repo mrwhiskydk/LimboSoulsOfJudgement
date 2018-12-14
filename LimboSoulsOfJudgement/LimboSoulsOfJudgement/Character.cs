@@ -40,7 +40,25 @@ namespace LimboSoulsOfJudgement
                     if (!isImmortal)
                     {
                         isImmortal = true;
-                        health = value;
+
+                        // LifeSteal
+                        if ((int)((health - value) * GameWorld.player.lifeSteal) >= 0.9f)
+                        {
+                            GameWorld.player.Health += (int)((health - value) * GameWorld.player.lifeSteal);
+                            new DamageText(new Vector2(GameWorld.player.Position.X, GameWorld.player.Position.Y - GameWorld.player.CollisionBox.Height * 0.5f), (int)((health - value) * GameWorld.player.lifeSteal), true);
+                        }
+
+                        if (GameWorld.rnd.Next(1, 101) <= 100 * GameWorld.player.critChance)
+                        {
+                            new DamageText(new Vector2(position.X, position.Y - sprite.Height * 0.5f), (int)((health - value) * GameWorld.player.critDmgModifier), 2, false);
+                            new DamageText(new Vector2(position.X, position.Y - sprite.Height * 0.5f), (int)((health - value) * GameWorld.player.critDmgModifier), 2, true);
+                            health = (int)(value * GameWorld.player.critDmgModifier);
+                        }
+                        else
+                        { 
+                            new DamageText(new Vector2(position.X, position.Y - sprite.Height * 0.5f), health - value, 1, false);
+                            health = value;
+                        }
                     }
                 }
                 else
