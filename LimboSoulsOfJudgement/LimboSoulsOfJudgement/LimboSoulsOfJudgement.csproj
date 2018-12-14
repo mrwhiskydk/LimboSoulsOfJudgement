@@ -78,6 +78,7 @@
     <Compile Include="RangedWeapon.cs" />
     <Compile Include="ResetButton.cs" />
     <Compile Include="Soul.cs" />
+    <Compile Include="Sound.cs" />
     <Compile Include="Trapdoor.cs" />
     <Compile Include="UI.cs" />
     <Compile Include="UIAbilityBar.cs" />
