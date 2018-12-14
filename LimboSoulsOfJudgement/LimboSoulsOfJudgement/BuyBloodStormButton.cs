@@ -8,16 +8,16 @@ using Microsoft.Xna.Framework;
 namespace LimboSoulsOfJudgement
 {
     /// <summary>
-    /// Public Class that represents the functionality and game logic of the BuyLightningBoltButton
+    /// Public Class that represents the functionality and game logic of the BuyBloodStormButton
     /// </summary>
-    public class BuyLightningBoltButton : Button
+    public class BuyBloodStormButton : Button
     {
 
         /// <summary>
-        /// BuyLightningBoltButton's Constructor, that sets the default position and sprite name values.
+        /// BuyBloodStormButton's Constructor, that sets the default position and sprite name values.
         /// Also sets the abilityPurchased bool to false as default, since the ability have not yet been purchased
         /// </summary>
-        public BuyLightningBoltButton() : base(new Vector2(GameWorld.ui.Position.X - 225, GameWorld.ui.Position.Y - 100), "buttonUITest")
+        public BuyBloodStormButton() : base(new Vector2(GameWorld.ui.Position.X + 245, GameWorld.ui.Position.Y - 150), "buttonUITest")
         {
             abilityPurchased = false;
 
@@ -26,17 +26,16 @@ namespace LimboSoulsOfJudgement
             karmaRequirements = 40;
             statCost = 200;
             statIncrease = 1;
-
         }
 
         /// <summary>
-        /// Updates the BuyLightningBoltButton's game logic
-        /// Also checks if current amount of good karma has reached the required karma value in order to begin the purchasing process
+        /// Updates the BuyBloodStormButton's game logic
+        /// Also checks if current amount of bad karma has reached the required karma value in order to begin the purchasing process
         /// </summary>
         /// <param name="gameTime"></param>
         public override void Update(GameTime gameTime)
         {
-            if (GameWorld.goodKarmaButton.currentKarma >= karmaRequirements)
+            if (GameWorld.badKarmaButton.currentKarma >= karmaRequirements)
             {
                 base.Update(gameTime);
             }

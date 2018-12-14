@@ -47,6 +47,7 @@ namespace LimboSoulsOfJudgement
         public static UpgradeRangedDamageBtn upgradeRangedDamageBtn;
         public static UpgradeMovementSpeedBtn upgradeMovementSpeedBtn;
         public static BuyLightningBoltButton buyLightningBoltButton;
+        public static BuyBloodStormButton buyBloodStormButton;
 
         // Healthbar
         public static HealthBar healthBar;
@@ -175,6 +176,7 @@ namespace LimboSoulsOfJudgement
             upgradeRangedDamageBtn = new UpgradeRangedDamageBtn();
             upgradeMovementSpeedBtn = new UpgradeMovementSpeedBtn();
             buyLightningBoltButton = new BuyLightningBoltButton();
+            buyBloodStormButton = new BuyBloodStormButton();
 
             // Healthbar
             healthBar = new HealthBar(Vector2.Zero);
@@ -423,7 +425,9 @@ namespace LimboSoulsOfJudgement
                 //Cost and Karma Reuquired Text of Evil Weapon
                 spriteBatch.DrawString(font, $"Soul Cost: {evilWeaponBtn.statCost}", new Vector2(evilWeaponBtn.Position.X - 50, evilWeaponBtn.Position.Y + 35), Color.White, 0f, Vector2.Zero, 1f, SpriteEffects.None, 0.995f);
                 spriteBatch.DrawString(font, $"Demonic Karma Required: {evilWeaponBtn.karmaRequirements}", new Vector2(evilWeaponBtn.Position.X - 50, evilWeaponBtn.Position.Y + 55), Color.White, 0f, Vector2.Zero, 1f, SpriteEffects.None, 0.995f);
-
+                //Cost and Karma Required Text of Evil/Blood Storm Ability
+                spriteBatch.DrawString(font, $"Soul Cost: {buyBloodStormButton.statCost}", new Vector2(buyBloodStormButton.Position.X - 50, buyBloodStormButton.Position.Y + 35), Color.White, 0f, Vector2.Zero, 1f, SpriteEffects.None, 0.995f);
+                spriteBatch.DrawString(font, $"Demonic Karma Required: {buyBloodStormButton.karmaRequirements}", new Vector2(buyBloodStormButton.Position.X - 80, buyBloodStormButton.Position.Y + 55), Color.White, 0f, Vector2.Zero, 1f, SpriteEffects.None, 0.995f);
             }
 
 
@@ -466,6 +470,17 @@ namespace LimboSoulsOfJudgement
             else if (triggerVendor && buyLightningBoltButton.maxStatValue >= buyLightningBoltButton.currentStatValue)
             {
                 spriteBatch.DrawString(font, $"BUY LIGHTNING BOLT", new Vector2(buyLightningBoltButton.Position.X - 85, buyLightningBoltButton.Position.Y - 55), Color.White, 0f, Vector2.Zero, 1f, SpriteEffects.None, 0.995f);
+            }
+
+            //Text Completed Purchase of Evil Ability: Blood Storm
+            if (triggerVendor && buyBloodStormButton.maxStatValue <= buyBloodStormButton.currentStatValue)
+            {
+                spriteBatch.DrawString(font, $"BLOODSTORM PURCHASED", new Vector2(buyBloodStormButton.Position.X - 92, buyBloodStormButton.Position.Y - 55), Color.White, 0f, Vector2.Zero, 1f, SpriteEffects.None, 0.995f);
+            }
+            //Text Purchase of Evil Ability: Blood Storm
+            else if (triggerVendor && buyBloodStormButton.maxStatValue >= buyBloodStormButton.currentStatValue)
+            {
+                spriteBatch.DrawString(font, $"BUY BLOODSTORM", new Vector2(buyBloodStormButton.Position.X - 85, buyBloodStormButton.Position.Y - 55), Color.White, 0f, Vector2.Zero, 1f, SpriteEffects.None, 0.995f);
             }
 
             //Text Completed Purchase of Good Karma
