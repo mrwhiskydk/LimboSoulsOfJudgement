@@ -55,7 +55,6 @@
     <Compile Include="Character.cs" />
     <Compile Include="Crosshair.cs" />
     <Compile Include="DamageText.cs" />
-    <Compile Include="EditButton.cs" />
     <Compile Include="Enemy.cs" />
     <Compile Include="GameObjectPassive.cs" />
     <Compile Include="EvilWeaponBtn.cs" />
