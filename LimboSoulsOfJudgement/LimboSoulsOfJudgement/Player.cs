@@ -388,7 +388,7 @@ namespace LimboSoulsOfJudgement
                 inAir = false;
             }
 
-            if (otherObject is Chain && isJumping is false || Keyboard.GetState().IsKeyDown(Keys.W))
+            if (otherObject is Chain && isJumping is false || otherObject is Chain && Keyboard.GetState().IsKeyDown(Keys.W))
             {
                 climb = true;
                 Gravity = false;
