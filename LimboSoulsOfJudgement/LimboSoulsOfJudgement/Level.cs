@@ -11,6 +11,7 @@ namespace LimboSoulsOfJudgement
         public BossEnemy boss;
         public Portal portal;
         public Lava movingLava;
+        public bool levelLoaded;
         public Level()
         {
 
@@ -299,6 +300,7 @@ namespace LimboSoulsOfJudgement
                 {
 
                 }
+                levelLoaded = true;
             }
             if (GameWorld.stage == 10)
             {

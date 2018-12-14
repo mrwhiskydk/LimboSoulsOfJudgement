@@ -159,16 +159,16 @@ namespace LimboSoulsOfJudgement
                 }
                 else if (GameWorld.stage == 10)
                 {
+                    GameWorld.stage = 2;
+                    GameWorld.teleport = true;
+                    nextLevel = false;
+                }
+                else if (GameWorld.stage == 2)
+                {
                     GameWorld.stage = 1;
                     GameWorld.teleport = true;
                     nextLevel = false;
                 }
-                //else if (GameWorld.stage == 2)
-                //{
-                //    GameWorld.stage = 1;
-                //    GameWorld.teleport = true;
-                //    nextLevel = false;
-                //}
 
             }
             if (Keyboard.GetState().IsKeyDown(Keys.T) && editMode == false && editKeyPressed == false)

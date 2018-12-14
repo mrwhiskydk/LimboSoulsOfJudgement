@@ -22,7 +22,7 @@ namespace LimboSoulsOfJudgement
         /// <param name="animationFPS"></param>
         /// <param name="startPostion"></param>
         /// <param name="spriteName"></param>
-        public Vendor() : base(4, 4, new Vector2(600, 350), "Vendor")
+        public Vendor() : base(4, 4, new Vector2(600, 320), "Vendor")
         {
 
         }

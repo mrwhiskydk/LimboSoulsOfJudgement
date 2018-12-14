@@ -215,11 +215,15 @@ namespace LimboSoulsOfJudgement
         {
             if (GamePad.GetState(PlayerIndex.One).Buttons.Back == ButtonState.Pressed || Keyboard.GetState().IsKeyDown(Keys.Escape))
                 Exit();
-            
 
 
-
-
+            if (teleport == true)
+            {
+                levelReset = true;
+                addLevel = true;
+                teleport = false;
+                level.levelLoaded = false;
+            }
             if (player.playerLives > 0)
             {
                 playerAlive = true;
@@ -306,13 +310,6 @@ namespace LimboSoulsOfJudgement
 
             }
 
-            if (teleport == true)
-            {
-                levelReset = true;
-                addLevel = true;
-                teleport = false;
-            }
-
             //manually updating classes with important order
             camera.Position = new Vector2(MathHelper.Lerp(camera.Position.X, player.Position.X, 0.25f), MathHelper.Lerp(camera.Position.Y, player.Position.Y, 0.25f));
             mouse.Update(gameTime);
@@ -349,10 +346,10 @@ namespace LimboSoulsOfJudgement
             //    vendor.Position = new Vector2(5300, 3328);
             //}
 
-            //if (stage == 2)
-            //{
-            //    level.movingLava.position.Y -= (float)(40 * gameTime.ElapsedGameTime.TotalSeconds);
-            //}
+            if (stage == 2 && level.levelLoaded == true)
+            {
+                level.movingLava.position.Y -= (float)(40 * gameTime.ElapsedGameTime.TotalSeconds);
+            }
             base.Update(gameTime);
         }
 
