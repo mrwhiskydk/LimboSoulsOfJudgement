@@ -97,7 +97,7 @@ namespace LimboSoulsOfJudgement
                 }
             }
 
-            if (isJumping == true)
+            if (isJumping == true || climb == true)
             {
                 State(3, "PlayerJump");
             }
@@ -105,7 +105,6 @@ namespace LimboSoulsOfJudgement
             {
                 State(4, "PlayerRun");
             }
-            
             else
             {
                 State(5, "PlayerIdle");
@@ -209,7 +208,7 @@ namespace LimboSoulsOfJudgement
                 gravity = false;
             }
 
-            isRunning = false;
+            //isRunning = false;
 
             //Statement that checks if Player is moving to the left
             if (Keyboard.GetState().IsKeyDown(Keys.A))
@@ -218,13 +217,8 @@ namespace LimboSoulsOfJudgement
                 facingRight = false;
                 position.X -= (float)(movementSpeed * gameTime.ElapsedGameTime.TotalSeconds);
             }
-            else
-            {
-                isRunning = false;
-            }
-
             //Statement that checks if Player is moving to the right
-            if (Keyboard.GetState().IsKeyDown(Keys.D))
+            else if (Keyboard.GetState().IsKeyDown(Keys.D))
             {
                 isRunning = true;
                 facingRight = true;
@@ -458,6 +452,17 @@ namespace LimboSoulsOfJudgement
 
                 spriteBatch.Draw(sprite, position, animationRectangles[currentAnimationIndex], Color.Red, rotation, new Vector2(animationRectangles[currentAnimationIndex].Width * 0.5f, animationRectangles[currentAnimationIndex].Height * 0.5f), 1f, SpriteEffects.None, 0.97f);
 
+            }
+        }
+
+        /// <summary>
+        /// Collisionbox override, the player needed a fixed collisionbox size else there were collision bugs
+        /// </summary>
+        public override Rectangle CollisionBox
+        {
+            get
+            {
+                return new Rectangle((int)(position.X - 75 * 0.5), (int)(position.Y - 230 * 0.5), 75, 230);
             }
         }
     }
