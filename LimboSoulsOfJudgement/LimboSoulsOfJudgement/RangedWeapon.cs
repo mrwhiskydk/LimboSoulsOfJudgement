@@ -39,7 +39,7 @@ namespace LimboSoulsOfJudgement
             if (equipped)
             {
                 float angle;
-                // If the mouse is inside the player, makes so the bow do not freak out.
+                // If the mouse is within 110 distance of the player, makes so the bow do not freak out.
                 if (Vector2.Distance(GameWorld.mouse.Position, Player.arm.Position) < 110)
                 {
                     angle = (float)Math.Atan2(GameWorld.mouse.Position.X - Player.arm.Position.X, GameWorld.mouse.Position.Y - Player.arm.Position.Y);

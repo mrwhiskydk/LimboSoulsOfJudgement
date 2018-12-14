@@ -10,6 +10,9 @@ namespace LimboSoulsOfJudgement
     class EditButton : GameObject
     {
         private bool editOn;
+        private bool clicked = false;
+        private double clickReset;
+        private float clickedTime = 2;
         public EditButton() : base(new Vector2(600, 200), "Edit")
         {
         }
@@ -26,6 +29,14 @@ namespace LimboSoulsOfJudgement
                 GameWorld.player.editMode = false;
             }
 
+            if (clicked == true)
+            {
+                clickReset += gameTime.ElapsedGameTime.TotalSeconds;
+                if (clickReset > clickedTime)
+                {
+                    clicked = false;
+                }
+            }
 
         }
 
@@ -33,13 +44,15 @@ namespace LimboSoulsOfJudgement
         {
             base.DoCollision(otherObject);
 
-            if (otherObject is MeleeWeapon && GameWorld.player.editMode == false)
+            if (otherObject is MeleeWeapon && GameWorld.player.editMode == false && clicked == false)
             {
-                editOn = false;
+                editOn = true;
+                clicked = true;
             }
-            if (otherObject is MeleeWeapon && GameWorld.player.editMode == true)
+            if (otherObject is MeleeWeapon && GameWorld.player.editMode == true && clicked == false)
             {
                 editOn = false;
+                clicked = true;
             }
         }
     }

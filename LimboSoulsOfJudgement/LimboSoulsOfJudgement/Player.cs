@@ -49,7 +49,7 @@ namespace LimboSoulsOfJudgement
         /// <summary>
         /// Percentage of original damage the player crits
         /// </summary>
-        public float critDmgModifier = 1.5f;
+        public float critDmgModifier = 0.5f;
 
 
         public bool editMode = false;
@@ -70,7 +70,7 @@ namespace LimboSoulsOfJudgement
 
             
             //Player movementspeed amount
-            movementSpeed = 500;
+            movementSpeed = 400;
 
             //Weapon setup
             weapon = melee;
@@ -132,16 +132,16 @@ namespace LimboSoulsOfJudgement
                 }
             }
 
-            //if (editMode == true)
-            //{
-            //    movementSpeed = 1500;
-            //    maxHealth = 10000;
-            //}
-            //if (editMode == false)
-            //{
-            //    movementSpeed = 500;
-            //    maxHealth = 100;                
-            //}
+            if (editMode == true)
+            {
+                movementSpeed = 1500;
+                maxHealth = 10000;
+            }
+            if (editMode == false)
+            {
+                movementSpeed = 500;
+                maxHealth = 100;
+            }
 
             if (goToBoss == true)
             {

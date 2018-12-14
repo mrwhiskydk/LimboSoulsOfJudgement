@@ -51,6 +51,7 @@
     <Compile Include="Chain.cs" />
     <Compile Include="Character.cs" />
     <Compile Include="Crosshair.cs" />
+    <Compile Include="Damage.cs" />
     <Compile Include="EditButton.cs" />
     <Compile Include="Enemy.cs" />
     <Compile Include="GameObjectPassive.cs" />
@@ -80,9 +81,12 @@
     <Compile Include="UIAbilityBar.cs" />
     <Compile Include="UpgradeCritChanceBtn.cs" />
     <Compile Include="UpgradeCritDamageBtn.cs" />
+    <Compile Include="UpgradeMeleeDamageBtn.cs" />
     <Compile Include="UpgradeHealthBtn.cs" />
     <Compile Include="UpgradeHealthRegenBtn.cs" />
     <Compile Include="UpgradeLifetealBtn.cs" />
+    <Compile Include="UpgradeMovementSpeedBtn.cs" />
+    <Compile Include="UpgradeRangedDamageBtn.cs" />
     <Compile Include="Vendor.cs" />
     <Compile Include="Weapon.cs" />
   </ItemGroup>

@@ -80,7 +80,7 @@ namespace LimboSoulsOfJudgement
 
             if (charge == true)
             {
-                movementSpeed = 600;
+                movementSpeed = 900;
 
             }
             else if (charge == false)

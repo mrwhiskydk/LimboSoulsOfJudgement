@@ -13,14 +13,14 @@ namespace LimboSoulsOfJudgement
     {
         public int health;
         public int maxHealth;
-        protected float movementSpeed;
+        public float movementSpeed;
 
         protected float immortalDuration = 1.0f;
         protected double immortalTime;
         /// <summary>
         /// Sets characters immunity on and off
         /// </summary>
-        protected bool isImmortal;
+        public bool isImmortal;
 
         protected bool canJump = false;   //Controls wether the Player can jump or not
         
