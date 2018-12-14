@@ -11,5 +11,6 @@ namespace LimboSoulsOfJudgement
         public Platform(Vector2 startPosition, string spriteName) : base(startPosition, spriteName)
         {
         }
+
     }
 }

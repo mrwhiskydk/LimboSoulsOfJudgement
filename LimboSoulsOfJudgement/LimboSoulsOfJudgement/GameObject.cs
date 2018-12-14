@@ -13,7 +13,7 @@ namespace LimboSoulsOfJudgement
         protected Texture2D sprite;
 
         protected float rotation;
-        protected Vector2 position;
+        public Vector2 position;
 
         /// <summary>
         /// Sets the default gravity for the current GameObject

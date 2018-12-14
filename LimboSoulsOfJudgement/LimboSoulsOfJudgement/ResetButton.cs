@@ -47,6 +47,10 @@ namespace LimboSoulsOfJudgement
                 GameWorld.addLevel = true;
                 GameWorld.levelCount += 0.1f;
                 mouseClicked = 0;
+                if (GameWorld.stage == 10)
+                {
+                    GameWorld.stage = 1;
+                }
             }
         }
 

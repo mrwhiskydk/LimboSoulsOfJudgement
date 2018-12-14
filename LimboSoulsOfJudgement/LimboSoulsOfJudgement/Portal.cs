@@ -7,7 +7,7 @@ using Microsoft.Xna.Framework;
 
 namespace LimboSoulsOfJudgement
 {
-    class Portal : AnimatedGameObject
+    public class Portal : AnimatedGameObject
     {
         public Portal(Vector2 startPostion) : base(8, 8, startPostion, "Portal")
         {

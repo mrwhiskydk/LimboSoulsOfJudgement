@@ -9,8 +9,11 @@ namespace LimboSoulsOfJudgement
     public class Level
     {
         public BossEnemy boss;
+        public Portal portal;
+        public Lava movingLava;
         public Level()
         {
+
             if (GameWorld.stage == 1)
             {
                 //Platforms
@@ -29,7 +32,7 @@ namespace LimboSoulsOfJudgement
                 PlaceBlocks(2, 2, 81, 17, 3);
                 PlaceBlocks(2, 1, 9, 31, 21);
                 PlaceBlocks(2, 1, 9, 33, 23);
-                PlaceBlocks(3, 1, 52, 36, 21);
+                PlaceBlocks(3, 1, 52, 36, 10);
                 PlaceBlocks(2, 1, 25, 29, 11);
                 PlaceBlocks(2, 1, 31, 27, 2);
                 PlaceBlocks(2, 1, 9, 29, 2);
@@ -158,18 +161,18 @@ namespace LimboSoulsOfJudgement
                 // Minor Enemies
                 if (GameWorld.badKarmaButton.currentKarma < GameWorld.goodKarmaButton.currentKarma)
                 {
-                    new MinorEnemy(new Vector2(27 * 64, 10 * 64), "SmallDevil");
-                    new MinorEnemy(new Vector2(40 * 64, 14 * 64), "SmallDevil");
-                    new MinorEnemy(new Vector2(46 * 64, 14 * 64), "SmallDevil");
-                    new MinorEnemy(new Vector2(65 * 64, 18 * 64), "SmallDevil");
-                    new MinorEnemy(new Vector2(69 * 64, 18 * 64), "SmallDevil");
-                    new MinorEnemy(new Vector2(65 * 64, 28 * 64), "SmallDevil");
-                    new MinorEnemy(new Vector2(71 * 64, 28 * 64), "SmallDevil");
-                    new MinorEnemy(new Vector2(3 * 64, 55 * 64), "SmallDevil");
-                    new MinorEnemy(new Vector2(11 * 64, 55 * 64), "SmallDevil");
-                    new MinorEnemy(new Vector2(19 * 64, 55 * 64), "SmallDevil");
-                    new MinorEnemy(new Vector2(27 * 64, 55 * 64), "SmallDevil");
-                    new MinorEnemy(new Vector2(35 * 64, 55 * 64), "SmallDevil");
+                    PlaceEnemy(1, 27, 10);
+                    PlaceEnemy(1, 40, 14);
+                    PlaceEnemy(1, 46, 14);
+                    PlaceEnemy(1, 65, 18);
+                    PlaceEnemy(1, 69, 18);
+                    PlaceEnemy(1, 65, 28);
+                    PlaceEnemy(1, 71, 28);
+                    PlaceEnemy(1, 3, 55);
+                    PlaceEnemy(1, 11, 55);
+                    PlaceEnemy(1, 19, 55);
+                    PlaceEnemy(1, 27, 55);
+                    PlaceEnemy(1, 35, 55);
                 }
                 if (GameWorld.badKarmaButton.currentKarma > GameWorld.goodKarmaButton.currentKarma)
                 {
@@ -202,9 +205,101 @@ namespace LimboSoulsOfJudgement
                     new MinorEnemy(new Vector2(35 * 64, 55 * 64), "Melee");
                 }
 
-
+                portal = new Portal(new Vector2(/*87 * 64, 55 * 64*/200, 500));
             }
+            if (GameWorld.stage == 2)
+            {
+                // Frame
+                new Platform(new Vector2(-511, 2048), "VerticalFrame");
+                new Platform(new Vector2(6272, 2048), "VerticalFrame");
+                new Platform(new Vector2(2880, 72 * 64), "HorizontalFrame");
+                new Platform(new Vector2(2880, -512), "HorizontalFrame");
 
+                // portal to the boss
+                portal = new Portal(new Vector2(5 * 64, 7 * 64));
+
+                // Platforms
+                PlaceBlocks(2, 1, 3, 59, 3);
+                PlaceBlocks(2, 1, 18, 63, 6);
+                PlaceBlocks(2, 1, 20, 61, 5);
+                PlaceBlocks(2, 1, 22, 59, 4);
+                PlaceBlocks(2, 1, 24, 57, 3);
+                PlaceBlocks(2, 1, 33, 57, 2);
+                PlaceBlocks(2, 1, 41, 57, 2);
+                PlaceBlocks(2, 1, 49, 57, 2);
+                PlaceBlocks(2, 1, 57, 57, 2);
+                PlaceBlocks(2, 1, 65, 57, 2);
+                PlaceBlocks(2, 1, 75, 57, 8);
+
+                PlaceBlocks(2, 1, 1, 43, 19);
+                PlaceBlocks(2, 1, 51, 45, 4);
+                PlaceBlocks(2, 1, 67, 41, 2);
+                PlaceBlocks(2, 1, 73, 45, 2);
+                PlaceBlocks(2, 1, 61, 37, 2);
+                PlaceBlocks(2, 1, 81, 30, 5);
+                PlaceBlocks(2, 1, 47, 41, 1);
+                PlaceBlocks(2, 1, 43, 37, 1);
+                PlaceBlocks(2, 1, 1, 33, 3);
+                PlaceBlocks(2, 1, 9, 33, 4);
+                PlaceBlocks(2, 1, 17, 33, 3);
+                PlaceBlocks(2, 1, 25, 33, 3);
+                PlaceBlocks(2, 1, 33, 33, 2);
+
+                PlaceBlocks(2, 1, 23, 19, 34);
+                PlaceBlocks(2, 1, 15, 21, 2);
+                PlaceBlocks(2, 1, 9, 25, 2);
+                PlaceBlocks(2, 1, 1, 17, 3);
+                PlaceBlocks(2, 1, 73, 17, 9);
+                PlaceBlocks(2, 1, 77, 15, 7);
+                PlaceBlocks(2, 1, 81, 13, 5);
+                PlaceBlocks(2, 1, 85, 11, 3);
+                PlaceBlocks(2, 1, 89, 9, 1);
+
+                PlaceBlocks(2, 1, 1, 9, 5);
+                PlaceBlocks(2, 1, 25, 9, 2);
+                PlaceBlocks(2, 1, 31, 9, 2);
+                PlaceBlocks(2, 1, 63, 9, 2);
+                PlaceBlocks(2, 1, 77, 7, 2);
+
+                //Chains
+                PlaceBlocks(7, 2, 72, 0, 10);
+                PlaceBlocks(7, 2, 69, 0, 10);
+                PlaceBlocks(7, 2, 60, 0, 10);
+                PlaceBlocks(7, 2, 54, 0, 10);
+                PlaceBlocks(7, 2, 48, 0, 10);
+                PlaceBlocks(7, 2, 42, 0, 10);
+                PlaceBlocks(7, 2, 36, 0, 10);
+                PlaceBlocks(7, 2, 20, 0, 10);
+                PlaceBlocks(7, 2, 14, 0, 10);
+
+                PlaceBlocks(7, 2, 4, 18, 10);
+                PlaceBlocks(7, 2, 30, 44, 20);
+                PlaceBlocks(7, 2, 82, 31, 19);
+                PlaceBlocks(7, 2, 41, 20, 20);
+
+                // Trapdoors
+                PlaceBlocks(4, 1, 7, 33, 1);
+                PlaceBlocks(4, 1, 17, 33, 1);
+                PlaceBlocks(4, 1, 23, 33, 1);
+                PlaceBlocks(4, 1, 31, 33, 1);
+
+                // Moving Lava
+                movingLava = new Lava(new Vector2(GameWorld.ScreenSize.Width * 2 - (5 * 64), 6100), "MegaLava");
+
+                // Enemies
+                if (GameWorld.badKarmaButton.currentKarma < GameWorld.goodKarmaButton.currentKarma)
+                {
+
+                }
+                if (GameWorld.badKarmaButton.currentKarma > GameWorld.goodKarmaButton.currentKarma)
+                {
+
+                }
+                if (GameWorld.badKarmaButton.currentKarma == GameWorld.goodKarmaButton.currentKarma)
+                {
+
+                }
+            }
             if (GameWorld.stage == 10)
             {
                 // Frame
@@ -277,6 +372,8 @@ namespace LimboSoulsOfJudgement
                 {
                     boss = new BossEnemy("GoodBoss");
                 }
+
+                portal = new Portal(new Vector2(30 * 64, 29 * 64));
             }
         }
 
@@ -321,7 +418,7 @@ namespace LimboSoulsOfJudgement
                 }
                 else if (s == 4)
                 {
-                    name = "Trapdoor";
+                    name = "MediumBlock";
                     s = 128;
                     for (int i = 0; i < z; i++)
                     {
@@ -406,6 +503,28 @@ namespace LimboSoulsOfJudgement
             
         }
 
+        /// <summary>
+        /// A method for placing enemies in a level
+        /// </summary>
+        /// <param name="t">Which type of enemy, 1 = Smalldevil, 2 = Smallangel, 3 = Default</param>
+        /// <param name="x"></param>
+        /// <param name="y"></param>
+        private void PlaceEnemy(int t, int x, int y)
+        {
+
+            if (t == 1)
+            {
+                new MinorEnemy(new Vector2(x * 64, y * 64), "SmallDevil");
+            }
+            else if (t == 2)
+            {
+                new MinorEnemy(new Vector2(x * 64, y * 64), "SmallAngel");
+            }
+            else if (t == 3)
+            {
+                new MinorEnemy(new Vector2(x * 64, y * 64), "Melee");
+            }
+        }
     }
 
 }

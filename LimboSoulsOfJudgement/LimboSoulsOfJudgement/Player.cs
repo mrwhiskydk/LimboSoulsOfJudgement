@@ -19,7 +19,7 @@ namespace LimboSoulsOfJudgement
 
         public bool climb = false;
         //public bool svim = false;
-        private bool goToBoss = false;
+        private bool nextLevel = false;
         private const float jumpPower = 1600;
         private double jumpForce = jumpPower;
         /// <summary>
@@ -51,7 +51,9 @@ namespace LimboSoulsOfJudgement
         /// </summary>
         public float critDmgModifier = 0.5f;
 
-
+        private float coolDownTime = 2f;
+        private double editCooldown;
+        private bool editKeyPressed = false;
         public bool editMode = false;
 
         /// <summary>
@@ -136,6 +138,7 @@ namespace LimboSoulsOfJudgement
             {
                 movementSpeed = 1500;
                 maxHealth = 10000;
+                currentSouls = 10000;
             }
             if (editMode == false)
             {
@@ -143,11 +146,47 @@ namespace LimboSoulsOfJudgement
                 maxHealth = 100;
             }
 
-            if (goToBoss == true)
+            if (nextLevel == true)
             {
-                GameWorld.stage = 10;
-                GameWorld.teleport = true;
-                goToBoss = false;
+                if (GameWorld.stage == 1)
+                {
+                    GameWorld.stage = 10;
+                    GameWorld.teleport = true;
+                    nextLevel = false;
+                }
+                else if (GameWorld.stage == 10)
+                {
+                    GameWorld.stage = 2;
+                    GameWorld.teleport = true;
+                    nextLevel = false;
+                }
+                else if (GameWorld.stage == 2)
+                {
+                    GameWorld.stage = 1;
+                    GameWorld.teleport = true;
+                    nextLevel = false;
+                }
+
+            }
+            if (Keyboard.GetState().IsKeyDown(Keys.T) && editMode == false && editKeyPressed == false)
+            {
+                editMode = true;
+                editKeyPressed = true;
+            }
+            else if (Keyboard.GetState().IsKeyDown(Keys.T) && editMode == true && editKeyPressed == false)
+            {
+                editMode = false;
+                editKeyPressed = true;
+            }
+
+            if (editKeyPressed == true)
+            {
+                editCooldown += gameTime.ElapsedGameTime.TotalSeconds;
+                if (editCooldown > coolDownTime)
+                {
+                    editKeyPressed = false;
+                    editCooldown = 0;
+                }
             }
         }
 
@@ -436,7 +475,7 @@ namespace LimboSoulsOfJudgement
 
             if (otherObject is Portal && Keyboard.GetState().IsKeyDown(Keys.E) && GameWorld.teleport == false)
             {
-                goToBoss = true;
+                nextLevel = true;
             }
         }
         public override void Draw(SpriteBatch spriteBatch)
@@ -445,14 +484,14 @@ namespace LimboSoulsOfJudgement
             if (isImmortal == true && facingRight == false)
             {
 
-                spriteBatch.Draw(sprite, position, animationRectangles[currentAnimationIndex], Color.Red, rotation, new Vector2(animationRectangles[currentAnimationIndex].Width * 0.5f, animationRectangles[currentAnimationIndex].Height * 0.5f), 1f, SpriteEffects.FlipHorizontally, 0.97f);
+                spriteBatch.Draw(sprite, position, animationRectangles[currentAnimationIndex], Color.Red, rotation, new Vector2(animationRectangles[currentAnimationIndex].Width * 0.5f, animationRectangles[currentAnimationIndex].Height * 0.5f), 1f, SpriteEffects.FlipHorizontally, 1f);
 
             }
 
             if (isImmortal == true && facingRight == true)
             {
 
-                spriteBatch.Draw(sprite, position, animationRectangles[currentAnimationIndex], Color.Red, rotation, new Vector2(animationRectangles[currentAnimationIndex].Width * 0.5f, animationRectangles[currentAnimationIndex].Height * 0.5f), 1f, SpriteEffects.None, 0.97f);
+                spriteBatch.Draw(sprite, position, animationRectangles[currentAnimationIndex], Color.Red, rotation, new Vector2(animationRectangles[currentAnimationIndex].Width * 0.5f, animationRectangles[currentAnimationIndex].Height * 0.5f), 1f, SpriteEffects.None, 1f);
 
             }
         }
