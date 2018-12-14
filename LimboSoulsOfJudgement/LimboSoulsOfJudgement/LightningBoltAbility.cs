@@ -9,13 +9,13 @@ using Microsoft.Xna.Framework.Graphics;
 namespace LimboSoulsOfJudgement
 {
 
-    public class LightningBolt : Ability
+    public class LightningBoltAbility : Ability
     {
         
 
-        public LightningBolt() : base(new Vector2(300, 300), "LightningBolt")
+        public LightningBoltAbility() : base("LightningBoltAbility")
         {
-            cooldown = 1;
+            cooldown = 10;
             cooldownTimer = cooldown;
         }
 
@@ -24,25 +24,41 @@ namespace LimboSoulsOfJudgement
             Vector2 playerPosition = GameWorld.player.Position;
             Vector2 direction = new Vector2(GameWorld.mouse.Position.X, GameWorld.mouse.Position.Y) - playerPosition;
 
-            new LightningBoltAbility(playerPosition, direction);
+            new LightningBolt(playerPosition, direction);
         }
 
         public override void Update(GameTime gameTime)
         {
-            
             base.Update(gameTime);
             position = UIAbilityBar.abilitySlot1;
         }
 
+        /// <summary>
+        /// Overridden Draw Method that draws out the sprite of Lightning Bolt Ability, if purchased through BuyLightningBoltButton Class.
+        /// While not purchased, the sprite is still being drawn out, but it is 100% transparent.
+        /// </summary>
+        /// <param name="spriteBatch"></param>
+        public override void Draw(SpriteBatch spriteBatch)
+        {
+            if (GameWorld.buyLightningBoltButton.abilityPurchased)
+            {
+                spriteBatch.Draw(sprite, position, null, Color.White, rotation, new Vector2(sprite.Width * 0.5f, sprite.Height * 0.5f), 1f, SpriteEffects.None, 0.992f);
+            }
+            else
+            {
+                spriteBatch.Draw(sprite, position, null, Color.White * 0.0f, rotation, new Vector2(sprite.Width * 0.5f, sprite.Height * 0.5f), 1f, SpriteEffects.None, 0.992f);
+            }
 
-        class LightningBoltAbility : AnimatedGameObject
+        }
+
+        class LightningBolt : AnimatedGameObject
         {
             private int speed = 1000;
             public int damage = 25;
             private Vector2 dir;
             private double timeAlive = 0;
 
-            public LightningBoltAbility(Vector2 startPosition, Vector2 dir) : base(4, 20, startPosition, "Lightning")
+            public LightningBolt(Vector2 startPosition, Vector2 dir) : base(4, 20, startPosition, "LightningBolt")
             {
                 this.dir = dir;
 
@@ -71,16 +87,14 @@ namespace LimboSoulsOfJudgement
                 if (otherObject is Enemy)
                 {
                     Enemy obj = (Enemy)otherObject;
-
-                    if (obj.isImmortal is false)
-                    {
-                        new Damage(new Vector2(position.X, position.Y - sprite.Height * 0.5f), damage);
-                    }
-
                     obj.Health -= damage;
                     obj.aggro = true;
-                    
                 }
+            }
+
+            public override void Draw(SpriteBatch spriteBatch)
+            {
+                spriteBatch.Draw(sprite, position, animationRectangles[currentAnimationIndex], Color.White, rotation, new Vector2(animationRectangles[currentAnimationIndex].Width * 0.5f, animationRectangles[currentAnimationIndex].Height * 0.5f), 1f, SpriteEffects.None, 0.991f);
             }
         }
     }

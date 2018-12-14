@@ -13,9 +13,10 @@ namespace LimboSoulsOfJudgement
         public Ability ability1;
         private bool canSwitchWeapons = true;
         private double attackTimer = 0;
-        public int currentSouls;
+        public int currentSouls = 10000;
         private double collisionMovement; // Used for collision so you dont need gameTime in DoCollision
-        private bool hittingRoof = false; 
+        private bool hittingRoof = false;
+        private bool inAir;
 
         public bool climb = false;
         //public bool svim = false;
@@ -36,7 +37,7 @@ namespace LimboSoulsOfJudgement
         /// <summary>
         /// Percentage of maxHealth added every 3 seconds, needs to be +0.01 of the desired percentage. dunno why
         /// </summary>
-        public float healthRegen = 0.02f;
+        public float healthRegen = 0.00f;
         private double healthRegenTimer;
         /// <summary>
         /// Percentage of damage added to player health
@@ -64,7 +65,7 @@ namespace LimboSoulsOfJudgement
             arm = new Arm();
             melee = new MeleeWeapon();
             ranged = new RangedWeapon();
-            ability1 = new LightningBolt();
+            ability1 = new BloodstormAbility();
 
             //Maximum amount of Player health
             maxHealth = 100;
@@ -72,7 +73,7 @@ namespace LimboSoulsOfJudgement
 
             
             //Player movementspeed amount
-            movementSpeed = 500;
+            movementSpeed = 400;
 
             //Weapon setup
             weapon = melee;
@@ -99,7 +100,7 @@ namespace LimboSoulsOfJudgement
                 }
             }
 
-            if (isJumping == true)
+            if (isJumping == true || climb == true || inAir)
             {
                 State(3, "PlayerJump");
             }
@@ -107,7 +108,6 @@ namespace LimboSoulsOfJudgement
             {
                 State(4, "PlayerRun");
             }
-            
             else
             {
                 State(5, "PlayerIdle");
@@ -117,6 +117,7 @@ namespace LimboSoulsOfJudgement
             HandleMovement(gameTime);
             climb = false;
             canJump = false;
+            inAir = true;
 
             HandleJumping(gameTime);
 
@@ -248,7 +249,7 @@ namespace LimboSoulsOfJudgement
                 gravity = false;
             }
 
-            isRunning = false;
+            //isRunning = false;
 
             //Statement that checks if Player is moving to the left
             if (Keyboard.GetState().IsKeyDown(Keys.A))
@@ -257,13 +258,8 @@ namespace LimboSoulsOfJudgement
                 facingRight = false;
                 position.X -= (float)(movementSpeed * gameTime.ElapsedGameTime.TotalSeconds);
             }
-            else
-            {
-                isRunning = false;
-            }
-
             //Statement that checks if Player is moving to the right
-            if (Keyboard.GetState().IsKeyDown(Keys.D))
+            else if (Keyboard.GetState().IsKeyDown(Keys.D))
             {
                 isRunning = true;
                 facingRight = true;
@@ -354,10 +350,14 @@ namespace LimboSoulsOfJudgement
             }
         }
 
+        /// <summary>
+        /// Method that checks if the current Ability has been purchased & 
+        /// enables the Q button to be pressed, in order to shoot the Ability
+        /// </summary>
+        /// <param name="gameTime"></param>
         public void HandleAbilities(GameTime gameTime)
-        {
-            
-            if (Keyboard.GetState().IsKeyDown(Keys.Q))
+        {          
+            if (Keyboard.GetState().IsKeyDown(Keys.Q) && GameWorld.buyLightningBoltButton.abilityPurchased)
             {
                 ability1.Use();
             }
@@ -383,13 +383,17 @@ namespace LimboSoulsOfJudgement
                 jumpForce = jumpPower;
                 canJump = true;
                 isJumping = false;
+                inAir = false;
             }
 
-            if (otherObject is Chain)
+            if (otherObject is Chain && isJumping is false || Keyboard.GetState().IsKeyDown(Keys.W))
             {
                 climb = true;
                 Gravity = false;
-                jumpForce = 0; // makes so the player cant jump on the chain
+                isJumping = false;
+                jumpForce = jumpPower;
+                canJump = true;
+                    
             }
 
             // If the small collisionboxes intersects with a platform move the player in the opposite direction. 
@@ -493,6 +497,17 @@ namespace LimboSoulsOfJudgement
 
                 spriteBatch.Draw(sprite, position, animationRectangles[currentAnimationIndex], Color.Red, rotation, new Vector2(animationRectangles[currentAnimationIndex].Width * 0.5f, animationRectangles[currentAnimationIndex].Height * 0.5f), 1f, SpriteEffects.None, 1f);
 
+            }
+        }
+
+        /// <summary>
+        /// Collisionbox override, the player needed a fixed collisionbox size else there were collision bugs
+        /// </summary>
+        public override Rectangle CollisionBox
+        {
+            get
+            {
+                return new Rectangle((int)(position.X - 75 * 0.5), (int)(position.Y - 230 * 0.5), 75, 230);
             }
         }
     }

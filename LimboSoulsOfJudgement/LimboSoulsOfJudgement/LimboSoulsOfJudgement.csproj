@@ -45,13 +45,17 @@
     <Compile Include="AnimatedGameObject.cs" />
     <Compile Include="Arm.cs" />
     <Compile Include="BadKarmaButton.cs" />
+    <Compile Include="BloodstormAbility.cs" />
     <Compile Include="BossEnemy.cs" />
     <Compile Include="Button.cs" />
+    <Compile Include="BuyBloodStormButton.cs" />
+    <Compile Include="BuyLightningBoltButton.cs" />
     <Compile Include="Camera.cs" />
     <Compile Include="Chain.cs" />
     <Compile Include="Character.cs" />
     <Compile Include="Crosshair.cs" />
-    <Compile Include="Damage.cs" />
+    <Compile Include="DamageText.cs" />
+    <Compile Include="EditButton.cs" />
     <Compile Include="Enemy.cs" />
     <Compile Include="GameObjectPassive.cs" />
     <Compile Include="EvilWeaponBtn.cs" />
@@ -62,7 +66,7 @@
     <Compile Include="HealthBar.cs" />
     <Compile Include="KarmaBar.cs" />
     <Compile Include="Lava.cs" />
-    <Compile Include="LightningBolt.cs" />
+    <Compile Include="LightningBoltAbility.cs" />
     <Compile Include="MinorEnemy.cs" />
     <Compile Include="Player.cs" />
     <Compile Include="Level.cs" />
@@ -80,9 +84,12 @@
     <Compile Include="UIAbilityBar.cs" />
     <Compile Include="UpgradeCritChanceBtn.cs" />
     <Compile Include="UpgradeCritDamageBtn.cs" />
+    <Compile Include="UpgradeMeleeDamageBtn.cs" />
     <Compile Include="UpgradeHealthBtn.cs" />
     <Compile Include="UpgradeHealthRegenBtn.cs" />
     <Compile Include="UpgradeLifetealBtn.cs" />
+    <Compile Include="UpgradeMovementSpeedBtn.cs" />
+    <Compile Include="UpgradeRangedDamageBtn.cs" />
     <Compile Include="Vendor.cs" />
     <Compile Include="Weapon.cs" />
   </ItemGroup>

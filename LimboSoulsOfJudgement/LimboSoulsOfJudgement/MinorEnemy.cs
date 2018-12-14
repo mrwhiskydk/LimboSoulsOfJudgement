@@ -162,6 +162,7 @@ namespace LimboSoulsOfJudgement
                 {
                     jumpForce = 0;
                     Gravity = true;
+                    goVertically = false;
                 }
 
                 if (bottomLine.Intersects(otherObject.CollisionBox) && (leftLine.Intersects(otherObject.CollisionBox) is false || (rightLine.Intersects(otherObject.CollisionBox) is false)))
@@ -181,13 +182,13 @@ namespace LimboSoulsOfJudgement
             {
                 if (position.Y > GameWorld.player.Position.Y)
                 {
-                    position.Y -= (float)(0.7 * collisionMovement);
+                    position.Y -= (float)(0.5 * collisionMovement);
                 }
                 if (position.Y < GameWorld.player.Position.Y)
                 {
-                    position.Y += (float)(0.7 * collisionMovement);
+                    position.Y += (float)(0.5 * collisionMovement);
                 }
-                gravity = false;
+                Gravity = false;
                 jumpForce = 0;
             }
         }
