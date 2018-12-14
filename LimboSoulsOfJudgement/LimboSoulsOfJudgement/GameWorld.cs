@@ -218,44 +218,8 @@ namespace LimboSoulsOfJudgement
             
 
 
-            if (teleport == true)
-            {
-                levelReset = true;
-                addLevel = true;
-                teleport = false;
-            }
-            if (levelReset == false && addLevel == true)
-            {
-                level = new Level();
-                addLevel = false;
 
-            }
-            else if (levelReset == true)
-            {
-                foreach (var item in gameObjects)
-                {
-                    if (item is Player is false && item is Vendor is false && item is Crosshair is false && item is UI is false && item is Button is false && item is Weapon is false && item is Arm is false)
-                    {
-                        item.Destroy();
-                    }
-                }
-                levelReset = false;
 
-                player.health = player.MaxHealth;
-                if (stage == 1)
-                {
-                    player.Position = new Vector2(200, 500);
-                }
-                if (stage == 2)
-                {
-                    player.Position = new Vector2(5 * 64, 55 * 64);
-                }
-                if (stage == 10)
-                {
-                    player.Position = new Vector2(30 * 64, 27 * 64);
-                }
-
-            }
             if (player.playerLives > 0)
             {
                 playerAlive = true;
@@ -309,7 +273,45 @@ namespace LimboSoulsOfJudgement
                     }
                 }
             }
-           
+            if (levelReset == false && addLevel == true)
+            {
+                level = new Level();
+                addLevel = false;
+
+            }
+            else if (levelReset == true)
+            {
+                foreach (var item in gameObjects)
+                {
+                    if (item is Player is false && item is Vendor is false && item is Crosshair is false && item is UI is false && item is Button is false && item is Weapon is false && item is Arm is false)
+                    {
+                        item.Destroy();
+                    }
+                }
+                levelReset = false;
+
+                player.health = player.MaxHealth;
+                if (stage == 1)
+                {
+                    player.Position = new Vector2(200, 500);
+                }
+                else if (stage == 2)
+                {
+                    player.Position = new Vector2(5 * 64, 55 * 64);
+                }
+                else if (stage == 10)
+                {
+                    player.Position = new Vector2(30 * 64, 27 * 64);
+                }
+
+            }
+
+            if (teleport == true)
+            {
+                levelReset = true;
+                addLevel = true;
+                teleport = false;
+            }
 
             //manually updating classes with important order
             camera.Position = new Vector2(MathHelper.Lerp(camera.Position.X, player.Position.X, 0.25f), MathHelper.Lerp(camera.Position.Y, player.Position.Y, 0.25f));
