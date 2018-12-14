@@ -22,7 +22,7 @@ namespace LimboSoulsOfJudgement
             currentStatValue = 0;
             maxStatValue = 50;
             statCost = 5;
-            statIncrease = 3;
+            statIncrease = 1;
 
             currentKarma = 0;
         }
@@ -50,7 +50,7 @@ namespace LimboSoulsOfJudgement
                     return;
                 }              
                 currentStatValue += statIncrease;   //Adds value to the current amount of Karma equal to its stat cost   
-                currentKarma += currentStatValue;   //Adds value to current Karma amount, equal to the upgrade value amount of the current Stat
+                currentKarma += statIncrease;   //Adds value to current Karma amount, equal to the upgrade value amount of the current Stat
                 GameWorld.player.currentSouls -= statCost;  //Substracts player soul value equal to current buttons stat cost
                 statCost += 1;
                 mouseClicked = 0;

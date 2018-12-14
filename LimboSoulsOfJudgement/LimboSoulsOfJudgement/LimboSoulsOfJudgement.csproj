@@ -48,6 +48,7 @@
     <Compile Include="BloodstormAbility.cs" />
     <Compile Include="BossEnemy.cs" />
     <Compile Include="Button.cs" />
+    <Compile Include="BuyBloodStormButton.cs" />
     <Compile Include="BuyLightningBoltButton.cs" />
     <Compile Include="Camera.cs" />
     <Compile Include="Chain.cs" />

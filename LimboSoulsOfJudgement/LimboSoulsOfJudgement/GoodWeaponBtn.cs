@@ -29,12 +29,12 @@ namespace LimboSoulsOfJudgement
         }
 
         /// <summary>
-        /// Updates the GoodWeaponBtn's game logic
+        /// Updates the GoodWeaponBtn's game logic.
+        /// Also checks if current amount of good karma has reached the required karma value in order to begin the purchasing process
         /// </summary>
         /// <param name="gameTime">Time elapsed since last call in the update</param>
         public override void Update(GameTime gameTime)
         {
-            //Statement that checks if current amount of good karma has reached the required karma value in order to begin purchasing process
             if (GameWorld.goodKarmaButton.currentKarma >= karmaRequirements)
             {
                 base.Update(gameTime);
