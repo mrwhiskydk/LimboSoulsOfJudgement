@@ -57,7 +57,7 @@ namespace LimboSoulsOfJudgement
         /// <param name="spriteBatch">The spritebatch to use for drawing</param>
         public virtual void Draw(SpriteBatch spriteBatch)
         {
-            spriteBatch.Draw(sprite, new Vector2(position.X, position.Y), null, Color.White, rotation, new Vector2(sprite.Width * 0.5f, sprite.Height * 0.5f), 1f, SpriteEffects.None, 0.98f);
+            spriteBatch.Draw(sprite, new Vector2(position.X, position.Y), null, Color.White, rotation, new Vector2(sprite.Width * 0.5f, sprite.Height * 0.5f), 1f, SpriteEffects.None, 0.991f);
         }
     }
 }
