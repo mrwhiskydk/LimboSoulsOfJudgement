@@ -23,7 +23,7 @@ namespace LimboSoulsOfJudgement
         /// <summary>
         /// If true, the enemy will follow the player until it dies
         /// </summary>
-        protected bool aggro = false;
+        public bool aggro = false;
         /// <summary>
         /// Checks if an enemy should go after the player horizontally
         /// </summary>

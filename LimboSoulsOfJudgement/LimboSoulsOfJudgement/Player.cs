@@ -132,16 +132,16 @@ namespace LimboSoulsOfJudgement
                 }
             }
 
-            //if (editMode == true)
-            //{
-            //    movementSpeed = 1500;
-            //    maxHealth = 10000;
-            //}
-            //if (editMode == false)
-            //{
-            //    movementSpeed = 500;
-            //    maxHealth = 100;                
-            //}
+            if (editMode == true)
+            {
+                movementSpeed = 1500;
+                maxHealth = 10000;
+            }
+            if (editMode == false)
+            {
+                movementSpeed = 500;
+                maxHealth = 100;
+            }
 
             if (goToBoss == true)
             {

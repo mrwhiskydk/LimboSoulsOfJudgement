@@ -78,6 +78,7 @@ namespace LimboSoulsOfJudgement
                     }
 
                     obj.Health -= damage;
+                    obj.aggro = true;
                     
                 }
             }
