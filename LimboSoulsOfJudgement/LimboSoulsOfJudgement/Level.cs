@@ -373,7 +373,7 @@ namespace LimboSoulsOfJudgement
                     boss = new BossEnemy("GoodBoss");
                 }
 
-                portal = new Portal(new Vector2(30 * 64, 29 * 64));
+                portal = new Portal(new Vector2(30 * 64, 20 * 64));
             }
         }
 

@@ -218,12 +218,7 @@ namespace LimboSoulsOfJudgement
             
 
 
-            if (teleport == true)
-            {
-                levelReset = true;
-                addLevel = true;
-                teleport = false;
-            }
+
 
             if (player.playerLives > 0)
             {
@@ -300,15 +295,22 @@ namespace LimboSoulsOfJudgement
                 {
                     player.Position = new Vector2(200, 500);
                 }
-                if (stage == 2)
+                else if (stage == 2)
                 {
                     player.Position = new Vector2(5 * 64, 55 * 64);
                 }
-                if (stage == 10)
+                else if (stage == 10)
                 {
                     player.Position = new Vector2(30 * 64, 27 * 64);
                 }
 
+            }
+
+            if (teleport == true)
+            {
+                levelReset = true;
+                addLevel = true;
+                teleport = false;
             }
 
             //manually updating classes with important order

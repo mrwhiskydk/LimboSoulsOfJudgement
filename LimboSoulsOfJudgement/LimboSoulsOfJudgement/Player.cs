@@ -17,6 +17,7 @@ namespace LimboSoulsOfJudgement
         private double collisionMovement; // Used for collision so you dont need gameTime in DoCollision
         private bool hittingRoof = false;
         private bool inAir;
+        private double newLevelTimer;
 
         public bool climb = false;
         //public bool svim = false;
@@ -88,7 +89,7 @@ namespace LimboSoulsOfJudgement
         {
             base.Update(gameTime);
             collisionMovement = movementSpeed * gameTime.ElapsedGameTime.TotalSeconds;
-
+            newLevelTimer += gameTime.ElapsedGameTime.TotalSeconds;
             // If the player is under maxHealth activate healthRegen
             if (Health < maxHealth)
             {
@@ -154,19 +155,20 @@ namespace LimboSoulsOfJudgement
                     GameWorld.stage = 10;
                     GameWorld.teleport = true;
                     nextLevel = false;
+
                 }
                 else if (GameWorld.stage == 10)
-                {
-                    GameWorld.stage = 2;
-                    GameWorld.teleport = true;
-                    nextLevel = false;
-                }
-                else if (GameWorld.stage == 2)
                 {
                     GameWorld.stage = 1;
                     GameWorld.teleport = true;
                     nextLevel = false;
                 }
+                //else if (GameWorld.stage == 2)
+                //{
+                //    GameWorld.stage = 1;
+                //    GameWorld.teleport = true;
+                //    nextLevel = false;
+                //}
 
             }
             if (Keyboard.GetState().IsKeyDown(Keys.T) && editMode == false && editKeyPressed == false)
@@ -386,14 +388,13 @@ namespace LimboSoulsOfJudgement
                 inAir = false;
             }
 
-            if (otherObject is Chain && isJumping is false || Keyboard.GetState().IsKeyDown(Keys.W))
+            if (otherObject is Chain && isJumping is false || otherObject is Chain && Keyboard.GetState().IsKeyDown(Keys.W))
             {
                 climb = true;
                 Gravity = false;
                 isJumping = false;
                 jumpForce = jumpPower;
                 canJump = true;
-                    
             }
 
             // If the small collisionboxes intersects with a platform move the player in the opposite direction. 
@@ -477,9 +478,10 @@ namespace LimboSoulsOfJudgement
                 //svim = true;
             }
 
-            if (otherObject is Portal && Keyboard.GetState().IsKeyDown(Keys.E) && GameWorld.teleport == false)
+            if ((otherObject is Portal && Keyboard.GetState().IsKeyDown(Keys.E) && GameWorld.teleport == false) && newLevelTimer > 1)
             {
                 nextLevel = true;
+                newLevelTimer = 0;
             }
         }
         public override void Draw(SpriteBatch spriteBatch)
