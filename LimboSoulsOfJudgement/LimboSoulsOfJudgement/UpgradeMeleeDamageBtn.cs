@@ -8,37 +8,35 @@ using Microsoft.Xna.Framework;
 namespace LimboSoulsOfJudgement
 {
     /// <summary>
-    /// Public Class that represents the functionality and game logic of the UpgradeHealthBtn
+    /// Public Class that represents the functionality and game logic of the UpgradeDamageBtn
     /// </summary>
-    public class UpgradeHealthBtn : Button
+    public class UpgradeMeleeDamageBtn : Button
     {
-        
+
         /// <summary>
-        /// UpgradeHealthBtn Constructor, that sets the default position and sprite name values
+        /// UpgradeDamageBtn Constructor, that sets the default position and sprite name values
         /// </summary>
-        public UpgradeHealthBtn() : base(new Vector2(GameWorld.ui.Position.X, GameWorld.ui.Position.Y + 75), "buttonUITest")
+        public UpgradeMeleeDamageBtn() : base(new Vector2(GameWorld.ui.Position.X + 350, GameWorld.ui.Position.Y + 165), "buttonUITest")
         {
-            currentStatValue = GameWorld.player.maxHealth;
-            maxStatValue = 300;
-            statCost = 5;
-            statIncrease = 5;
+            currentStatValue = GameWorld.player.melee.damage;
+            maxStatValue = 35;
+            statCost = 10;
+            statIncrease = 1;
         }
 
         /// <summary>
-        /// Updates the UpgradeHealthBtn game logic
+        /// 
         /// </summary>
-        /// <param name="gameTime">Time elapsed since last call in the update</param>
+        /// <param name="gameTime"></param>
         public override void Update(GameTime gameTime)
         {
             base.Update(gameTime);
         }
 
         /// <summary>
-        /// Overridden UpgradeStat Method that sets its game logic.
-        /// Increases the player's max health equal to its statIncease value.
-        /// Sets the player's current health equal to the increased max health upon purchase
+        /// 
         /// </summary>
-        /// <param name="gameTime">Time elapsed since last call in the update</param>
+        /// <param name="gameTime"></param>
         public override void UpgradeStat(GameTime gameTime)
         {
             mouseClicked += gameTime.ElapsedGameTime.TotalSeconds;
@@ -49,8 +47,7 @@ namespace LimboSoulsOfJudgement
                     return;
                 }
                 currentStatValue += statIncrease;   //Updates the vendor UI's stat increase 
-                GameWorld.player.maxHealth += statIncrease; //Actual increase of player values
-                GameWorld.player.health = GameWorld.player.maxHealth;   //Sets current player health equal to increased player health
+                GameWorld.player.melee.damage += statIncrease; //Actual increase of player values
                 GameWorld.player.currentSouls -= statCost;  //Substracts player soul value equal to current buttons stat cost
                 statCost += 1;
                 mouseClicked = 0;   //Resets the mouseClicked value once value calculations has finished

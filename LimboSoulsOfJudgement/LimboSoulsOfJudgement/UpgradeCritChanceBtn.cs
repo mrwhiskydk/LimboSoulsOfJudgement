@@ -8,7 +8,7 @@ using Microsoft.Xna.Framework;
 namespace LimboSoulsOfJudgement
 {
     /// <summary>
-    /// Public Clas that represents the functionality and game logic of the UpgradeCritChanceBtn
+    /// Public Class that represents the functionality and game logic of the UpgradeCritChanceBtn
     /// </summary>
     public class UpgradeCritChanceBtn : Button
     {

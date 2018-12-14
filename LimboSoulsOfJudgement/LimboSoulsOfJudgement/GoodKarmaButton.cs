@@ -17,7 +17,7 @@ namespace LimboSoulsOfJudgement
         /// <summary>
         /// GoodKarmaButton Constructor, that sets the default position and sprite name values
         /// </summary>
-        public GoodKarmaButton() : base(new Vector2(GameWorld.ui.Position.X - 275, GameWorld.ui.Position.Y - 185), "buttonUITest")
+        public GoodKarmaButton() : base(new Vector2(GameWorld.ui.Position.X - 475, GameWorld.ui.Position.Y - 218), "buttonUITest")
         {
             currentStatValue = 0;
             maxStatValue = 50;

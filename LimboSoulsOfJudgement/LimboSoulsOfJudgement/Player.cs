@@ -13,7 +13,7 @@ namespace LimboSoulsOfJudgement
         public Ability ability1;
         private bool canSwitchWeapons = true;
         private double attackTimer = 0;
-        public int currentSouls;
+        public int currentSouls = 10000;
         private double collisionMovement; // Used for collision so you dont need gameTime in DoCollision
         private bool hittingRoof = false; 
 
@@ -70,7 +70,7 @@ namespace LimboSoulsOfJudgement
 
             
             //Player movementspeed amount
-            movementSpeed = 500;
+            movementSpeed = 400;
 
             //Weapon setup
             weapon = melee;
@@ -131,16 +131,16 @@ namespace LimboSoulsOfJudgement
                 }
             }
 
-            //if (editMode == true)
-            //{
-            //    movementSpeed = 1500;
-            //    maxHealth = 10000;
-            //}
-            //if (editMode == false)
-            //{
-            //    movementSpeed = 500;
-            //    maxHealth = 100;                
-            //}
+            if (editMode == true)
+            {
+                movementSpeed = 1500;
+                maxHealth = 10000;
+            }
+            if (editMode == false)
+            {
+                movementSpeed = 500;
+                maxHealth = 100;
+            }
 
             if (goToBoss == true)
             {

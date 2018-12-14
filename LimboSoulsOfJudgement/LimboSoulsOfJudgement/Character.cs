@@ -13,7 +13,7 @@ namespace LimboSoulsOfJudgement
     {
         public int health;
         public int maxHealth;
-        protected float movementSpeed;
+        public float movementSpeed;
 
         protected float immortalDuration = 1.0f;
         protected double immortalTime;

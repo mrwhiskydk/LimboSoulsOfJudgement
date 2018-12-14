@@ -13,6 +13,18 @@
 
 #---------------------------------- Content ---------------------------------#
 
+#begin AbilityCooldown.png
+/importer:TextureImporter
+/processor:TextureProcessor
+/processorParam:ColorKeyColor=255,0,255,255
+/processorParam:ColorKeyEnabled=True
+/processorParam:GenerateMipmaps=False
+/processorParam:PremultiplyAlpha=True
+/processorParam:ResizeToPowerOfTwo=False
+/processorParam:MakeSquare=False
+/processorParam:TextureFormat=Color
+/build:AbilityCooldown.png
+
 #begin arrow.png
 /importer:TextureImporter
 /processor:TextureProcessor
@@ -327,7 +339,7 @@
 /processorParam:TextureFormat=Color
 /build:MediumLava.png
 
-#begin Melee2.png
+#begin Melee.png
 /importer:TextureImporter
 /processor:TextureProcessor
 /processorParam:ColorKeyColor=255,0,255,255
@@ -337,7 +349,7 @@
 /processorParam:ResizeToPowerOfTwo=False
 /processorParam:MakeSquare=False
 /processorParam:TextureFormat=Color
-/build:Melee2.png
+/build:Melee.png
 
 #begin PlayerArm.png
 /importer:TextureImporter
