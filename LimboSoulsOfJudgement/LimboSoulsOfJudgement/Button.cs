@@ -67,6 +67,11 @@ namespace LimboSoulsOfJudgement
         /// </summary>
         public bool weaponActive;
 
+        /// <summary>
+        /// Checks wether or not the current Ability has been purchased. Enables use of Ability if value is set to true
+        /// </summary>
+        public bool abilityPurchased;
+
         protected float nextClick = 0.2f;
         protected double mouseClicked;
 

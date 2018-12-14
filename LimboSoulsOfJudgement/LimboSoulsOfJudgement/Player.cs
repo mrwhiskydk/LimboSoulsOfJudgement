@@ -315,10 +315,14 @@ namespace LimboSoulsOfJudgement
             }
         }
 
+        /// <summary>
+        /// Method that checks if the current Ability has been purchased & 
+        /// enables the Q button to be pressed, in order to shoot the Ability
+        /// </summary>
+        /// <param name="gameTime"></param>
         public void HandleAbilities(GameTime gameTime)
-        {
-            
-            if (Keyboard.GetState().IsKeyDown(Keys.Q))
+        {          
+            if (Keyboard.GetState().IsKeyDown(Keys.Q) && GameWorld.buyLightningBoltButton.abilityPurchased)
             {
                 ability1.Use();
             }

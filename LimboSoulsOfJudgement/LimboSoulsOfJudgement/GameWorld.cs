@@ -46,6 +46,7 @@ namespace LimboSoulsOfJudgement
         public static UpgradeMeleeDamageBtn upgradeMeleeDamageBtn;
         public static UpgradeRangedDamageBtn upgradeRangedDamageBtn;
         public static UpgradeMovementSpeedBtn upgradeMovementSpeedBtn;
+        public static BuyLightningBoltButton buyLightningBoltButton;
 
         // Healthbar
         public static HealthBar healthBar;
@@ -104,7 +105,7 @@ namespace LimboSoulsOfJudgement
             graphics = new GraphicsDeviceManager(this);
             graphics.PreferredBackBufferWidth = 1600;  // set this value to the desired width of your window
             graphics.PreferredBackBufferHeight = 900;   // set this value to the desired height of your window
-            graphics.ToggleFullScreen();
+            //graphics.ToggleFullScreen();
             graphics.GraphicsProfile = GraphicsProfile.HiDef;
             graphics.ApplyChanges();
             Content.RootDirectory = "Content";
@@ -173,6 +174,7 @@ namespace LimboSoulsOfJudgement
             upgradeMeleeDamageBtn = new UpgradeMeleeDamageBtn();
             upgradeRangedDamageBtn = new UpgradeRangedDamageBtn();
             upgradeMovementSpeedBtn = new UpgradeMovementSpeedBtn();
+            buyLightningBoltButton = new BuyLightningBoltButton();
 
             // Healthbar
             healthBar = new HealthBar(Vector2.Zero);
@@ -412,9 +414,13 @@ namespace LimboSoulsOfJudgement
                 spriteBatch.DrawString(font, $"Soul Cost: {upgradeMeleeDamageBtn.statCost}", new Vector2(upgradeMeleeDamageBtn.Position.X - 50, upgradeMeleeDamageBtn.Position.Y + 35), Color.White, 0f, Vector2.Zero, 1f, SpriteEffects.None, 0.995f);
                 spriteBatch.DrawString(font, $"Soul Cost: {upgradeMovementSpeedBtn.statCost}", new Vector2(upgradeMovementSpeedBtn.Position.X - 50, upgradeMovementSpeedBtn.Position.Y + 35), Color.White, 0f, Vector2.Zero, 1f, SpriteEffects.None, 0.995f);
 
+                //Cost and Karma Required Text of Good Weapon
                 spriteBatch.DrawString(font, $"Soul Cost: {goodWeaponBtn.statCost}", new Vector2(goodWeaponBtn.Position.X - 50, goodWeaponBtn.Position.Y + 35), Color.White, 0f, Vector2.Zero, 1f, SpriteEffects.None, 0.995f);
                 spriteBatch.DrawString(font, $"Angel Karma Required: {goodWeaponBtn.karmaRequirements}", new Vector2(goodWeaponBtn.Position.X - 50, goodWeaponBtn.Position.Y + 55), Color.White, 0f, Vector2.Zero, 1f, SpriteEffects.None, 0.995f);
-
+                //Cost and Karma Required Text of Good/Lightning Bolt Ability
+                spriteBatch.DrawString(font, $"Soul Cost: {buyLightningBoltButton.statCost}", new Vector2(buyLightningBoltButton.Position.X - 50, buyLightningBoltButton.Position.Y + 35), Color.White, 0f, Vector2.Zero, 1f, SpriteEffects.None, 0.995f);
+                spriteBatch.DrawString(font, $"Angel Karma Required: {buyLightningBoltButton.karmaRequirements}", new Vector2(buyLightningBoltButton.Position.X - 80, buyLightningBoltButton.Position.Y + 55), Color.White, 0f, Vector2.Zero, 1f, SpriteEffects.None, 0.995f);
+                //Cost and Karma Reuquired Text of Evil Weapon
                 spriteBatch.DrawString(font, $"Soul Cost: {evilWeaponBtn.statCost}", new Vector2(evilWeaponBtn.Position.X - 50, evilWeaponBtn.Position.Y + 35), Color.White, 0f, Vector2.Zero, 1f, SpriteEffects.None, 0.995f);
                 spriteBatch.DrawString(font, $"Demonic Karma Required: {evilWeaponBtn.karmaRequirements}", new Vector2(evilWeaponBtn.Position.X - 50, evilWeaponBtn.Position.Y + 55), Color.White, 0f, Vector2.Zero, 1f, SpriteEffects.None, 0.995f);
 
@@ -450,8 +456,20 @@ namespace LimboSoulsOfJudgement
             {
                 spriteBatch.DrawString(font, $"BUY GOOD MELEE WEAPON", new Vector2(goodWeaponBtn.Position.X - 85, goodWeaponBtn.Position.Y - 55), Color.White, 0f, Vector2.Zero, 1f, SpriteEffects.None, 0.995f);
             }
+
+            //Text Completed Purchase of Good Ability: Lightning Bolt
+            if (triggerVendor && buyLightningBoltButton.maxStatValue <= buyLightningBoltButton.currentStatValue)
+            {
+                spriteBatch.DrawString(font, $"LIGHTNING BOLT PURCHASED", new Vector2(buyLightningBoltButton.Position.X - 92, buyLightningBoltButton.Position.Y - 55), Color.White, 0f, Vector2.Zero, 1f, SpriteEffects.None, 0.995f);
+            }
+            //Text Purchase of Good Ability: Lightning Bolt
+            else if (triggerVendor && buyLightningBoltButton.maxStatValue >= buyLightningBoltButton.currentStatValue)
+            {
+                spriteBatch.DrawString(font, $"BUY LIGHTNING BOLT", new Vector2(buyLightningBoltButton.Position.X - 85, buyLightningBoltButton.Position.Y - 55), Color.White, 0f, Vector2.Zero, 1f, SpriteEffects.None, 0.995f);
+            }
+
             //Text Completed Purchase of Good Karma
-            if(triggerVendor && goodKarmaButton.maxStatValue <= goodKarmaButton.currentStatValue)
+            if (triggerVendor && goodKarmaButton.maxStatValue <= goodKarmaButton.currentStatValue)
             {
                 spriteBatch.DrawString(font, $"MAX GOOD KARMA!", new Vector2(goodKarmaButton.Position.X - 114, goodKarmaButton.Position.Y - 55), Color.White, 0f, Vector2.Zero, 1f, SpriteEffects.None, 0.995f);
             }

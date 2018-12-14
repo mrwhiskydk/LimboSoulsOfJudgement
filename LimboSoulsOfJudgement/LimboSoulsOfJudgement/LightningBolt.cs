@@ -29,7 +29,6 @@ namespace LimboSoulsOfJudgement
 
         public override void Update(GameTime gameTime)
         {
-            
             base.Update(gameTime);
             position = UIAbilityBar.abilitySlot1;
         }
