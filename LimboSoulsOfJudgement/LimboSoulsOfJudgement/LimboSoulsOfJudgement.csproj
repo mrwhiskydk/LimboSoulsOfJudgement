@@ -55,7 +55,6 @@
     <Compile Include="Character.cs" />
     <Compile Include="Crosshair.cs" />
     <Compile Include="DamageText.cs" />
-    <Compile Include="EditButton.cs" />
     <Compile Include="Enemy.cs" />
     <Compile Include="GameObjectPassive.cs" />
     <Compile Include="EvilWeaponBtn.cs" />
@@ -79,6 +78,7 @@
     <Compile Include="RangedWeapon.cs" />
     <Compile Include="ResetButton.cs" />
     <Compile Include="Soul.cs" />
+    <Compile Include="Sound.cs" />
     <Compile Include="Trapdoor.cs" />
     <Compile Include="UI.cs" />
     <Compile Include="UIAbilityBar.cs" />
