@@ -45,6 +45,7 @@
     <Compile Include="AnimatedGameObject.cs" />
     <Compile Include="Arm.cs" />
     <Compile Include="BadKarmaButton.cs" />
+    <Compile Include="BloodstormAbility.cs" />
     <Compile Include="BossEnemy.cs" />
     <Compile Include="Button.cs" />
     <Compile Include="BuyLightningBoltButton.cs" />
@@ -64,7 +65,7 @@
     <Compile Include="HealthBar.cs" />
     <Compile Include="KarmaBar.cs" />
     <Compile Include="Lava.cs" />
-    <Compile Include="LightningBolt.cs" />
+    <Compile Include="LightningBoltAbility.cs" />
     <Compile Include="MinorEnemy.cs" />
     <Compile Include="Player.cs" />
     <Compile Include="Level.cs" />

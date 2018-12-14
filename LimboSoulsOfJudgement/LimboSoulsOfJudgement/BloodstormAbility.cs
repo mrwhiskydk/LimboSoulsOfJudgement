@@ -8,23 +8,17 @@ using Microsoft.Xna.Framework.Graphics;
 
 namespace LimboSoulsOfJudgement
 {
-
-    public class LightningBolt : Ability
+    class BloodstormAbility : Ability
     {
-        
-
-        public LightningBolt() : base(new Vector2(300, 300), "LightningBolt")
+        public BloodstormAbility() : base("BloodstormAbility")
         {
-            cooldown = 10;
+            cooldown = 1;
             cooldownTimer = cooldown;
         }
 
         public override void UseAbility()
         {
-            Vector2 playerPosition = GameWorld.player.Position;
-            Vector2 direction = new Vector2(GameWorld.mouse.Position.X, GameWorld.mouse.Position.Y) - playerPosition;
-
-            new LightningBoltAbility(playerPosition, direction);
+            new Bloodstorm();
         }
 
         public override void Update(GameTime gameTime)
@@ -50,33 +44,22 @@ namespace LimboSoulsOfJudgement
             }
 
         }
-
-        class LightningBoltAbility : AnimatedGameObject
+        class Bloodstorm : AnimatedGameObject
         {
-            private int speed = 1000;
-            public int damage = 25;
-            private Vector2 dir;
-            private double timeAlive = 0;
+            private int damage = 15;
 
-            public LightningBoltAbility(Vector2 startPosition, Vector2 dir) : base(4, 20, startPosition, "Lightning")
+            public Bloodstorm() : base(23, 36, GameWorld.player.Position, "Bloodstorm")
             {
-                this.dir = dir;
-
-                if (this.dir != Vector2.Zero)
-                {
-                    this.dir.Normalize();
-                }
-
-                rotation = (float)Math.Atan2(dir.Y, dir.X);
+                
             }
 
             public override void Update(GameTime gameTime)
             {
-                position += dir * speed * (float)gameTime.ElapsedGameTime.TotalSeconds;
+                position = GameWorld.player.Position;
+                 
                 base.Update(gameTime);
 
-                timeAlive += gameTime.ElapsedGameTime.TotalSeconds;
-                if (timeAlive >= 3)
+                if (currentAnimationIndex == 22)
                 {
                     Destroy();
                 }
@@ -87,15 +70,7 @@ namespace LimboSoulsOfJudgement
                 if (otherObject is Enemy)
                 {
                     Enemy obj = (Enemy)otherObject;
-
-                    if (obj.isImmortal is false)
-                    {
-                        new Damage(new Vector2(position.X, position.Y - sprite.Height * 0.5f), damage);
-                    }
-
                     obj.Health -= damage;
-                    obj.aggro = true;
-                    
                 }
             }
         }

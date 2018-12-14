@@ -13,6 +13,11 @@ namespace LimboSoulsOfJudgement
         protected double cooldownTimer;
         protected AbilityCooldown abilityCooldown;
 
+        public Ability(string spriteName) : this(Vector2.Zero, spriteName)
+        {
+            abilityCooldown = new AbilityCooldown(this);
+        }
+
         public Ability(Vector2 startPosition, string spriteName) : base(startPosition, spriteName)
         {
             abilityCooldown = new AbilityCooldown(this);

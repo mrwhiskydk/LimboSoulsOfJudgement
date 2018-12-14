@@ -62,7 +62,7 @@ namespace LimboSoulsOfJudgement
             arm = new Arm();
             melee = new MeleeWeapon();
             ranged = new RangedWeapon();
-            ability1 = new LightningBolt();
+            ability1 = new BloodstormAbility();
 
             //Maximum amount of Player health
             maxHealth = 100;
