@@ -13,6 +13,11 @@ namespace LimboSoulsOfJudgement
         protected double cooldownTimer;
         protected AbilityCooldown abilityCooldown;
 
+        public Ability(string spriteName) : this(Vector2.Zero, spriteName)
+        {
+            abilityCooldown = new AbilityCooldown(this);
+        }
+
         public Ability(Vector2 startPosition, string spriteName) : base(startPosition, spriteName)
         {
             abilityCooldown = new AbilityCooldown(this);
@@ -37,10 +42,6 @@ namespace LimboSoulsOfJudgement
 
         public abstract void UseAbility();
 
-        public override void Draw(SpriteBatch spriteBatch)
-        {
-            spriteBatch.Draw(sprite, position, null, Color.White, rotation, new Vector2(sprite.Width * 0.5f, sprite.Height * 0.5f), 1f, SpriteEffects.None, 0.992f);
-        }
 
 
         public class AbilityCooldown : GameObjectPassive
@@ -62,5 +63,6 @@ namespace LimboSoulsOfJudgement
                 }
             }
         }
+        
     }
 }

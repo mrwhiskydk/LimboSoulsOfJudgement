@@ -20,6 +20,7 @@ namespace LimboSoulsOfJudgement
         {
             currentFloatStatValue = GameWorld.player.lifeSteal;
             maxFloatStatValue = 1f;
+            karmaRequirements = 2;
             statCost = 10;
             floatStatIncrease = 0.1f;
         }
@@ -30,7 +31,7 @@ namespace LimboSoulsOfJudgement
         /// <param name="gameTime">Time elapsed since last call in the update</param>
         public override void Update(GameTime gameTime)
         {
-            if(currentFloatStatValue < maxFloatStatValue)
+            if(GameWorld.badKarmaButton.currentKarma >= karmaRequirements && currentFloatStatValue < maxFloatStatValue)
             {
                 UpgradeStat(gameTime);
             }
@@ -55,6 +56,7 @@ namespace LimboSoulsOfJudgement
                 currentFloatStatValue += floatStatIncrease;   //Updates the vendor UI's stat increase 
                 GameWorld.player.lifeSteal += floatStatIncrease; //Actual increase of player values
                 GameWorld.player.currentSouls -= statCost;  //Substracts player soul value equal to current buttons stat cost
+                karmaRequirements += 2;
                 statCost += 1;
                 mouseClicked = 0;   //Resets the mouseClicked value once value calculations has finished
             }
