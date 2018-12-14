@@ -422,12 +422,16 @@ namespace LimboSoulsOfJudgement
                 //Cost and Karma Required Text of Good/Lightning Bolt Ability
                 spriteBatch.DrawString(font, $"Soul Cost: {buyLightningBoltButton.statCost}", new Vector2(buyLightningBoltButton.Position.X - 50, buyLightningBoltButton.Position.Y + 35), Color.White, 0f, Vector2.Zero, 1f, SpriteEffects.None, 0.995f);
                 spriteBatch.DrawString(font, $"Angel Karma Required: {buyLightningBoltButton.karmaRequirements}", new Vector2(buyLightningBoltButton.Position.X - 80, buyLightningBoltButton.Position.Y + 55), Color.White, 0f, Vector2.Zero, 1f, SpriteEffects.None, 0.995f);
+                //Karma Required Text of HealthRegen Stat
+                spriteBatch.DrawString(font, $"Angel Karma Required: {upgradeHealthRegenBtn.karmaRequirements}", new Vector2(upgradeHealthRegenBtn.Position.X - 80, upgradeHealthRegenBtn.Position.Y + 55), Color.White, 0f, Vector2.Zero, 1f, SpriteEffects.None, 0.995f);
                 //Cost and Karma Reuquired Text of Evil Weapon
                 spriteBatch.DrawString(font, $"Soul Cost: {evilWeaponBtn.statCost}", new Vector2(evilWeaponBtn.Position.X - 50, evilWeaponBtn.Position.Y + 35), Color.White, 0f, Vector2.Zero, 1f, SpriteEffects.None, 0.995f);
                 spriteBatch.DrawString(font, $"Demonic Karma Required: {evilWeaponBtn.karmaRequirements}", new Vector2(evilWeaponBtn.Position.X - 50, evilWeaponBtn.Position.Y + 55), Color.White, 0f, Vector2.Zero, 1f, SpriteEffects.None, 0.995f);
                 //Cost and Karma Required Text of Evil/Blood Storm Ability
                 spriteBatch.DrawString(font, $"Soul Cost: {buyBloodStormButton.statCost}", new Vector2(buyBloodStormButton.Position.X - 50, buyBloodStormButton.Position.Y + 35), Color.White, 0f, Vector2.Zero, 1f, SpriteEffects.None, 0.995f);
                 spriteBatch.DrawString(font, $"Demonic Karma Required: {buyBloodStormButton.karmaRequirements}", new Vector2(buyBloodStormButton.Position.X - 80, buyBloodStormButton.Position.Y + 55), Color.White, 0f, Vector2.Zero, 1f, SpriteEffects.None, 0.995f);
+                //Karma Required Text of Lifesteal Stat
+                spriteBatch.DrawString(font, $"Angel Karma Required: {upgradeLifestealBtn.karmaRequirements}", new Vector2(upgradeLifestealBtn.Position.X - 80, upgradeLifestealBtn.Position.Y + 55), Color.White, 0f, Vector2.Zero, 1f, SpriteEffects.None, 0.995f);
             }
 
 
