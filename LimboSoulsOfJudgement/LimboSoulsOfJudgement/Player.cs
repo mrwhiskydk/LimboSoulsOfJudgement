@@ -4,6 +4,9 @@ using Microsoft.Xna.Framework.Input;
 
 namespace LimboSoulsOfJudgement
 {
+    /// <summary>
+    /// Public Class that represents the Player GameObject
+    /// </summary>
     public class Player : Character
     {
         public MeleeWeapon melee;
@@ -13,7 +16,13 @@ namespace LimboSoulsOfJudgement
         public Ability ability1;
         private bool canSwitchWeapons = true;
         private double attackTimer = 0;
+
+        /// <summary>
+        /// Sets the current amount of souls the Player currently has. 
+        /// Used as a currency, in order for the user to upgrade specific given stat values of the Player GameObject
+        /// </summary>
         public int currentSouls = 10000;
+
         private double collisionMovement; // Used for collision so you dont need gameTime in DoCollision
         private bool hittingRoof = false;
         private bool inAir;
