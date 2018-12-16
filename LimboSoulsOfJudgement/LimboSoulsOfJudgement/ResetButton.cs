@@ -12,7 +12,8 @@ namespace LimboSoulsOfJudgement
     /// </summary>
     public class ResetButton : Button
     {
-
+        private bool btnPressed = false;
+        private double btnPressDuration;
         /// <summary>
         /// ResetButton Constructor, that sets the default position and sprite name values
         /// </summary>
@@ -30,6 +31,15 @@ namespace LimboSoulsOfJudgement
         public override void Update(GameTime gameTime)
         {
             UpgradeStat(gameTime);
+            if (btnPressed == true)
+            {
+                btnPressDuration += gameTime.ElapsedGameTime.TotalSeconds;
+                if (btnPressDuration > 2)
+                {
+                    btnPressed = false;
+                    btnPressDuration = 0;
+                }
+            }
         }
 
         /// <summary>
@@ -41,16 +51,41 @@ namespace LimboSoulsOfJudgement
         public override void UpgradeStat(GameTime gameTime)
         {
             mouseClicked += gameTime.ElapsedGameTime.TotalSeconds;
-            if (GameWorld.mouse.Click(this) && GameWorld.triggerVendor && mouseClicked > nextClick)
+            if (GameWorld.mouse.Click(this) && GameWorld.triggerVendor && mouseClicked > nextClick && btnPressed == false)
             {
                 GameWorld.levelReset = true;
                 GameWorld.addLevel = true;
                 GameWorld.levelCount += 0.1f;
                 mouseClicked = 0;
-                if (GameWorld.stage == 10)
+                GameWorld.levelCounter += 1;
+                GameWorld.vendor.Position = new Vector2(600, -1550);
+                if (GameWorld.levelCounter == 2)
                 {
-                    GameWorld.stage = 1;
+                    GameWorld.stage = 2;
                 }
+                else if (GameWorld.levelCounter == 3)
+                {
+                    GameWorld.stage = 3;
+                }
+                else
+                {
+                    if (GameWorld.rnd.Next(1, 5) == 2)
+                    {
+                        GameWorld.stage = 1;
+                        btnPressed = true;
+                    }
+                    else if (GameWorld.rnd.Next(1, 5) == 3)
+                    {
+                        GameWorld.stage = 2;
+                        btnPressed = true;
+                    }
+                    else if (GameWorld.rnd.Next(1, 5) == 4)
+                    {
+                        GameWorld.stage = 3;
+                        btnPressed = true;
+                    }
+                }
+
             }
         }
 
