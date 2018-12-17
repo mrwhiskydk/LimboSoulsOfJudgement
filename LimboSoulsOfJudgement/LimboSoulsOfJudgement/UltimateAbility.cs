@@ -76,7 +76,7 @@ namespace LimboSoulsOfJudgement
             }
             else
             {
-
+                sound = new Sound("sound/demonUltimate");
             }
         }
 

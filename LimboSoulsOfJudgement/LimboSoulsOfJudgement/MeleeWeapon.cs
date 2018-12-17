@@ -23,8 +23,6 @@ namespace LimboSoulsOfJudgement
         public MeleeWeapon() : base("Sword")
         {
             damage = 10;
-            offsetIdle = new Vector2(40, - sprite.Height * 0.5f - 40);
-            offsetAttack = new Vector2(sprite.Height * 0.5f + 52, 0);
             sound = new Sound("sound/sword");
 
             //load upgradeable sprites
@@ -59,6 +57,9 @@ namespace LimboSoulsOfJudgement
 
         public override void Update(GameTime gameTime)
         {
+            offsetIdle = new Vector2(40, -sprite.Height * 0.5f - 40);
+            offsetAttack = new Vector2(sprite.Height * 0.5f + 52, 0);
+
             if (equipped)
             {
                 //Hold the sword above the player
