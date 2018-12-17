@@ -3,6 +3,7 @@ using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
+using Microsoft.Xna.Framework.Media;
 
 namespace LimboSoulsOfJudgement
 {
@@ -573,6 +574,8 @@ namespace LimboSoulsOfJudgement
                 {
                     neutralBoss = new NeutralBoss();
                 }
+
+                MediaPlayer.Play(GameWorld.musicBoss);
             }
         }
 

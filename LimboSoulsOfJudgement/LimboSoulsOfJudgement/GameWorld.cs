@@ -3,6 +3,7 @@ using Microsoft.Xna.Framework.Audio;
 using Microsoft.Xna.Framework.Content;
 using Microsoft.Xna.Framework.Graphics;
 using Microsoft.Xna.Framework.Input;
+using Microsoft.Xna.Framework.Media;
 using System;
 using System.Collections.Generic;
 
@@ -30,6 +31,8 @@ namespace LimboSoulsOfJudgement
         public static Vendor vendor;
         public static UI ui;
         public static SpriteFont damageFont;
+        public static Song musicMain;
+        public static Song musicBoss;
         
         //Button Fields below
         public static Button button;
@@ -51,6 +54,8 @@ namespace LimboSoulsOfJudgement
         public static UpgradeMovementSpeedBtn upgradeMovementSpeedBtn;
         public static BuyLightningBoltButton buyLightningBoltButton;
         public static BuyBloodStormButton buyBloodStormButton;
+        public static FinalBossButton finalBossButton;
+        public static bool triggerFinalBoss = false;
 
         // Healthbar
         public static HealthBar healthBar;
@@ -164,6 +169,14 @@ namespace LimboSoulsOfJudgement
             damageFont = Content.Load<SpriteFont>("DamageFont");
             loseScreen = Content.Load<Texture2D>("GameOver");
 
+            //Sound
+            MediaPlayer.Volume = 0.05f;
+            MediaPlayer.IsRepeating = true;
+            musicMain = Content.Load<Song>("sound/musicmain");
+            musicBoss = Content.Load<Song>("sound/musicboss");
+            MediaPlayer.Play(musicMain);
+
+
             //Load Vendor & Vendor UI
             vendor = new Vendor();
             uiAbilityBar = new UIAbilityBar();
@@ -188,6 +201,8 @@ namespace LimboSoulsOfJudgement
             upgradeMovementSpeedBtn = new UpgradeMovementSpeedBtn();
             buyLightningBoltButton = new BuyLightningBoltButton();
             buyBloodStormButton = new BuyBloodStormButton();
+            finalBossButton = new FinalBossButton();
+            
 
             // Healthbar
             healthBar = new HealthBar(Vector2.Zero);
@@ -227,7 +242,6 @@ namespace LimboSoulsOfJudgement
         {
             if (GamePad.GetState(PlayerIndex.One).Buttons.Back == ButtonState.Pressed || Keyboard.GetState().IsKeyDown(Keys.Escape))
                 Exit();
-
 
             if (teleport == true)
             {

@@ -14,6 +14,7 @@ namespace LimboSoulsOfJudgement
     {
         private bool btnPressed = false;
         private double btnPressDuration;
+
         /// <summary>
         /// ResetButton Constructor, that sets the default position and sprite name values
         /// </summary>
