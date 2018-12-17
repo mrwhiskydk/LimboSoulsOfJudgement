@@ -224,18 +224,6 @@
 /processorParam:TextureFormat=Color
 /build:Darkness.png
 
-#begin DevilBoss.png
-/importer:TextureImporter
-/processor:TextureProcessor
-/processorParam:ColorKeyColor=255,0,255,255
-/processorParam:ColorKeyEnabled=True
-/processorParam:GenerateMipmaps=False
-/processorParam:PremultiplyAlpha=True
-/processorParam:ResizeToPowerOfTwo=False
-/processorParam:MakeSquare=False
-/processorParam:TextureFormat=Color
-/build:DevilBoss.png
-
 #begin demonSword.png
 /importer:TextureImporter
 /processor:TextureProcessor
@@ -247,6 +235,18 @@
 /processorParam:MakeSquare=False
 /processorParam:TextureFormat=Color
 /build:demonSword.png
+
+#begin DevilBoss.png
+/importer:TextureImporter
+/processor:TextureProcessor
+/processorParam:ColorKeyColor=255,0,255,255
+/processorParam:ColorKeyEnabled=True
+/processorParam:GenerateMipmaps=False
+/processorParam:PremultiplyAlpha=True
+/processorParam:ResizeToPowerOfTwo=False
+/processorParam:MakeSquare=False
+/processorParam:TextureFormat=Color
+/build:DevilBoss.png
 
 #begin Edit.png
 /importer:TextureImporter
@@ -585,6 +585,18 @@
 /processorParam:Quality=Best
 /build:sound/bloodstorm.wav
 
+#begin sound/bloodstorm.wav
+/importer:WavImporter
+/processor:SoundEffectProcessor
+/processorParam:Quality=Best
+/build:sound/bloodstorm.wav
+
+#begin sound/bow.wav
+/importer:WavImporter
+/processor:SoundEffectProcessor
+/processorParam:Quality=Best
+/build:sound/bow.wav
+
 #begin sound/bow.wav
 /importer:WavImporter
 /processor:SoundEffectProcessor
@@ -597,11 +609,41 @@
 /processorParam:Quality=Best
 /build:sound/lightningbolt.wav
 
+#begin sound/lightningbolt.wav
+/importer:WavImporter
+/processor:SoundEffectProcessor
+/processorParam:Quality=Best
+/build:sound/lightningbolt.wav
+
+#begin sound/musicboss.mp3
+/importer:Mp3Importer
+/processor:SongProcessor
+/processorParam:Quality=Best
+/build:sound/musicboss.mp3
+
+#begin sound/musicmain.mp3
+/importer:Mp3Importer
+/processor:SongProcessor
+/processorParam:Quality=Best
+/build:sound/musicmain.mp3
+
 #begin sound/sword.wav
 /importer:WavImporter
 /processor:SoundEffectProcessor
 /processorParam:Quality=Best
 /build:sound/sword.wav
+
+#begin sound/sword.wav
+/importer:WavImporter
+/processor:SoundEffectProcessor
+/processorParam:Quality=Best
+/build:sound/sword.wav
+
+#begin sound/trapdoor.wav
+/importer:WavImporter
+/processor:SoundEffectProcessor
+/processorParam:Quality=Best
+/build:sound/trapdoor.wav
 
 #begin sound/trapdoor.wav
 /importer:WavImporter
