@@ -37,7 +37,7 @@
 /processorParam:TextureFormat=Color
 /build:AngelBoss.png
 
-#begin angelSword.png
+#begin AngelFinalBoss.png
 /importer:TextureImporter
 /processor:TextureProcessor
 /processorParam:ColorKeyColor=255,0,255,255
@@ -47,7 +47,7 @@
 /processorParam:ResizeToPowerOfTwo=False
 /processorParam:MakeSquare=False
 /processorParam:TextureFormat=Color
-/build:angelSword.png
+/build:AngelFinalBoss.png
 
 #begin arrow.png
 /importer:TextureImporter
@@ -236,7 +236,7 @@
 /processorParam:TextureFormat=Color
 /build:DevilBoss.png
 
-#begin demonSword.png
+#begin DevilFinalBoss.png
 /importer:TextureImporter
 /processor:TextureProcessor
 /processorParam:ColorKeyColor=255,0,255,255
@@ -246,7 +246,7 @@
 /processorParam:ResizeToPowerOfTwo=False
 /processorParam:MakeSquare=False
 /processorParam:TextureFormat=Color
-/build:demonSword.png
+/build:DevilFinalBoss.png
 
 #begin Edit.png
 /importer:TextureImporter
@@ -579,35 +579,35 @@
 /processorParam:TextureFormat=Color
 /build:Soul.png
 
-#begin sound/bloodstorm.wav
+#begin Sound/bloodstorm.wav
 /importer:WavImporter
 /processor:SoundEffectProcessor
 /processorParam:Quality=Best
-/build:sound/bloodstorm.wav
+/build:Sound/bloodstorm.wav
 
-#begin sound/bow.wav
+#begin Sound/bow.wav
 /importer:WavImporter
 /processor:SoundEffectProcessor
 /processorParam:Quality=Best
-/build:sound/bow.wav
+/build:Sound/bow.wav
 
-#begin sound/lightningbolt.wav
+#begin Sound/lightningbolt.wav
 /importer:WavImporter
 /processor:SoundEffectProcessor
 /processorParam:Quality=Best
-/build:sound/lightningbolt.wav
+/build:Sound/lightningbolt.wav
 
-#begin sound/sword.wav
+#begin Sound/sword.wav
 /importer:WavImporter
 /processor:SoundEffectProcessor
 /processorParam:Quality=Best
-/build:sound/sword.wav
+/build:Sound/sword.wav
 
-#begin sound/trapdoor.wav
+#begin Sound/trapdoor.wav
 /importer:WavImporter
 /processor:SoundEffectProcessor
 /processorParam:Quality=Best
-/build:sound/trapdoor.wav
+/build:Sound/trapdoor.wav
 
 #begin SurfaceLava.png
 /importer:TextureImporter
