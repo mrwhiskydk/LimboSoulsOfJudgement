@@ -11,9 +11,9 @@ namespace LimboSoulsOfJudgement
         public BossEnemy boss;
         public Portal portal;
         public Lava movingLava;
+        public bool levelLoaded;
         public Level()
         {
-
             if (GameWorld.stage == 1)
             {
                 //Platforms
@@ -119,6 +119,9 @@ namespace LimboSoulsOfJudgement
                 new Platform(new Vector2(960, 448), "MediumBlock");
                 new Platform(new Vector2(1344, 448), "MediumBlock");
 
+                // Trapdoor
+                PlaceBlocks(4, 1, 63, 43, 2);
+
 
                 //Chains
                 for (int i = 0; i < 15; i++)
@@ -173,39 +176,46 @@ namespace LimboSoulsOfJudgement
                     PlaceEnemy(1, 19, 55);
                     PlaceEnemy(1, 27, 55);
                     PlaceEnemy(1, 35, 55);
+                    PlaceEnemy(1, 68, 55);
+                    PlaceEnemy(1, 78, 55);
                 }
                 if (GameWorld.badKarmaButton.currentKarma > GameWorld.goodKarmaButton.currentKarma)
                 {
-                    new MinorEnemy(new Vector2(27 * 64, 10 * 64), "SmallAngel");
-                    new MinorEnemy(new Vector2(40 * 64, 14 * 64), "SmallAngel");
-                    new MinorEnemy(new Vector2(46 * 64, 14 * 64), "SmallAngel");
-                    new MinorEnemy(new Vector2(65 * 64, 18 * 64), "SmallAngel");
-                    new MinorEnemy(new Vector2(69 * 64, 18 * 64), "SmallAngel");
-                    new MinorEnemy(new Vector2(65 * 64, 28 * 64), "SmallAngel");
-                    new MinorEnemy(new Vector2(71 * 64, 28 * 64), "SmallAngel");
-                    new MinorEnemy(new Vector2(3 * 64, 55 * 64), "SmallAngel");
-                    new MinorEnemy(new Vector2(11 * 64, 55 * 64), "SmallAngel");
-                    new MinorEnemy(new Vector2(19 * 64, 55 * 64), "SmallAngel");
-                    new MinorEnemy(new Vector2(27 * 64, 55 * 64), "SmallAngel");
-                    new MinorEnemy(new Vector2(35 * 64, 55 * 64), "SmallAngel");
+                    PlaceEnemy(2, 27, 10);
+                    PlaceEnemy(2, 40, 14);
+                    PlaceEnemy(2, 46, 14);
+                    PlaceEnemy(2, 65, 18);
+                    PlaceEnemy(2, 69, 18);
+                    PlaceEnemy(2, 65, 28);
+                    PlaceEnemy(2, 71, 28);
+                    PlaceEnemy(2, 3, 55);
+                    PlaceEnemy(2, 11, 55);
+                    PlaceEnemy(2, 19, 55);
+                    PlaceEnemy(2, 27, 55);
+                    PlaceEnemy(2, 35, 55);
+                    PlaceEnemy(2, 68, 55);
+                    PlaceEnemy(2, 78, 55);
                 }
                 if (GameWorld.badKarmaButton.currentKarma == GameWorld.goodKarmaButton.currentKarma)
                 {
-                    new MinorEnemy(new Vector2(27 * 64, 10 * 64), "Melee");
-                    new MinorEnemy(new Vector2(40 * 64, 14 * 64), "Melee");
-                    new MinorEnemy(new Vector2(46 * 64, 14 * 64), "Melee");
-                    new MinorEnemy(new Vector2(65 * 64, 18 * 64), "Melee");
-                    new MinorEnemy(new Vector2(69 * 64, 18 * 64), "Melee");
-                    new MinorEnemy(new Vector2(65 * 64, 28 * 64), "Melee");
-                    new MinorEnemy(new Vector2(71 * 64, 28 * 64), "Melee");
-                    new MinorEnemy(new Vector2(3 * 64, 55 * 64), "Melee");
-                    new MinorEnemy(new Vector2(11 * 64, 55 * 64), "Melee");
-                    new MinorEnemy(new Vector2(19 * 64, 55 * 64), "Melee");
-                    new MinorEnemy(new Vector2(27 * 64, 55 * 64), "Melee");
-                    new MinorEnemy(new Vector2(35 * 64, 55 * 64), "Melee");
+                    PlaceEnemy(3, 27, 10);
+                    PlaceEnemy(3, 40, 14);
+                    PlaceEnemy(3, 46, 14);
+                    PlaceEnemy(3, 65, 18);
+                    PlaceEnemy(3, 69, 18);
+                    PlaceEnemy(3, 65, 28);
+                    PlaceEnemy(3, 71, 28);
+                    PlaceEnemy(3, 3, 55);
+                    PlaceEnemy(3, 11, 55);
+                    PlaceEnemy(3, 19, 55);
+                    PlaceEnemy(3, 27, 55);
+                    PlaceEnemy(3, 35, 55);
+                    PlaceEnemy(3, 68, 55);
+                    PlaceEnemy(3, 78, 55);
                 }
 
-                portal = new Portal(new Vector2(/*87 * 64, 55 * 64*/200, 500));
+                portal = new Portal(new Vector2(87 * 64, 55 * 64));
+
             }
             if (GameWorld.stage == 2)
             {
@@ -262,20 +272,20 @@ namespace LimboSoulsOfJudgement
                 PlaceBlocks(2, 1, 77, 7, 2);
 
                 //Chains
-                PlaceBlocks(7, 2, 72, 0, 10);
-                PlaceBlocks(7, 2, 69, 0, 10);
-                PlaceBlocks(7, 2, 60, 0, 10);
-                PlaceBlocks(7, 2, 54, 0, 10);
-                PlaceBlocks(7, 2, 48, 0, 10);
-                PlaceBlocks(7, 2, 42, 0, 10);
-                PlaceBlocks(7, 2, 36, 0, 10);
-                PlaceBlocks(7, 2, 20, 0, 10);
-                PlaceBlocks(7, 2, 14, 0, 10);
+                PlaceBlocks(6, 2, 72, 0, 10);
+                PlaceBlocks(6, 2, 69, 0, 10);
+                PlaceBlocks(6, 2, 60, 0, 10);
+                PlaceBlocks(6, 2, 54, 0, 10);
+                PlaceBlocks(6, 2, 48, 0, 10);
+                PlaceBlocks(6, 2, 42, 0, 10);
+                PlaceBlocks(6, 2, 36, 0, 10);
+                PlaceBlocks(6, 2, 20, 0, 10);
+                PlaceBlocks(6, 2, 14, 0, 10);
 
-                PlaceBlocks(7, 2, 4, 18, 10);
-                PlaceBlocks(7, 2, 30, 44, 20);
-                PlaceBlocks(7, 2, 82, 31, 19);
-                PlaceBlocks(7, 2, 41, 20, 20);
+                PlaceBlocks(6, 2, 4, 18, 10);
+                PlaceBlocks(6, 2, 30, 44, 20);
+                PlaceBlocks(6, 2, 82, 31, 19);
+                PlaceBlocks(6, 2, 41, 20, 20);
 
                 // Trapdoors
                 PlaceBlocks(4, 1, 7, 33, 1);
@@ -289,15 +299,175 @@ namespace LimboSoulsOfJudgement
                 // Enemies
                 if (GameWorld.badKarmaButton.currentKarma < GameWorld.goodKarmaButton.currentKarma)
                 {
-
+                    PlaceEnemy(1, 87, 54);
+                    PlaceEnemy(1, 50, 41);
+                    PlaceEnemy(1, 12, 40);
+                    PlaceEnemy(1, 22, 40);
+                    PlaceEnemy(1, 30, 40);
+                    PlaceEnemy(1, 12, 14);
+                    PlaceEnemy(1, 46, 14);
+                    PlaceEnemy(1, 38, 14);
+                    PlaceEnemy(1, 56, 14);
+                    PlaceEnemy(1, 66, 14);
                 }
                 if (GameWorld.badKarmaButton.currentKarma > GameWorld.goodKarmaButton.currentKarma)
                 {
-
+                    PlaceEnemy(2, 87, 54);
+                    PlaceEnemy(2, 50, 41);
+                    PlaceEnemy(2, 12, 40);
+                    PlaceEnemy(2, 22, 40);
+                    PlaceEnemy(2, 30, 40);
+                    PlaceEnemy(2, 12, 14);
+                    PlaceEnemy(2, 46, 14);
+                    PlaceEnemy(2, 38, 14);
+                    PlaceEnemy(2, 56, 14);
+                    PlaceEnemy(2, 66, 14);
                 }
                 if (GameWorld.badKarmaButton.currentKarma == GameWorld.goodKarmaButton.currentKarma)
                 {
+                    PlaceEnemy(3, 87, 54);
+                    PlaceEnemy(3, 50, 41);
+                    PlaceEnemy(3, 12, 40);
+                    PlaceEnemy(3, 22, 40);
+                    PlaceEnemy(3, 30, 40);
+                    PlaceEnemy(3, 12, 14);
+                    PlaceEnemy(3, 46, 14);
+                    PlaceEnemy(3, 38, 14);
+                    PlaceEnemy(3, 56, 14);
+                    PlaceEnemy(3, 66, 14);
+                }
+                levelLoaded = true;
+            }
+            if (GameWorld.stage == 3)
+            {
+                new Platform(new Vector2(-511, 2048), "VerticalFrame");
+                new Platform(new Vector2(6272, 2048), "VerticalFrame");
+                new Platform(new Vector2(2880, 72 * 64), "HorizontalFrame");
+                new Platform(new Vector2(2880, -512), "HorizontalFrame");
 
+                portal = new Portal(new Vector2(21 * 64, 9 * 64));
+
+                // Platforms
+                PlaceBlocks(2, 1, 1, 11, 3);
+                PlaceBlocks(3, 2, 20, 12, 11);
+                PlaceBlocks(3, 2, 24, 12, 11);
+                PlaceBlocks(3, 1, 28, 12, 1);
+                PlaceBlocks(3, 1, 36, 12, 2);
+                PlaceBlocks(3, 1, 44, 12, 1);
+                PlaceBlocks(3, 1, 52, 12, 1);
+                PlaceBlocks(3, 1, 60, 12, 3);
+                PlaceBlocks(2, 1, 17, 25, 1);
+                PlaceBlocks(2, 1, 1, 35, 1);
+                PlaceBlocks(2, 1, 17, 47, 1);
+                PlaceBlocks(3, 1, 24, 52, 4);
+                PlaceBlocks(2, 1, 35, 63, 1);
+                PlaceBlocks(3, 2, 48, 38, 7);
+                PlaceBlocks(3, 1, 40, 38, 2);
+                PlaceBlocks(2, 1, 27, 47, 2);
+                PlaceBlocks(3, 1, 28, 26, 11);
+                PlaceBlocks(3, 2, 68, 30, 4);
+                PlaceBlocks(2, 1, 55, 63, 2);
+                PlaceBlocks(2, 1, 63, 63, 2);
+                PlaceBlocks(2, 1, 71, 63, 2);
+                PlaceBlocks(2, 1, 79, 63, 2);
+                PlaceBlocks(2, 1, 87, 63, 2);
+                PlaceBlocks(2, 1, 71, 43, 4);
+                PlaceBlocks(2, 1, 78, 25, 2);
+                PlaceBlocks(3, 1, 84, 34, 2);
+                PlaceBlocks(2, 1, 83, 17, 4);
+                PlaceBlocks(2, 1, 74, 13, 2);
+
+                // Trapdoors
+                PlaceBlocks(4, 1, 7, 11, 6);
+                PlaceBlocks(4, 1, 31, 11, 2);
+                PlaceBlocks(4, 1, 31, 13, 2);
+                PlaceBlocks(4, 1, 47, 11, 2);
+                PlaceBlocks(4, 1, 47, 13, 2);
+                PlaceBlocks(4, 1, 55, 11, 2);
+                PlaceBlocks(4, 1, 55, 13, 2);
+
+                // Chains
+                PlaceBlocks(6, 2, 43, 40, 18);
+                PlaceBlocks(6, 2, 35, 28, 13);
+                PlaceBlocks(6, 2, 85, 36, 22);
+                PlaceBlocks(6, 2, 79, 26, 10);
+                PlaceBlocks(6, 2, 80, 0, 18);
+                PlaceBlocks(6, 2, 85, 17, 10);
+
+                // Lava
+                for (int i = 0; i < 5; i++)
+                {
+                    new Lava(new Vector2(37 * 64 + (i *128), 4040), "SurfaceLava");
+                }
+                for (int i = 0; i < 2; i++)
+                {
+                    new Lava(new Vector2(51 * 64 + (i * 128), 4040), "SurfaceLava");
+                }
+                for (int i = 0; i < 2; i++)
+                {
+                    new Lava(new Vector2(59 * 64 + (i * 128), 4040), "SurfaceLava");
+                }
+                for (int i = 0; i < 2; i++)
+                {
+                    new Lava(new Vector2(67 * 64 + (i * 128), 4040), "SurfaceLava");
+                }
+                for (int i = 0; i < 2; i++)
+                {
+                    new Lava(new Vector2(75 * 64 + (i * 128), 4040), "SurfaceLava");
+                }
+                for (int i = 0; i < 2; i++)
+                {
+                    new Lava(new Vector2(83 * 64 + (i * 128), 4040), "SurfaceLava");
+                }
+
+                // Enemies
+                if (GameWorld.badKarmaButton.currentKarma < GameWorld.goodKarmaButton.currentKarma)
+                {
+                    PlaceEnemy(1, 16, 21);
+                    PlaceEnemy(1, 2, 33);
+                    PlaceEnemy(1, 16, 45);
+                    PlaceEnemy(1, 43, 36);
+                    PlaceEnemy(1, 80, 59);
+                    PlaceEnemy(1, 86, 32);
+                    PlaceEnemy(1, 28, 21);
+                    PlaceEnemy(1, 36, 21);
+                    PlaceEnemy(1, 46, 21);
+                    PlaceEnemy(1, 56, 21);
+                    PlaceEnemy(1, 86, 14);
+                    PlaceEnemy(1, 36, 7);
+                    PlaceEnemy(1, 60, 7);
+                }
+                if (GameWorld.badKarmaButton.currentKarma > GameWorld.goodKarmaButton.currentKarma)
+                {
+                    PlaceEnemy(1, 16, 21);
+                    PlaceEnemy(1, 2, 33);
+                    PlaceEnemy(1, 16, 45);
+                    PlaceEnemy(1, 43, 36);
+                    PlaceEnemy(1, 80, 59);
+                    PlaceEnemy(1, 86, 32);
+                    PlaceEnemy(1, 28, 21);
+                    PlaceEnemy(1, 36, 21);
+                    PlaceEnemy(1, 46, 21);
+                    PlaceEnemy(1, 56, 21);
+                    PlaceEnemy(1, 86, 14);
+                    PlaceEnemy(1, 36, 7);
+                    PlaceEnemy(1, 60, 7);
+                }
+                if (GameWorld.badKarmaButton.currentKarma == GameWorld.goodKarmaButton.currentKarma)
+                {
+                    PlaceEnemy(3, 16, 21);
+                    PlaceEnemy(3, 2, 33);
+                    PlaceEnemy(3, 16, 45);
+                    PlaceEnemy(3, 43, 36);
+                    PlaceEnemy(3, 80, 59);
+                    PlaceEnemy(3, 86, 32);
+                    PlaceEnemy(3, 28, 21);
+                    PlaceEnemy(3, 36, 21);
+                    PlaceEnemy(3, 46, 21);
+                    PlaceEnemy(3, 56, 21);
+                    PlaceEnemy(3, 86, 14);
+                    PlaceEnemy(3, 36, 7);
+                    PlaceEnemy(3, 60, 7);
                 }
             }
             if (GameWorld.stage == 10)
@@ -319,68 +489,94 @@ namespace LimboSoulsOfJudgement
                 PlaceBlocks(2, 1, 51, 31, 1);
                 PlaceBlocks(2, 1, 57, 31, 1);
 
-                PlaceBlocks(2, 1, 3, 7, 2);
-                PlaceBlocks(2, 1, 9, 9, 2);
-                PlaceBlocks(2, 1, 15, 11, 2);
-                PlaceBlocks(2, 1, 21, 13, 3);
-                PlaceBlocks(2, 1, 27, 7, 4);
-                PlaceBlocks(2, 1, 35, 13, 3);
-                PlaceBlocks(2, 1, 43, 11, 2);
-                PlaceBlocks(2, 1, 49, 9, 2);
-                PlaceBlocks(2, 1, 55, 7, 2);
+                PlaceBlocks(2, 1, 3, 5, 2);
+                PlaceBlocks(2, 1, 9, 7, 2);
+                PlaceBlocks(2, 1, 15, 9, 2);
+                PlaceBlocks(2, 1, 21, 11, 3);
+                PlaceBlocks(2, 1, 27, 5, 4);
+                PlaceBlocks(2, 1, 35, 11, 3);
+                PlaceBlocks(2, 1, 43, 9, 2);
+                PlaceBlocks(2, 1, 49, 7, 2);
+                PlaceBlocks(2, 1, 55, 5, 2);
 
-                PlaceBlocks(2, 1, 3, 15, 1);
-                PlaceBlocks(2, 1, 7, 17, 2);
-                PlaceBlocks(2, 1, 13, 19, 2);
-                PlaceBlocks(2, 1, 19, 21, 2);
-                PlaceBlocks(2, 1, 25, 23, 2);
-                PlaceBlocks(2, 1, 33, 23, 2);
-                PlaceBlocks(2, 1, 39, 21, 2);
-                PlaceBlocks(2, 1, 45, 19, 2);
-                PlaceBlocks(2, 1, 51, 17, 2);
-                PlaceBlocks(2, 1, 57, 15, 1);
+                PlaceBlocks(2, 1, 3, 13, 1);
+                PlaceBlocks(2, 1, 7, 15, 2);
+                PlaceBlocks(2, 1, 13, 17, 2);
+                PlaceBlocks(2, 1, 19, 19, 2);
+                PlaceBlocks(2, 1, 25, 21, 2);
+                PlaceBlocks(2, 1, 33, 21, 2);
+                PlaceBlocks(2, 1, 39, 19, 2);
+                PlaceBlocks(2, 1, 45, 17, 2);
+                PlaceBlocks(2, 1, 51, 15, 2);
+                PlaceBlocks(2, 1, 57, 13, 1);
 
 
                 // Lava
                 PlaceBlocks(5, 2, 1, 1, 16);
-                PlaceBlocks(5, 1, 5, 31, 2);
-                PlaceBlocks(5, 1, 11, 31, 2);
-                PlaceBlocks(5, 1, 19, 31, 2);
-                PlaceBlocks(5, 1, 25, 31, 2);
-                PlaceBlocks(5, 1, 33, 31, 2);
-                PlaceBlocks(5, 1, 39, 31, 2);
-                PlaceBlocks(5, 1, 47, 31, 2);
-                PlaceBlocks(5, 1, 53, 31, 2);
+                for (int i = 0; i < 2; i++)
+                {
+                    new Lava(new Vector2(5 * 64 + (i * 128), 1990), "SurfaceLava");
+                }
+                for (int i = 0; i < 2; i++)
+                {
+                    new Lava(new Vector2(11 * 64 + (i * 128), 1990), "SurfaceLava");
+                }
+                for (int i = 0; i < 2; i++)
+                {
+                    new Lava(new Vector2(19 * 64 + (i * 128), 1990), "SurfaceLava");
+                }
+                for (int i = 0; i < 2; i++)
+                {
+                    new Lava(new Vector2(25 * 64 + (i * 128), 1990), "SurfaceLava");
+                }
+                for (int i = 0; i < 2; i++)
+                {
+                    new Lava(new Vector2(33 * 64 + (i * 128), 1990), "SurfaceLava");
+                }
+                for (int i = 0; i < 2; i++)
+                {
+                    new Lava(new Vector2(39 * 64 + (i * 128), 1990), "SurfaceLava");
+                }
+                for (int i = 0; i < 2; i++)
+                {
+                    new Lava(new Vector2(47 * 64 + (i * 128), 1990), "SurfaceLava");
+                }
+                for (int i = 0; i < 2; i++)
+                {
+                    new Lava(new Vector2(53 * 64 + (i * 128), 1990), "SurfaceLava");
+                }
                 PlaceBlocks(5, 2, 59, 1, 16);
 
                 // Chains
-                PlaceBlocks(7, 2, 7, 0 ,12);
-                PlaceBlocks(7, 2, 11, 10, 16);
-                PlaceBlocks(7, 2, 23, 14, 12);
-                PlaceBlocks(7, 2, 27, 8, 10);
-                PlaceBlocks(7, 2, 33, 8, 10);
-                PlaceBlocks(7, 2, 37, 14, 12);
-                PlaceBlocks(7, 2, 49, 10, 16);
-                PlaceBlocks(7, 2, 53, 0, 12);
+                PlaceBlocks(6, 2, 7, 0, 12);
+                PlaceBlocks(6, 2, 11, 8, 16);
+                PlaceBlocks(6, 2, 23, 12, 12);
+                PlaceBlocks(6, 2, 27, 6, 10);
+                PlaceBlocks(6, 2, 33, 6, 10);
+                PlaceBlocks(6, 2, 37, 12, 12);
+                PlaceBlocks(6, 2, 49, 8, 16);
+                PlaceBlocks(6, 2, 53, 0, 12);
 
                 // Boss
                 if (GameWorld.badKarmaButton.currentKarma < GameWorld.goodKarmaButton.currentKarma)
                 {
-                    boss = new BossEnemy("Boss");
+                    boss = new BossEnemy(4, 4, "DevilBoss");
                 }
-                else
+                else if (GameWorld.badKarmaButton.currentKarma > GameWorld.goodKarmaButton.currentKarma)
                 {
-                    boss = new BossEnemy("GoodBoss");
+                    boss = new BossEnemy(4, 4, "AngelBoss");
                 }
-
-                portal = new Portal(new Vector2(30 * 64, 20 * 64));
+                else if (GameWorld.badKarmaButton.currentKarma == GameWorld.goodKarmaButton.currentKarma)
+                {
+                    boss = new BossEnemy(5, 5, "Boss");
+                }
             }
         }
 
         /// <summary>
         /// A method for placing non animated gameobjects in a level
         /// </summary>
-        /// <param name="s">The type of the platform. 1 = small, 2 = medium , 3 = big, 4 = Trapdoor, 5 = Lava, 6 = Lava surface, 7 = Chains</param>
+        /// <param name="s">The type of the platform. 1 = small, 2 = medium , 3 = big, 4 = Trapdoor, 5 = Lava, 6 = Chains</param>
         /// <param name="d">The direction the blocks are placed. Either 1 for Horizontal or 2 for vertical</param>
         /// <param name="x">Where on the x-axis, measured in times of 64, the platform should be placed</param>
         /// <param name="y">Where on the y-axis, measured in times of 64, the platform should be placed</param>
@@ -434,15 +630,6 @@ namespace LimboSoulsOfJudgement
                         new Lava(new Vector2((x * 64) + (i * s), (y * 64)), $"{name}");
                     }
                 }
-                else if (s == 6)
-                {
-                    name = "SurfaceLava";
-                    s = 128;
-                    for (int i = 0; i < z; i++)
-                    {
-                        new Lava(new Vector2((x * 64) + (i * s), (y * 64)), $"{name}");
-                    }
-                }
             }
 
             if (d == 2)
@@ -473,7 +660,7 @@ namespace LimboSoulsOfJudgement
                 }
                 else if (s == 4)
                 {
-                    name = "Trapdoor";
+                    name = "MediumBlock";
                     s = 128;
                     for (int i = 0; i < z; i++)
                     {
@@ -489,7 +676,7 @@ namespace LimboSoulsOfJudgement
                         new Lava(new Vector2((x * 64), (i * s) + (y * 64)), $"{name}");
                     }
                 }
-                else if (s == 7)
+                else if (s == 6)
                 {
                     name = "Chain";
                     s = 64;
@@ -507,8 +694,8 @@ namespace LimboSoulsOfJudgement
         /// A method for placing enemies in a level
         /// </summary>
         /// <param name="t">Which type of enemy, 1 = Smalldevil, 2 = Smallangel, 3 = Default</param>
-        /// <param name="x"></param>
-        /// <param name="y"></param>
+        /// <param name="x">Where on the x-axis, measured in times of 64, the enemy should be placed</param>
+        /// <param name="y">Where on the y-axis, measured in times of 64, the enemy should be placed</param>
         private void PlaceEnemy(int t, int x, int y)
         {
 
@@ -522,7 +709,7 @@ namespace LimboSoulsOfJudgement
             }
             else if (t == 3)
             {
-                new MinorEnemy(new Vector2(x * 64, y * 64), "Melee");
+                new MinorEnemy(new Vector2(x * 64, y * 64), "NeutralEnemy");
             }
         }
     }

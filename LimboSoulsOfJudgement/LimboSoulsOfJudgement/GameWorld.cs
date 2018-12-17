@@ -58,9 +58,7 @@ namespace LimboSoulsOfJudgement
         public static KarmaBar karmaBar;
         public static Texture2D karmaBarOutline;
 
-
-        private Level level1;
-
+        public static int levelCounter = 1;
         public static int stage = 1;
         public static bool teleport = false;
         public static Level level;
@@ -168,9 +166,10 @@ namespace LimboSoulsOfJudgement
             vendor = new Vendor();
             uiAbilityBar = new UIAbilityBar();
             player = new Player();
+            camera = new Camera();
             ui = new UI();
             
-            camera = new Camera();
+
             
             badKarmaButton = new BadKarmaButton();
             upgradeHealthBtn = new UpgradeHealthBtn();
@@ -226,11 +225,15 @@ namespace LimboSoulsOfJudgement
         {
             if (GamePad.GetState(PlayerIndex.One).Buttons.Back == ButtonState.Pressed || Keyboard.GetState().IsKeyDown(Keys.Escape))
                 Exit();
-            
 
 
-
-
+            if (teleport == true)
+            {
+                levelReset = true;
+                addLevel = true;
+                teleport = false;
+                level.levelLoaded = false;
+            }
             if (player.playerLives > 0)
             {
                 playerAlive = true;
@@ -314,14 +317,11 @@ namespace LimboSoulsOfJudgement
                 {
                     player.Position = new Vector2(30 * 64, 27 * 64);
                 }
+                else if (stage == 3)
+                {
+                    player.Position = new Vector2(4 * 64, 8 * 64);
+                }
 
-            }
-
-            if (teleport == true)
-            {
-                levelReset = true;
-                addLevel = true;
-                teleport = false;
             }
 
             //manually updating classes with important order
@@ -363,10 +363,10 @@ namespace LimboSoulsOfJudgement
             //    vendor.Position = new Vector2(5300, 3328);
             //}
 
-            //if (stage == 2)
-            //{
-            //    level.movingLava.position.Y -= (float)(40 * gameTime.ElapsedGameTime.TotalSeconds);
-            //}
+            if (stage == 2 && level.levelLoaded == true)
+            {
+                level.movingLava.position.Y -= (float)(40 * gameTime.ElapsedGameTime.TotalSeconds);
+            }
             base.Update(gameTime);
         }
 
@@ -408,7 +408,10 @@ namespace LimboSoulsOfJudgement
                 go.Draw(spriteBatch);
             }
 
-            spriteBatch.DrawString(font, "Press E", new Vector2(level.portal.Position.X - 30, level.portal.Position.Y - 100), Color.White, 0f, Vector2.Zero, 1f, SpriteEffects.None, 0.991f);
+            if (stage != 10)
+            {
+                spriteBatch.DrawString(font, "Press E", new Vector2(level.portal.Position.X - 30, level.portal.Position.Y - 100), Color.White, 0f, Vector2.Zero, 1f, SpriteEffects.None, 0.991f);
+            }
             spriteBatch.DrawString(font, $"Souls: {player.currentSouls}", new Vector2(camera.Position.X - 750, camera.Position.Y - 425), Color.White, 0f, Vector2.Zero, 1f, SpriteEffects.None, 0.991f);
             spriteBatch.DrawString(font, $"Melee Weapon Damage: {player.melee.damage}", new Vector2(camera.Position.X - 750, camera.Position.Y - 350), Color.White, 0f, Vector2.Zero, 1f, SpriteEffects.None, 0.991f);
             spriteBatch.DrawString(font, $"Ranged Weapon Damage: {player.ranged.damage}", new Vector2(camera.Position.X - 750, camera.Position.Y - 325), Color.White, 0f, Vector2.Zero, 1f, SpriteEffects.None, 0.991f);
@@ -419,6 +422,7 @@ namespace LimboSoulsOfJudgement
             spriteBatch.DrawString(font, $"Health regen: {player.healthRegen.ToString("0.00")}", new Vector2(camera.Position.X - 750, camera.Position.Y - 300), Color.White, 0f, Vector2.Zero, 1f, SpriteEffects.None, 0.991f);
             spriteBatch.DrawString(font, $"Crit Chance: {player.critChance * 100f}%", new Vector2(camera.Position.X - 750, camera.Position.Y - 275), Color.White, 0f, Vector2.Zero, 1f, SpriteEffects.None, 0.991f);
             spriteBatch.DrawString(font, $"Crit Damage: {player.critDmgModifier * 100f}%", new Vector2(camera.Position.X - 750, camera.Position.Y - 250), Color.White, 0f, Vector2.Zero, 1f, SpriteEffects.None, 0.991f);
+            spriteBatch.DrawString(font, $"Level: {levelCounter}", new Vector2(camera.Position.X + 720, camera.Position.Y - 430), Color.White, 0f, Vector2.Zero, 1f, SpriteEffects.None, 0.991f);
 
             //Text of current Button Stat Cost
             if (triggerVendor)
@@ -605,18 +609,18 @@ namespace LimboSoulsOfJudgement
             base.Draw(gameTime);
         }
 
-        //private void DrawCollisionBox(GameObject go)
-        //{
-        //    Rectangle collisionBox = go.CollisionBox;
-        //    Rectangle topLine = new Rectangle(collisionBox.X, collisionBox.Y, collisionBox.Width, 1);
-        //    Rectangle bottomLine = new Rectangle(collisionBox.X, collisionBox.Y + collisionBox.Height, collisionBox.Width, 1);
-        //    Rectangle rightLine = new Rectangle(collisionBox.X + collisionBox.Width, collisionBox.Y, 1, collisionBox.Height);
-        //    Rectangle leftLine = new Rectangle(collisionBox.X, collisionBox.Y, 1, collisionBox.Height);
+        private void DrawCollisionBox(GameObject go)
+        {
+            Rectangle collisionBox = go.CollisionBox;
+            Rectangle topLine = new Rectangle(collisionBox.X, collisionBox.Y, collisionBox.Width, 1);
+            Rectangle bottomLine = new Rectangle(collisionBox.X, collisionBox.Y + collisionBox.Height, collisionBox.Width, 1);
+            Rectangle rightLine = new Rectangle(collisionBox.X + collisionBox.Width, collisionBox.Y, 1, collisionBox.Height);
+            Rectangle leftLine = new Rectangle(collisionBox.X, collisionBox.Y, 1, collisionBox.Height);
 
-        //    spriteBatch.Draw(collisionTexture, topLine, null, Color.Red, 0, Vector2.Zero, SpriteEffects.None, 1);
-        //    spriteBatch.Draw(collisionTexture, bottomLine, null, Color.Red, 0, Vector2.Zero, SpriteEffects.None, 1);
-        //    spriteBatch.Draw(collisionTexture, rightLine, null, Color.Red, 0, Vector2.Zero, SpriteEffects.None, 1);
-        //    spriteBatch.Draw(collisionTexture, leftLine, null, Color.Red, 0, Vector2.Zero, SpriteEffects.None, 1);
-        //}
+            spriteBatch.Draw(collisionTexture, topLine, null, Color.Red, 0, Vector2.Zero, SpriteEffects.None, 1);
+            spriteBatch.Draw(collisionTexture, bottomLine, null, Color.Red, 0, Vector2.Zero, SpriteEffects.None, 1);
+            spriteBatch.Draw(collisionTexture, rightLine, null, Color.Red, 0, Vector2.Zero, SpriteEffects.None, 1);
+            spriteBatch.Draw(collisionTexture, leftLine, null, Color.Red, 0, Vector2.Zero, SpriteEffects.None, 1);
+        }
     }
 }

@@ -47,7 +47,7 @@ namespace LimboSoulsOfJudgement
                 size = ((float)GameWorld.goodKarmaButton.currentKarma / ((float)GameWorld.goodKarmaButton.currentKarma + (float)GameWorld.badKarmaButton.currentKarma) * 100f) * (float)karmaBarTexture.Width / 100f;
             }
 
-            position = new Vector2(GameWorld.camera.Position.X - karmaBarTexture.Width * 0.5f, GameWorld.ScreenSize.Y - GameWorld.camera.viewMatrix.Translation.Y + 100);
+            position = new Vector2(GameWorld.camera.Position.X - karmaBarTexture.Width * 0.5f, GameWorld.ScreenSize.Y - GameWorld.camera.viewMatrix.Translation.Y + 50);
             karmaBarSize = new Rectangle((int)(position.X - karmaBarTexture.Width * 0.5), (int)(position.Y - karmaBarTexture.Height * 0.5), (int)size, karmaBarTexture.Height);
             
         }

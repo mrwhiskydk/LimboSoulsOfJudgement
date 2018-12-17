@@ -13,12 +13,14 @@ namespace LimboSoulsOfJudgement
         public bool isAttacking = false;
         private double attackTime = 0.2;
         private double attackTimer = 0;
-        private Vector2 offsetIdle = new Vector2(40, -125);
-        private Vector2 offsetAttack = new Vector2(135, 0);
+        private Vector2 offsetIdle;
+        private Vector2 offsetAttack;
 
-        public MeleeWeapon() : base("sword")
+        public MeleeWeapon() : base("demonSword")
         {
             damage = 10;
+            offsetIdle = new Vector2(40, - sprite.Height * 0.5f - 40);
+            offsetAttack = new Vector2(sprite.Height * 0.5f + 52, 0);
             sound = new Sound("sound/sword");
         }
 
