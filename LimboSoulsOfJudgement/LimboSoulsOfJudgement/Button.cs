@@ -90,7 +90,7 @@ namespace LimboSoulsOfJudgement
         /// </summary>
         /// <param name="gameTime">Time elapsed since last call in the update</param>
         public override void Update(GameTime gameTime)
-        {
+        {           
             if (currentStatValue < maxStatValue)
             {
                 UpgradeStat(gameTime);
@@ -98,7 +98,6 @@ namespace LimboSoulsOfJudgement
 
             base.Update(gameTime);
         }
-
 
         /// <summary>
         /// Virtual Method that enables Button click, purchase and upgrades of Player stats

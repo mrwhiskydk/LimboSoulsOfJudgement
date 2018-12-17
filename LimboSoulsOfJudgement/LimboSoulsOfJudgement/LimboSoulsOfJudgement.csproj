@@ -83,6 +83,7 @@
     <Compile Include="Trapdoor.cs" />
     <Compile Include="UI.cs" />
     <Compile Include="UIAbilityBar.cs" />
+    <Compile Include="UltimateAbility.cs" />
     <Compile Include="UpgradeCritChanceBtn.cs" />
     <Compile Include="UpgradeCritDamageBtn.cs" />
     <Compile Include="UpgradeMeleeDamageBtn.cs" />

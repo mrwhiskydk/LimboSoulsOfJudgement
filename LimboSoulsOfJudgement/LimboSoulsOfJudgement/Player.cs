@@ -33,6 +33,7 @@ namespace LimboSoulsOfJudgement
         /// Sets the first Ability GameObject, of the AbilityBar, on the Player GameObject
         /// </summary>
         public Ability ability1;
+        public Ability ability2;
         private bool canSwitchWeapons = true;
         private double attackTimer = 0;
 
@@ -47,6 +48,7 @@ namespace LimboSoulsOfJudgement
         private bool inAir;
         private double newLevelTimer;
         private double chainJumpTimer;
+        private double ultimateTimer;
 
         /// <summary>
         /// Sets the value for wether or not the Player GameObject is able to climb up specific GameObjects
@@ -111,6 +113,8 @@ namespace LimboSoulsOfJudgement
             arm = new Arm();
             melee = new MeleeWeapon();
             ranged = new RangedWeapon();
+            ability1 = new BloodstormAbility();
+            ability2 = new UltimateAbility();
 
             //Maximum amount of Player health
             maxHealth = 100;
@@ -416,6 +420,11 @@ namespace LimboSoulsOfJudgement
             if (Keyboard.GetState().IsKeyDown(Keys.Q) && ability1 != null)
             {
                 ability1.Use();
+            }
+
+            if (Keyboard.GetState().IsKeyDown(Keys.U))
+            {
+                ability2.Use();
             }
         }
 

@@ -36,6 +36,7 @@ namespace LimboSoulsOfJudgement
             base.Update(gameTime);
         }
 
+
         /// <summary>
         /// Overridden UpgradeStat Method that sets its game logic
         /// </summary>
