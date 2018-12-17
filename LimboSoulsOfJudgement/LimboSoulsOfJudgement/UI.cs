@@ -27,11 +27,6 @@ namespace LimboSoulsOfJudgement
         public override void Update(GameTime gameTime)
         {
             base.Update(gameTime);
-
-            if (GameWorld.triggerVendor)
-            {
-                new Vector2(GameWorld.vendor.Position.X, GameWorld.vendor.Position.Y + 320);
-            }
             
         }
 

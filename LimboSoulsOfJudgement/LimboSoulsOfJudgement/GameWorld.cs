@@ -3,6 +3,7 @@ using Microsoft.Xna.Framework.Audio;
 using Microsoft.Xna.Framework.Content;
 using Microsoft.Xna.Framework.Graphics;
 using Microsoft.Xna.Framework.Input;
+using Microsoft.Xna.Framework.Media;
 using System;
 using System.Collections.Generic;
 
@@ -30,6 +31,8 @@ namespace LimboSoulsOfJudgement
         public static Vendor vendor;
         public static UI ui;
         public static SpriteFont damageFont;
+        public static Song musicMain;
+        public static Song musicBoss;
         
         //Button Fields below
         public static Button button;
@@ -51,6 +54,8 @@ namespace LimboSoulsOfJudgement
         public static UpgradeMovementSpeedBtn upgradeMovementSpeedBtn;
         public static BuyLightningBoltButton buyLightningBoltButton;
         public static BuyBloodStormButton buyBloodStormButton;
+        public static FinalBossButton finalBossButton;
+        public static bool triggerFinalBoss = false;
 
         // Healthbar
         public static HealthBar healthBar;
@@ -164,6 +169,14 @@ namespace LimboSoulsOfJudgement
             damageFont = Content.Load<SpriteFont>("DamageFont");
             loseScreen = Content.Load<Texture2D>("GameOver");
 
+            //Sound
+            MediaPlayer.Volume = 0.05f;
+            MediaPlayer.IsRepeating = true;
+            musicMain = Content.Load<Song>("sound/musicmain");
+            musicBoss = Content.Load<Song>("sound/musicboss");
+            MediaPlayer.Play(musicMain);
+
+
             //Load Vendor & Vendor UI
             vendor = new Vendor();
             uiAbilityBar = new UIAbilityBar();
@@ -188,6 +201,8 @@ namespace LimboSoulsOfJudgement
             upgradeMovementSpeedBtn = new UpgradeMovementSpeedBtn();
             buyLightningBoltButton = new BuyLightningBoltButton();
             buyBloodStormButton = new BuyBloodStormButton();
+            finalBossButton = new FinalBossButton();
+            
 
             // Healthbar
             healthBar = new HealthBar(Vector2.Zero);
@@ -228,7 +243,6 @@ namespace LimboSoulsOfJudgement
             if (GamePad.GetState(PlayerIndex.One).Buttons.Back == ButtonState.Pressed || Keyboard.GetState().IsKeyDown(Keys.Escape))
                 Exit();
 
-
             if (teleport == true)
             {
                 levelReset = true;
@@ -242,6 +256,7 @@ namespace LimboSoulsOfJudgement
             }
             else if (playerAlive is false)
             {
+                stage = 1;
                 foreach (var item in gameObjects)
                 {
                     item.Destroy();
@@ -424,6 +439,7 @@ namespace LimboSoulsOfJudgement
             {
                 spriteBatch.DrawString(font, "Press E", new Vector2(level.portal.Position.X - 30, level.portal.Position.Y - 100), Color.White, 0f, Vector2.Zero, 1f, SpriteEffects.None, 0.991f);
             }
+
             spriteBatch.DrawString(font, $"Souls: {player.currentSouls}", new Vector2(camera.Position.X - 750, camera.Position.Y - 425), Color.White, 0f, Vector2.Zero, 1f, SpriteEffects.None, 0.991f);
             spriteBatch.DrawString(font, $"Melee Weapon Damage: {player.melee.damage}", new Vector2(camera.Position.X - 750, camera.Position.Y - 350), Color.White, 0f, Vector2.Zero, 1f, SpriteEffects.None, 0.991f);
             spriteBatch.DrawString(font, $"Ranged Weapon Damage: {player.ranged.damage}", new Vector2(camera.Position.X - 750, camera.Position.Y - 325), Color.White, 0f, Vector2.Zero, 1f, SpriteEffects.None, 0.991f);
@@ -614,6 +630,17 @@ namespace LimboSoulsOfJudgement
             if (triggerVendor)
             {
                 spriteBatch.DrawString(font, "RESET LEVEL!", new Vector2(resetButton.Position.X - 60, resetButton.Position.Y - 55), Color.White, 0f, Vector2.Zero, 1f, SpriteEffects.None, 0.995f);
+            }
+
+            //Text Completed Purchase of Final Boss Button
+            if (triggerVendor && goodKarmaButton.maxStatValue <= goodKarmaButton.currentStatValue || triggerVendor && badKarmaButton.maxStatValue <= badKarmaButton.currentStatValue)
+            {
+                spriteBatch.DrawString(font, $"CLICK TO ENTER FINAL BOSS ROOM!", new Vector2(finalBossButton.Position.X - 114, finalBossButton.Position.Y + 35), Color.White, 0f, Vector2.Zero, 1f, SpriteEffects.None, 0.995f);
+            }
+            //Text Purchase of Final Boss Button
+            else if (triggerVendor && goodKarmaButton.maxStatValue >= goodKarmaButton.currentStatValue || triggerVendor && badKarmaButton.maxStatValue >= badKarmaButton.currentStatValue)
+            {
+                spriteBatch.DrawString(font, $"Requires either: MAX Demonic Karma or MAX Angel Karma to unlock!", new Vector2(finalBossButton.Position.X - 214, finalBossButton.Position.Y + 35), Color.White, 0f, Vector2.Zero, 1f, SpriteEffects.None, 0.995f);
             }
 
             spriteBatch.End();

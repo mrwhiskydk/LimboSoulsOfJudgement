@@ -55,7 +55,7 @@ namespace LimboSoulsOfJudgement
         /// </summary>
         public bool climb = false;
         //public bool svim = false;
-        private bool nextLevel = false;
+        public bool nextLevel = false;
         private const float jumpPower = 1600;
         private double jumpForce = jumpPower;
 
@@ -417,12 +417,12 @@ namespace LimboSoulsOfJudgement
         /// <param name="gameTime"></param>
         public void HandleAbilities(GameTime gameTime)
         {          
-            if (Keyboard.GetState().IsKeyDown(Keys.Q) && ability1 != null)
+            if (Keyboard.GetState().IsKeyDown(Keys.Q) && ability1 != null && GameWorld.buyBloodStormButton.abilityPurchased)
             {
                 ability1.Use();
             }
 
-            if (Keyboard.GetState().IsKeyDown(Keys.U))
+            if (Keyboard.GetState().IsKeyDown(Keys.U) && ability2 != null && GameWorld.buyLightningBoltButton.abilityPurchased)
             {
                 ability2.Use();
             }
@@ -601,14 +601,14 @@ namespace LimboSoulsOfJudgement
             if (isImmortal == true && facingRight == false)
             {
 
-                spriteBatch.Draw(sprite, position, animationRectangles[currentAnimationIndex], Color.Red, rotation, new Vector2(animationRectangles[currentAnimationIndex].Width * 0.5f, animationRectangles[currentAnimationIndex].Height * 0.5f), 1f, SpriteEffects.FlipHorizontally, 1f);
+                spriteBatch.Draw(sprite, position, animationRectangles[currentAnimationIndex], Color.Red, rotation, new Vector2(animationRectangles[currentAnimationIndex].Width * 0.5f, animationRectangles[currentAnimationIndex].Height * 0.5f), 1f, SpriteEffects.FlipHorizontally, 0.98f);
 
             }
 
             if (isImmortal == true && facingRight == true)
             {
 
-                spriteBatch.Draw(sprite, position, animationRectangles[currentAnimationIndex], Color.Red, rotation, new Vector2(animationRectangles[currentAnimationIndex].Width * 0.5f, animationRectangles[currentAnimationIndex].Height * 0.5f), 1f, SpriteEffects.None, 1f);
+                spriteBatch.Draw(sprite, position, animationRectangles[currentAnimationIndex], Color.Red, rotation, new Vector2(animationRectangles[currentAnimationIndex].Width * 0.5f, animationRectangles[currentAnimationIndex].Height * 0.5f), 1f, SpriteEffects.None, 0.98f);
 
             }
         }

@@ -3,6 +3,7 @@ using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
+using Microsoft.Xna.Framework.Media;
 
 namespace LimboSoulsOfJudgement
 {
@@ -573,6 +574,23 @@ namespace LimboSoulsOfJudgement
                 {
                     neutralBoss = new NeutralBoss();
                 }
+                else if (GameWorld.triggerFinalBoss == true && GameWorld.badKarmaButton.currentKarma < GameWorld.goodKarmaButton.currentKarma)
+                {
+                    boss = new BossEnemy(4, 4, "DevilFinalBoss");
+                }
+                else if (GameWorld.triggerFinalBoss == true && GameWorld.badKarmaButton.currentKarma > GameWorld.goodKarmaButton.currentKarma)
+                {
+                    boss = new BossEnemy(4, 4, "AngelFinalBoss");
+                }
+            }
+
+            if (GameWorld.stage == 10)
+            {
+                MediaPlayer.Play(GameWorld.musicBoss);
+            }
+            else
+            {
+                MediaPlayer.Play(GameWorld.musicMain);
             }
         }
 

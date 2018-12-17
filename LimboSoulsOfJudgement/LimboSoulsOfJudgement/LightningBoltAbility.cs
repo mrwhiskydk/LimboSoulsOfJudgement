@@ -31,7 +31,7 @@ namespace LimboSoulsOfJudgement
         public override void Update(GameTime gameTime)
         {
             base.Update(gameTime);
-            position = UIAbilityBar.abilitySlot1;
+            position = UIAbilityBar.abilitySlot2;
         }
 
         /// <summary>
@@ -41,7 +41,11 @@ namespace LimboSoulsOfJudgement
         /// <param name="spriteBatch"></param>
         public override void Draw(SpriteBatch spriteBatch)
         {
-            spriteBatch.Draw(sprite, position, null, Color.White, rotation, new Vector2(sprite.Width * 0.5f, sprite.Height * 0.5f), 1f, SpriteEffects.None, 0.992f);
+            if (GameWorld.buyLightningBoltButton.abilityPurchased)
+            {
+                spriteBatch.Draw(sprite, position, null, Color.White, rotation, new Vector2(sprite.Width * 0.5f, sprite.Height * 0.5f), 1f, SpriteEffects.None, 0.992f);
+            }
+            
         }
 
 

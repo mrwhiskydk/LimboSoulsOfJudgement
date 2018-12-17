@@ -37,6 +37,18 @@
 /processorParam:TextureFormat=Color
 /build:AngelBoss.png
 
+#begin AngelFinalBoss.png
+/importer:TextureImporter
+/processor:TextureProcessor
+/processorParam:ColorKeyColor=255,0,255,255
+/processorParam:ColorKeyEnabled=True
+/processorParam:GenerateMipmaps=False
+/processorParam:PremultiplyAlpha=True
+/processorParam:ResizeToPowerOfTwo=False
+/processorParam:MakeSquare=False
+/processorParam:TextureFormat=Color
+/build:AngelFinalBoss.png
+
 #begin angelSword.png
 /importer:TextureImporter
 /processor:TextureProcessor
@@ -60,6 +72,18 @@
 /processorParam:MakeSquare=False
 /processorParam:TextureFormat=Color
 /build:arrow.png
+
+#begin BaseballBat.png
+/importer:TextureImporter
+/processor:TextureProcessor
+/processorParam:ColorKeyColor=255,0,255,255
+/processorParam:ColorKeyEnabled=True
+/processorParam:GenerateMipmaps=False
+/processorParam:PremultiplyAlpha=True
+/processorParam:ResizeToPowerOfTwo=False
+/processorParam:MakeSquare=False
+/processorParam:TextureFormat=Color
+/build:BaseballBat.png
 
 #begin BaseballBat.png
 /importer:TextureImporter
@@ -248,6 +272,30 @@
 /processorParam:TextureFormat=Color
 /build:DevilBoss.png
 
+#begin DevilBoss.png
+/importer:TextureImporter
+/processor:TextureProcessor
+/processorParam:ColorKeyColor=255,0,255,255
+/processorParam:ColorKeyEnabled=True
+/processorParam:GenerateMipmaps=False
+/processorParam:PremultiplyAlpha=True
+/processorParam:ResizeToPowerOfTwo=False
+/processorParam:MakeSquare=False
+/processorParam:TextureFormat=Color
+/build:DevilBoss.png
+
+#begin DevilFinalBoss.png
+/importer:TextureImporter
+/processor:TextureProcessor
+/processorParam:ColorKeyColor=255,0,255,255
+/processorParam:ColorKeyEnabled=True
+/processorParam:GenerateMipmaps=False
+/processorParam:PremultiplyAlpha=True
+/processorParam:ResizeToPowerOfTwo=False
+/processorParam:MakeSquare=False
+/processorParam:TextureFormat=Color
+/build:DevilFinalBoss.png
+
 #begin Edit.png
 /importer:TextureImporter
 /processor:TextureProcessor
@@ -350,6 +398,18 @@
 /processorParam:MakeSquare=False
 /processorParam:TextureFormat=Color
 /build:healthBarOutline.png
+
+#begin HolySword.png
+/importer:TextureImporter
+/processor:TextureProcessor
+/processorParam:ColorKeyColor=255,0,255,255
+/processorParam:ColorKeyEnabled=True
+/processorParam:GenerateMipmaps=False
+/processorParam:PremultiplyAlpha=True
+/processorParam:ResizeToPowerOfTwo=False
+/processorParam:MakeSquare=False
+/processorParam:TextureFormat=Color
+/build:HolySword.png
 
 #begin HolySword.png
 /importer:TextureImporter
@@ -591,11 +651,11 @@
 /processorParam:Quality=Best
 /build:sound/bloodstorm.wav
 
-#begin sound/bow.wav
+#begin Sound/bow.wav
 /importer:WavImporter
 /processor:SoundEffectProcessor
 /processorParam:Quality=Best
-/build:sound/bow.wav
+/build:Sound/bow.wav
 
 #begin sound/lightningbolt.wav
 /importer:WavImporter
@@ -603,17 +663,29 @@
 /processorParam:Quality=Best
 /build:sound/lightningbolt.wav
 
+#begin sound/musicboss.mp3
+/importer:Mp3Importer
+/processor:SongProcessor
+/processorParam:Quality=Best
+/build:sound/musicboss.mp3
+
+#begin sound/musicmain.mp3
+/importer:Mp3Importer
+/processor:SongProcessor
+/processorParam:Quality=Best
+/build:sound/musicmain.mp3
+
 #begin sound/sword.wav
 /importer:WavImporter
 /processor:SoundEffectProcessor
 /processorParam:Quality=Best
 /build:sound/sword.wav
 
-#begin sound/trapdoor.wav
+#begin Sound/trapdoor.wav
 /importer:WavImporter
 /processor:SoundEffectProcessor
 /processorParam:Quality=Best
-/build:sound/trapdoor.wav
+/build:Sound/trapdoor.wav
 
 #begin SurfaceLava.png
 /importer:TextureImporter

@@ -9,8 +9,11 @@ namespace LimboSoulsOfJudgement
 {
     public class Trapdoor : GameObject
     {
+        private Sound sound;
+
         public Trapdoor(Vector2 startPosition, string spriteName) : base(startPosition, spriteName)
         {
+            sound = new Sound("sound/trapdoor");
         }
 
         public override void DoCollision(GameObject otherObject)
@@ -18,6 +21,7 @@ namespace LimboSoulsOfJudgement
             base.DoCollision(otherObject);
             if (otherObject is Player)
             {
+                sound.Play();
                 GameWorld.RemoveGameObject(this);
             }
         }
