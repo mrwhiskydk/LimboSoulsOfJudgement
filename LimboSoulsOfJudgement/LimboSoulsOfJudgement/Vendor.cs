@@ -49,7 +49,7 @@ namespace LimboSoulsOfJudgement
 
             }
 
-            if (Vector2.Distance(position, GameWorld.player.Position) < 400)
+            if (Vector2.Distance(position, GameWorld.player.Position) <= 400)
             {
                 State(4, "Vendor2");
             }
@@ -88,6 +88,14 @@ namespace LimboSoulsOfJudgement
                 {
                     GameWorld.triggerVendor = false;
                     vendorInteract = false;
+                }
+
+                if (otherObject is Platform)
+                {
+                    while (otherObject.IsColliding(this))
+                    {
+                        position.Y -= 1;
+                    }
                 }
             }
         }

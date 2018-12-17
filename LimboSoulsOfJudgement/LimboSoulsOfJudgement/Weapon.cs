@@ -14,6 +14,7 @@ namespace LimboSoulsOfJudgement
         public static float currentAttackRate = 1;
         public int damage;
         public bool equipped = false;
+        protected Sound sound;
 
         public Weapon(string spriteName) : base(spriteName)
         {
@@ -22,7 +23,7 @@ namespace LimboSoulsOfJudgement
 
         public virtual void Attack()
         {
-
+            sound.Play();
         }
 
         public override void Draw(SpriteBatch spriteBatch)

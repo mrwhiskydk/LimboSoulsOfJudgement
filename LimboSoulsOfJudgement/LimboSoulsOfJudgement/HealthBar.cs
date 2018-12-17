@@ -29,7 +29,7 @@ namespace LimboSoulsOfJudgement
         public override void Update(GameTime gameTime)
         {
             float size = (((float)GameWorld.player.Health / (float)GameWorld.player.MaxHealth) * 100f) * (float)healthBarTexture.Width / 100f;
-            position = new Vector2(GameWorld.camera.Position.X - healthBarTexture.Width * 0.5f, GameWorld.ScreenSize.Y - GameWorld.camera.viewMatrix.Translation.Y + 50);
+            position = new Vector2(GameWorld.camera.Position.X - healthBarTexture.Width * 0.5f, GameWorld.ScreenSize.Y - GameWorld.camera.viewMatrix.Translation.Y +10);
             healthBarSize = new Rectangle((int)(position.X - healthBarTexture.Width * 0.5), (int)(position.Y - healthBarTexture.Height * 0.5), (int)size, healthBarTexture.Height);
         }
 

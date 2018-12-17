@@ -48,7 +48,25 @@ namespace LimboSoulsOfJudgement
         /// Sets wether the Character is able to jump or not. Set to false as default
         /// </summary>
         protected bool canJump = false;
-        
+        /// <summary>
+        /// Checks if a character should be knocked back by the players weapon
+        /// </summary>
+        protected bool knockback = false;
+        /// <summary>
+        /// 
+        /// </summary>
+        protected double knockbackTime;
+        /// <summary>
+        /// How long a character is knocked back 
+        /// </summary>
+        protected float knockbackDuration;
+        /// <summary>
+        /// The distance a character should be knocked back when hit
+        /// </summary>
+        public float knockbackDistance;
+
+        protected double knockbackMovement;
+
         /// <summary>
         /// Property that sets the health value of the current GameObject.
         /// Sets the isImmortal true, should the value of health fall below its current amount & isImmortal is not set true already.
@@ -66,36 +84,45 @@ namespace LimboSoulsOfJudgement
             }
             set
             {
-                if (value < health)
-                {
+                //if (value < health)
+                //{
                     if (!isImmortal)
                     {
                         isImmortal = true;
 
-                        // LifeSteal
-                        if ((int)((health - value) * GameWorld.player.lifeSteal) >= 0.9f)
+                        if (this is Enemy)
                         {
-                            GameWorld.player.Health += (int)((health - value) * GameWorld.player.lifeSteal);
-                            new DamageText(new Vector2(GameWorld.player.Position.X, GameWorld.player.Position.Y - GameWorld.player.CollisionBox.Height * 0.5f), (int)((health - value) * GameWorld.player.lifeSteal), true);
-                        }
+                            // LifeSteal
+                            if ((int)((health - value) * GameWorld.player.lifeSteal) >= 0.9f && GameWorld.player.health < GameWorld.player.maxHealth)
+                            {
+                                GameWorld.player.health += (int)((health - value) * GameWorld.player.lifeSteal);
+                                if (GameWorld.player.health > GameWorld.player.maxHealth)
+                                {
+                                    GameWorld.player.health = GameWorld.player.maxHealth;
+                                }
+                                new DamageText(new Vector2(GameWorld.player.Position.X, GameWorld.player.Position.Y - GameWorld.player.CollisionBox.Height * 0.5f), (int)((health - value) * GameWorld.player.lifeSteal), true);
+                            }
 
-                        if (GameWorld.rnd.Next(1, 101) <= 100 * GameWorld.player.critChance)
-                        {
-                            new DamageText(new Vector2(position.X, position.Y - sprite.Height * 0.5f), (int)((health - value) * GameWorld.player.critDmgModifier), 2, false);
-                            new DamageText(new Vector2(position.X, position.Y - sprite.Height * 0.5f), (int)((health - value) * GameWorld.player.critDmgModifier), 2, true);
-                            health = (int)(value * GameWorld.player.critDmgModifier);
+                            if (GameWorld.rnd.Next(1, 101) <= 100 * GameWorld.player.critChance)
+                            {
+                                new DamageText(new Vector2(position.X, position.Y - sprite.Height * 0.5f), (int)((health - value) * GameWorld.player.critDmgModifier), 2, false);
+                                new DamageText(new Vector2(position.X, position.Y - sprite.Height * 0.5f), (int)((health - value) * GameWorld.player.critDmgModifier), 2, true);
+                                health -= Math.Abs((int)((float)(health - value) * GameWorld.player.critDmgModifier));
+                                
+                            }
+                            else
+                            {
+                                new DamageText(new Vector2(position.X, position.Y - sprite.Height * 0.5f), health - value, 1, false);
+                                health = value;
+                            }
                         }
-                        else
-                        { 
-                            new DamageText(new Vector2(position.X, position.Y - sprite.Height * 0.5f), health - value, 1, false);
-                            health = value;
-                        }
+                       
                     }
-                }
-                else
-                {
-                    health = value;
-                }
+                //}
+                //else
+                //{
+                //    health = value;
+                //}
                 
                 if (health > maxHealth)
                 {

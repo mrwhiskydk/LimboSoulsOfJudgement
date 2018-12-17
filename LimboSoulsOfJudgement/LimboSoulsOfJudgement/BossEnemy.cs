@@ -67,7 +67,6 @@ namespace LimboSoulsOfJudgement
                     knockback = false;
                     knockbackTime = 0;
                 }
-      
             }
 
             if (health <= 0)
@@ -91,6 +90,7 @@ namespace LimboSoulsOfJudgement
                 GameWorld.buyBloodStormButton.Position = new Vector2(GameWorld.ui.Position.X + 245, GameWorld.ui.Position.Y - 150);
                 GameWorld.badKarmaButton.Position = new Vector2(GameWorld.ui.Position.X + 475, GameWorld.ui.Position.Y - 218);
             }
+
 
             battleModeTime += gameTime.ElapsedGameTime.TotalSeconds;
             if (battleModeTime > battleModeDuration)

@@ -16,7 +16,7 @@ namespace LimboSoulsOfJudgement
         {
             
         }
-
+        
         public override void Update(GameTime gameTime)
         {
             //arm stuff
