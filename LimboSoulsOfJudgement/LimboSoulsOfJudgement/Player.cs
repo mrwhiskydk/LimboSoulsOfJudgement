@@ -55,7 +55,7 @@ namespace LimboSoulsOfJudgement
         /// </summary>
         public bool climb = false;
         //public bool svim = false;
-        private bool nextLevel = false;
+        public bool nextLevel = false;
         private const float jumpPower = 1600;
         private double jumpForce = jumpPower;
 

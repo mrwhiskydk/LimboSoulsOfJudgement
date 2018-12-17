@@ -44,6 +44,7 @@ namespace LimboSoulsOfJudgement
             if (GameWorld.mouse.Click(this) && GameWorld.triggerVendor && mouseClicked > nextClick)
             {
                 GameWorld.stage = 10;
+                GameWorld.teleport = true;
                 GameWorld.triggerFinalBoss = true;
                 mouseClicked = 0;   //Resets the mouseClicked value once value calculations has finished
             }
