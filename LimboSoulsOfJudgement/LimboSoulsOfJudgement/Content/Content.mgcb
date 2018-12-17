@@ -609,6 +609,18 @@
 /processorParam:Quality=Best
 /build:sound/lightningbolt.wav
 
+#begin sound/musicboss.mp3
+/importer:Mp3Importer
+/processor:SongProcessor
+/processorParam:Quality=Best
+/build:sound/musicboss.mp3
+
+#begin sound/musicmain.mp3
+/importer:Mp3Importer
+/processor:SongProcessor
+/processorParam:Quality=Best
+/build:sound/musicmain.mp3
+
 #begin sound/sword.wav
 /importer:WavImporter
 /processor:SoundEffectProcessor

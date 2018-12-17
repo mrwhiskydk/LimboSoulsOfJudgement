@@ -34,6 +34,7 @@ namespace LimboSoulsOfJudgement
         /// </summary>
         public Ability ability1;
         public Ability ability2;
+        public Ability ability3;
         private bool canSwitchWeapons = true;
         private double attackTimer = 0;
 
@@ -81,7 +82,7 @@ namespace LimboSoulsOfJudgement
         /// <summary>
         /// Percentage of maxHealth added every 3 seconds, needs to be +0.01 of the desired percentage. dunno why
         /// </summary>
-        public float healthRegen = 0.00f;
+        public float healthRegen = 0.1f;
         private double healthRegenTimer;
         /// <summary>
         /// Percentage of damage added to player health
@@ -114,7 +115,8 @@ namespace LimboSoulsOfJudgement
             melee = new MeleeWeapon();
             ranged = new RangedWeapon();
             ability1 = new BloodstormAbility();
-            ability2 = new UltimateAbility();
+            ability2 = new BloodstormAbility();
+            ability3 = new UltimateAbility();
 
             //Maximum amount of Player health
             maxHealth = 100;
@@ -148,7 +150,7 @@ namespace LimboSoulsOfJudgement
                 healthRegenTimer += gameTime.ElapsedGameTime.TotalSeconds;
                 if (healthRegenTimer > 3)
                 {
-                    health += (int)(healthRegen * maxHealth);
+                    Health += (int)(healthRegen * maxHealth);
                     healthRegenTimer = 0;
                 }
             }
@@ -425,6 +427,11 @@ namespace LimboSoulsOfJudgement
             if (Keyboard.GetState().IsKeyDown(Keys.U) && ability2 != null && GameWorld.buyLightningBoltButton.abilityPurchased)
             {
                 ability2.Use();
+            }
+
+            if (Keyboard.GetState().IsKeyDown(Keys.O) && ability3 != null/* && GameWorld.buyUltimateButton.abilityPurchased*/)
+            {
+                ability3.Use();
             }
         }
 
