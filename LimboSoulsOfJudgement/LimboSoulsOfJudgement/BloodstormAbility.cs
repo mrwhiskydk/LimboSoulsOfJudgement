@@ -14,10 +14,12 @@ namespace LimboSoulsOfJudgement
         {
             cooldown = 1;
             cooldownTimer = cooldown;
+            sound = new Sound("sound/bloodstorm");
         }
 
         public override void UseAbility()
         {
+            base.UseAbility();
             new Bloodstorm();
         }
 
@@ -34,16 +36,10 @@ namespace LimboSoulsOfJudgement
         /// <param name="spriteBatch"></param>
         public override void Draw(SpriteBatch spriteBatch)
         {
-            if (GameWorld.buyLightningBoltButton.abilityPurchased)
-            {
-                spriteBatch.Draw(sprite, position, null, Color.White, rotation, new Vector2(sprite.Width * 0.5f, sprite.Height * 0.5f), 1f, SpriteEffects.None, 0.992f);
-            }
-            else
-            {
-                spriteBatch.Draw(sprite, position, null, Color.White * 0.0f, rotation, new Vector2(sprite.Width * 0.5f, sprite.Height * 0.5f), 1f, SpriteEffects.None, 0.992f);
-            }
-
+            spriteBatch.Draw(sprite, position, null, Color.White, rotation, new Vector2(sprite.Width * 0.5f, sprite.Height * 0.5f), 1f, SpriteEffects.None, 0.992f);
         }
+
+
         class Bloodstorm : AnimatedGameObject
         {
             private int damage = 15;

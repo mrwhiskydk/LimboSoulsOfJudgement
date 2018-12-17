@@ -495,6 +495,36 @@
 /processorParam:TextureFormat=Color
 /build:Soul.png
 
+#begin sound/bloodstorm.wav
+/importer:WavImporter
+/processor:SoundEffectProcessor
+/processorParam:Quality=Best
+/build:sound/bloodstorm.wav
+
+#begin sound/bow.wav
+/importer:WavImporter
+/processor:SoundEffectProcessor
+/processorParam:Quality=Best
+/build:sound/bow.wav
+
+#begin sound/lightningbolt.wav
+/importer:WavImporter
+/processor:SoundEffectProcessor
+/processorParam:Quality=Best
+/build:sound/lightningbolt.wav
+
+#begin sound/sword.wav
+/importer:WavImporter
+/processor:SoundEffectProcessor
+/processorParam:Quality=Best
+/build:sound/sword.wav
+
+#begin sound/trapdoor.wav
+/importer:WavImporter
+/processor:SoundEffectProcessor
+/processorParam:Quality=Best
+/build:sound/trapdoor.wav
+
 #begin SurfaceLava.png
 /importer:TextureImporter
 /processor:TextureProcessor

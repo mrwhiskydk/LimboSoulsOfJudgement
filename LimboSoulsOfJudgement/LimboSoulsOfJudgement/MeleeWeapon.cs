@@ -19,10 +19,12 @@ namespace LimboSoulsOfJudgement
         public MeleeWeapon() : base("sword")
         {
             damage = 10;
+            sound = new Sound("sound/sword");
         }
 
         public override void Attack()
         {
+            base.Attack();
             isAttacking = true;
         }
 

@@ -18,7 +18,8 @@ namespace LimboSoulsOfJudgement
         private static List<GameObject> toBeAdded = new List<GameObject>();
         private static List<GameObject> toBeRemoved = new List<GameObject>();
         public static List<GameObjectPassive> gameObjectsPassive = new List<GameObjectPassive>();
-        public static List<GameObjectPassive> toBeRemovedPassive = new List<GameObjectPassive>();
+        private static List<GameObjectPassive> toBeAddedPassive = new List<GameObjectPassive>();
+        private static List<GameObjectPassive> toBeRemovedPassive = new List<GameObjectPassive>();
         public static UIAbilityBar uiAbilityBar;
         public static Player player;
         private Texture2D collisionTexture;
@@ -121,6 +122,16 @@ namespace LimboSoulsOfJudgement
         public static void RemoveGameObject(GameObject go)
         {
             toBeRemoved.Add(go);
+        }
+
+        public static void AddGameObjectPassive(GameObjectPassive go)
+        {
+            toBeAddedPassive.Add(go);
+        }
+
+        public static void RemoveGameObjectPassive(GameObjectPassive go)
+        {
+            toBeRemovedPassive.Add(go);
         }
 
         /// <summary>
@@ -339,6 +350,9 @@ namespace LimboSoulsOfJudgement
                 gameObjectsPassive.Remove(go);
             }
             toBeRemovedPassive.Clear();
+
+            gameObjectsPassive.AddRange(toBeAddedPassive);
+            toBeAddedPassive.Clear();
 
 
 

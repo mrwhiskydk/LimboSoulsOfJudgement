@@ -66,7 +66,6 @@ namespace LimboSoulsOfJudgement
             arm = new Arm();
             melee = new MeleeWeapon();
             ranged = new RangedWeapon();
-            ability1 = new BloodstormAbility();
 
             //Maximum amount of Player health
             maxHealth = 100;
@@ -359,7 +358,7 @@ namespace LimboSoulsOfJudgement
         /// <param name="gameTime"></param>
         public void HandleAbilities(GameTime gameTime)
         {          
-            if (Keyboard.GetState().IsKeyDown(Keys.Q) && GameWorld.buyLightningBoltButton.abilityPurchased)
+            if (Keyboard.GetState().IsKeyDown(Keys.Q) && ability1 != null)
             {
                 ability1.Use();
             }
