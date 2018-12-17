@@ -422,7 +422,7 @@ namespace LimboSoulsOfJudgement
                 ability1.Use();
             }
 
-            if (Keyboard.GetState().IsKeyDown(Keys.U))
+            if (Keyboard.GetState().IsKeyDown(Keys.U) && ability2 != null && GameWorld.buyLightningBoltButton.abilityPurchased)
             {
                 ability2.Use();
             }

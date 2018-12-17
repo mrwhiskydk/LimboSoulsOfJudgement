@@ -51,6 +51,8 @@ namespace LimboSoulsOfJudgement
         public static UpgradeMovementSpeedBtn upgradeMovementSpeedBtn;
         public static BuyLightningBoltButton buyLightningBoltButton;
         public static BuyBloodStormButton buyBloodStormButton;
+        public static FinalBossButton finalBossButton;
+        public static bool triggerFinalBoss = false;
 
         // Healthbar
         public static HealthBar healthBar;
@@ -188,6 +190,8 @@ namespace LimboSoulsOfJudgement
             upgradeMovementSpeedBtn = new UpgradeMovementSpeedBtn();
             buyLightningBoltButton = new BuyLightningBoltButton();
             buyBloodStormButton = new BuyBloodStormButton();
+            finalBossButton = new FinalBossButton();
+            
 
             // Healthbar
             healthBar = new HealthBar(Vector2.Zero);
