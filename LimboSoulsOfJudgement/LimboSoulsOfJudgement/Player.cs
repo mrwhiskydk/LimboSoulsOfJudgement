@@ -417,7 +417,7 @@ namespace LimboSoulsOfJudgement
         /// <param name="gameTime"></param>
         public void HandleAbilities(GameTime gameTime)
         {          
-            if (Keyboard.GetState().IsKeyDown(Keys.Q) && ability1 != null)
+            if (Keyboard.GetState().IsKeyDown(Keys.Q) && ability1 != null && GameWorld.buyBloodStormButton.abilityPurchased)
             {
                 ability1.Use();
             }
