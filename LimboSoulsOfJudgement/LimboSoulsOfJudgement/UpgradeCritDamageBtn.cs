@@ -31,11 +31,16 @@ namespace LimboSoulsOfJudgement
         /// <param name="gameTime">Time elapsed since last call in the update</param>
         public override void Update(GameTime gameTime)
         {
-            //Substracts the floatStatIncrease value amount, to avoid overreach of maximum amount
-            if (currentFloatStatValue < maxFloatStatValue - floatStatIncrease)
+            if (GameWorld.triggerVendor)
             {
-                UpgradeStat(gameTime);
+                //new Vector2(GameWorld.ui.Position.X, GameWorld.ui.Position.Y - 175);
+                //Substracts the floatStatIncrease value amount, to avoid overreach of maximum amount
+                if (currentFloatStatValue < maxFloatStatValue - floatStatIncrease)
+                {
+                    UpgradeStat(gameTime);
+                }
             }
+            
         }
 
         /// <summary>
