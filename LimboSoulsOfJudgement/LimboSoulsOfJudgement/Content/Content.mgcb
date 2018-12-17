@@ -25,6 +25,18 @@
 /processorParam:TextureFormat=Color
 /build:AbilityCooldown.png
 
+#begin angelSword.png
+/importer:TextureImporter
+/processor:TextureProcessor
+/processorParam:ColorKeyColor=255,0,255,255
+/processorParam:ColorKeyEnabled=True
+/processorParam:GenerateMipmaps=False
+/processorParam:PremultiplyAlpha=True
+/processorParam:ResizeToPowerOfTwo=False
+/processorParam:MakeSquare=False
+/processorParam:TextureFormat=Color
+/build:angelSword.png
+
 #begin arrow.png
 /importer:TextureImporter
 /processor:TextureProcessor
@@ -187,6 +199,18 @@
 /processorParam:MakeSquare=False
 /processorParam:TextureFormat=Color
 /build:Darkness.png
+
+#begin demonSword.png
+/importer:TextureImporter
+/processor:TextureProcessor
+/processorParam:ColorKeyColor=255,0,255,255
+/processorParam:ColorKeyEnabled=True
+/processorParam:GenerateMipmaps=False
+/processorParam:PremultiplyAlpha=True
+/processorParam:ResizeToPowerOfTwo=False
+/processorParam:MakeSquare=False
+/processorParam:TextureFormat=Color
+/build:demonSword.png
 
 #begin Edit.png
 /importer:TextureImporter

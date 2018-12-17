@@ -18,6 +18,7 @@ namespace LimboSoulsOfJudgement
         private bool hittingRoof = false;
         private bool inAir;
         private double newLevelTimer;
+        private double chainJumpTimer;
 
         public bool climb = false;
         //public bool svim = false;
@@ -51,7 +52,7 @@ namespace LimboSoulsOfJudgement
         /// <summary>
         /// Percentage of original damage the player crits
         /// </summary>
-        public float critDmgModifier = 0.5f;
+        public float critDmgModifier = 1.5f;
 
         private float coolDownTime = 2f;
         private double editCooldown;
@@ -90,13 +91,14 @@ namespace LimboSoulsOfJudgement
             base.Update(gameTime);
             collisionMovement = movementSpeed * gameTime.ElapsedGameTime.TotalSeconds;
             newLevelTimer += gameTime.ElapsedGameTime.TotalSeconds;
+            chainJumpTimer += gameTime.ElapsedGameTime.TotalSeconds;
             // If the player is under maxHealth activate healthRegen
-            if (Health < maxHealth)
+            if (health < maxHealth)
             {
                 healthRegenTimer += gameTime.ElapsedGameTime.TotalSeconds;
                 if (healthRegenTimer > 3)
                 {
-                    Health += (int)(healthRegen * maxHealth);
+                    health += (int)(healthRegen * maxHealth);
                     healthRegenTimer = 0;
                 }
             }
@@ -275,6 +277,7 @@ namespace LimboSoulsOfJudgement
             if (Keyboard.GetState().IsKeyDown(Keys.Space) && canJump) 
             {
                 isJumping = true;
+                chainJumpTimer = 0;
             }
 
             if (climb == true)
@@ -388,13 +391,21 @@ namespace LimboSoulsOfJudgement
                 inAir = false;
             }
 
-            if (otherObject is Chain && isJumping is false || otherObject is Chain && Keyboard.GetState().IsKeyDown(Keys.W))
+            if (otherObject is Chain && isJumping is false || (otherObject is Chain && Keyboard.GetState().IsKeyDown(Keys.W) && chainJumpTimer > 0.3f))
             {
                 climb = true;
                 Gravity = false;
                 isJumping = false;
                 jumpForce = jumpPower;
-                canJump = true;
+                if (chainJumpTimer > 0.7f)
+                {
+                    canJump = true;
+                }
+                else
+                {
+                    canJump = false;
+                }
+                
             }
 
             // If the small collisionboxes intersects with a platform move the player in the opposite direction. 
@@ -420,6 +431,11 @@ namespace LimboSoulsOfJudgement
                     if (Gravity is false)
                     {
                         position.Y += (float)(0.7f * collisionMovement);
+                    }
+
+                    if (chainJumpTimer < 0.7f)
+                    {
+                        position.Y += (float)collisionMovement;
                     }
 
                     // Makes so the player does not stay stuck to the roof

@@ -35,6 +35,15 @@ namespace LimboSoulsOfJudgement
         /// <summary>
         /// Checks if an enemy should be knocked back by the players weapon
         /// </summary>
+
+        public int damageToDeal;
+
+        /// <summary>
+        /// Checks if the code for (aggro if enemy is aggro'ed nearby) should be run
+        /// </summary>
+        private bool aggroCheck = true;
+
+
         protected bool knockback = false;
         /// <summary>
         /// 
@@ -48,14 +57,8 @@ namespace LimboSoulsOfJudgement
         /// The distance an enemy should be knocked back when hit
         /// </summary>
         public float knockbackDistance;
-        public int damageToDeal;
-
-        /// <summary>
-        /// Checks if the code for (aggro if enemy is aggro'ed nearby) should be run
-        /// </summary>
-        private bool aggroCheck = true;
-
         protected double knockbackMovement;
+
         protected double patrolTime;
         protected float patrolDuration;
         protected double collisionMovement;

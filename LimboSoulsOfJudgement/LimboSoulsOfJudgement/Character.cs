@@ -23,7 +23,8 @@ namespace LimboSoulsOfJudgement
         public bool isImmortal;
 
         protected bool canJump = false;   //Controls wether the Player can jump or not
-        
+
+
         /// <summary>
         /// Property that sets the health value of the current GameObjectC:\Users\sein\source\repos\LimboSoulsOfJudgement\LimboSoulsOfJudgement\LimboSoulsOfJudgement\Character.cs
         /// </summary>
@@ -35,36 +36,45 @@ namespace LimboSoulsOfJudgement
             }
             set
             {
-                if (value < health)
-                {
+                //if (value < health)
+                //{
                     if (!isImmortal)
                     {
                         isImmortal = true;
 
-                        // LifeSteal
-                        if ((int)((health - value) * GameWorld.player.lifeSteal) >= 0.9f)
+                        if (this is Enemy)
                         {
-                            GameWorld.player.Health += (int)((health - value) * GameWorld.player.lifeSteal);
-                            new DamageText(new Vector2(GameWorld.player.Position.X, GameWorld.player.Position.Y - GameWorld.player.CollisionBox.Height * 0.5f), (int)((health - value) * GameWorld.player.lifeSteal), true);
-                        }
+                            // LifeSteal
+                            if ((int)((health - value) * GameWorld.player.lifeSteal) >= 0.9f && GameWorld.player.health < GameWorld.player.maxHealth)
+                            {
+                                GameWorld.player.health += (int)((health - value) * GameWorld.player.lifeSteal);
+                                if (GameWorld.player.health > GameWorld.player.maxHealth)
+                                {
+                                    GameWorld.player.health = GameWorld.player.maxHealth;
+                                }
+                                new DamageText(new Vector2(GameWorld.player.Position.X, GameWorld.player.Position.Y - GameWorld.player.CollisionBox.Height * 0.5f), (int)((health - value) * GameWorld.player.lifeSteal), true);
+                            }
 
-                        if (GameWorld.rnd.Next(1, 101) <= 100 * GameWorld.player.critChance)
-                        {
-                            new DamageText(new Vector2(position.X, position.Y - sprite.Height * 0.5f), (int)((health - value) * GameWorld.player.critDmgModifier), 2, false);
-                            new DamageText(new Vector2(position.X, position.Y - sprite.Height * 0.5f), (int)((health - value) * GameWorld.player.critDmgModifier), 2, true);
-                            health = (int)(value * GameWorld.player.critDmgModifier);
+                            if (GameWorld.rnd.Next(1, 101) <= 100 * GameWorld.player.critChance)
+                            {
+                                new DamageText(new Vector2(position.X, position.Y - sprite.Height * 0.5f), (int)((health - value) * GameWorld.player.critDmgModifier), 2, false);
+                                new DamageText(new Vector2(position.X, position.Y - sprite.Height * 0.5f), (int)((health - value) * GameWorld.player.critDmgModifier), 2, true);
+                                health -= Math.Abs((int)((float)(health - value) * GameWorld.player.critDmgModifier));
+                                
+                            }
+                            else
+                            {
+                                new DamageText(new Vector2(position.X, position.Y - sprite.Height * 0.5f), health - value, 1, false);
+                                health = value;
+                            }
                         }
-                        else
-                        { 
-                            new DamageText(new Vector2(position.X, position.Y - sprite.Height * 0.5f), health - value, 1, false);
-                            health = value;
-                        }
+                       
                     }
-                }
-                else
-                {
-                    health = value;
-                }
+                //}
+                //else
+                //{
+                //    health = value;
+                //}
                 
                 if (health > maxHealth)
                 {
