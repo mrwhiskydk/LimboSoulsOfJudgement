@@ -35,11 +35,13 @@ namespace LimboSoulsOfJudgement
         /// <param name="gameTime">Time elapsed since last call in the update</param>
         public override void Update(GameTime gameTime)
         {
+
             if (GameWorld.goodKarmaButton.currentKarma >= karmaRequirements)
             {
                 base.Update(gameTime);
             }
         }
+
 
         /// <summary>
         /// Overridden UpgradeStat Method that sets its game logic

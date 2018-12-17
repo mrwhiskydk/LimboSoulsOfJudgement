@@ -31,17 +31,13 @@ namespace LimboSoulsOfJudgement
         /// <param name="gameTime">Time elapsed since last call in the update</param>
         public override void Update(GameTime gameTime)
         {
-            if (GameWorld.triggerVendor)
+            //Substracts the floatStatIncrease value amount, to avoid overreach of maximum amount
+            if (currentFloatStatValue < maxFloatStatValue - floatStatIncrease)
             {
-                //new Vector2(GameWorld.ui.Position.X, GameWorld.ui.Position.Y - 175);
-                //Substracts the floatStatIncrease value amount, to avoid overreach of maximum amount
-                if (currentFloatStatValue < maxFloatStatValue - floatStatIncrease)
-                {
-                    UpgradeStat(gameTime);
-                }
-            }
-            
+                UpgradeStat(gameTime);
+            }                    
         }
+
 
         /// <summary>
         /// Overridden method that enables Button click, purchase and upgrades of Player Crit Damage.

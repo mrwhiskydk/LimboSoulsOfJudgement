@@ -398,6 +398,7 @@ namespace LimboSoulsOfJudgement
             {
                 spriteBatch.DrawString(font, "Press E", new Vector2(level.portal.Position.X - 30, level.portal.Position.Y - 100), Color.White, 0f, Vector2.Zero, 1f, SpriteEffects.None, 0.991f);
             }
+
             spriteBatch.DrawString(font, $"Souls: {player.currentSouls}", new Vector2(camera.Position.X - 750, camera.Position.Y - 425), Color.White, 0f, Vector2.Zero, 1f, SpriteEffects.None, 0.991f);
             spriteBatch.DrawString(font, $"Melee Weapon Damage: {player.melee.damage}", new Vector2(camera.Position.X - 750, camera.Position.Y - 350), Color.White, 0f, Vector2.Zero, 1f, SpriteEffects.None, 0.991f);
             spriteBatch.DrawString(font, $"Ranged Weapon Damage: {player.ranged.damage}", new Vector2(camera.Position.X - 750, camera.Position.Y - 325), Color.White, 0f, Vector2.Zero, 1f, SpriteEffects.None, 0.991f);
