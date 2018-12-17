@@ -35,11 +35,13 @@ namespace LimboSoulsOfJudgement
         /// <param name="gameTime"></param>
         public override void Update(GameTime gameTime)
         {
+
             if (GameWorld.badKarmaButton.currentKarma >= karmaRequirements)
             {
                 base.Update(gameTime);
             }
         }
+
 
         /// <summary>
         /// 

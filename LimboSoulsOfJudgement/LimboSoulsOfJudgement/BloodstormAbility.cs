@@ -30,13 +30,16 @@ namespace LimboSoulsOfJudgement
         }
 
         /// <summary>
-        /// Overridden Draw Method that draws out the sprite of Lightning Bolt Ability, if purchased through BuyLightningBoltButton Class.
+        /// Overridden Draw Method that draws out the sprite of BloodStorm Ability, if purchased through BuyBloodStormButton Class.
         /// While not purchased, the sprite is still being drawn out, but it is 100% transparent.
         /// </summary>
         /// <param name="spriteBatch"></param>
         public override void Draw(SpriteBatch spriteBatch)
         {
-            spriteBatch.Draw(sprite, position, null, Color.White, rotation, new Vector2(sprite.Width * 0.5f, sprite.Height * 0.5f), 1f, SpriteEffects.None, 0.992f);
+            if (GameWorld.buyBloodStormButton.abilityPurchased)
+            {
+                spriteBatch.Draw(sprite, position, null, Color.White, rotation, new Vector2(sprite.Width * 0.5f, sprite.Height * 0.5f), 1f, SpriteEffects.None, 0.992f);
+            }         
         }
 
 

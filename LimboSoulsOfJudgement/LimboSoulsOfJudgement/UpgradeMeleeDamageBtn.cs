@@ -33,6 +33,7 @@ namespace LimboSoulsOfJudgement
             base.Update(gameTime);
         }
 
+
         /// <summary>
         /// 
         /// </summary>

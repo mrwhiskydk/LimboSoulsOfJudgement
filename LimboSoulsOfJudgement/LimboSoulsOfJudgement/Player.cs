@@ -33,6 +33,7 @@ namespace LimboSoulsOfJudgement
         /// Sets the first Ability GameObject, of the AbilityBar, on the Player GameObject
         /// </summary>
         public Ability ability1;
+        public Ability ability2;
         private bool canSwitchWeapons = true;
         private double attackTimer = 0;
 
@@ -47,6 +48,7 @@ namespace LimboSoulsOfJudgement
         private bool inAir;
         private double newLevelTimer;
         private double chainJumpTimer;
+        private double ultimateTimer;
 
         /// <summary>
         /// Sets the value for wether or not the Player GameObject is able to climb up specific GameObjects
@@ -74,6 +76,7 @@ namespace LimboSoulsOfJudgement
         /// </summary>
         public bool isRunning = false;
 
+        public bool hit = false;
         // Special-stats
         /// <summary>
         /// Percentage of maxHealth added every 3 seconds, needs to be +0.01 of the desired percentage. dunno why
@@ -110,6 +113,8 @@ namespace LimboSoulsOfJudgement
             arm = new Arm();
             melee = new MeleeWeapon();
             ranged = new RangedWeapon();
+            ability1 = new BloodstormAbility();
+            ability2 = new UltimateAbility();
 
             //Maximum amount of Player health
             maxHealth = 100;
@@ -122,6 +127,8 @@ namespace LimboSoulsOfJudgement
             //Weapon setup
             weapon = melee;
             weapon.equipped = true;
+
+            knockbackDuration = 0.4f;
         }
 
         /// <summary>
@@ -218,6 +225,26 @@ namespace LimboSoulsOfJudgement
                 {
                     editKeyPressed = false;
                     editCooldown = 0;
+                }
+            }
+
+            if (knockback == true)
+            {
+                knockbackTime += gameTime.ElapsedGameTime.TotalSeconds;
+                if (hit)
+                {
+                    position.X -= (float)(knockbackDistance * (movementSpeed * 0.5) * gameTime.ElapsedGameTime.TotalSeconds);
+                }
+
+                if (!hit)
+                {
+                    position.X += (float)(knockbackDistance * (movementSpeed * 0.5) * gameTime.ElapsedGameTime.TotalSeconds);
+                }
+
+                if (knockbackTime > knockbackDuration)
+                {
+                    knockback = false;
+                    knockbackTime = 0;
                 }
             }
         }
@@ -390,9 +417,14 @@ namespace LimboSoulsOfJudgement
         /// <param name="gameTime"></param>
         public void HandleAbilities(GameTime gameTime)
         {          
-            if (Keyboard.GetState().IsKeyDown(Keys.Q) && ability1 != null)
+            if (Keyboard.GetState().IsKeyDown(Keys.Q) && ability1 != null && GameWorld.buyBloodStormButton.abilityPurchased)
             {
                 ability1.Use();
+            }
+
+            if (Keyboard.GetState().IsKeyDown(Keys.U))
+            {
+                ability2.Use();
             }
         }
 
@@ -443,23 +475,31 @@ namespace LimboSoulsOfJudgement
                 {
                     if (rightLine.Intersects(otherObject.CollisionBox))
                     {
-                    Gravity = true;
-                    position.X -= (float)collisionMovement;
+                        Gravity = true;
+                        position.X -= (float)collisionMovement;
+                        if (knockback)
+                        {
+                            position.X -= (float)collisionMovement;
+                        }
                    
-                }
-                else if (leftLine.Intersects(otherObject.CollisionBox))
-                {
-                    Gravity = true;
-                    position.X += (float)collisionMovement;
-                }
-
-                if (topLine.Intersects(otherObject.CollisionBox))
-                {
-                    // Used to prevent the player from going into a platform on the top of a chain
-                    if (Gravity is false)
-                    {
-                        position.Y += (float)(0.7f * collisionMovement);
                     }
+                    else if (leftLine.Intersects(otherObject.CollisionBox))
+                    {
+                        Gravity = true;
+                        position.X += (float)collisionMovement;
+                        if (knockback)
+                        {
+                            position.X += (float)collisionMovement;
+                        }
+                    }
+
+                    if (topLine.Intersects(otherObject.CollisionBox))
+                    {
+                        // Used to prevent the player from going into a platform on the top of a chain
+                        if (Gravity is false)
+                        {
+                            position.Y += (float)(0.7f * collisionMovement);
+                        }
 
                     if (chainJumpTimer < 0.7f)
                     {
@@ -474,11 +514,11 @@ namespace LimboSoulsOfJudgement
                     canJump = false;
                     hittingRoof = true;
 
-                    // Makes so the player does not get "sucked" to the roof with small jumps
-                    if (jumpTime < 0.15f)
-                    {
-                        isJumping = false;
-                    }
+                        // Makes so the player does not get "sucked" to the roof with small jumps
+                        if (jumpTime < 0.15f)
+                        {
+                            isJumping = false;
+                        }
                     }
 
                    
@@ -513,13 +553,22 @@ namespace LimboSoulsOfJudgement
                 Enemy enemy = (Enemy)otherObject;
                 health -= enemy.enemyDamage;
                 isImmortal = true;
+                knockback = true;
+                knockbackDistance = 1.4f;
+                if (otherObject.position.X > position.X)
+                {
+                    hit = true;
+                }
+                else
+                {
+                    hit = false;
+                }
             }
 
             if (otherObject is Lava && isImmortal == false)
             {
                 health -= 10;
                 isImmortal = true;
-                //svim = true;
             }
 
             if ((otherObject is Portal && Keyboard.GetState().IsKeyDown(Keys.E) && GameWorld.teleport == false) && newLevelTimer > 1)

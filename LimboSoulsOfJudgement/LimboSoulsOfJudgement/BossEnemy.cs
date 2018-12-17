@@ -68,13 +68,30 @@ namespace LimboSoulsOfJudgement
                     knockback = false;
                     knockbackTime = 0;
                 }
-      
             }
 
             if (health <= 0)
             {
                 GameWorld.vendor.Position = new Vector2(30 * 64, 28 * 64);
+                GameWorld.ui.Position = new Vector2(GameWorld.vendor.Position.X, GameWorld.vendor.Position.Y + 120);
+
+                GameWorld.upgradeCritDamageBtn.Position = new Vector2(GameWorld.ui.Position.X, GameWorld.ui.Position.Y - 175);
+                GameWorld.upgradeCritChanceBtn.Position = new Vector2(GameWorld.ui.Position.X, GameWorld.ui.Position.Y - 50);
+                GameWorld.upgradeHealthBtn.Position = new Vector2(GameWorld.ui.Position.X, GameWorld.ui.Position.Y + 75);
+                GameWorld.upgradeHealthRegenBtn.Position = new Vector2(GameWorld.ui.Position.X - 475, GameWorld.ui.Position.Y + 162);
+                GameWorld.upgradeLifestealBtn.Position = new Vector2(GameWorld.ui.Position.X + 300, GameWorld.ui.Position.Y + 25);
+                GameWorld.upgradeMovementSpeedBtn.Position = new Vector2(GameWorld.ui.Position.X - 200, GameWorld.ui.Position.Y + 165);
+                GameWorld.upgradeMeleeDamageBtn.Position = new Vector2(GameWorld.ui.Position.X + 350, GameWorld.ui.Position.Y + 165);
+                GameWorld.upgradeRangedDamageBtn.Position = new Vector2(GameWorld.ui.Position.X + 165, GameWorld.ui.Position.Y + 165);
+                GameWorld.resetButton.Position = new Vector2(GameWorld.ui.Position.X - -515, GameWorld.ui.Position.Y + 150);
+                GameWorld.goodWeaponBtn.Position = new Vector2(GameWorld.ui.Position.X - 525, GameWorld.ui.Position.Y - 100);
+                GameWorld.goodKarmaButton.Position = new Vector2(GameWorld.ui.Position.X - 475, GameWorld.ui.Position.Y - 218);
+                GameWorld.evilWeaponBtn.Position = new Vector2(GameWorld.ui.Position.X + 475, GameWorld.ui.Position.Y - 105);
+                GameWorld.buyLightningBoltButton.Position = new Vector2(GameWorld.ui.Position.X - 225, GameWorld.ui.Position.Y - 100);
+                GameWorld.buyBloodStormButton.Position = new Vector2(GameWorld.ui.Position.X + 245, GameWorld.ui.Position.Y - 150);
+                GameWorld.badKarmaButton.Position = new Vector2(GameWorld.ui.Position.X + 475, GameWorld.ui.Position.Y - 218);
             }
+
 
             battleModeTime += gameTime.ElapsedGameTime.TotalSeconds;
             if (battleModeTime > battleModeDuration)

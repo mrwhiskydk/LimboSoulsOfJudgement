@@ -16,7 +16,7 @@ namespace LimboSoulsOfJudgement
         private Vector2 offsetIdle;
         private Vector2 offsetAttack;
 
-        public MeleeWeapon() : base("demonSword")
+        public MeleeWeapon() : base("Sword")
         {
             damage = 10;
             offsetIdle = new Vector2(40, - sprite.Height * 0.5f - 40);
