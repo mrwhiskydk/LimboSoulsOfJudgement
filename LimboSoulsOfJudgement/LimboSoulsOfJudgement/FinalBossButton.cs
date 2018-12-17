@@ -28,7 +28,7 @@ namespace LimboSoulsOfJudgement
         /// <param name="gameTime">Time elapsed since last call in the update</param>
         public override void Update(GameTime gameTime)
         {
-            if(GameWorld.goodKarmaButton.currentKarma >= 50)
+            if(GameWorld.goodKarmaButton.currentKarma >= GameWorld.goodKarmaButton.maxStatValue)
             {
                 UpgradeStat(gameTime);
             }
