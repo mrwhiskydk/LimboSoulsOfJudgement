@@ -28,7 +28,7 @@ namespace LimboSoulsOfJudgement
         /// <param name="gameTime">Time elapsed since last call in the update</param>
         public override void Update(GameTime gameTime)
         {
-            if(GameWorld.goodKarmaButton.currentKarma == GameWorld.goodKarmaButton.maxStatValue || GameWorld.badKarmaButton.currentKarma == GameWorld.badKarmaButton.maxStatValue)
+            if(GameWorld.goodKarmaButton.currentKarma >= 50)
             {
                 UpgradeStat(gameTime);
             }
@@ -43,10 +43,6 @@ namespace LimboSoulsOfJudgement
             mouseClicked += gameTime.ElapsedGameTime.TotalSeconds;
             if (GameWorld.mouse.Click(this) && GameWorld.triggerVendor && mouseClicked > nextClick)
             {
-                if (GameWorld.player.currentSouls < statCost)    //Returns if the current amount of Player souls is less than the cost of the Stat
-                {
-                    return;
-                }
                 GameWorld.stage = 10;
                 GameWorld.triggerFinalBoss = true;
                 mouseClicked = 0;   //Resets the mouseClicked value once value calculations has finished
