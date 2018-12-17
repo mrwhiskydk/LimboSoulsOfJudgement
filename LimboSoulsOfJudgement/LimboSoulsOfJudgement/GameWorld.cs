@@ -246,6 +246,7 @@ namespace LimboSoulsOfJudgement
             }
             else if (playerAlive is false)
             {
+                stage = 1;
                 foreach (var item in gameObjects)
                 {
                     item.Destroy();
