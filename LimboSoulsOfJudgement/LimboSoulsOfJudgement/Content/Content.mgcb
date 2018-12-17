@@ -49,6 +49,18 @@
 /processorParam:TextureFormat=Color
 /build:AngelFinalBoss.png
 
+#begin angelSword.png
+/importer:TextureImporter
+/processor:TextureProcessor
+/processorParam:ColorKeyColor=255,0,255,255
+/processorParam:ColorKeyEnabled=True
+/processorParam:GenerateMipmaps=False
+/processorParam:PremultiplyAlpha=True
+/processorParam:ResizeToPowerOfTwo=False
+/processorParam:MakeSquare=False
+/processorParam:TextureFormat=Color
+/build:angelSword.png
+
 #begin arrow.png
 /importer:TextureImporter
 /processor:TextureProcessor
@@ -60,6 +72,18 @@
 /processorParam:MakeSquare=False
 /processorParam:TextureFormat=Color
 /build:arrow.png
+
+#begin BaseballBat.png
+/importer:TextureImporter
+/processor:TextureProcessor
+/processorParam:ColorKeyColor=255,0,255,255
+/processorParam:ColorKeyEnabled=True
+/processorParam:GenerateMipmaps=False
+/processorParam:PremultiplyAlpha=True
+/processorParam:ResizeToPowerOfTwo=False
+/processorParam:MakeSquare=False
+/processorParam:TextureFormat=Color
+/build:BaseballBat.png
 
 #begin BaseballBat.png
 /importer:TextureImporter
@@ -236,8 +260,19 @@
 /processorParam:TextureFormat=Color
 /build:demonSword.png
 
+#begin demonSword.png
+/importer:TextureImporter
+/processor:TextureProcessor
+/processorParam:ColorKeyColor=255,0,255,255
+/processorParam:ColorKeyEnabled=True
+/processorParam:GenerateMipmaps=False
+/processorParam:PremultiplyAlpha=True
+/processorParam:ResizeToPowerOfTwo=False
+/processorParam:MakeSquare=False
+/processorParam:TextureFormat=Color
+/build:demonSword.png
+
 #begin DevilBoss.png
-#begin DevilFinalBoss.png
 /importer:TextureImporter
 /processor:TextureProcessor
 /processorParam:ColorKeyColor=255,0,255,255
@@ -248,6 +283,17 @@
 /processorParam:MakeSquare=False
 /processorParam:TextureFormat=Color
 /build:DevilBoss.png
+
+#begin DevilFinalBoss.png
+/importer:TextureImporter
+/processor:TextureProcessor
+/processorParam:ColorKeyColor=255,0,255,255
+/processorParam:ColorKeyEnabled=True
+/processorParam:GenerateMipmaps=False
+/processorParam:PremultiplyAlpha=True
+/processorParam:ResizeToPowerOfTwo=False
+/processorParam:MakeSquare=False
+/processorParam:TextureFormat=Color
 /build:DevilFinalBoss.png
 
 #begin Edit.png
@@ -352,6 +398,18 @@
 /processorParam:MakeSquare=False
 /processorParam:TextureFormat=Color
 /build:healthBarOutline.png
+
+#begin HolySword.png
+/importer:TextureImporter
+/processor:TextureProcessor
+/processorParam:ColorKeyColor=255,0,255,255
+/processorParam:ColorKeyEnabled=True
+/processorParam:GenerateMipmaps=False
+/processorParam:PremultiplyAlpha=True
+/processorParam:ResizeToPowerOfTwo=False
+/processorParam:MakeSquare=False
+/processorParam:TextureFormat=Color
+/build:HolySword.png
 
 #begin HolySword.png
 /importer:TextureImporter
@@ -581,35 +639,17 @@
 /processorParam:TextureFormat=Color
 /build:Soul.png
 
-#begin Sound/bloodstorm.wav
-/importer:WavImporter
-/processor:SoundEffectProcessor
-/processorParam:Quality=Best
-/build:Sound/bloodstorm.wav
-
 #begin sound/bloodstorm.wav
 /importer:WavImporter
 /processor:SoundEffectProcessor
 /processorParam:Quality=Best
 /build:sound/bloodstorm.wav
 
-#begin sound/bow.wav
-/importer:WavImporter
-/processor:SoundEffectProcessor
-/processorParam:Quality=Best
-/build:sound/bow.wav
-
-#begin sound/bow.wav
+#begin Sound/bow.wav
 /importer:WavImporter
 /processor:SoundEffectProcessor
 /processorParam:Quality=Best
 /build:Sound/bow.wav
-
-#begin Sound/lightningbolt.wav
-/importer:WavImporter
-/processor:SoundEffectProcessor
-/processorParam:Quality=Best
-/build:sound/lightningbolt.wav
 
 #begin sound/lightningbolt.wav
 /importer:WavImporter
@@ -633,21 +673,9 @@
 /importer:WavImporter
 /processor:SoundEffectProcessor
 /processorParam:Quality=Best
-/build:Sound/sword.wav
-
-#begin sound/sword.wav
-/importer:WavImporter
-/processor:SoundEffectProcessor
-/processorParam:Quality=Best
 /build:sound/sword.wav
 
-#begin sound/trapdoor.wav
-/importer:WavImporter
-/processor:SoundEffectProcessor
-/processorParam:Quality=Best
-/build:sound/trapdoor.wav
-
-#begin sound/trapdoor.wav
+#begin Sound/trapdoor.wav
 /importer:WavImporter
 /processor:SoundEffectProcessor
 /processorParam:Quality=Best
