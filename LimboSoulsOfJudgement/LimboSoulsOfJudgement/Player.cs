@@ -46,6 +46,7 @@ namespace LimboSoulsOfJudgement
         private bool hittingRoof = false;
         private bool inAir;
         private double newLevelTimer;
+        private double chainJumpTimer;
 
         /// <summary>
         /// Sets the value for wether or not the Player GameObject is able to climb up specific GameObjects
@@ -91,7 +92,7 @@ namespace LimboSoulsOfJudgement
         /// <summary>
         /// Percentage of original damage the player crits
         /// </summary>
-        public float critDmgModifier = 0.5f;
+        public float critDmgModifier = 1.5f;
 
         private float coolDownTime = 2f;
         private double editCooldown;
@@ -110,7 +111,6 @@ namespace LimboSoulsOfJudgement
             arm = new Arm();
             melee = new MeleeWeapon();
             ranged = new RangedWeapon();
-            ability1 = new BloodstormAbility();
 
             //Maximum amount of Player health
             maxHealth = 100;
@@ -137,13 +137,14 @@ namespace LimboSoulsOfJudgement
             base.Update(gameTime);
             collisionMovement = movementSpeed * gameTime.ElapsedGameTime.TotalSeconds;
             newLevelTimer += gameTime.ElapsedGameTime.TotalSeconds;
+            chainJumpTimer += gameTime.ElapsedGameTime.TotalSeconds;
             // If the player is under maxHealth activate healthRegen
-            if (Health < maxHealth)
+            if (health < maxHealth)
             {
                 healthRegenTimer += gameTime.ElapsedGameTime.TotalSeconds;
                 if (healthRegenTimer > 3)
                 {
-                    Health += (int)(healthRegen * maxHealth);
+                    health += (int)(healthRegen * maxHealth);
                     healthRegenTimer = 0;
                 }
             }
@@ -326,6 +327,7 @@ namespace LimboSoulsOfJudgement
             if (Keyboard.GetState().IsKeyDown(Keys.Space) && canJump) 
             {
                 isJumping = true;
+                chainJumpTimer = 0;
             }
 
             //Statement that checks if the Player is climbing
@@ -411,7 +413,7 @@ namespace LimboSoulsOfJudgement
         /// <param name="gameTime"></param>
         public void HandleAbilities(GameTime gameTime)
         {          
-            if (Keyboard.GetState().IsKeyDown(Keys.Q) && GameWorld.buyLightningBoltButton.abilityPurchased)
+            if (Keyboard.GetState().IsKeyDown(Keys.Q) && ability1 != null)
             {
                 ability1.Use();
             }
@@ -440,13 +442,21 @@ namespace LimboSoulsOfJudgement
                 inAir = false;
             }
 
-            if (otherObject is Chain && isJumping is false || otherObject is Chain && Keyboard.GetState().IsKeyDown(Keys.W))
+            if (otherObject is Chain && isJumping is false || (otherObject is Chain && Keyboard.GetState().IsKeyDown(Keys.W) && chainJumpTimer > 0.3f))
             {
                 climb = true;
                 Gravity = false;
                 isJumping = false;
                 jumpForce = jumpPower;
-                canJump = true;
+                if (chainJumpTimer > 0.7f)
+                {
+                    canJump = true;
+                }
+                else
+                {
+                    canJump = false;
+                }
+                
             }
 
             // If the small collisionboxes intersects with a platform move the player in the opposite direction. 
@@ -482,13 +492,18 @@ namespace LimboSoulsOfJudgement
                             position.Y += (float)(0.7f * collisionMovement);
                         }
 
-                        // Makes so the player does not stay stuck to the roof
-                        if (hittingRoof is false && climb is false)
-                        {
-                            Gravity = true;
-                        }
-                        canJump = false;
-                        hittingRoof = true;
+                    if (chainJumpTimer < 0.7f)
+                    {
+                        position.Y += (float)collisionMovement;
+                    }
+
+                    // Makes so the player does not stay stuck to the roof
+                    if (hittingRoof is false && climb is false)
+                    {
+                        Gravity = true;
+                    }
+                    canJump = false;
+                    hittingRoof = true;
 
                         // Makes so the player does not get "sucked" to the roof with small jumps
                         if (jumpTime < 0.15f)
@@ -512,7 +527,7 @@ namespace LimboSoulsOfJudgement
                 {
                 if (bottomLine.Intersects(otherObject.CollisionBox) && (leftLine.Intersects(otherObject.CollisionBox) is false || (rightLine.Intersects(otherObject.CollisionBox) is false)))
                 {
-                    // Makes the player get ontop of the platform and not halfway indside like in the begining, this also fixed collsion bug
+                    // Makes the player get ontop of the platform and not halfway inside like in the begining, this also fixed collsion bug
                     while (CollisionBox.Intersects(otherObject.CollisionBox))
                     {
                         position.Y -= 1;

@@ -31,6 +31,12 @@ namespace LimboSoulsOfJudgement
             this.crit = crit;
         }
 
+        /// <summary>
+        /// The constructor used for healing 
+        /// </summary>
+        /// <param name="startPosition">The start position of the heal</param>
+        /// <param name="damage">The amount of healing</param>
+        /// <param name="heal">is it healing</param>
         public DamageText(Vector2 startPosition, int damage, bool heal) : base(startPosition, "damage")
         {
             this.damage = damage;
@@ -38,16 +44,24 @@ namespace LimboSoulsOfJudgement
             this.heal = heal;
         }
 
+        /// <summary>
+        /// Update method that removes the object after 0.7 seconds and moves it upwards
+        /// </summary>
+        /// <param name="gameTime"></param>
         public override void Update(GameTime gameTime)
         {
             timer += gameTime.ElapsedGameTime.TotalSeconds;
             if (timer > 0.7)
             {
-                GameWorld.toBeRemovedPassive.Add(this);
+                GameWorld.RemoveGameObjectPassive(this);
             }
             position.Y -= (float)(200 * gameTime.ElapsedGameTime.TotalSeconds);
         }
 
+        /// <summary>
+        /// Draw method that draws both damage text and healing text
+        /// </summary>
+        /// <param name="spriteBatch"></param>
         public override void Draw(SpriteBatch spriteBatch)
         {
             if (!heal)

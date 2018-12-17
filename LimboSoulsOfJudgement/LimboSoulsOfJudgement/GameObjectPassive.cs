@@ -51,6 +51,11 @@ namespace LimboSoulsOfJudgement
 
         }
 
+        public virtual void Destroy()
+        {
+            GameWorld.RemoveGameObjectPassive(this);
+        }
+
         /// <summary>
         /// Enables the GameObject to be drawn. The std. functionality is to draw its sprite.
         /// </summary>
