@@ -157,9 +157,10 @@ namespace LimboSoulsOfJudgement
             vendor = new Vendor();
             uiAbilityBar = new UIAbilityBar();
             player = new Player();
+            camera = new Camera();
             ui = new UI();
             
-            camera = new Camera();
+
             
             badKarmaButton = new BadKarmaButton();
             upgradeHealthBtn = new UpgradeHealthBtn();
