@@ -87,11 +87,11 @@ namespace LimboSoulsOfJudgement
         /// <summary>
         /// Percentage chance of dealing critDmgModifier damage
         /// </summary>
-        public float critChance = 0.01f;
+        public float critChance = 1f;
         /// <summary>
         /// Percentage of original damage the player crits
         /// </summary>
-        public float critDmgModifier = 1.5f;
+        public float critDmgModifier = 21.5f;
 
         private float coolDownTime = 2f;
         private double editCooldown;
