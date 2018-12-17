@@ -9,16 +9,35 @@ namespace LimboSoulsOfJudgement
     /// </summary>
     public class Player : Character
     {
+        /// <summary>
+        /// Sets the current equipped melee weapon on the Player GameObject, of the Weapon/MeleeWeapon Class
+        /// </summary>
         public MeleeWeapon melee;
+
+        /// <summary>
+        /// Sets the current equipped ranged weapon on the Player GameObject, of the Weapon/RangedWeapon Class
+        /// </summary>
         public RangedWeapon ranged;
+
+        /// <summary>
+        /// Sets the current Weapon GameObject of the Player GameObject
+        /// </summary>
         public Weapon weapon;
+
+        /// <summary>
+        /// Sets the Arm GameObject of the Player GameObject
+        /// </summary>
         public static Arm arm;
+
+        /// <summary>
+        /// Sets the first Ability GameObject, of the AbilityBar, on the Player GameObject
+        /// </summary>
         public Ability ability1;
         private bool canSwitchWeapons = true;
         private double attackTimer = 0;
 
         /// <summary>
-        /// Sets the current amount of souls the Player currently has. 
+        /// Sets the amount of souls the Player currently has. 
         /// Used as a currency, in order for the user to upgrade specific given stat values of the Player GameObject
         /// </summary>
         public int currentSouls = 10000;
@@ -28,19 +47,30 @@ namespace LimboSoulsOfJudgement
         private bool inAir;
         private double newLevelTimer;
 
+        /// <summary>
+        /// Sets the value for wether or not the Player GameObject is able to climb up specific GameObjects
+        /// </summary>
         public bool climb = false;
         //public bool svim = false;
         private bool nextLevel = false;
         private const float jumpPower = 1600;
         private double jumpForce = jumpPower;
+
         /// <summary>
         /// Det antal gange man kan dø før spillet starter helt forfra
         /// </summary>
         public int playerLives = 3;
         //private float maxJumpTime = 2f;
         private double jumpTime;
+
+        /// <summary>
+        /// Sets the value for wether or not the Player GameObject is jumping/in the air. Also sets the jumping animation of the Player if true
+        /// </summary>
         public bool isJumping = false;
 
+        /// <summary>
+        /// Sets the running animation of the Player, if value is true. 
+        /// </summary>
         public bool isRunning = false;
 
         // Special-stats
@@ -68,7 +98,11 @@ namespace LimboSoulsOfJudgement
         public bool editMode = false;
 
         /// <summary>
-        /// Player constructor that sets player animation values, position and sprite name
+        /// Player constructor that sets player animation values, position and sprite name. 
+        /// Sets the current equipped Weapon, Arm and Ability GameObjects: MeleeWeapon, RangedWeapon, Arm, BloodstormAbility & LightningBoltAbility.
+        /// MeleeWeapon is equipped as default.
+        /// Sets the Player GameObject's Movement Speed to a default value of 400, 
+        /// maximum amount of health value of 100 & sets the current amount of health, equal to the value of its maxumim health.
         /// </summary>
         public Player() : base(5, 5,new Vector2(200, 500), "PlayerIdle")
         {
@@ -91,7 +125,8 @@ namespace LimboSoulsOfJudgement
         }
 
         /// <summary>
-        /// Update method that enables Player movement, jumping and attacking mechanism
+        /// Update method that enables Player movement, jumping and attacking mechanisms.
+        /// Handles the Health Regen stat functionality, the different Player animation sprites, duration amount of the Player's immortality, teleport & level changes
         /// </summary>
         /// <param name="gameTime">Time elapsed since last call in the update</param>
         public override void Update(GameTime gameTime)
@@ -286,14 +321,15 @@ namespace LimboSoulsOfJudgement
                 isJumping = true;
             }
 
+            //Statement that checks if the Player is climbing
             if (climb == true)
             {
-                if (Keyboard.GetState().IsKeyDown(Keys.W))
+                if (Keyboard.GetState().IsKeyDown(Keys.W))  //Makes the Player climb up a Chain GameObject
                 {
                     position.Y -= (float)(0.7 * movementSpeed * gameTime.ElapsedGameTime.TotalSeconds);
                 }
 
-                if (Keyboard.GetState().IsKeyDown(Keys.S))
+                if (Keyboard.GetState().IsKeyDown(Keys.S))  //Makes the Player climb down a Chain GameObject
                 {
                     position.Y += (float)(0.7 * movementSpeed * gameTime.ElapsedGameTime.TotalSeconds);
                 }
@@ -493,6 +529,13 @@ namespace LimboSoulsOfJudgement
                 newLevelTimer = 0;
             }
         }
+
+        /// <summary>
+        /// Overridden Draw Method that handles the current drawn out sprite of the Player GameObject.
+        /// The color of the current sprite is drawn out in red, while the value of isImmortal is set to true, and is otherwise drawn out in default (Color.White).
+        /// Also checks wether or not the Player sprite is facing to the right / rotated when drawn.
+        /// </summary>
+        /// <param name="spriteBatch"></param>
         public override void Draw(SpriteBatch spriteBatch)
         {
             base.Draw(spriteBatch);
