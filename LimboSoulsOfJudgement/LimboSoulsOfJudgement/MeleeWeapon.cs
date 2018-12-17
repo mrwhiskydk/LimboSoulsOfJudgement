@@ -15,6 +15,10 @@ namespace LimboSoulsOfJudgement
         private double attackTimer = 0;
         private Vector2 offsetIdle;
         private Vector2 offsetAttack;
+        public static Texture2D good1;
+        public static Texture2D good2;
+        public static Texture2D bad1;
+        public static Texture2D bad2;
 
         public MeleeWeapon() : base("Sword")
         {
@@ -22,6 +26,12 @@ namespace LimboSoulsOfJudgement
             offsetIdle = new Vector2(40, - sprite.Height * 0.5f - 40);
             offsetAttack = new Vector2(sprite.Height * 0.5f + 52, 0);
             sound = new Sound("sound/sword");
+
+            //load upgradeable sprites
+            good1 = GameWorld.ContentManager.Load<Texture2D>("HolySword");
+            good2 = GameWorld.ContentManager.Load<Texture2D>("angelSword");
+            bad1 = GameWorld.ContentManager.Load<Texture2D>("BaseballBat");
+            bad2 = GameWorld.ContentManager.Load<Texture2D>("demonSword");
         }
 
         public override void Attack()
@@ -95,6 +105,37 @@ namespace LimboSoulsOfJudgement
                     Matrix swordMatrix = Matrix.CreateRotationZ(rotSpeed) * Matrix.CreateTranslation(new Vector3(GameWorld.player.Position, 0f));
                     position = Vector2.Transform(offset, swordMatrix);
                     */
+                }
+            }
+        }
+
+        /// <summary>
+        /// Upgrade the melee weapon
+        /// </summary>
+        /// <param name="side">"good" or "bad"</param>
+        /// <param name="nr">which upgrade number we are at</param>
+        public void Upgrade(string side, int nr)
+        {
+            if (side == "good")
+            {
+                if (nr == 1)
+                {
+                    sprite = good1;
+                }
+                else if (nr == 2)
+                {
+                    sprite = good2;
+                }
+            }
+            else
+            {
+                if (nr == 1)
+                {
+                    sprite = bad1;
+                }
+                else if (nr == 2)
+                {
+                    sprite = bad2;
                 }
             }
         }

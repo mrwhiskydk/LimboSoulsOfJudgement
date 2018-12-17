@@ -4,7 +4,6 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using Microsoft.Xna.Framework;
-using Microsoft.Xna.Framework.Media;
 
 namespace LimboSoulsOfJudgement
 {
@@ -181,7 +180,6 @@ namespace LimboSoulsOfJudgement
         public override void Destroy()
         {
             base.Destroy();
-            MediaPlayer.Play(GameWorld.musicMain);
         }
     }
 }

@@ -574,8 +574,15 @@ namespace LimboSoulsOfJudgement
                 {
                     neutralBoss = new NeutralBoss();
                 }
+            }
 
+            if (GameWorld.stage == 10)
+            {
                 MediaPlayer.Play(GameWorld.musicBoss);
+            }
+            else
+            {
+                MediaPlayer.Play(GameWorld.musicMain);
             }
         }
 
