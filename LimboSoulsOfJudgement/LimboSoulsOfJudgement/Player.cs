@@ -57,7 +57,7 @@ namespace LimboSoulsOfJudgement
         private double jumpForce = jumpPower;
 
         /// <summary>
-        /// Det antal gange man kan dø før spillet starter helt forfra
+        /// The number of times you can die before the game starts over
         /// </summary>
         public int playerLives = 3;
         //private float maxJumpTime = 2f;
@@ -194,25 +194,9 @@ namespace LimboSoulsOfJudgement
 
             if (nextLevel == true)
             {
-                if (GameWorld.stage == 1)
-                {
-                    GameWorld.stage = 10;
-                    GameWorld.teleport = true;
-                    nextLevel = false;
-
-                }
-                else if (GameWorld.stage == 10)
-                {
-                    GameWorld.stage = 2;
-                    GameWorld.teleport = true;
-                    nextLevel = false;
-                }
-                else if (GameWorld.stage == 2)
-                {
-                    GameWorld.stage = 1;
-                    GameWorld.teleport = true;
-                    nextLevel = false;
-                }
+                GameWorld.stage = 10;
+                GameWorld.teleport = true;
+                nextLevel = false;
 
             }
             if (Keyboard.GetState().IsKeyDown(Keys.T) && editMode == false && editKeyPressed == false)
@@ -528,6 +512,7 @@ namespace LimboSoulsOfJudgement
                 nextLevel = true;
                 newLevelTimer = 0;
             }
+
         }
 
         /// <summary>
