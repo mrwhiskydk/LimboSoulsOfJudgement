@@ -67,15 +67,14 @@ namespace LimboSoulsOfJudgement
                     knockback = false;
                     knockbackTime = 0;
                 }
-
-                if (health <= 0)
-                {
-                    GameWorld.vendor.Position = new Vector2(30 * 64, 28 * 64);
-                }
+      
             }
 
+            if (health <= 0)
+            {
+                GameWorld.vendor.Position = new Vector2(30 * 64, 28 * 64);
+            }
 
-            
             battleModeTime += gameTime.ElapsedGameTime.TotalSeconds;
             if (battleModeTime > battleModeDuration)
             {
