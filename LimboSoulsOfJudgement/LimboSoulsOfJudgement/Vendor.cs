@@ -97,7 +97,6 @@ namespace LimboSoulsOfJudgement
                     {
                         position.Y -= 1;
                     }
-                    //position.Y += 1;
                 }
             }
         }

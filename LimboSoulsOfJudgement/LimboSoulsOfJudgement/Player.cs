@@ -87,11 +87,11 @@ namespace LimboSoulsOfJudgement
         /// <summary>
         /// Percentage chance of dealing critDmgModifier damage
         /// </summary>
-        public float critChance = 1f;
+        public float critChance = 0.01f;
         /// <summary>
         /// Percentage of original damage the player crits
         /// </summary>
-        public float critDmgModifier = 21.5f;
+        public float critDmgModifier = 1.5f;
 
         private float coolDownTime = 2f;
         private double editCooldown;
@@ -497,7 +497,7 @@ namespace LimboSoulsOfJudgement
                 {
                 if (bottomLine.Intersects(otherObject.CollisionBox) && (leftLine.Intersects(otherObject.CollisionBox) is false || (rightLine.Intersects(otherObject.CollisionBox) is false)))
                 {
-                    // Makes the player get ontop of the platform and not halfway indside like in the begining, this also fixed collsion bug
+                    // Makes the player get ontop of the platform and not halfway inside like in the begining, this also fixed collsion bug
                     while (CollisionBox.Intersects(otherObject.CollisionBox))
                     {
                         position.Y -= 1;
