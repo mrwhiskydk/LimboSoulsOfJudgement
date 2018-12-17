@@ -133,7 +133,7 @@ namespace LimboSoulsOfJudgement
                 {
                     GameWorld.AddGameObject(new Soul(3, 6, new Vector2(position.X, position.Y), "Soul", enemySouls));                    
                 }
-                GameWorld.RemoveGameObject(this);
+                Destroy();
                
             }
 
