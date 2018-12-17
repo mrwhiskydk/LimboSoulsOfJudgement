@@ -48,7 +48,25 @@ namespace LimboSoulsOfJudgement
         /// Sets wether the Character is able to jump or not. Set to false as default
         /// </summary>
         protected bool canJump = false;
-        
+        /// <summary>
+        /// Checks if a character should be knocked back by the players weapon
+        /// </summary>
+        protected bool knockback = false;
+        /// <summary>
+        /// 
+        /// </summary>
+        protected double knockbackTime;
+        /// <summary>
+        /// How long a character is knocked back 
+        /// </summary>
+        protected float knockbackDuration;
+        /// <summary>
+        /// The distance a character should be knocked back when hit
+        /// </summary>
+        public float knockbackDistance;
+
+        protected double knockbackMovement;
+
         /// <summary>
         /// Property that sets the health value of the current GameObject.
         /// Sets the isImmortal true, should the value of health fall below its current amount & isImmortal is not set true already.

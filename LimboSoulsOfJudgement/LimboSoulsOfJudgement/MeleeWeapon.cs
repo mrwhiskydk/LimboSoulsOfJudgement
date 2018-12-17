@@ -21,10 +21,12 @@ namespace LimboSoulsOfJudgement
             damage = 10;
             offsetIdle = new Vector2(40, - sprite.Height * 0.5f - 40);
             offsetAttack = new Vector2(sprite.Height * 0.5f + 52, 0);
+            sound = new Sound("sound/sword");
         }
 
         public override void Attack()
         {
+            base.Attack();
             isAttacking = true;
         }
 

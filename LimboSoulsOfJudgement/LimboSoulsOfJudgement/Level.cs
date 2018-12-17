@@ -9,6 +9,8 @@ namespace LimboSoulsOfJudgement
     public class Level
     {
         public BossEnemy boss;
+        public NeutralBoss neutralBoss;
+        public MinorEnemy minorEnemy;
         public Portal portal;
         public Lava movingLava;
         public bool levelLoaded;
@@ -286,6 +288,7 @@ namespace LimboSoulsOfJudgement
                 PlaceBlocks(6, 2, 30, 44, 20);
                 PlaceBlocks(6, 2, 82, 31, 19);
                 PlaceBlocks(6, 2, 41, 20, 20);
+                PlaceBlocks(6, 2, 69, 42, 20);
 
                 // Trapdoors
                 PlaceBlocks(4, 1, 7, 33, 1);
@@ -568,7 +571,7 @@ namespace LimboSoulsOfJudgement
                 }
                 else if (GameWorld.badKarmaButton.currentKarma == GameWorld.goodKarmaButton.currentKarma)
                 {
-                    boss = new BossEnemy(5, 5, "Boss");
+                    neutralBoss = new NeutralBoss();
                 }
             }
         }
@@ -701,15 +704,15 @@ namespace LimboSoulsOfJudgement
 
             if (t == 1)
             {
-                new MinorEnemy(new Vector2(x * 64, y * 64), "SmallDevil");
+                minorEnemy = new MinorEnemy(new Vector2(x * 64, y * 64), "SmallDevil");
             }
             else if (t == 2)
             {
-                new MinorEnemy(new Vector2(x * 64, y * 64), "SmallAngel");
+                minorEnemy = new MinorEnemy(new Vector2(x * 64, y * 64), "SmallAngel");
             }
             else if (t == 3)
             {
-                new MinorEnemy(new Vector2(x * 64, y * 64), "NeutralEnemy");
+                minorEnemy= new MinorEnemy(new Vector2(x * 64, y * 64), "NeutralEnemy");
             }
         }
     }

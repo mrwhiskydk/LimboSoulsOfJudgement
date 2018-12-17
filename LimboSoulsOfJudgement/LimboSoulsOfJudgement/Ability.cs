@@ -12,10 +12,11 @@ namespace LimboSoulsOfJudgement
         protected double cooldown;
         protected double cooldownTimer;
         protected AbilityCooldown abilityCooldown;
+        protected Sound sound;
 
         public Ability(string spriteName) : this(Vector2.Zero, spriteName)
         {
-            abilityCooldown = new AbilityCooldown(this);
+            
         }
 
         public Ability(Vector2 startPosition, string spriteName) : base(startPosition, spriteName)
@@ -40,9 +41,16 @@ namespace LimboSoulsOfJudgement
             }
         }
 
-        public abstract void UseAbility();
+        public virtual void UseAbility()
+        {
+            sound.Play();
+        }
 
-
+        public override void Destroy()
+        {
+            base.Destroy();
+            abilityCooldown.Destroy();
+        }
 
         public class AbilityCooldown : GameObjectPassive
         {
@@ -51,6 +59,7 @@ namespace LimboSoulsOfJudgement
             public AbilityCooldown(Ability ability) : base("AbilityCooldown")
             {
                 this.ability = ability;
+                rotation = MathHelper.ToRadians(180);
             }
 
             public override void Draw(SpriteBatch spriteBatch)
@@ -59,7 +68,7 @@ namespace LimboSoulsOfJudgement
                 {
                     double size = sprite.Height * (1 - ((ability.cooldownTimer / ability.cooldown)));
                     Rectangle rect = new Rectangle((int)position.X, (int)position.Y, sprite.Width, (int)size);
-                    spriteBatch.Draw(sprite, ability.Position, rect, Color.White, rotation + MathHelper.ToRadians(180), new Vector2(sprite.Width * 0.5f, sprite.Height * 0.5f), 1f, SpriteEffects.None, 0.993f);
+                    spriteBatch.Draw(sprite, ability.Position, rect, Color.White, rotation, new Vector2(sprite.Width * 0.5f, sprite.Height * 0.5f), 1f, SpriteEffects.None, 0.993f);
                 }
             }
         }

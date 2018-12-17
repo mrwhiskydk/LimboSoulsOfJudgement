@@ -53,7 +53,7 @@ namespace LimboSoulsOfJudgement
             timer += gameTime.ElapsedGameTime.TotalSeconds;
             if (timer > 0.7)
             {
-                GameWorld.toBeRemovedPassive.Add(this);
+                GameWorld.RemoveGameObjectPassive(this);
             }
             position.Y -= (float)(200 * gameTime.ElapsedGameTime.TotalSeconds);
         }

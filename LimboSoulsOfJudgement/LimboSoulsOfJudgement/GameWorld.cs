@@ -18,10 +18,13 @@ namespace LimboSoulsOfJudgement
         private static List<GameObject> toBeAdded = new List<GameObject>();
         private static List<GameObject> toBeRemoved = new List<GameObject>();
         public static List<GameObjectPassive> gameObjectsPassive = new List<GameObjectPassive>();
-        public static List<GameObjectPassive> toBeRemovedPassive = new List<GameObjectPassive>();
+        private static List<GameObjectPassive> toBeAddedPassive = new List<GameObjectPassive>();
+        private static List<GameObjectPassive> toBeRemovedPassive = new List<GameObjectPassive>();
         public static UIAbilityBar uiAbilityBar;
         public static Player player;
         private Texture2D collisionTexture;
+        private Texture2D loseScreen;
+        private double gameCooldown;
         public static Camera camera;
         public static SpriteFont font;
         public static Vendor vendor;
@@ -121,6 +124,16 @@ namespace LimboSoulsOfJudgement
             toBeRemoved.Add(go);
         }
 
+        public static void AddGameObjectPassive(GameObjectPassive go)
+        {
+            toBeAddedPassive.Add(go);
+        }
+
+        public static void RemoveGameObjectPassive(GameObjectPassive go)
+        {
+            toBeRemovedPassive.Add(go);
+        }
+
         /// <summary>
         /// Allows the game to perform any initialization it needs to before starting to run.
         /// This is where it can query for any required services and load any non-graphic
@@ -149,7 +162,7 @@ namespace LimboSoulsOfJudgement
             goodAura = Content.Load<Texture2D>("GoodAura");
             collisionTexture = Content.Load<Texture2D>("CollisionTexture");
             damageFont = Content.Load<SpriteFont>("DamageFont");
-
+            loseScreen = Content.Load<Texture2D>("GameOver");
 
             //Load Vendor & Vendor UI
             vendor = new Vendor();
@@ -233,17 +246,22 @@ namespace LimboSoulsOfJudgement
                 {
                     item.Destroy();
                 }
-                levelReset = false;
-                addLevel = true;
-                vendor = new Vendor();
-                player = new Player();
-                ui = new UI();
-                badKarmaButton = new BadKarmaButton();
-                upgradeHealthBtn = new UpgradeHealthBtn();
-                goodKarmaButton = new GoodKarmaButton();
-                evilWeaponBtn = new EvilWeaponBtn();
-                goodWeaponBtn = new GoodWeaponBtn();
-                mouse = new Crosshair();
+                gameCooldown += gameTime.ElapsedGameTime.TotalSeconds;
+                if (gameCooldown > 3)
+                {
+                    levelReset = false;
+                    addLevel = true;
+                    vendor = new Vendor();
+                    player = new Player();
+                    ui = new UI();
+                    badKarmaButton = new BadKarmaButton();
+                    upgradeHealthBtn = new UpgradeHealthBtn();
+                    goodKarmaButton = new GoodKarmaButton();
+                    evilWeaponBtn = new EvilWeaponBtn();
+                    goodWeaponBtn = new GoodWeaponBtn();
+                    mouse = new Crosshair();
+                    playerAlive = true;
+                }
             }
 
             if (player.health <= 0)
@@ -340,6 +358,9 @@ namespace LimboSoulsOfJudgement
             }
             toBeRemovedPassive.Clear();
 
+            gameObjectsPassive.AddRange(toBeAddedPassive);
+            toBeAddedPassive.Clear();
+
 
 
 
@@ -351,7 +372,7 @@ namespace LimboSoulsOfJudgement
 
             if (stage == 2 && level.levelLoaded == true)
             {
-                level.movingLava.position.Y -= (float)(40 * gameTime.ElapsedGameTime.TotalSeconds);
+                level.movingLava.position.Y -= (float)(30 * gameTime.ElapsedGameTime.TotalSeconds);
             }
             base.Update(gameTime);
         }
@@ -375,6 +396,11 @@ namespace LimboSoulsOfJudgement
             if ((goodKarmaButton.currentStatValue / goodKarmaButton.maxStatValue) * 100 > 80 && badKarmaButton.currentStatValue < goodKarmaButton.currentStatValue)
             {
                 spriteBatch.Draw(goodAura, new Vector2(camera.Position.X - ScreenSize.Width * 0.5f, camera.Position.Y - ScreenSize.Height * 0.5f), null, Color.White, 0f, new Vector2(160, 80), 1f, SpriteEffects.None, 0.02f);
+            }
+
+            if (playerAlive == false)
+            {
+                spriteBatch.Draw(loseScreen, new Vector2(camera.Position.X - ScreenSize.Width * 0.5f, camera.Position.Y - ScreenSize.Height * 0.5f), null, Color.White, 0f, Vector2.Zero, 1f, SpriteEffects.None, 1);
             }
 
             foreach (GameObject go in gameObjects)
