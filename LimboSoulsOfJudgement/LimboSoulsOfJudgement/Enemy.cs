@@ -32,22 +32,6 @@ namespace LimboSoulsOfJudgement
         /// Checks if an enemy should go after the player vertically
         /// </summary>
         protected bool goVertically;
-        /// <summary>
-        /// Checks if an enemy should be knocked back by the players weapon
-        /// </summary>
-        protected bool knockback = false;
-        /// <summary>
-        /// 
-        /// </summary>
-        protected double knockbackTime;
-        /// <summary>
-        /// How long an enemy is knocked back 
-        /// </summary>
-        protected float knockbackDuration;
-        /// <summary>
-        /// The distance an enemy should be knocked back when hit
-        /// </summary>
-        public float knockbackDistance;
         public int damageToDeal;
 
         /// <summary>
@@ -55,7 +39,7 @@ namespace LimboSoulsOfJudgement
         /// </summary>
         private bool aggroCheck = true;
 
-        protected double knockbackMovement;
+
         protected double patrolTime;
         protected float patrolDuration;
         protected double collisionMovement;
@@ -96,7 +80,7 @@ namespace LimboSoulsOfJudgement
                 }
             }
 
-            if (Vector2.Distance(position, GameWorld.player.Position) < 500 && aggro is false)
+            if (Vector2.Distance(position, GameWorld.player.Position) < 350 && aggro is false)
             {
                 aggro = true;
             }
@@ -114,7 +98,7 @@ namespace LimboSoulsOfJudgement
                 }
                 foreach (Enemy item in tempEnemyList)
                 {
-                    if (Vector2.Distance(position, item.position) < 500)
+                    if (Vector2.Distance(position, item.position) < 700)
                     {
                         item.aggro = true;
                     }
@@ -147,12 +131,12 @@ namespace LimboSoulsOfJudgement
                     
             if (aggro == true && GameWorld.player.Position.X < position.X)
             {
-                facingRight = true;
+                facingRight = false;
                 position.X -= (float)(movementSpeed * gameTime.ElapsedGameTime.TotalSeconds);
             }
             if (aggro == true && GameWorld.player.Position.X > position.X)
             {
-                facingRight = false;
+                facingRight = true;
                 position.X += (float)(movementSpeed * gameTime.ElapsedGameTime.TotalSeconds);
             }
         }
