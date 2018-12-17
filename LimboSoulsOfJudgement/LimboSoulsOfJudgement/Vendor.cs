@@ -22,7 +22,7 @@ namespace LimboSoulsOfJudgement
         /// <param name="animationFPS"></param>
         /// <param name="startPostion"></param>
         /// <param name="spriteName"></param>
-        public Vendor() : base(4, 4, new Vector2(600, 320), "Vendor")
+        public Vendor() : base(4, 4, new Vector2(600, -1550), "Vendor")
         {
 
         }
@@ -44,6 +44,7 @@ namespace LimboSoulsOfJudgement
                 {
                     //Enables the functionality to open & close the vendor UI, as long as the player remains in contact with the Vendor's BoxCollider
                     GameWorld.triggerVendor = !GameWorld.triggerVendor;
+                    GameWorld.ui.Position = new Vector2(GameWorld.vendor.Position.X, GameWorld.vendor.Position.Y + 120);
                     keyPressed = 0; //Upon click, the value of keyPressed is reset to 0 to add another time window for the next click to be available
                 }
 

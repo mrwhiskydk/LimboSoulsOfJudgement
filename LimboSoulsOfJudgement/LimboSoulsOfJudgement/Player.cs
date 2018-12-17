@@ -4,6 +4,9 @@ using Microsoft.Xna.Framework.Input;
 
 namespace LimboSoulsOfJudgement
 {
+    /// <summary>
+    /// Public Class that represents the Player GameObject
+    /// </summary>
     public class Player : Character
     {
         public MeleeWeapon melee;
@@ -13,7 +16,13 @@ namespace LimboSoulsOfJudgement
         public Ability ability1;
         private bool canSwitchWeapons = true;
         private double attackTimer = 0;
+
+        /// <summary>
+        /// Sets the current amount of souls the Player currently has. 
+        /// Used as a currency, in order for the user to upgrade specific given stat values of the Player GameObject
+        /// </summary>
         public int currentSouls = 10000;
+
         private double collisionMovement; // Used for collision so you dont need gameTime in DoCollision
         private bool hittingRoof = false;
         private bool inAir;
@@ -25,7 +34,7 @@ namespace LimboSoulsOfJudgement
         private const float jumpPower = 1600;
         private double jumpForce = jumpPower;
         /// <summary>
-        /// Det antal gange man kan dø før spillet starter helt forfra
+        /// The number of times you can die before the game starts over
         /// </summary>
         public int playerLives = 3;
         //private float maxJumpTime = 2f;
@@ -150,25 +159,9 @@ namespace LimboSoulsOfJudgement
 
             if (nextLevel == true)
             {
-                if (GameWorld.stage == 1)
-                {
-                    GameWorld.stage = 10;
-                    GameWorld.teleport = true;
-                    nextLevel = false;
-
-                }
-                else if (GameWorld.stage == 10)
-                {
-                    GameWorld.stage = 2;
-                    GameWorld.teleport = true;
-                    nextLevel = false;
-                }
-                else if (GameWorld.stage == 2)
-                {
-                    GameWorld.stage = 1;
-                    GameWorld.teleport = true;
-                    nextLevel = false;
-                }
+                GameWorld.stage = 10;
+                GameWorld.teleport = true;
+                nextLevel = false;
 
             }
             if (Keyboard.GetState().IsKeyDown(Keys.T) && editMode == false && editKeyPressed == false)
@@ -483,6 +476,7 @@ namespace LimboSoulsOfJudgement
                 nextLevel = true;
                 newLevelTimer = 0;
             }
+
         }
         public override void Draw(SpriteBatch spriteBatch)
         {

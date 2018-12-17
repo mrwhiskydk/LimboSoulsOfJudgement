@@ -9,23 +9,54 @@ using System.Threading.Tasks;
 
 namespace LimboSoulsOfJudgement
 {
+    /// <summary>
+    /// Public Abstract Class that represents mutual fields, properties, methods and one abstract method, between the Player and Enemy GameObjects
+    /// </summary>
     public abstract class Character : AnimatedGameObject
     {
+        /// <summary>
+        /// Sets the current health value of the Character
+        /// </summary>
         public int health;
+
+        /// <summary>
+        /// Sets the maximum health value amount of the Character
+        /// </summary>
         public int maxHealth;
+
+        /// <summary>
+        /// Sets the current value amount of Character movement speed
+        /// </summary>
         public float movementSpeed;
 
-        protected float immortalDuration = 1.0f;
-        protected double immortalTime;
         /// <summary>
-        /// Sets characters immunity on and off
+        /// Sets the duration amount of a Character can remain immortal
+        /// </summary>
+        protected float immortalDuration = 1.0f;
+
+        /// <summary>
+        /// Sets the amount of time a Character remains immortal / immune to all sources of damage taken
+        /// </summary>
+        protected double immortalTime;
+
+        /// <summary>
+        /// Sets wether or not a Character is immortal
         /// </summary>
         public bool isImmortal;
 
-        protected bool canJump = false;   //Controls wether the Player can jump or not
+        /// <summary>
+        /// Sets wether the Character is able to jump or not. Set to false as default
+        /// </summary>
+        protected bool canJump = false;
         
         /// <summary>
-        /// Property that sets the health value of the current GameObjectC:\Users\sein\source\repos\LimboSoulsOfJudgement\LimboSoulsOfJudgement\LimboSoulsOfJudgement\Character.cs
+        /// Property that sets the health value of the current GameObject.
+        /// Sets the isImmortal true, should the value of health fall below its current amount & isImmortal is not set true already.
+        /// Enables the Player functionality of gaining health value through the Lifesteal stat & shows the amount of health gain, through text, onto the screen.
+        /// Enables the ability for the Player to have a chance of landing a critical strike on an Enemy GameObject & shows the crit damage amount on the screen, through text.
+        /// If the new health value is not set through a critical strike, default DamageText is then shown onto the screen.
+        /// Also checks if the current value of health has reach its maximum amount of health value (maxHealth) & sets their value equal to the same should it occur.
+        /// C:\Users\sein\source\repos\LimboSoulsOfJudgement\LimboSoulsOfJudgement\LimboSoulsOfJudgement\Character.cs
         /// </summary>
         public int Health
         {
@@ -75,7 +106,7 @@ namespace LimboSoulsOfJudgement
         }
 
         /// <summary>
-        /// Property that sets the max health value of the current GameObject
+        /// Property that sets the maximum health value of the current GameObject
         /// </summary>
         public int MaxHealth
         {
