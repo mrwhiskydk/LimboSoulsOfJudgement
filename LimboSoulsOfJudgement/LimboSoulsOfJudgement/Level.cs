@@ -574,6 +574,14 @@ namespace LimboSoulsOfJudgement
                 {
                     neutralBoss = new NeutralBoss();
                 }
+                else if (GameWorld.triggerFinalBoss == true && GameWorld.badKarmaButton.currentKarma < GameWorld.goodKarmaButton.currentKarma)
+                {
+                    boss = new BossEnemy(4, 4, "DevilFinalBoss");
+                }
+                else if (GameWorld.triggerFinalBoss == true && GameWorld.badKarmaButton.currentKarma > GameWorld.goodKarmaButton.currentKarma)
+                {
+                    boss = new BossEnemy(4, 4, "AngelFinalBoss");
+                }
 
                 MediaPlayer.Play(GameWorld.musicBoss);
             }
