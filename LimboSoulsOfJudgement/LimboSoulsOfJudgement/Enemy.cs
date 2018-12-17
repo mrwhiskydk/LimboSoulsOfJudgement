@@ -80,7 +80,7 @@ namespace LimboSoulsOfJudgement
                 }
             }
 
-            if (Vector2.Distance(position, GameWorld.player.Position) < 350 && aggro is false)
+            if (Vector2.Distance(position, GameWorld.player.Position) < 400 && aggro is false)
             {
                 aggro = true;
             }
@@ -153,7 +153,7 @@ namespace LimboSoulsOfJudgement
             {
                 MeleeWeapon weapon = (MeleeWeapon)otherObject;
                 Health -= weapon.damage;
-
+                aggro = true;
                 knockback = true;
                 knockbackDistance = 2f;
             }
