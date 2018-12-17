@@ -420,7 +420,7 @@ namespace LimboSoulsOfJudgement
                 go.Draw(spriteBatch);
             }
 
-            if (stage != 10)
+            if (stage != 10 && level.portal != null)
             {
                 spriteBatch.DrawString(font, "Press E", new Vector2(level.portal.Position.X - 30, level.portal.Position.Y - 100), Color.White, 0f, Vector2.Zero, 1f, SpriteEffects.None, 0.991f);
             }
