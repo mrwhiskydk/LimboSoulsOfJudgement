@@ -16,7 +16,7 @@ namespace LimboSoulsOfJudgement
         /// <summary>
         /// 
         /// </summary>
-        public FinalBossButton() : base(new Vector2(GameWorld.ui.Position.X, GameWorld.ui.Position.Y + 225), "buttonUITest")
+        public FinalBossButton() : base(new Vector2(GameWorld.ui.Position.X, GameWorld.ui.Position.Y + 205), "buttonUITest")
         {
 
 
@@ -28,7 +28,7 @@ namespace LimboSoulsOfJudgement
         /// <param name="gameTime">Time elapsed since last call in the update</param>
         public override void Update(GameTime gameTime)
         {
-            if(GameWorld.goodKarmaButton.currentKarma >= GameWorld.goodKarmaButton.maxStatValue)
+            if(GameWorld.goodKarmaButton.currentKarma >= GameWorld.goodKarmaButton.maxStatValue || GameWorld.badKarmaButton.currentKarma >= GameWorld.badKarmaButton.maxStatValue)
             {
                 UpgradeStat(gameTime);
             }
