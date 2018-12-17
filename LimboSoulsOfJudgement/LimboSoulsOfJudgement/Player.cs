@@ -479,7 +479,12 @@ namespace LimboSoulsOfJudgement
                         position.X -= (float)collisionMovement;
                         if (knockback)
                         {
-                            position.X -= (float)collisionMovement;
+                            position.X -= (float)knockbackMovement;
+                            if (Keyboard.GetState().IsKeyDown(Keys.D))
+                            {
+                                position.X -= (float)collisionMovement;
+
+                            }
                         }
                    
                     }
@@ -489,7 +494,12 @@ namespace LimboSoulsOfJudgement
                         position.X += (float)collisionMovement;
                         if (knockback)
                         {
-                            position.X += (float)collisionMovement;
+                            position.X += (float)knockbackMovement;
+                            if (Keyboard.GetState().IsKeyDown(Keys.A))
+                            {
+                                position.X += (float)collisionMovement;
+
+                            }
                         }
                     }
 

@@ -224,18 +224,6 @@
 /processorParam:TextureFormat=Color
 /build:Darkness.png
 
-#begin DevilBoss.png
-/importer:TextureImporter
-/processor:TextureProcessor
-/processorParam:ColorKeyColor=255,0,255,255
-/processorParam:ColorKeyEnabled=True
-/processorParam:GenerateMipmaps=False
-/processorParam:PremultiplyAlpha=True
-/processorParam:ResizeToPowerOfTwo=False
-/processorParam:MakeSquare=False
-/processorParam:TextureFormat=Color
-/build:DevilBoss.png
-
 #begin demonSword.png
 /importer:TextureImporter
 /processor:TextureProcessor
@@ -247,6 +235,18 @@
 /processorParam:MakeSquare=False
 /processorParam:TextureFormat=Color
 /build:demonSword.png
+
+#begin DevilBoss.png
+/importer:TextureImporter
+/processor:TextureProcessor
+/processorParam:ColorKeyColor=255,0,255,255
+/processorParam:ColorKeyEnabled=True
+/processorParam:GenerateMipmaps=False
+/processorParam:PremultiplyAlpha=True
+/processorParam:ResizeToPowerOfTwo=False
+/processorParam:MakeSquare=False
+/processorParam:TextureFormat=Color
+/build:DevilBoss.png
 
 #begin Edit.png
 /importer:TextureImporter
@@ -578,6 +578,12 @@
 /processorParam:MakeSquare=False
 /processorParam:TextureFormat=Color
 /build:Soul.png
+
+#begin sound/angelUltimate.wav
+/importer:WavImporter
+/processor:SoundEffectProcessor
+/processorParam:Quality=Best
+/build:sound/angelUltimate.wav
 
 #begin sound/bloodstorm.wav
 /importer:WavImporter

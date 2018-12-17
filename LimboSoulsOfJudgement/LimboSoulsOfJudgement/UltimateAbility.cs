@@ -17,21 +17,28 @@ namespace LimboSoulsOfJudgement
         {
             cooldown = 10;
             cooldownTimer = cooldown;
+
         }
 
         public override void UseAbility()
         {
+            base.UseAbility();
             activated = true;
             GameWorld.player.critChance = GameWorld.player.critChance * 2;
             GameWorld.player.critDmgModifier = GameWorld.player.critDmgModifier * 2;
             if (GameWorld.goodKarmaButton.currentKarma > GameWorld.badKarmaButton.currentKarma)
             {
                 GameWorld.player.healthRegen = GameWorld.player.healthRegen * 2;
+
             }
             else if (GameWorld.goodKarmaButton.currentKarma < GameWorld.badKarmaButton.currentKarma)
             {
                 GameWorld.player.lifeSteal = GameWorld.player.lifeSteal * 2;
             }
+            GameWorld.player.melee.damage = GameWorld.player.melee.damage * 2;
+            GameWorld.player.ranged.damage = GameWorld.player.ranged.damage * 2;
+
+
         }
 
         public override void Update(GameTime gameTime)
@@ -56,8 +63,20 @@ namespace LimboSoulsOfJudgement
                     {
                         GameWorld.player.lifeSteal = GameWorld.player.lifeSteal * 0.5f;
                     }
+                    GameWorld.player.melee.damage = (int)(GameWorld.player.melee.damage * 0.5f);
+                    GameWorld.player.ranged.damage = (int)(GameWorld.player.ranged.damage * 0.5f);
+                    
                     activated = false;
                 }
+            }
+
+            if (GameWorld.goodKarmaButton.currentKarma > GameWorld.badKarmaButton.currentKarma)
+            {
+                sound = new Sound("sound/angelUltimate");
+            }
+            else
+            {
+
             }
         }
 

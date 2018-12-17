@@ -11,7 +11,6 @@ namespace LimboSoulsOfJudgement
 
     public class LightningBoltAbility : Ability
     {
-        
 
         public LightningBoltAbility() : base("LightningBoltAbility")
         {
