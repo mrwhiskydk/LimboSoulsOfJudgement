@@ -57,8 +57,6 @@ namespace LimboSoulsOfJudgement
                 duration += gameTime.ElapsedGameTime.TotalSeconds;
                 if (duration > 5)
                 {
-                    duration = 0;
-
                     GameWorld.player.critChance = GameWorld.player.critChance * 0.5f;
                     GameWorld.player.critDmgModifier = GameWorld.player.critDmgModifier * 0.5f;
                     if (GameWorld.goodKarmaButton.currentKarma > GameWorld.badKarmaButton.currentKarma)
@@ -76,6 +74,7 @@ namespace LimboSoulsOfJudgement
                     BloodstormAbility.Bloodstorm.damage = (int)(BloodstormAbility.Bloodstorm.damage * 0.5f);
 
                     activated = false;
+                    duration = 0;
                 }
             }
 
@@ -91,14 +90,14 @@ namespace LimboSoulsOfJudgement
 
         public override void Draw(SpriteBatch spriteBatch)
         {
-            //if (GameWorld.buyLightningBoltButton.abilityPurchased)
-            //{
+            if (/*GameWorld.buyUltimateButtom.abilityPurchased*/ true)
+            {
                 spriteBatch.Draw(sprite, position, null, Color.White, rotation, new Vector2(sprite.Width * 0.5f, sprite.Height * 0.5f), 1f, SpriteEffects.None, 0.992f);
-            //}
-            //else
-            //{
-            //    spriteBatch.Draw(sprite, position, null, Color.White * 0.0f, rotation, new Vector2(sprite.Width * 0.5f, sprite.Height * 0.5f), 1f, SpriteEffects.None, 0.992f);
-            //}
+            }
+            else
+            {
+                spriteBatch.Draw(sprite, position, null, Color.White * 0.0f, rotation, new Vector2(sprite.Width * 0.5f, sprite.Height * 0.5f), 1f, SpriteEffects.None, 0.992f);
+            }
         }
     }
 }
