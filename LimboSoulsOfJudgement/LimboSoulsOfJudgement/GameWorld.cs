@@ -403,12 +403,12 @@ namespace LimboSoulsOfJudgement
             spriteBatch.Draw(backGround, new Vector2(camera.Position.X - ScreenSize.Width * 0.5f, camera.Position.Y - ScreenSize.Height * 0.5f), null, Color.White, 0f, Vector2.Zero, 1f, SpriteEffects.None, 0.01f);
             spriteBatch.Draw(shadow, new Vector2(camera.Position.X - ScreenSize.Width * 0.5f, camera.Position.Y - ScreenSize.Height * 0.5f), null, Color.White, 0f, new Vector2(160, 80), 1f, SpriteEffects.None, 0.99f);
 
-            if ((badKarmaButton.currentStatValue / badKarmaButton.maxStatValue) * 100 > 80 && badKarmaButton.currentStatValue > goodKarmaButton.currentStatValue)
+            if ((badKarmaButton.currentStatValue / badKarmaButton.maxStatValue) * 100 > 80 && badKarmaButton.currentKarma > goodKarmaButton.currentKarma)
             {
                 spriteBatch.Draw(evilAura, new Vector2(camera.Position.X - ScreenSize.Width * 0.5f, camera.Position.Y - ScreenSize.Height * 0.5f), null, Color.White, 0f, new Vector2(160, 80), 1f, SpriteEffects.None, 0.02f);
             }
 
-            if ((goodKarmaButton.currentStatValue / goodKarmaButton.maxStatValue) * 100 > 80 && badKarmaButton.currentStatValue < goodKarmaButton.currentStatValue)
+            if ((goodKarmaButton.currentStatValue / goodKarmaButton.maxStatValue) * 100 > 80 && badKarmaButton.currentKarma < goodKarmaButton.currentKarma)
             {
                 spriteBatch.Draw(goodAura, new Vector2(camera.Position.X - ScreenSize.Width * 0.5f, camera.Position.Y - ScreenSize.Height * 0.5f), null, Color.White, 0f, new Vector2(160, 80), 1f, SpriteEffects.None, 0.02f);
             }
@@ -423,7 +423,7 @@ namespace LimboSoulsOfJudgement
                 go.Draw(spriteBatch);
 
 #if DEBUG
-                //DrawCollisionBox(go);
+                DrawCollisionBox(go);
 #endif
             }
 
@@ -630,6 +630,17 @@ namespace LimboSoulsOfJudgement
             if (triggerVendor)
             {
                 spriteBatch.DrawString(font, "RESET LEVEL!", new Vector2(resetButton.Position.X - 60, resetButton.Position.Y - 55), Color.White, 0f, Vector2.Zero, 1f, SpriteEffects.None, 0.995f);
+            }
+
+            //Text Completed Purchase of Final Boss Button
+            if (triggerVendor && goodKarmaButton.maxStatValue <= goodKarmaButton.currentStatValue || triggerVendor && badKarmaButton.maxStatValue <= badKarmaButton.currentStatValue)
+            {
+                spriteBatch.DrawString(font, $"CLICK TO ENTER FINAL BOSS ROOM!", new Vector2(finalBossButton.Position.X - 114, finalBossButton.Position.Y + 35), Color.White, 0f, Vector2.Zero, 1f, SpriteEffects.None, 0.995f);
+            }
+            //Text Purchase of Final Boss Button
+            else if (triggerVendor && goodKarmaButton.maxStatValue >= goodKarmaButton.currentStatValue || triggerVendor && badKarmaButton.maxStatValue >= badKarmaButton.currentStatValue)
+            {
+                spriteBatch.DrawString(font, $"Requires either: MAX Demonic Karma or MAX Angel Karma to unlock!", new Vector2(finalBossButton.Position.X - 214, finalBossButton.Position.Y + 35), Color.White, 0f, Vector2.Zero, 1f, SpriteEffects.None, 0.995f);
             }
 
             spriteBatch.End();

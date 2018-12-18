@@ -4,7 +4,6 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using Microsoft.Xna.Framework;
-using Microsoft.Xna.Framework.Media;
 
 namespace LimboSoulsOfJudgement
 {
@@ -90,6 +89,7 @@ namespace LimboSoulsOfJudgement
                 GameWorld.buyLightningBoltButton.Position = new Vector2(GameWorld.ui.Position.X - 225, GameWorld.ui.Position.Y - 100);
                 GameWorld.buyBloodStormButton.Position = new Vector2(GameWorld.ui.Position.X + 245, GameWorld.ui.Position.Y - 150);
                 GameWorld.badKarmaButton.Position = new Vector2(GameWorld.ui.Position.X + 475, GameWorld.ui.Position.Y - 218);
+                GameWorld.finalBossButton.Position = new Vector2(GameWorld.ui.Position.X, GameWorld.ui.Position.Y + 205);
             }
 
 
@@ -181,7 +181,6 @@ namespace LimboSoulsOfJudgement
         public override void Destroy()
         {
             base.Destroy();
-            MediaPlayer.Play(GameWorld.musicMain);
         }
     }
 }

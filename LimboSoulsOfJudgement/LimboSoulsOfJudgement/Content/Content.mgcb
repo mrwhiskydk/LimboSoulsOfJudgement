@@ -37,7 +37,7 @@
 /processorParam:TextureFormat=Color
 /build:AngelBoss.png
 
-#begin AngelFinalBoss.png
+#begin angelSword.png
 /importer:TextureImporter
 /processor:TextureProcessor
 /processorParam:ColorKeyColor=255,0,255,255
@@ -47,7 +47,7 @@
 /processorParam:ResizeToPowerOfTwo=False
 /processorParam:MakeSquare=False
 /processorParam:TextureFormat=Color
-/build:AngelFinalBoss.png
+/build:angelSword.png
 
 #begin arrow.png
 /importer:TextureImporter
@@ -237,7 +237,6 @@
 /build:demonSword.png
 
 #begin DevilBoss.png
-#begin DevilFinalBoss.png
 /importer:TextureImporter
 /processor:TextureProcessor
 /processorParam:ColorKeyColor=255,0,255,255
@@ -248,7 +247,6 @@
 /processorParam:MakeSquare=False
 /processorParam:TextureFormat=Color
 /build:DevilBoss.png
-/build:DevilFinalBoss.png
 
 #begin Edit.png
 /importer:TextureImporter
@@ -581,11 +579,11 @@
 /processorParam:TextureFormat=Color
 /build:Soul.png
 
-#begin Sound/bloodstorm.wav
+#begin sound/angelUltimate.wav
 /importer:WavImporter
 /processor:SoundEffectProcessor
 /processorParam:Quality=Best
-/build:Sound/bloodstorm.wav
+/build:sound/angelUltimate.wav
 
 #begin sound/bloodstorm.wav
 /importer:WavImporter
@@ -599,17 +597,11 @@
 /processorParam:Quality=Best
 /build:sound/bow.wav
 
-#begin sound/bow.wav
+#begin sound/demonUltimate.wav
 /importer:WavImporter
 /processor:SoundEffectProcessor
 /processorParam:Quality=Best
-/build:Sound/bow.wav
-
-#begin Sound/lightningbolt.wav
-/importer:WavImporter
-/processor:SoundEffectProcessor
-/processorParam:Quality=Best
-/build:sound/lightningbolt.wav
+/build:sound/demonUltimate.wav
 
 #begin sound/lightningbolt.wav
 /importer:WavImporter
@@ -633,12 +625,6 @@
 /importer:WavImporter
 /processor:SoundEffectProcessor
 /processorParam:Quality=Best
-/build:Sound/sword.wav
-
-#begin sound/sword.wav
-/importer:WavImporter
-/processor:SoundEffectProcessor
-/processorParam:Quality=Best
 /build:sound/sword.wav
 
 #begin sound/trapdoor.wav
@@ -646,12 +632,6 @@
 /processor:SoundEffectProcessor
 /processorParam:Quality=Best
 /build:sound/trapdoor.wav
-
-#begin sound/trapdoor.wav
-/importer:WavImporter
-/processor:SoundEffectProcessor
-/processorParam:Quality=Best
-/build:Sound/trapdoor.wav
 
 #begin SurfaceLava.png
 /importer:TextureImporter
