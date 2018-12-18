@@ -41,6 +41,7 @@ namespace LimboSoulsOfJudgement
         {
             spriteBatch.Draw(healthBarTexture, position, healthBarSize, Color.White, 0f, Vector2.Zero, 1f, SpriteEffects.None, 0.992f);
             spriteBatch.Draw(GameWorld.healthBarOutline, new Vector2(position.X - 10, position.Y - 10), null, Color.White, 0f, Vector2.Zero, 1f, SpriteEffects.None, 0.991f);
+            spriteBatch.DrawString(GameWorld.font, $"Health: {GameWorld.player.health} / {GameWorld.player.maxHealth}", new Vector2(GameWorld.healthBar.Position.X, GameWorld.healthBar.Position.Y), Color.White, 0f, Vector2.Zero, 1f, SpriteEffects.None, 0.993f);
         }
     }
 }
