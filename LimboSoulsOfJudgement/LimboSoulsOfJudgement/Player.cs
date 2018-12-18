@@ -148,7 +148,7 @@ namespace LimboSoulsOfJudgement
                 healthRegenTimer += gameTime.ElapsedGameTime.TotalSeconds;
                 if (healthRegenTimer > 3)
                 {
-                    health += (int)(healthRegen * maxHealth);
+                    Health += (int)(healthRegen * maxHealth);
                     healthRegenTimer = 0;
                 }
             }
@@ -422,7 +422,7 @@ namespace LimboSoulsOfJudgement
                 ability1.Use();
             }
 
-            if (Keyboard.GetState().IsKeyDown(Keys.U) && ability2 != null && GameWorld.buyLightningBoltButton.abilityPurchased)
+            if (Keyboard.GetState().IsKeyDown(Keys.E) && ability2 != null && GameWorld.buyLightningBoltButton.abilityPurchased)
             {
                 ability2.Use();
             }

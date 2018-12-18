@@ -12,7 +12,7 @@ namespace LimboSoulsOfJudgement
     {
         public BloodstormAbility() : base("BloodstormAbility")
         {
-            cooldown = 1;
+            cooldown = 10;
             cooldownTimer = cooldown;
             sound = new Sound("sound/bloodstorm");
         }
@@ -31,7 +31,6 @@ namespace LimboSoulsOfJudgement
 
         /// <summary>
         /// Overridden Draw Method that draws out the sprite of BloodStorm Ability, if purchased through BuyBloodStormButton Class.
-        /// While not purchased, the sprite is still being drawn out, but it is 100% transparent.
         /// </summary>
         /// <param name="spriteBatch"></param>
         public override void Draw(SpriteBatch spriteBatch)
