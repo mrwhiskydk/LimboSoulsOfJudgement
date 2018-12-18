@@ -37,6 +37,18 @@
 /processorParam:TextureFormat=Color
 /build:AngelBoss.png
 
+#begin AngelFinalBoss.png
+/importer:TextureImporter
+/processor:TextureProcessor
+/processorParam:ColorKeyColor=255,0,255,255
+/processorParam:ColorKeyEnabled=True
+/processorParam:GenerateMipmaps=False
+/processorParam:PremultiplyAlpha=True
+/processorParam:ResizeToPowerOfTwo=False
+/processorParam:MakeSquare=False
+/processorParam:TextureFormat=Color
+/build:AngelFinalBoss.png
+
 #begin angelSword.png
 /importer:TextureImporter
 /processor:TextureProcessor
@@ -247,6 +259,18 @@
 /processorParam:MakeSquare=False
 /processorParam:TextureFormat=Color
 /build:DevilBoss.png
+
+#begin DevilFinalBoss.png
+/importer:TextureImporter
+/processor:TextureProcessor
+/processorParam:ColorKeyColor=255,0,255,255
+/processorParam:ColorKeyEnabled=True
+/processorParam:GenerateMipmaps=False
+/processorParam:PremultiplyAlpha=True
+/processorParam:ResizeToPowerOfTwo=False
+/processorParam:MakeSquare=False
+/processorParam:TextureFormat=Color
+/build:DevilFinalBoss.png
 
 #begin Edit.png
 /importer:TextureImporter
@@ -470,6 +494,18 @@
 /processorParam:MakeSquare=False
 /processorParam:TextureFormat=Color
 /build:NeutralEnemy.png
+
+#begin Pause.png
+/importer:TextureImporter
+/processor:TextureProcessor
+/processorParam:ColorKeyColor=255,0,255,255
+/processorParam:ColorKeyEnabled=True
+/processorParam:GenerateMipmaps=False
+/processorParam:PremultiplyAlpha=True
+/processorParam:ResizeToPowerOfTwo=False
+/processorParam:MakeSquare=False
+/processorParam:TextureFormat=Color
+/build:Pause.png
 
 #begin PlayerArm.png
 /importer:TextureImporter
@@ -728,6 +764,18 @@
 /processorParam:MakeSquare=False
 /processorParam:TextureFormat=Color
 /build:VerticalFrame.png
+
+#begin YouWin.png
+/importer:TextureImporter
+/processor:TextureProcessor
+/processorParam:ColorKeyColor=255,0,255,255
+/processorParam:ColorKeyEnabled=True
+/processorParam:GenerateMipmaps=False
+/processorParam:PremultiplyAlpha=True
+/processorParam:ResizeToPowerOfTwo=False
+/processorParam:MakeSquare=False
+/processorParam:TextureFormat=Color
+/build:YouWin.png
 
 #begin YouWin.png
 /importer:TextureImporter

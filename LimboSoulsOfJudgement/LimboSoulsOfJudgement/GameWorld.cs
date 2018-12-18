@@ -26,6 +26,9 @@ namespace LimboSoulsOfJudgement
         private Texture2D collisionTexture;
         private Texture2D loseScreen;
         private Texture2D winScreen;
+        private Texture2D pauseScreen;
+        private bool pause = false;
+        private double pauseTime;
         private double gameCooldown;
         public static Camera camera;
         public static SpriteFont font;
@@ -175,6 +178,7 @@ namespace LimboSoulsOfJudgement
             damageFont = Content.Load<SpriteFont>("DamageFont");
             loseScreen = Content.Load<Texture2D>("GameOver");
             winScreen = Content.Load<Texture2D>("YouWin");
+            pauseScreen = Content.Load<Texture2D>("Pause");
 
             //Sound
             MediaPlayer.Volume = 0.05f;
@@ -249,154 +253,202 @@ namespace LimboSoulsOfJudgement
         /// <param name="gameTime">Provides a snapshot of timing values.</param>
         protected override void Update(GameTime gameTime)
         {
-            if (GamePad.GetState(PlayerIndex.One).Buttons.Back == ButtonState.Pressed || Keyboard.GetState().IsKeyDown(Keys.Escape))
-                Exit();
-
-            if (teleport == true)
+            if (pause == false)
             {
-                levelReset = true;
-                addLevel = true;
-                teleport = false;
-                level.levelLoaded = false;
-            }
-            if (player.playerLives > 0)
-            {
-                playerAlive = true;
-            }
-            else if (playerAlive is false || gameWon == true)
-            {
-                stage = 1;
-                foreach (var item in gameObjects)
+                pauseTime += gameTime.ElapsedGameTime.TotalSeconds;
+                if (pauseTime > 0.5f)
                 {
-                    item.Destroy();
-                }
-                gameCooldown += gameTime.ElapsedGameTime.TotalSeconds;
-                if (gameCooldown > 3)
-                {
-                    levelReset = false;
-                    addLevel = true;
-                    vendor = new Vendor();
-                    player = new Player();
-                    ui = new UI();
-                    badKarmaButton = new BadKarmaButton();
-                    upgradeHealthBtn = new UpgradeHealthBtn();
-                    goodKarmaButton = new GoodKarmaButton();
-                    evilWeaponBtn = new EvilWeaponBtn();
-                    goodWeaponBtn = new GoodWeaponBtn();
-                    mouse = new Crosshair();
-                    playerAlive = true;
-                    gameWon = false;
-                }
-            }
-
-            if (player.health <= 0)
-            {
-                levelReset = true;
-                addLevel = true;
-                player.playerLives -= 1;
-            }
-
-            if (player.playerLives == 0)
-            {
-                playerAlive = false;
-            }
-
-            foreach (GameObject go in gameObjects)
-            {
-                //Applies gravity to GameObject
-                if (go.Gravity)
-                {
-                    go.Position = new Vector2(go.Position.X, go.Position.Y + gravityStrength);
-                }
-
-                go.Update(gameTime);
-                
-                foreach (GameObject other in gameObjects)
-                {
-                    if (go != other && go.IsColliding(other))
+                    if (GamePad.GetState(PlayerIndex.One).Buttons.Back == ButtonState.Pressed || Keyboard.GetState().IsKeyDown(Keys.Escape) || Keyboard.GetState().IsKeyDown(Keys.P))
                     {
-                        go.DoCollision(other);
+                        pause = true;
+                        pauseTime = 0;
                     }
-                }
-            }
-            if (levelReset == false && addLevel == true)
-            {
-                level = new Level();
-                addLevel = false;
 
-            }
-            else if (levelReset == true)
-            {
-                foreach (var item in gameObjects)
+                }
+
+                if (teleport == true)
                 {
-                    if (item is Player is false && item is Vendor is false && item is Crosshair is false && item is UI is false && item is Button is false && item is Weapon is false && item is Arm is false)
+                    levelReset = true;
+                    addLevel = true;
+                    teleport = false;
+                    level.levelLoaded = false;
+                }
+                if (player.playerLives > 0)
+                {
+                    playerAlive = true;
+                }
+
+                if (playerAlive is false || gameWon == true)
+                {
+                    stage = 1;
+                    foreach (var item in gameObjects)
                     {
                         item.Destroy();
                     }
-                }
-                levelReset = false;
+                    gameCooldown += gameTime.ElapsedGameTime.TotalSeconds;
+                    if (gameCooldown > 3)
+                    {
+                        levelReset = false;
+                        addLevel = true;
+                        vendor = new Vendor();
+                        player = new Player();
+                        ui = new UI();
 
-                player.health = player.MaxHealth;
-                if (stage == 1)
+                        badKarmaButton = new BadKarmaButton();
+                        upgradeHealthBtn = new UpgradeHealthBtn();
+                        goodKarmaButton = new GoodKarmaButton();
+                        evilWeaponBtn = new EvilWeaponBtn();
+                        goodWeaponBtn = new GoodWeaponBtn();
+                        resetButton = new ResetButton();
+                        finalBossButton = new FinalBossButton();
+                        upgradeMeleeDamageBtn = new UpgradeMeleeDamageBtn();
+                        upgradeRangedDamageBtn = new UpgradeRangedDamageBtn();
+                        upgradeMovementSpeedBtn = new UpgradeMovementSpeedBtn();
+                        buyBloodStormButton = new BuyBloodStormButton();
+                        buyGodModeAbility = new BuyGodModeAbility();
+                        buyLightningBoltButton = new BuyLightningBoltButton();
+                        upgradeLifestealBtn = new UpgradeLifetealBtn();
+                        upgradeHealthRegenBtn = new UpgradeHealthRegenBtn();
+                        upgradeCritChanceBtn = new UpgradeCritChanceBtn();
+                        upgradeCritDamageBtn = new UpgradeCritDamageBtn();
+                        upgradeAbilityDamageBtn = new UpgradeAbilityDamageBtn();
+                        
+
+
+                        mouse = new Crosshair();
+                        playerAlive = true;
+                        gameWon = false;
+                    }
+                }
+
+                if (player.health <= 0)
                 {
-                    player.Position = new Vector2(200, 500);
+                    levelReset = true;
+                    addLevel = true;
+                    player.playerLives -= 1;
                 }
-                else if (stage == 2)
+
+                if (player.playerLives == 0)
                 {
-                    player.Position = new Vector2(5 * 64, 55 * 64);
+                    playerAlive = false;
                 }
-                else if (stage == 10)
+
+                foreach (GameObject go in gameObjects)
                 {
-                    player.Position = new Vector2(30 * 64, 27 * 64);
+                    //Applies gravity to GameObject
+                    if (go.Gravity)
+                    {
+                        go.Position = new Vector2(go.Position.X, go.Position.Y + gravityStrength);
+                    }
+
+                    go.Update(gameTime);
+
+                    foreach (GameObject other in gameObjects)
+                    {
+                        if (go != other && go.IsColliding(other))
+                        {
+                            go.DoCollision(other);
+                        }
+                    }
                 }
-                else if (stage == 3)
+                if (levelReset == false && addLevel == true)
                 {
-                    player.Position = new Vector2(4 * 64, 8 * 64);
+                    level = new Level();
+                    addLevel = false;
+
+                }
+                else if (levelReset == true)
+                {
+                    foreach (var item in gameObjects)
+                    {
+                        if (item is Player is false && item is Vendor is false && item is Crosshair is false && item is UI is false && item is Button is false && item is Weapon is false && item is Arm is false)
+                        {
+                            item.Destroy();
+                        }
+                    }
+                    levelReset = false;
+
+                    player.health = player.MaxHealth;
+                    if (stage == 1)
+                    {
+                        player.Position = new Vector2(200, 500);
+                    }
+                    else if (stage == 2)
+                    {
+                        player.Position = new Vector2(5 * 64, 55 * 64);
+                    }
+                    else if (stage == 10)
+                    {
+                        player.Position = new Vector2(30 * 64, 27 * 64);
+                    }
+                    else if (stage == 3)
+                    {
+                        player.Position = new Vector2(4 * 64, 8 * 64);
+                    }
+
                 }
 
+                //manually updating classes with important order
+                camera.Position = new Vector2(MathHelper.Lerp(camera.Position.X, player.Position.X, 0.25f), MathHelper.Lerp(camera.Position.Y, player.Position.Y, 0.25f));
+                mouse.Update(gameTime);
+
+                foreach (GameObjectPassive go in gameObjectsPassive)
+                {
+                    go.Update(gameTime);
+                }
+
+
+                foreach (GameObject go in toBeRemoved)
+                {
+                    gameObjects.Remove(go);
+                }
+                toBeRemoved.Clear();
+
+                gameObjects.AddRange(toBeAdded);
+                toBeAdded.Clear();
+
+
+
+                foreach (GameObjectPassive go in toBeRemovedPassive)
+                {
+                    gameObjectsPassive.Remove(go);
+                }
+                toBeRemovedPassive.Clear();
+
+                gameObjectsPassive.AddRange(toBeAddedPassive);
+                toBeAddedPassive.Clear();
+
+                if (stage == 2 && level.levelLoaded == true)
+                {
+                    level.movingLava.position.Y -= (float)((30 * (levelCount * 0.5)) * gameTime.ElapsedGameTime.TotalSeconds);
+                }
+
+                if (triggerFinalBoss == true && level.levelLoaded == true && level.boss.health <= 0)
+                {
+                    gameWon = true;
+                }
+
+                base.Update(gameTime);
             }
-
-            //manually updating classes with important order
-            camera.Position = new Vector2(MathHelper.Lerp(camera.Position.X, player.Position.X, 0.25f), MathHelper.Lerp(camera.Position.Y, player.Position.Y, 0.25f));
-            mouse.Update(gameTime);
-
-            foreach (GameObjectPassive go in gameObjectsPassive)
+            else 
             {
-                go.Update(gameTime);
+                pauseTime += gameTime.ElapsedGameTime.TotalSeconds;
+                if (pauseTime > 0.5f)
+                {
+                    if (GamePad.GetState(PlayerIndex.One).Buttons.Back == ButtonState.Pressed || Keyboard.GetState().IsKeyDown(Keys.Escape))
+                    {
+                        Exit();
+                    }
+
+                    if (Keyboard.GetState().IsKeyDown(Keys.P))
+                    {
+                        pause = false;
+                        pauseTime = 0;
+                    }
+
+                }
+                 
             }
-
-            
-            foreach (GameObject go in toBeRemoved)
-            {
-                gameObjects.Remove(go);
-            }
-            toBeRemoved.Clear();
-
-            gameObjects.AddRange(toBeAdded);
-            toBeAdded.Clear();
-
-
-
-            foreach (GameObjectPassive go in toBeRemovedPassive)
-            {
-                gameObjectsPassive.Remove(go);
-            }
-            toBeRemovedPassive.Clear();
-
-            gameObjectsPassive.AddRange(toBeAddedPassive);
-            toBeAddedPassive.Clear();
-
-            if (stage == 2 && level.levelLoaded == true)
-            {
-                level.movingLava.position.Y -= (float)((30 * (levelCount * 0.5)) * gameTime.ElapsedGameTime.TotalSeconds);
-            }
-
-            if (triggerFinalBoss == true && level.finalBoss.health <= 0 && level.levelLoaded == true)
-            {
-                gameWon = true;
-            }
-
-            base.Update(gameTime);
         }
 
         /// <summary>
@@ -422,12 +474,25 @@ namespace LimboSoulsOfJudgement
 
             if (playerAlive == false)
             {
-                spriteBatch.Draw(loseScreen, new Vector2(camera.Position.X - ScreenSize.Width * 0.5f, camera.Position.Y - ScreenSize.Height * 0.5f), null, Color.White, 0f, Vector2.Zero, 1f, SpriteEffects.None, 1);
+                spriteBatch.Draw(loseScreen, new Vector2(camera.Position.X - ScreenSize.Width * 0.5f, camera.Position.Y - ScreenSize.Height * 0.5f), null, Color.White, 0f, Vector2.Zero, 1f, SpriteEffects.None, 0.9999f);
             }
 
             if (gameWon == true)
             {
-                spriteBatch.Draw(winScreen, new Vector2(camera.Position.X - ScreenSize.Width * 0.5f, camera.Position.Y - ScreenSize.Height * 0.5f), null, Color.White, 0f, Vector2.Zero, 1f, SpriteEffects.None, 1);
+                spriteBatch.Draw(winScreen, new Vector2(camera.Position.X - ScreenSize.Width * 0.5f, camera.Position.Y - ScreenSize.Height * 0.5f), null, Color.White, 0f, Vector2.Zero, 1f, SpriteEffects.None, 0.9999f);
+            }
+
+            if (pause == true)
+            {
+                spriteBatch.Draw(pauseScreen, new Vector2(camera.Position.X - ScreenSize.Width * 0.5f, camera.Position.Y - ScreenSize.Height * 0.5f), null, Color.White, 0f, Vector2.Zero, 1f, SpriteEffects.None, 0.9999f);
+                spriteBatch.DrawString(font, "Press Escape to exit the game", new Vector2(camera.Position.X - 550, camera.Position.Y + 125), Color.White, 0f, Vector2.Zero, 2, SpriteEffects.None, 1f);
+                spriteBatch.DrawString(font, "Press P to unpause the game", new Vector2(camera.Position.X + 150, camera.Position.Y + 125), Color.White, 0f, Vector2.Zero, 2, SpriteEffects.None, 1f);
+                spriteBatch.DrawString(font, "Controles:\nA = move left\nD = move right\nSpace = jump\nW = crawl up chains\nS = crawl down chains\nLeft click = Attack\nTab = change weapon\nPress 1, 2 or 3 to use your abilities", new Vector2(camera.Position.X - 750, camera.Position.Y + 250), Color.White, 0f, Vector2.Zero, 1, SpriteEffects.None, 1f);
+                spriteBatch.DrawString(font, $"Melee Weapon Damage: {player.melee.damage}", new Vector2(camera.Position.X - 750, camera.Position.Y - 350), Color.White, 0f, Vector2.Zero, 1f, SpriteEffects.None, 1f);
+                spriteBatch.DrawString(font, $"Ranged Weapon Damage: {player.ranged.damage}", new Vector2(camera.Position.X - 750, camera.Position.Y - 325), Color.White, 0f, Vector2.Zero, 1f, SpriteEffects.None, 1f);
+                spriteBatch.DrawString(font, $"Health regen: {player.healthRegen.ToString("0.00")}", new Vector2(camera.Position.X - 750, camera.Position.Y - 300), Color.White, 0f, Vector2.Zero, 1f, SpriteEffects.None, 1f);
+                spriteBatch.DrawString(font, $"Crit Chance: {player.critChance * 100f}%", new Vector2(camera.Position.X - 750, camera.Position.Y - 275), Color.White, 0f, Vector2.Zero, 1f, SpriteEffects.None, 1f);
+                spriteBatch.DrawString(font, $"Crit Damage: {player.critDmgModifier * 100f}%", new Vector2(camera.Position.X - 750, camera.Position.Y - 250), Color.White, 0f, Vector2.Zero, 1f, SpriteEffects.None, 1f);
             }
 
             foreach (GameObject go in gameObjects)
@@ -449,19 +514,13 @@ namespace LimboSoulsOfJudgement
 
             if (stage != 10 && level.portal != null)
             {
-                spriteBatch.DrawString(font, "Press E", new Vector2(level.portal.Position.X - 30, level.portal.Position.Y - 100), Color.White, 0f, Vector2.Zero, 1f, SpriteEffects.None, 0.991f);
+                spriteBatch.DrawString(font, "Press E", new Vector2(level.portal.Position.X - 30, level.portal.Position.Y - 100), Color.White, 0f, Vector2.Zero, 1f, SpriteEffects.None, 1f);
             }
-
-            spriteBatch.DrawString(font, $"Souls: {player.currentSouls}", new Vector2(camera.Position.X - 750, camera.Position.Y - 425), Color.White, 0f, Vector2.Zero, 1f, SpriteEffects.None, 0.991f);
-            spriteBatch.DrawString(font, $"Melee Weapon Damage: {player.melee.damage}", new Vector2(camera.Position.X - 750, camera.Position.Y - 350), Color.White, 0f, Vector2.Zero, 1f, SpriteEffects.None, 0.991f);
-            spriteBatch.DrawString(font, $"Ranged Weapon Damage: {player.ranged.damage}", new Vector2(camera.Position.X - 750, camera.Position.Y - 325), Color.White, 0f, Vector2.Zero, 1f, SpriteEffects.None, 0.991f);
-            spriteBatch.DrawString(font, $"Lives: {player.playerLives}", new Vector2(camera.Position.X - 750, camera.Position.Y - 375), Color.White, 0f, Vector2.Zero, 1f, SpriteEffects.None, 0.991f);
-            spriteBatch.DrawString(font, $"Coordinates: X: {Mouse.GetState().X - camera.viewMatrix.Translation.X}   Y: {Mouse.GetState().Y - camera.viewMatrix.Translation.Y}", new Vector2(camera.Position.X, camera.Position.Y - 500), Color.White, 0f, Vector2.Zero, 1f, SpriteEffects.None, 0.991f);
-            spriteBatch.DrawString(font, $"Press E to interact", new Vector2(vendor.Position.X - 60, vendor.Position.Y - 120), Color.White, 0f, Vector2.Zero, 1f, SpriteEffects.None, 0.991f);
-            spriteBatch.DrawString(font, $"Health regen: {player.healthRegen.ToString("0.00")}", new Vector2(camera.Position.X - 750, camera.Position.Y - 300), Color.White, 0f, Vector2.Zero, 1f, SpriteEffects.None, 0.991f);
-            spriteBatch.DrawString(font, $"Crit Chance: {player.critChance * 100f}%", new Vector2(camera.Position.X - 750, camera.Position.Y - 275), Color.White, 0f, Vector2.Zero, 1f, SpriteEffects.None, 0.991f);
-            spriteBatch.DrawString(font, $"Crit Damage: {player.critDmgModifier * 100f}%", new Vector2(camera.Position.X - 750, camera.Position.Y - 250), Color.White, 0f, Vector2.Zero, 1f, SpriteEffects.None, 0.991f);
-            spriteBatch.DrawString(font, $"Level: {levelCounter}", new Vector2(camera.Position.X + 720, camera.Position.Y - 430), Color.White, 0f, Vector2.Zero, 1f, SpriteEffects.None, 0.991f);
+            spriteBatch.DrawString(font, "Press P or Escape to pause the game", new Vector2(camera.Position.X - 750, camera.Position.Y - 400), Color.White, 0f, Vector2.Zero, 1, SpriteEffects.None, 1f);
+            spriteBatch.DrawString(font, $"Souls: {player.currentSouls}", new Vector2(camera.Position.X - 750, camera.Position.Y - 425), Color.White, 0f, Vector2.Zero, 1f, SpriteEffects.None, 1f);
+            spriteBatch.DrawString(font, $"Lives: {player.playerLives}", new Vector2(camera.Position.X - 750, camera.Position.Y - 375), Color.White, 0f, Vector2.Zero, 1f, SpriteEffects.None, 1f);
+            spriteBatch.DrawString(font, $"Press E to interact", new Vector2(vendor.Position.X - 60, vendor.Position.Y - 120), Color.White, 0f, Vector2.Zero, 1f, SpriteEffects.None, 1f);
+            spriteBatch.DrawString(font, $"Level: {levelCounter}", new Vector2(camera.Position.X + 720, camera.Position.Y - 430), Color.White, 0f, Vector2.Zero, 1f, SpriteEffects.None, 1f);
 
             //Text of current Button Stat Cost
             if (triggerVendor)

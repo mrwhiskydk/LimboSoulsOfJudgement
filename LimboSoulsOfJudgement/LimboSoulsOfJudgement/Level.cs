@@ -10,11 +10,10 @@ namespace LimboSoulsOfJudgement
     public class Level
     {
         public BossEnemy boss;
-        public BossEnemy finalBoss;
         public MinorEnemy minorEnemy;
         public Portal portal;
         public Lava movingLava;
-        public bool levelLoaded;
+        public bool levelLoaded = false;
         public int lastLevel;
         public Level()
         {
@@ -569,25 +568,29 @@ namespace LimboSoulsOfJudgement
                 PlaceBlocks(6, 2, 53, 0, 12);
 
                 // Boss
-                if (GameWorld.badKarmaButton.currentKarma < GameWorld.goodKarmaButton.currentKarma)
+                if (GameWorld.triggerFinalBoss == true)
+                {
+                    if (GameWorld.badKarmaButton.currentKarma < GameWorld.goodKarmaButton.currentKarma)
+                    {
+                        boss = new BossEnemy(4, 4, "DevilFinalBoss");
+                    }
+                    else if (GameWorld.badKarmaButton.currentKarma > GameWorld.goodKarmaButton.currentKarma)
+                    {
+                        boss = new BossEnemy(4, 4, "AngelFinalBoss");
+                    }
+                }
+
+                else if (GameWorld.badKarmaButton.currentKarma < GameWorld.goodKarmaButton.currentKarma && GameWorld.triggerFinalBoss == false)
                 {
                     boss = new BossEnemy(4, 4, "DevilBoss");
                 }
-                else if (GameWorld.badKarmaButton.currentKarma > GameWorld.goodKarmaButton.currentKarma)
+                else if (GameWorld.badKarmaButton.currentKarma > GameWorld.goodKarmaButton.currentKarma && GameWorld.triggerFinalBoss == false)
                 {
                     boss = new BossEnemy(4, 4, "AngelBoss");
                 }
-                else if (GameWorld.badKarmaButton.currentKarma == GameWorld.goodKarmaButton.currentKarma)
+                else if (GameWorld.badKarmaButton.currentKarma == GameWorld.goodKarmaButton.currentKarma && GameWorld.triggerFinalBoss == false)
                 {
                     boss = new BossEnemy(5, 5, "Boss");
-                }
-                else if (GameWorld.triggerFinalBoss == true && GameWorld.badKarmaButton.currentKarma < GameWorld.goodKarmaButton.currentKarma)
-                {
-                    finalBoss = new BossEnemy(4, 4, "DevilFinalBoss");
-                }
-                else if (GameWorld.triggerFinalBoss == true && GameWorld.badKarmaButton.currentKarma > GameWorld.goodKarmaButton.currentKarma)
-                {
-                    finalBoss = new BossEnemy(4, 4, "AngelFinalBoss");
                 }
 
                 levelLoaded = true;
