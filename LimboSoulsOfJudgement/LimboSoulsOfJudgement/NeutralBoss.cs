@@ -16,7 +16,7 @@ namespace LimboSoulsOfJudgement
             health = (int)(200 * GameWorld.levelCount);
             maxHealth = health;
             enemyDamage = (int)(20 * GameWorld.levelCount);
-            enemySouls = (int)(50 * GameWorld.levelCount);
+            enemySouls = (int)(20 * GameWorld.levelCount);
             soulCount = 20;
             patrolDuration = 2f;
             knockbackDuration = 0.4f;

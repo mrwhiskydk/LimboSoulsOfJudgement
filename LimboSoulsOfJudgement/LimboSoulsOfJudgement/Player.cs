@@ -41,7 +41,7 @@ namespace LimboSoulsOfJudgement
         /// Sets the amount of souls the Player currently has. 
         /// Used as a currency, in order for the user to upgrade specific given stat values of the Player GameObject
         /// </summary>
-        public int currentSouls = 10000;
+        public int currentSouls = 0;
 
         private double collisionMovement; // Used for collision so you dont need gameTime in DoCollision
         private bool hittingRoof = false;
@@ -54,7 +54,6 @@ namespace LimboSoulsOfJudgement
         /// Sets the value for wether or not the Player GameObject is able to climb up specific GameObjects
         /// </summary>
         public bool climb = false;
-        //public bool svim = false;
         private bool nextLevel = false;
         private const float jumpPower = 1600;
         private double jumpForce = jumpPower;
@@ -95,11 +94,6 @@ namespace LimboSoulsOfJudgement
         /// Percentage of original damage the player crits
         /// </summary>
         public float critDmgModifier = 1.5f;
-
-        private float coolDownTime = 2f;
-        private double editCooldown;
-        private bool editKeyPressed = false;
-        public bool editMode = false;
 
         /// <summary>
         /// Player constructor that sets player animation values, position and sprite name. 
@@ -188,44 +182,12 @@ namespace LimboSoulsOfJudgement
                 }
             }
 
-            if (editMode == true)
-            {
-                movementSpeed = 1500;
-                maxHealth = 10000;
-                currentSouls = 10000;
-            }
-            if (editMode == false)
-            {
-                movementSpeed = 500;
-                maxHealth = 100;
-            }
-
             if (nextLevel == true)
             {
                 GameWorld.stage = 10;
                 GameWorld.teleport = true;
                 nextLevel = false;
 
-            }
-            if (Keyboard.GetState().IsKeyDown(Keys.T) && editMode == false && editKeyPressed == false)
-            {
-                editMode = true;
-                editKeyPressed = true;
-            }
-            else if (Keyboard.GetState().IsKeyDown(Keys.T) && editMode == true && editKeyPressed == false)
-            {
-                editMode = false;
-                editKeyPressed = true;
-            }
-
-            if (editKeyPressed == true)
-            {
-                editCooldown += gameTime.ElapsedGameTime.TotalSeconds;
-                if (editCooldown > coolDownTime)
-                {
-                    editKeyPressed = false;
-                    editCooldown = 0;
-                }
             }
 
             if (knockback == true)
@@ -256,40 +218,36 @@ namespace LimboSoulsOfJudgement
         */
         private void HandleJumping(GameTime gameTime)
         {
-            if (editMode == false)
+            if (isJumping)
             {
-                if (isJumping)
+                jumpTime += gameTime.ElapsedGameTime.TotalSeconds;
+                if (jumpTime <= jumpForce)
                 {
-                    jumpTime += gameTime.ElapsedGameTime.TotalSeconds;
-                    if (jumpTime <= jumpForce)
+                    if (hittingRoof is false)
                     {
-                        if (hittingRoof is false)
-                        {
-                            position.Y -= (float)(jumpForce * gameTime.ElapsedGameTime.TotalSeconds);
-                        }
-                        else
-                        {
-                            gravity = false;
-                            jumpForce -= gameTime.ElapsedGameTime.TotalSeconds * 6000;
-                        }
-                        jumpForce -= gameTime.ElapsedGameTime.TotalSeconds * 1500;
+                        position.Y -= (float)(jumpForce * gameTime.ElapsedGameTime.TotalSeconds);
                     }
-
-                    if (jumpTime >= jumpForce && climb == false)
+                    else
                     {
-                        isJumping = false;
-                        Gravity = true;
-                        hittingRoof = false;
+                        gravity = false;
+                        jumpForce -= gameTime.ElapsedGameTime.TotalSeconds * 6000;
                     }
+                    jumpForce -= gameTime.ElapsedGameTime.TotalSeconds * 1500;
                 }
-                else if (!isJumping)
+
+                if (jumpTime >= jumpForce && climb == false)
                 {
-                    gravity = true;
+                    isJumping = false;
+                    Gravity = true;
                     hittingRoof = false;
-                    jumpTime = 0;
                 }
             }
-            
+            else if (!isJumping)
+            {
+                gravity = true;
+                hittingRoof = false;
+                jumpTime = 0;
+            }
         }
 
         /// <summary>
@@ -298,14 +256,10 @@ namespace LimboSoulsOfJudgement
         /// <param name="gameTime">Time elapsed since last call in the update</param>
         protected override void HandleMovement(GameTime gameTime)
         {
-            if (editMode == false)
-            {
+
             gravity = true;
-            }
-            if (editMode == true)
-            {
-                gravity = false;
-            }
+            
+
 
             //isRunning = false;
 
@@ -347,27 +301,7 @@ namespace LimboSoulsOfJudgement
                     position.Y += (float)(0.7 * movementSpeed * gameTime.ElapsedGameTime.TotalSeconds);
                 }
             }
-            if (editMode == true)
-            {
-                if (Keyboard.GetState().IsKeyDown(Keys.W))
-                {
-                    position.Y -= (float)(movementSpeed * gameTime.ElapsedGameTime.TotalSeconds);
-                }
-
-                if (Keyboard.GetState().IsKeyDown(Keys.S))
-                {
-                    position.Y += (float)(movementSpeed * gameTime.ElapsedGameTime.TotalSeconds);
-                }
-            }
-            //if (svim == true)
-            //{
-            //    movementSpeed -= 250;
-            //}
-            //else
-            //{
-            //    movementSpeed = 500;
-            //}
-
+           
         }
 
         /// <summary>
@@ -471,35 +405,34 @@ namespace LimboSoulsOfJudgement
             // If the small collisionboxes intersects with a platform move the player in the opposite direction. 
             if (otherObject is Platform)
             {
-                if (editMode == false)
+
+                if (rightLine.Intersects(otherObject.CollisionBox))
                 {
-                    if (rightLine.Intersects(otherObject.CollisionBox))
+                    Gravity = true;
+                    position.X -= (float)collisionMovement;
+                    if (knockback)
                     {
-                        Gravity = true;
                         position.X -= (float)collisionMovement;
-                        if (knockback)
-                        {
-                            position.X -= (float)collisionMovement;
-                        }
-                   
-                    }
-                    else if (leftLine.Intersects(otherObject.CollisionBox))
-                    {
-                        Gravity = true;
-                        position.X += (float)collisionMovement;
-                        if (knockback)
-                        {
-                            position.X += (float)collisionMovement;
-                        }
                     }
 
-                    if (topLine.Intersects(otherObject.CollisionBox))
+                }
+                else if (leftLine.Intersects(otherObject.CollisionBox))
+                {
+                    Gravity = true;
+                    position.X += (float)collisionMovement;
+                    if (knockback)
                     {
-                        // Used to prevent the player from going into a platform on the top of a chain
-                        if (Gravity is false)
-                        {
-                            position.Y += (float)(0.7f * collisionMovement);
-                        }
+                        position.X += (float)collisionMovement;
+                    }
+                }
+
+                if (topLine.Intersects(otherObject.CollisionBox))
+                {
+                    // Used to prevent the player from going into a platform on the top of a chain
+                    if (Gravity is false)
+                    {
+                        position.Y += (float)(0.7f * collisionMovement);
+                    }
 
                     if (chainJumpTimer < 0.7f)
                     {
@@ -514,15 +447,13 @@ namespace LimboSoulsOfJudgement
                     canJump = false;
                     hittingRoof = true;
 
-                        // Makes so the player does not get "sucked" to the roof with small jumps
-                        if (jumpTime < 0.15f)
-                        {
-                            isJumping = false;
-                        }
+                    // Makes so the player does not get "sucked" to the roof with small jumps
+                    if (jumpTime < 0.15f)
+                    {
+                        isJumping = false;
                     }
-
-                   
                 }
+
 
 
 
@@ -532,8 +463,7 @@ namespace LimboSoulsOfJudgement
                 //    position.Y -= GameWorld.gravityStrength; 
                 //    Gravity = false;
                 //}
-                if (editMode == false)
-                {
+
                 if (bottomLine.Intersects(otherObject.CollisionBox) && (leftLine.Intersects(otherObject.CollisionBox) is false || (rightLine.Intersects(otherObject.CollisionBox) is false)))
                 {
                     // Makes the player get ontop of the platform and not halfway inside like in the begining, this also fixed collsion bug
@@ -544,7 +474,7 @@ namespace LimboSoulsOfJudgement
                     position.Y += 1;
 
                 }
-                }
+                
 
             }
 
