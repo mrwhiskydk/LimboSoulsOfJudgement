@@ -25,6 +25,7 @@ namespace LimboSoulsOfJudgement
         public static Player player;
         private Texture2D collisionTexture;
         private Texture2D loseScreen;
+        private Texture2D winScreen;
         private double gameCooldown;
         public static Camera camera;
         public static SpriteFont font;
@@ -40,7 +41,6 @@ namespace LimboSoulsOfJudgement
         public static UpgradeHealthBtn upgradeHealthBtn;
         public static float levelCount = 1;
         public static bool levelReset = false;
-        public bool playerAlive;
         public static GoodKarmaButton goodKarmaButton;
         public static EvilWeaponBtn evilWeaponBtn;
         public static GoodWeaponBtn goodWeaponBtn;
@@ -72,7 +72,8 @@ namespace LimboSoulsOfJudgement
         public static bool teleport = false;
         public static Level level;
         public static bool addLevel = true;
-
+        public bool playerAlive;
+        public bool gameWon = false;
         public static Random rnd = new Random();
         public static Crosshair mouse;
         private Texture2D backGround;
@@ -113,7 +114,7 @@ namespace LimboSoulsOfJudgement
             graphics = new GraphicsDeviceManager(this);
             graphics.PreferredBackBufferWidth = 1600;  // set this value to the desired width of your window
             graphics.PreferredBackBufferHeight = 900;   // set this value to the desired height of your window
-            graphics.ToggleFullScreen();
+            //graphics.ToggleFullScreen();
             graphics.GraphicsProfile = GraphicsProfile.HiDef;
             graphics.ApplyChanges();
             Content.RootDirectory = "Content";
@@ -170,6 +171,7 @@ namespace LimboSoulsOfJudgement
             collisionTexture = Content.Load<Texture2D>("CollisionTexture");
             damageFont = Content.Load<SpriteFont>("DamageFont");
             loseScreen = Content.Load<Texture2D>("GameOver");
+            winScreen = Content.Load<Texture2D>("YouWin");
 
             //Sound
             MediaPlayer.Volume = 0.05f;
@@ -257,7 +259,7 @@ namespace LimboSoulsOfJudgement
             {
                 playerAlive = true;
             }
-            else if (playerAlive is false)
+            else if (playerAlive is false || gameWon == true)
             {
                 stage = 1;
                 foreach (var item in gameObjects)
@@ -279,6 +281,7 @@ namespace LimboSoulsOfJudgement
                     goodWeaponBtn = new GoodWeaponBtn();
                     mouse = new Crosshair();
                     playerAlive = true;
+                    gameWon = false;
                 }
             }
 
@@ -379,19 +382,16 @@ namespace LimboSoulsOfJudgement
             gameObjectsPassive.AddRange(toBeAddedPassive);
             toBeAddedPassive.Clear();
 
-
-
-
-
-            //if (level1.boss.enemyHealth <= 0)
-            //{
-            //    vendor.Position = new Vector2(5300, 3328);
-            //}
-
             if (stage == 2 && level.levelLoaded == true)
             {
-                level.movingLava.position.Y -= (float)(30 * gameTime.ElapsedGameTime.TotalSeconds);
+                level.movingLava.position.Y -= (float)((30 * (levelCount * 0.5)) * gameTime.ElapsedGameTime.TotalSeconds);
             }
+
+            if (triggerFinalBoss == true && level.finalBoss.health <= 0 && level.levelLoaded == true)
+            {
+                gameWon = true;
+            }
+
             base.Update(gameTime);
         }
 
@@ -419,6 +419,11 @@ namespace LimboSoulsOfJudgement
             if (playerAlive == false)
             {
                 spriteBatch.Draw(loseScreen, new Vector2(camera.Position.X - ScreenSize.Width * 0.5f, camera.Position.Y - ScreenSize.Height * 0.5f), null, Color.White, 0f, Vector2.Zero, 1f, SpriteEffects.None, 1);
+            }
+
+            if (gameWon == true)
+            {
+                spriteBatch.Draw(winScreen, new Vector2(camera.Position.X - ScreenSize.Width * 0.5f, camera.Position.Y - ScreenSize.Height * 0.5f), null, Color.White, 0f, Vector2.Zero, 1f, SpriteEffects.None, 1);
             }
 
             foreach (GameObject go in gameObjects)
