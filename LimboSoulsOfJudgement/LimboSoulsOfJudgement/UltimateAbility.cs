@@ -10,10 +10,11 @@ namespace LimboSoulsOfJudgement
 {
     class UltimateAbility : Ability
     {
-        private double duration;
+        private double durationTimer;
+        private int duration = 10;
         public static bool activated = false;
 
-        public UltimateAbility() : base("LightningBoltAbility")
+        public UltimateAbility() : base("angelUltimate")
         {
             cooldown = 30;
             cooldownTimer = cooldown;
@@ -43,8 +44,6 @@ namespace LimboSoulsOfJudgement
 
             LightningBoltAbility.LightningBolt.damage = LightningBoltAbility.LightningBolt.damage * 2;
             BloodstormAbility.Bloodstorm.damage = BloodstormAbility.Bloodstorm.damage * 2;
-
-
         }
 
         /// <summary>
@@ -58,8 +57,8 @@ namespace LimboSoulsOfJudgement
 
             if (activated)
             {
-                duration += gameTime.ElapsedGameTime.TotalSeconds;
-                if (duration > 10)
+                durationTimer += gameTime.ElapsedGameTime.TotalSeconds;
+                if (durationTimer > duration)
                 {
                     GameWorld.player.critChance = GameWorld.player.critChance * 0.5f;
                     GameWorld.player.critDmgModifier = GameWorld.player.critDmgModifier * 0.5f;
@@ -78,17 +77,19 @@ namespace LimboSoulsOfJudgement
                     BloodstormAbility.Bloodstorm.damage = (int)(BloodstormAbility.Bloodstorm.damage * 0.5f);
 
                     activated = false;
-                    duration = 0;
+                    durationTimer = 0;
                 }
             }
 
             if (GameWorld.goodKarmaButton.currentKarma > GameWorld.badKarmaButton.currentKarma)
             {
                 sound = new Sound("sound/angelUltimate");
+                sprite = GameWorld.ContentManager.Load<Texture2D>("angelUltimate");
             }
             else
             {
                 sound = new Sound("sound/demonUltimate");
+                sprite = GameWorld.ContentManager.Load<Texture2D>("demonUltimate");
             }
         }
 

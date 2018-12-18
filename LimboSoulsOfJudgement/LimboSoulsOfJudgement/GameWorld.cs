@@ -59,7 +59,7 @@ namespace LimboSoulsOfJudgement
         public static BuyGodModeAbility buyGodModeAbility;
 
         public static bool triggerFinalBoss = false;
-
+        
         
 
         // Healthbar
@@ -406,7 +406,8 @@ namespace LimboSoulsOfJudgement
         protected override void Draw(GameTime gameTime)
         {
             GraphicsDevice.Clear(Color.DarkGray);
-            spriteBatch.Begin(SpriteSortMode.FrontToBack, BlendState.AlphaBlend, null, null, null, null, camera.viewMatrix);
+            spriteBatch.Begin(SpriteSortMode.FrontToBack, null, null, null, null, null, camera.viewMatrix);
+
             spriteBatch.Draw(backGround, new Vector2(camera.Position.X - ScreenSize.Width * 0.5f, camera.Position.Y - ScreenSize.Height * 0.5f), null, Color.White, 0f, Vector2.Zero, 1f, SpriteEffects.None, 0.01f);
             spriteBatch.Draw(shadow, new Vector2(camera.Position.X - ScreenSize.Width * 0.5f, camera.Position.Y - ScreenSize.Height * 0.5f), null, Color.White, 0f, new Vector2(160, 80), 1f, SpriteEffects.None, 0.99f);
 
@@ -438,7 +439,7 @@ namespace LimboSoulsOfJudgement
                 DrawCollisionBox(go);
 #endif
             }
-
+            
             //Manually drawing classes with important order
             mouse.Draw(spriteBatch);
 
@@ -485,12 +486,12 @@ namespace LimboSoulsOfJudgement
 
                 //Cost and Karma Required Text of Good Weapon
                 spriteBatch.DrawString(font, $"Soul Cost: {goodWeaponBtn.statCost}", new Vector2(goodWeaponBtn.Position.X - 50, goodWeaponBtn.Position.Y + 35), Color.White, 0f, Vector2.Zero, 1f, SpriteEffects.None, 0.995f);
-                spriteBatch.DrawString(font, $"Angel Karma Required: {goodWeaponBtn.karmaRequirements}", new Vector2(goodWeaponBtn.Position.X - 50, goodWeaponBtn.Position.Y + 55), Color.White, 0f, Vector2.Zero, 1f, SpriteEffects.None, 0.995f);
+                spriteBatch.DrawString(font, $"Angelic Karma Required: {goodWeaponBtn.karmaRequirements}", new Vector2(goodWeaponBtn.Position.X - 50, goodWeaponBtn.Position.Y + 55), Color.White, 0f, Vector2.Zero, 1f, SpriteEffects.None, 0.995f);
                 //Cost and Karma Required Text of Good/Lightning Bolt Ability
                 spriteBatch.DrawString(font, $"Soul Cost: {buyLightningBoltButton.statCost}", new Vector2(buyLightningBoltButton.Position.X - 50, buyLightningBoltButton.Position.Y + 35), Color.White, 0f, Vector2.Zero, 1f, SpriteEffects.None, 0.995f);
-                spriteBatch.DrawString(font, $"Angel Karma Required: {buyLightningBoltButton.karmaRequirements}", new Vector2(buyLightningBoltButton.Position.X - 80, buyLightningBoltButton.Position.Y + 55), Color.White, 0f, Vector2.Zero, 1f, SpriteEffects.None, 0.995f);
+                spriteBatch.DrawString(font, $"Angelic Karma Required: {buyLightningBoltButton.karmaRequirements}", new Vector2(buyLightningBoltButton.Position.X - 80, buyLightningBoltButton.Position.Y + 55), Color.White, 0f, Vector2.Zero, 1f, SpriteEffects.None, 0.995f);
                 //Karma Required Text of HealthRegen Stat
-                spriteBatch.DrawString(font, $"Angel Karma Required: {upgradeHealthRegenBtn.karmaRequirements}", new Vector2(upgradeHealthRegenBtn.Position.X - 80, upgradeHealthRegenBtn.Position.Y + 55), Color.White, 0f, Vector2.Zero, 1f, SpriteEffects.None, 0.995f);
+                spriteBatch.DrawString(font, $"Angelic Karma Required: {upgradeHealthRegenBtn.karmaRequirements}", new Vector2(upgradeHealthRegenBtn.Position.X - 80, upgradeHealthRegenBtn.Position.Y + 55), Color.White, 0f, Vector2.Zero, 1f, SpriteEffects.None, 0.995f);
                 //Cost and Karma Reuquired Text of Evil Weapon
                 spriteBatch.DrawString(font, $"Soul Cost: {evilWeaponBtn.statCost}", new Vector2(evilWeaponBtn.Position.X - 50, evilWeaponBtn.Position.Y + 35), Color.White, 0f, Vector2.Zero, 1f, SpriteEffects.None, 0.995f);
                 spriteBatch.DrawString(font, $"Demonic Karma Required: {evilWeaponBtn.karmaRequirements}", new Vector2(evilWeaponBtn.Position.X - 50, evilWeaponBtn.Position.Y + 55), Color.White, 0f, Vector2.Zero, 1f, SpriteEffects.None, 0.995f);
@@ -508,7 +509,7 @@ namespace LimboSoulsOfJudgement
 
             if (triggerVendor && badKarmaButton.maxStatValue <= badKarmaButton.currentStatValue)
             {
-                spriteBatch.DrawString(font, "MAX BAD KARMA!", new Vector2(badKarmaButton.Position.X - 70, badKarmaButton.Position.Y + -55), Color.White, 0f, Vector2.Zero, 1f, SpriteEffects.None, 0.995f);
+                spriteBatch.DrawString(font, "MAX DEMONIC KARMA!", new Vector2(badKarmaButton.Position.X - 70, badKarmaButton.Position.Y + -55), Color.White, 0f, Vector2.Zero, 1f, SpriteEffects.None, 0.995f);
             }
             //Text Purchase of Bad Karma
             else if (triggerVendor && badKarmaButton.maxStatValue >= badKarmaButton.currentStatValue)
@@ -561,12 +562,12 @@ namespace LimboSoulsOfJudgement
             //Text Completed Purchase of Good Karma
             if (triggerVendor && goodKarmaButton.maxStatValue <= goodKarmaButton.currentStatValue)
             {
-                spriteBatch.DrawString(font, $"MAX GOOD KARMA!", new Vector2(goodKarmaButton.Position.X - 114, goodKarmaButton.Position.Y - 55), Color.White, 0f, Vector2.Zero, 1f, SpriteEffects.None, 0.995f);
+                spriteBatch.DrawString(font, $"MAX ANGELIC KARMA!", new Vector2(goodKarmaButton.Position.X - 114, goodKarmaButton.Position.Y - 55), Color.White, 0f, Vector2.Zero, 1f, SpriteEffects.None, 0.995f);
             }
             //Text Purchase of Good Karma
             else if (triggerVendor && goodKarmaButton.maxStatValue >= goodKarmaButton.currentStatValue)
             {
-                spriteBatch.DrawString(font, $"Angel Karma Value: {goodKarmaButton.maxStatValue} / {goodKarmaButton.currentStatValue}", new Vector2(goodKarmaButton.Position.X - 114, goodKarmaButton.Position.Y - 55), Color.White, 0f, Vector2.Zero, 1f, SpriteEffects.None, 0.995f);
+                spriteBatch.DrawString(font, $"Angelic Karma Value: {goodKarmaButton.maxStatValue} / {goodKarmaButton.currentStatValue}", new Vector2(goodKarmaButton.Position.X - 114, goodKarmaButton.Position.Y - 55), Color.White, 0f, Vector2.Zero, 1f, SpriteEffects.None, 0.995f);
             }
             //Text Purchase Max Player Health
             if(triggerVendor && upgradeHealthBtn.maxStatValue >= upgradeHealthBtn.currentStatValue)
@@ -675,7 +676,7 @@ namespace LimboSoulsOfJudgement
             //Text Purchase of Final Boss Button
             else if (triggerVendor && goodKarmaButton.maxStatValue >= goodKarmaButton.currentStatValue || triggerVendor && badKarmaButton.maxStatValue >= badKarmaButton.currentStatValue)
             {
-                spriteBatch.DrawString(font, $"Requires either: MAX Demonic Karma or MAX Angel Karma to unlock!", new Vector2(finalBossButton.Position.X - 214, finalBossButton.Position.Y + 35), Color.White, 0f, Vector2.Zero, 1f, SpriteEffects.None, 0.995f);
+                spriteBatch.DrawString(font, $"Requires either: MAX Demonic Karma or MAX Angelic Karma to unlock!", new Vector2(finalBossButton.Position.X - 214, finalBossButton.Position.Y + 35), Color.White, 0f, Vector2.Zero, 1f, SpriteEffects.None, 0.995f);
             }
 
             //Text Completed Purchase of God Mode
@@ -686,7 +687,7 @@ namespace LimboSoulsOfJudgement
             //Text Purchase of God Mode
             else if (triggerVendor && 45 >= goodKarmaButton.currentStatValue || triggerVendor && 45 >= badKarmaButton.currentStatValue)
             {
-                spriteBatch.DrawString(font, $"God Mode: 45 Angel or Demonic Karma", new Vector2(buyGodModeAbility.Position.X - 114, buyGodModeAbility.Position.Y - 55), Color.White, 0f, Vector2.Zero, 1f, SpriteEffects.None, 0.995f);
+                spriteBatch.DrawString(font, $"God Mode: 45 Angelic or Demonic Karma", new Vector2(buyGodModeAbility.Position.X - 114, buyGodModeAbility.Position.Y - 55), Color.White, 0f, Vector2.Zero, 1f, SpriteEffects.None, 0.995f);
             }
 
             spriteBatch.End();
