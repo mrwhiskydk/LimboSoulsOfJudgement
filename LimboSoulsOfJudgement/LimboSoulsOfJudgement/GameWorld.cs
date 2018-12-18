@@ -457,6 +457,12 @@ namespace LimboSoulsOfJudgement
             spriteBatch.DrawString(font, $"Crit Chance: {player.critChance * 100f}%", new Vector2(camera.Position.X - 750, camera.Position.Y - 275), Color.White, 0f, Vector2.Zero, 1f, SpriteEffects.None, 0.991f);
             spriteBatch.DrawString(font, $"Crit Damage: {player.critDmgModifier * 100f}%", new Vector2(camera.Position.X - 750, camera.Position.Y - 250), Color.White, 0f, Vector2.Zero, 1f, SpriteEffects.None, 0.991f);
             spriteBatch.DrawString(font, $"Level: {levelCounter}", new Vector2(camera.Position.X + 720, camera.Position.Y - 430), Color.White, 0f, Vector2.Zero, 1f, SpriteEffects.None, 0.991f);
+            spriteBatch.DrawString(font, $"Life Steal: {player.lifeSteal * 100}%", new Vector2(camera.Position.X - 750, camera.Position.Y - 225), Color.White, 0f, Vector2.Zero, 1f, SpriteEffects.None, 0.991f);
+
+            spriteBatch.DrawString(font, "1", new Vector2(uiAbilityBar.Position.X - 85, uiAbilityBar.Position.Y + 32), Color.White, 0f, Vector2.Zero, 1f, SpriteEffects.None, 0.993f);
+            spriteBatch.DrawString(font, "2", new Vector2(uiAbilityBar.Position.X - 5, uiAbilityBar.Position.Y + 32), Color.White, 0f, Vector2.Zero, 1f, SpriteEffects.None, 0.993f);
+            spriteBatch.DrawString(font, "3", new Vector2(uiAbilityBar.Position.X + 80, uiAbilityBar.Position.Y + 32), Color.White, 0f, Vector2.Zero, 1f, SpriteEffects.None, 0.993f);
+
 
             //Text of current Button Stat Cost
             if (triggerVendor)

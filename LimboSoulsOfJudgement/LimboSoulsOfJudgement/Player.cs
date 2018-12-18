@@ -109,7 +109,7 @@ namespace LimboSoulsOfJudgement
             melee = new MeleeWeapon();
             ranged = new RangedWeapon();
             ability1 = new BloodstormAbility();
-            ability2 = new BloodstormAbility();
+            ability2 = new LightningBoltAbility();
             ability3 = new UltimateAbility();
 
             //Maximum amount of Player health
@@ -363,7 +363,7 @@ namespace LimboSoulsOfJudgement
                 ability2.Use();
             }
 
-            if (Keyboard.GetState().IsKeyDown(Keys.O) && ability3 != null && GameWorld.buyGodModeAbility.abilityPurchased)
+            if (Keyboard.GetState().IsKeyDown(Keys.D3) && ability3 != null && GameWorld.buyGodModeAbility.abilityPurchased)
             {
                 ability3.Use();
             }
