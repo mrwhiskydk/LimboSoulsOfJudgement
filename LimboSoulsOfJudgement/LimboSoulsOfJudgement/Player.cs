@@ -42,7 +42,7 @@ namespace LimboSoulsOfJudgement
         /// Sets the amount of souls the Player currently has. 
         /// Used as a currency, in order for the user to upgrade specific given stat values of the Player GameObject
         /// </summary>
-        public int currentSouls = 0;
+        public int currentSouls = 10000;
 
         private double collisionMovement; // Used for collision so you dont need gameTime in DoCollision
         private bool hittingRoof = false;

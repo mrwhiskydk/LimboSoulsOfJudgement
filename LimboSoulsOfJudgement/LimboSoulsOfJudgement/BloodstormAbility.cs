@@ -46,7 +46,7 @@ namespace LimboSoulsOfJudgement
         {
             public static int damage = 15;
 
-            public Bloodstorm() : base(23, 42, GameWorld.player.Position, "Bloodstorm")
+            public Bloodstorm() : base(23, 48, GameWorld.player.Position, "Bloodstorm")
             {
                 
             }
