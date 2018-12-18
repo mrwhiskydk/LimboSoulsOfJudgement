@@ -582,8 +582,15 @@ namespace LimboSoulsOfJudgement
                 {
                     boss = new BossEnemy(4, 4, "AngelFinalBoss");
                 }
+            }
 
+            if (GameWorld.stage == 10)
+            {
                 MediaPlayer.Play(GameWorld.musicBoss);
+            }
+            else
+            {
+                MediaPlayer.Play(GameWorld.musicMain);
             }
         }
 

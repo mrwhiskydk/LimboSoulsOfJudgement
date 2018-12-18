@@ -11,7 +11,6 @@ namespace LimboSoulsOfJudgement
 
     public class LightningBoltAbility : Ability
     {
-        
 
         public LightningBoltAbility() : base("LightningBoltAbility")
         {
@@ -50,10 +49,10 @@ namespace LimboSoulsOfJudgement
         }
 
 
-        class LightningBolt : AnimatedGameObject
+        public class LightningBolt : AnimatedGameObject
         {
             private int speed = 1000;
-            public int damage = 25;
+            public static int damage = 25;
             private Vector2 dir;
             private double timeAlive = 0;
 

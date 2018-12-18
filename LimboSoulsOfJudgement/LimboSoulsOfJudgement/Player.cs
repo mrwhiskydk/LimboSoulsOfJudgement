@@ -34,6 +34,7 @@ namespace LimboSoulsOfJudgement
         /// </summary>
         public Ability ability1;
         public Ability ability2;
+        public Ability ability3;
         private bool canSwitchWeapons = true;
         private double attackTimer = 0;
 
@@ -81,7 +82,7 @@ namespace LimboSoulsOfJudgement
         /// <summary>
         /// Percentage of maxHealth added every 3 seconds, needs to be +0.01 of the desired percentage. dunno why
         /// </summary>
-        public float healthRegen = 0.00f;
+        public float healthRegen = 0.1f;
         private double healthRegenTimer;
         /// <summary>
         /// Percentage of damage added to player health
@@ -114,7 +115,8 @@ namespace LimboSoulsOfJudgement
             melee = new MeleeWeapon();
             ranged = new RangedWeapon();
             ability1 = new BloodstormAbility();
-            ability2 = new UltimateAbility();
+            ability2 = new BloodstormAbility();
+            ability3 = new UltimateAbility();
 
             //Maximum amount of Player health
             maxHealth = 100;
@@ -148,7 +150,7 @@ namespace LimboSoulsOfJudgement
                 healthRegenTimer += gameTime.ElapsedGameTime.TotalSeconds;
                 if (healthRegenTimer > 3)
                 {
-                    health += (int)(healthRegen * maxHealth);
+                    Health += (int)(healthRegen * maxHealth);
                     healthRegenTimer = 0;
                 }
             }
@@ -426,6 +428,11 @@ namespace LimboSoulsOfJudgement
             {
                 ability2.Use();
             }
+
+            if (Keyboard.GetState().IsKeyDown(Keys.O) && ability3 != null/* && GameWorld.buyUltimateButton.abilityPurchased*/)
+            {
+                ability3.Use();
+            }
         }
 
         /// <summary>
@@ -479,7 +486,12 @@ namespace LimboSoulsOfJudgement
                         position.X -= (float)collisionMovement;
                         if (knockback)
                         {
-                            position.X -= (float)collisionMovement;
+                            position.X -= (float)knockbackMovement;
+                            if (Keyboard.GetState().IsKeyDown(Keys.D))
+                            {
+                                position.X -= (float)collisionMovement;
+
+                            }
                         }
                    
                     }
@@ -489,7 +501,12 @@ namespace LimboSoulsOfJudgement
                         position.X += (float)collisionMovement;
                         if (knockback)
                         {
-                            position.X += (float)collisionMovement;
+                            position.X += (float)knockbackMovement;
+                            if (Keyboard.GetState().IsKeyDown(Keys.A))
+                            {
+                                position.X += (float)collisionMovement;
+
+                            }
                         }
                     }
 
@@ -591,14 +608,14 @@ namespace LimboSoulsOfJudgement
             if (isImmortal == true && facingRight == false)
             {
 
-                spriteBatch.Draw(sprite, position, animationRectangles[currentAnimationIndex], Color.Red, rotation, new Vector2(animationRectangles[currentAnimationIndex].Width * 0.5f, animationRectangles[currentAnimationIndex].Height * 0.5f), 1f, SpriteEffects.FlipHorizontally, 1f);
+                spriteBatch.Draw(sprite, position, animationRectangles[currentAnimationIndex], Color.Red, rotation, new Vector2(animationRectangles[currentAnimationIndex].Width * 0.5f, animationRectangles[currentAnimationIndex].Height * 0.5f), 1f, SpriteEffects.FlipHorizontally, 0.98f);
 
             }
 
             if (isImmortal == true && facingRight == true)
             {
 
-                spriteBatch.Draw(sprite, position, animationRectangles[currentAnimationIndex], Color.Red, rotation, new Vector2(animationRectangles[currentAnimationIndex].Width * 0.5f, animationRectangles[currentAnimationIndex].Height * 0.5f), 1f, SpriteEffects.None, 1f);
+                spriteBatch.Draw(sprite, position, animationRectangles[currentAnimationIndex], Color.Red, rotation, new Vector2(animationRectangles[currentAnimationIndex].Width * 0.5f, animationRectangles[currentAnimationIndex].Height * 0.5f), 1f, SpriteEffects.None, 0.98f);
 
             }
         }

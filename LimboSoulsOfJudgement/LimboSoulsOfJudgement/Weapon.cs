@@ -16,6 +16,8 @@ namespace LimboSoulsOfJudgement
         public bool equipped = false;
         protected Sound sound;
 
+        
+
         public Weapon(string spriteName) : base(spriteName)
         {
 
