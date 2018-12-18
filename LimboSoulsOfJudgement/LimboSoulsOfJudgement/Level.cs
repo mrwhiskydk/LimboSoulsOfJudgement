@@ -10,16 +10,16 @@ namespace LimboSoulsOfJudgement
     public class Level
     {
         public BossEnemy boss;
-        public BossEnemy finalBoss;
         public MinorEnemy minorEnemy;
         public Portal portal;
         public Lava movingLava;
-        public bool levelLoaded;
+        public bool levelLoaded = false;
         public int lastLevel;
         public Level()
         {
             if (GameWorld.stage == 1)
             {
+                lastLevel = 1;
                 //Platforms
 
                 PlaceBlocks(3, 1, 2, 12, 3);
@@ -220,11 +220,13 @@ namespace LimboSoulsOfJudgement
 
                 portal = new Portal(new Vector2(87 * 64, 55 * 64));
 
-                lastLevel = 1;
+                
 
             }
             if (GameWorld.stage == 2)
             {
+                lastLevel = 2;
+
                 // Frame
                 new Platform(new Vector2(-511, 2048), "VerticalFrame");
                 new Platform(new Vector2(6272, 2048), "VerticalFrame");
@@ -345,10 +347,12 @@ namespace LimboSoulsOfJudgement
                 }
                 levelLoaded = true;
 
-                lastLevel = 2;
+                
             }
             if (GameWorld.stage == 3)
             {
+                lastLevel = 3;
+
                 new Platform(new Vector2(-511, 2048), "VerticalFrame");
                 new Platform(new Vector2(6272, 2048), "VerticalFrame");
                 new Platform(new Vector2(2880, 72 * 64), "HorizontalFrame");
@@ -479,7 +483,7 @@ namespace LimboSoulsOfJudgement
                     PlaceEnemy(3, 60, 7);
                 }
 
-                lastLevel = 3;
+                
             }
             if (GameWorld.stage == 10)
             {
@@ -569,25 +573,29 @@ namespace LimboSoulsOfJudgement
                 PlaceBlocks(6, 2, 53, 0, 12);
 
                 // Boss
-                if (GameWorld.badKarmaButton.currentKarma < GameWorld.goodKarmaButton.currentKarma)
+                if (GameWorld.triggerFinalBoss == true)
+                {
+                    if (GameWorld.badKarmaButton.currentKarma < GameWorld.goodKarmaButton.currentKarma)
+                    {
+                        boss = new BossEnemy(4, 4, "DevilFinalBoss");
+                    }
+                    else if (GameWorld.badKarmaButton.currentKarma > GameWorld.goodKarmaButton.currentKarma)
+                    {
+                        boss = new BossEnemy(4, 4, "AngelFinalBoss");
+                    }
+                }
+
+                else if (GameWorld.badKarmaButton.currentKarma < GameWorld.goodKarmaButton.currentKarma && GameWorld.triggerFinalBoss == false)
                 {
                     boss = new BossEnemy(4, 4, "DevilBoss");
                 }
-                else if (GameWorld.badKarmaButton.currentKarma > GameWorld.goodKarmaButton.currentKarma)
+                else if (GameWorld.badKarmaButton.currentKarma > GameWorld.goodKarmaButton.currentKarma && GameWorld.triggerFinalBoss == false)
                 {
                     boss = new BossEnemy(4, 4, "AngelBoss");
                 }
-                else if (GameWorld.badKarmaButton.currentKarma == GameWorld.goodKarmaButton.currentKarma)
+                else if (GameWorld.badKarmaButton.currentKarma == GameWorld.goodKarmaButton.currentKarma && GameWorld.triggerFinalBoss == false)
                 {
                     boss = new BossEnemy(5, 5, "Boss");
-                }
-                else if (GameWorld.triggerFinalBoss == true && GameWorld.badKarmaButton.currentKarma < GameWorld.goodKarmaButton.currentKarma)
-                {
-                    finalBoss = new BossEnemy(4, 4, "DevilFinalBoss");
-                }
-                else if (GameWorld.triggerFinalBoss == true && GameWorld.badKarmaButton.currentKarma > GameWorld.goodKarmaButton.currentKarma)
-                {
-                    finalBoss = new BossEnemy(4, 4, "AngelFinalBoss");
                 }
 
                 levelLoaded = true;
