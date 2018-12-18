@@ -77,7 +77,7 @@ namespace LimboSoulsOfJudgement
                             GameWorld.stage = 2;
                             btnPressed = true;
                         }
-                        else if (GameWorld.rnd.Next(1, 3) == 2)
+                        else 
                         {
                             GameWorld.stage = 3;
                             btnPressed = true;
@@ -90,29 +90,24 @@ namespace LimboSoulsOfJudgement
                             GameWorld.stage = 1;
                             btnPressed = true;
                         }
-                        else if (GameWorld.rnd.Next(1, 3) == 2)
+                        else 
                         {
                             GameWorld.stage = 3;
                             btnPressed = true;
                         }
                     }
-                    else if (GameWorld.level.lastLevel == 3)
+                    else 
                     {
                         if (GameWorld.rnd.Next(1, 3) == 1)
                         {
                             GameWorld.stage = 1;
                             btnPressed = true;
                         }
-                        else if (GameWorld.rnd.Next(1, 3) == 2)
+                        else 
                         {
                             GameWorld.stage = 2;
                             btnPressed = true;
                         }
-                    }
-                    else
-                    {
-                        GameWorld.stage = 1;
-                        btnPressed = true;
                     }
 
                 }
