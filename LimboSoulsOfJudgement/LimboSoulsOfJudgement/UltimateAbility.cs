@@ -11,7 +11,7 @@ namespace LimboSoulsOfJudgement
     class UltimateAbility : Ability
     {
         private double duration;
-        private bool activated = false;
+        public static bool activated = false;
 
         public UltimateAbility() : base("LightningBoltAbility")
         {
@@ -20,6 +20,9 @@ namespace LimboSoulsOfJudgement
 
         }
 
+        /// <summary>
+        /// Sets all the stats to *2 
+        /// </summary>
         public override void UseAbility()
         {
             base.UseAbility();
@@ -37,6 +40,9 @@ namespace LimboSoulsOfJudgement
             }
             GameWorld.player.melee.damage = GameWorld.player.melee.damage * 2;
             GameWorld.player.ranged.damage = GameWorld.player.ranged.damage * 2;
+
+            LightningBoltAbility.LightningBolt.damage = LightningBoltAbility.LightningBolt.damage * 2;
+            BloodstormAbility.Bloodstorm.damage = BloodstormAbility.Bloodstorm.damage * 2;
 
 
         }
@@ -65,7 +71,10 @@ namespace LimboSoulsOfJudgement
                     }
                     GameWorld.player.melee.damage = (int)(GameWorld.player.melee.damage * 0.5f);
                     GameWorld.player.ranged.damage = (int)(GameWorld.player.ranged.damage * 0.5f);
-                    
+
+                    LightningBoltAbility.LightningBolt.damage = (int)(LightningBoltAbility.LightningBolt.damage * 0.5f);
+                    BloodstormAbility.Bloodstorm.damage = (int)(BloodstormAbility.Bloodstorm.damage * 0.5f);
+
                     activated = false;
                 }
             }
