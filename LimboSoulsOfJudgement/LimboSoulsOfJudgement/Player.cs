@@ -66,6 +66,7 @@ namespace LimboSoulsOfJudgement
         //private float maxJumpTime = 2f;
         private double jumpTime;
 
+
         /// <summary>
         /// Sets the value for wether or not the Player GameObject is jumping/in the air. Also sets the jumping animation of the Player if true
         /// </summary>

@@ -109,6 +109,11 @@ namespace LimboSoulsOfJudgement
                             btnPressed = true;
                         }
                     }
+                    else
+                    {
+                        GameWorld.stage = 1;
+                        btnPressed = true;
+                    }
 
                 }
 

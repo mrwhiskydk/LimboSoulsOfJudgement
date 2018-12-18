@@ -10,12 +10,11 @@ namespace LimboSoulsOfJudgement
     public class Level
     {
         public BossEnemy boss;
-        public NeutralBoss neutralBoss;
         public MinorEnemy minorEnemy;
         public Portal portal;
         public Lava movingLava;
         public bool levelLoaded;
-        public int lastLevel = 1;
+        public int lastLevel;
         public Level()
         {
             if (GameWorld.stage == 1)
@@ -579,7 +578,7 @@ namespace LimboSoulsOfJudgement
                 }
                 else if (GameWorld.badKarmaButton.currentKarma == GameWorld.goodKarmaButton.currentKarma)
                 {
-                    neutralBoss = new NeutralBoss();
+                    boss = new BossEnemy(5, 5, "Boss");
                 }
                 else if (GameWorld.triggerFinalBoss == true && GameWorld.badKarmaButton.currentKarma < GameWorld.goodKarmaButton.currentKarma)
                 {
