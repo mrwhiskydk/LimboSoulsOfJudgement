@@ -55,6 +55,8 @@ namespace LimboSoulsOfJudgement
         public static BuyLightningBoltButton buyLightningBoltButton;
         public static BuyBloodStormButton buyBloodStormButton;
         public static FinalBossButton finalBossButton;
+        public static UpgradeAbilityDamageBtn upgradeAbilityDamageBtn;
+
         public static bool triggerFinalBoss = false;
 
         // Healthbar
@@ -202,6 +204,7 @@ namespace LimboSoulsOfJudgement
             buyLightningBoltButton = new BuyLightningBoltButton();
             buyBloodStormButton = new BuyBloodStormButton();
             finalBossButton = new FinalBossButton();
+            upgradeAbilityDamageBtn = new UpgradeAbilityDamageBtn();
             
 
             // Healthbar
