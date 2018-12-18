@@ -10,6 +10,7 @@ namespace LimboSoulsOfJudgement
     public class Level
     {
         public BossEnemy boss;
+        public BossEnemy finalBoss;
         public MinorEnemy minorEnemy;
         public Portal portal;
         public Lava movingLava;
@@ -582,12 +583,14 @@ namespace LimboSoulsOfJudgement
                 }
                 else if (GameWorld.triggerFinalBoss == true && GameWorld.badKarmaButton.currentKarma < GameWorld.goodKarmaButton.currentKarma)
                 {
-                    boss = new BossEnemy(4, 4, "DevilFinalBoss");
+                    finalBoss = new BossEnemy(4, 4, "DevilFinalBoss");
                 }
                 else if (GameWorld.triggerFinalBoss == true && GameWorld.badKarmaButton.currentKarma > GameWorld.goodKarmaButton.currentKarma)
                 {
-                    boss = new BossEnemy(4, 4, "AngelFinalBoss");
+                    finalBoss = new BossEnemy(4, 4, "AngelFinalBoss");
                 }
+
+                levelLoaded = true;
             }
 
             if (GameWorld.stage == 10)
