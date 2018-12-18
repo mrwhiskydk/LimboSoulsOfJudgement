@@ -42,9 +42,9 @@ namespace LimboSoulsOfJudgement
         }
 
 
-        class Bloodstorm : AnimatedGameObject
+        public class Bloodstorm : AnimatedGameObject
         {
-            private int damage = 15;
+            public static int damage = 15;
 
             public Bloodstorm() : base(23, 42, GameWorld.player.Position, "Bloodstorm")
             {

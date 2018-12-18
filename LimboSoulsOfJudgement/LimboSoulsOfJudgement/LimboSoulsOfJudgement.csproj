@@ -68,7 +68,6 @@
     <Compile Include="Lava.cs" />
     <Compile Include="LightningBoltAbility.cs" />
     <Compile Include="MinorEnemy.cs" />
-    <Compile Include="NeutralBoss.cs" />
     <Compile Include="Player.cs" />
     <Compile Include="Level.cs" />
     <Compile Include="MeleeWeapon.cs" />
@@ -85,6 +84,7 @@
     <Compile Include="UI.cs" />
     <Compile Include="UIAbilityBar.cs" />
     <Compile Include="UltimateAbility.cs" />
+    <Compile Include="UpgradeAbilityDamageBtn.cs" />
     <Compile Include="UpgradeCritChanceBtn.cs" />
     <Compile Include="UpgradeCritDamageBtn.cs" />
     <Compile Include="UpgradeMeleeDamageBtn.cs" />

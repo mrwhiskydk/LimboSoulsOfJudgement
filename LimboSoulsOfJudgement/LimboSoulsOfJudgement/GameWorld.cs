@@ -55,6 +55,8 @@ namespace LimboSoulsOfJudgement
         public static BuyLightningBoltButton buyLightningBoltButton;
         public static BuyBloodStormButton buyBloodStormButton;
         public static FinalBossButton finalBossButton;
+        public static UpgradeAbilityDamageBtn upgradeAbilityDamageBtn;
+
         public static bool triggerFinalBoss = false;
 
         // Healthbar
@@ -111,7 +113,7 @@ namespace LimboSoulsOfJudgement
             graphics = new GraphicsDeviceManager(this);
             graphics.PreferredBackBufferWidth = 1600;  // set this value to the desired width of your window
             graphics.PreferredBackBufferHeight = 900;   // set this value to the desired height of your window
-            //graphics.ToggleFullScreen();
+            graphics.ToggleFullScreen();
             graphics.GraphicsProfile = GraphicsProfile.HiDef;
             graphics.ApplyChanges();
             Content.RootDirectory = "Content";
@@ -202,6 +204,7 @@ namespace LimboSoulsOfJudgement
             buyLightningBoltButton = new BuyLightningBoltButton();
             buyBloodStormButton = new BuyBloodStormButton();
             finalBossButton = new FinalBossButton();
+            upgradeAbilityDamageBtn = new UpgradeAbilityDamageBtn();
             
 
             // Healthbar
@@ -403,12 +406,12 @@ namespace LimboSoulsOfJudgement
             spriteBatch.Draw(backGround, new Vector2(camera.Position.X - ScreenSize.Width * 0.5f, camera.Position.Y - ScreenSize.Height * 0.5f), null, Color.White, 0f, Vector2.Zero, 1f, SpriteEffects.None, 0.01f);
             spriteBatch.Draw(shadow, new Vector2(camera.Position.X - ScreenSize.Width * 0.5f, camera.Position.Y - ScreenSize.Height * 0.5f), null, Color.White, 0f, new Vector2(160, 80), 1f, SpriteEffects.None, 0.99f);
 
-            if ((badKarmaButton.currentStatValue / badKarmaButton.maxStatValue) * 100 > 80 && badKarmaButton.currentStatValue > goodKarmaButton.currentStatValue)
+            if (UltimateAbility.activated = true && badKarmaButton.currentKarma > goodKarmaButton.currentKarma)
             {
                 spriteBatch.Draw(evilAura, new Vector2(camera.Position.X - ScreenSize.Width * 0.5f, camera.Position.Y - ScreenSize.Height * 0.5f), null, Color.White, 0f, new Vector2(160, 80), 1f, SpriteEffects.None, 0.02f);
             }
 
-            if ((goodKarmaButton.currentStatValue / goodKarmaButton.maxStatValue) * 100 > 80 && badKarmaButton.currentStatValue < goodKarmaButton.currentStatValue)
+            if (UltimateAbility.activated = false && badKarmaButton.currentKarma < goodKarmaButton.currentKarma)
             {
                 spriteBatch.Draw(goodAura, new Vector2(camera.Position.X - ScreenSize.Width * 0.5f, camera.Position.Y - ScreenSize.Height * 0.5f), null, Color.White, 0f, new Vector2(160, 80), 1f, SpriteEffects.None, 0.02f);
             }
