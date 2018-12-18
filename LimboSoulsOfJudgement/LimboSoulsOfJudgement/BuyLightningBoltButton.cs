@@ -17,7 +17,7 @@ namespace LimboSoulsOfJudgement
         /// BuyLightningBoltButton's Constructor, that sets the default position and sprite name values.
         /// Also sets the abilityPurchased bool to false as default, since the ability have not yet been purchased
         /// </summary>
-        public BuyLightningBoltButton() : base(new Vector2(GameWorld.ui.Position.X - 225, GameWorld.ui.Position.Y - 100), "buttonUITest")
+        public BuyLightningBoltButton() : base(new Vector2(GameWorld.ui.Position.X - 225, GameWorld.ui.Position.Y - 175), "buttonUITest")
         {
             abilityPurchased = false;
 

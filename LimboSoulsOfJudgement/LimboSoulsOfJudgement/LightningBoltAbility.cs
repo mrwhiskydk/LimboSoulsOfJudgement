@@ -52,7 +52,7 @@ namespace LimboSoulsOfJudgement
         public class LightningBolt : AnimatedGameObject
         {
             private int speed = 1000;
-            public static int damage = 25;
+            public static int damage = 15;
             private Vector2 dir;
             private double timeAlive = 0;
 
