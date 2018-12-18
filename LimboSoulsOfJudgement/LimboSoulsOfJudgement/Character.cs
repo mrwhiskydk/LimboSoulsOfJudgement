@@ -32,7 +32,7 @@ namespace LimboSoulsOfJudgement
         /// <summary>
         /// Sets the duration amount of a Character can remain immortal
         /// </summary>
-        protected float immortalDuration = 0.75f;
+        protected float immortalDuration = 1f;
 
         /// <summary>
         /// Sets the amount of time a Character remains immortal / immune to all sources of damage taken

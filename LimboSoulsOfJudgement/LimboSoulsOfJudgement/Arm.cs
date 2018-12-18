@@ -76,27 +76,27 @@ namespace LimboSoulsOfJudgement
             {
                 if (GameWorld.mouse.RightOfPlayer())
                 {
-                    spriteBatch.Draw(sprite, position, null, Color.White, rotation, new Vector2(sprite.Width * 0.5f, -1), 1f, SpriteEffects.None, 0.82f);
+                    spriteBatch.Draw(sprite, position, null, Color.White, rotation, new Vector2(sprite.Width * 0.5f, -1), 1f, SpriteEffects.None, 0.901f);
                 }
                 else
                 {
-                    spriteBatch.Draw(sprite, position, null, Color.White, rotation, new Vector2(sprite.Width * 0.5f, -1), 1f, SpriteEffects.FlipHorizontally, 0.82f);
+                    spriteBatch.Draw(sprite, position, null, Color.White, rotation, new Vector2(sprite.Width * 0.5f, -1), 1f, SpriteEffects.FlipHorizontally, 0.901f);
                 }
             }
             else if (GameWorld.player.weapon is MeleeWeapon && GameWorld.player.melee.isAttacking)
             {
                 if (GameWorld.mouse.RightOfPlayer())
                 {
-                    spriteBatch.Draw(sprite, position, null, Color.White, rotation, new Vector2(sprite.Width * 0.5f, -1), 1f, SpriteEffects.None, 0.82f);
+                    spriteBatch.Draw(sprite, position, null, Color.White, rotation, new Vector2(sprite.Width * 0.5f, -1), 1f, SpriteEffects.None, 0.901f);
                 }
                 else
                 {
-                    spriteBatch.Draw(sprite, position, null, Color.White, rotation, new Vector2(sprite.Width * 0.5f, -1), 1f, SpriteEffects.FlipHorizontally, 0.82f);
+                    spriteBatch.Draw(sprite, position, null, Color.White, rotation, new Vector2(sprite.Width * 0.5f, -1), 1f, SpriteEffects.FlipHorizontally, 0.901f);
                 }
             }
             else
             {
-                spriteBatch.Draw(sprite, position, null, Color.White, rotation, new Vector2(sprite.Width * 0.5f, -1), 1f, SpriteEffects.None, 0.82f);
+                spriteBatch.Draw(sprite, position, null, Color.White, rotation, new Vector2(sprite.Width * 0.5f, -1), 1f, SpriteEffects.None, 0.901f);
             }
         }
     }
