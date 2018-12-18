@@ -40,14 +40,17 @@ namespace LimboSoulsOfJudgement
         /// <param name="spriteBatch"></param>
         public override void Draw(SpriteBatch spriteBatch)
         {
-            spriteBatch.Draw(sprite, position, null, Color.White, rotation, new Vector2(sprite.Width * 0.5f, sprite.Height * 0.5f), 1f, SpriteEffects.None, 0.992f);
+            if (GameWorld.buyLightningBoltButton.abilityPurchased)
+            {
+                spriteBatch.Draw(sprite, position, null, Color.White, rotation, new Vector2(sprite.Width * 0.5f, sprite.Height * 0.5f), 1f, SpriteEffects.None, 0.992f);
+            }
         }
 
 
         public class LightningBolt : AnimatedGameObject
         {
             private int speed = 1000;
-            public static int damage = 25;
+            public static int damage = 15;
             private Vector2 dir;
             private double timeAlive = 0;
 

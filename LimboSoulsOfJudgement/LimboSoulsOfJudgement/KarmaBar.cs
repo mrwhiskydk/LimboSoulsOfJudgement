@@ -60,7 +60,15 @@ namespace LimboSoulsOfJudgement
         {
             spriteBatch.Draw(karmaBarTexture, position, karmaBarSize, Color.White, 0f, Vector2.Zero, 1f, SpriteEffects.None, 0.992f);
             spriteBatch.Draw(GameWorld.karmaBarOutline, new Vector2(position.X - 10, position.Y - 10), null, Color.White, 0f, Vector2.Zero, 1f, SpriteEffects.None, 0.991f);
-            spriteBatch.DrawString(GameWorld.font, $"Karma: {(float)GameWorld.goodKarmaButton.currentKarma / ((float)GameWorld.goodKarmaButton.currentKarma + (float)GameWorld.badKarmaButton.currentKarma) * 100f}%", new Vector2(GameWorld.karmaBar.position.X, GameWorld.karmaBar.position.Y), Color.White, 0f, Vector2.Zero, 1f, SpriteEffects.None, 0.993f);
+            spriteBatch.DrawString(GameWorld.font, $"Angel Karma:{GameWorld.goodKarmaButton.currentKarma}", new Vector2(GameWorld.karmaBar.position.X, GameWorld.karmaBar.position.Y), Color.White, 0f, Vector2.Zero, 1f, SpriteEffects.None, 0.993f);
+            if (GameWorld.badKarmaButton.currentKarma < 10)
+            {
+                spriteBatch.DrawString(GameWorld.font, $"Demonic Karma:{GameWorld.badKarmaButton.currentKarma}", new Vector2(GameWorld.karmaBar.position.X + GameWorld.karmaBar.sprite.Width - 127, GameWorld.karmaBar.position.Y), Color.White, 0f, Vector2.Zero, 1f, SpriteEffects.None, 0.993f);
+            }
+            else if (GameWorld.badKarmaButton.currentKarma < 100)
+            {
+                spriteBatch.DrawString(GameWorld.font, $"Demonic Karma:{GameWorld.badKarmaButton.currentKarma}", new Vector2(GameWorld.karmaBar.position.X + GameWorld.karmaBar.sprite.Width - 137, GameWorld.karmaBar.position.Y), Color.White, 0f, Vector2.Zero, 1f, SpriteEffects.None, 0.993f);
+            }
         }
     }
 }
