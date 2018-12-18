@@ -113,7 +113,7 @@ namespace LimboSoulsOfJudgement
         /// <summary>
         /// Upgrade the melee weapon
         /// </summary>
-        /// <param name="side">"good" or "bad"</param>
+        /// <param name="side">"good" or "evil"</param>
         /// <param name="nr">which upgrade number we are at</param>
         public void Upgrade(string side, int nr)
         {
@@ -139,19 +139,6 @@ namespace LimboSoulsOfJudgement
                     sprite = bad2;
                 }
             }
-        }
-
-        public override void Draw(SpriteBatch spriteBatch)
-        {
-            //The color of the sword is drawn red, if the purchase of a Evil Weapon is complete
-            if (GameWorld.evilWeaponBtn.weaponActive)
-            {
-                spriteBatch.Draw(sprite, position, null, Color.Red, rotation, new Vector2(sprite.Width * 0.5f, sprite.Height * 0.5f), 1f, SpriteEffects.None, 0.81f);
-            }
-            else
-            {
-                base.Draw(spriteBatch);
-            }           
         }
     }
 }

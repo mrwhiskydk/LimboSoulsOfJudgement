@@ -42,7 +42,7 @@ namespace LimboSoulsOfJudgement
         /// Sets the amount of souls the Player currently has. 
         /// Used as a currency, in order for the user to upgrade specific given stat values of the Player GameObject
         /// </summary>
-        public int currentSouls = 0;
+        public int currentSouls = 10000;
 
         private double collisionMovement; // Used for collision so you dont need gameTime in DoCollision
         private bool hittingRoof = false;
@@ -359,7 +359,7 @@ namespace LimboSoulsOfJudgement
                 ability1.Use();
             }
 
-            if (Keyboard.GetState().IsKeyDown(Keys.U) && ability2 != null && GameWorld.buyLightningBoltButton.abilityPurchased)
+            if (Keyboard.GetState().IsKeyDown(Keys.E) && ability2 != null && GameWorld.buyLightningBoltButton.abilityPurchased)
             {
                 ability2.Use();
             }

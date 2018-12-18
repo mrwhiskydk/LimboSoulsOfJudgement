@@ -60,11 +60,7 @@ namespace LimboSoulsOfJudgement
                 abilityPurchased = true;
                 GameWorld.player.currentSouls -= statCost;  //Substracts player soul value equal to current buttons stat cost
                 mouseClicked = 0;
-                if (GameWorld.player.ability1 != null)
-                {
-                    GameWorld.player.ability1.Destroy();
-                }
-                GameWorld.player.ability1 = new LightningBoltAbility(); //Add the purchased ability to ability 1
+                GameWorld.player.ability2 = new LightningBoltAbility(); //Add the purchased ability to ability 1
             }
         }
     }

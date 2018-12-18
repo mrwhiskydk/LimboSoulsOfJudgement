@@ -23,7 +23,7 @@ namespace LimboSoulsOfJudgement
             weaponActive = false;   //Set to false as default until the weapon has been purchased
 
             currentStatValue = 0;
-            maxStatValue = 1;
+            maxStatValue = 2;
             karmaRequirements = 25;
             statCost = 150;
             statIncrease = 1;   //statIncrease in this class are for the UI 'stat' increase purpose only
@@ -56,7 +56,7 @@ namespace LimboSoulsOfJudgement
                     return;
                 }
                 currentStatValue += statIncrease;   //Adds value to the current amount of Karma equal to its stat cost
-                if (!GameWorld.goodWeaponBtn.weaponActive)
+                if (!GameWorld.goodWeaponBtn.weaponActive) 
                 {
                     GameWorld.player.melee.damage += weaponStatIncrease;
                 }
@@ -64,7 +64,9 @@ namespace LimboSoulsOfJudgement
                 {
                     GameWorld.player.melee.damage += 0;
                 }
-                
+
+                GameWorld.player.melee.Upgrade("evil", currentStatValue);
+
                 GameWorld.player.currentSouls -= statCost;  //Substracts player soul value equal to current buttons stat cost
                 weaponActive = true;    //Sets the value to true, since purchase is complete
                 mouseClicked = 0;
