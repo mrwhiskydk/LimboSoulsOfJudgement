@@ -56,7 +56,7 @@ namespace LimboSoulsOfJudgement
             {
                 GameWorld.levelReset = true;
                 GameWorld.addLevel = true;
-                GameWorld.levelCount += 0.1f;
+                GameWorld.levelCount += 0.15f;
                 mouseClicked = 0;
                 GameWorld.levelCounter += 1;
                 GameWorld.vendor.Position = new Vector2(600, -1550);
@@ -70,25 +70,57 @@ namespace LimboSoulsOfJudgement
                 }
                 else
                 {
-                    if (GameWorld.rnd.Next(1, 5) == 2)
+                    if (GameWorld.level.lastLevel == 1)
+                    {
+                        if (GameWorld.rnd.Next(1, 3) == 1)
+                        {
+                            GameWorld.stage = 2;
+                            btnPressed = true;
+                        }
+                        else if (GameWorld.rnd.Next(1, 3) == 2)
+                        {
+                            GameWorld.stage = 3;
+                            btnPressed = true;
+                        }
+                    }
+                    else if (GameWorld.level.lastLevel == 2)
+                    {
+                        if (GameWorld.rnd.Next(1, 3) == 1)
+                        {
+                            GameWorld.stage = 1;
+                            btnPressed = true;
+                        }
+                        else if (GameWorld.rnd.Next(1, 3) == 2)
+                        {
+                            GameWorld.stage = 3;
+                            btnPressed = true;
+                        }
+                    }
+                    else if (GameWorld.level.lastLevel == 3)
+                    {
+                        if (GameWorld.rnd.Next(1, 3) == 1)
+                        {
+                            GameWorld.stage = 1;
+                            btnPressed = true;
+                        }
+                        else if (GameWorld.rnd.Next(1, 3) == 2)
+                        {
+                            GameWorld.stage = 2;
+                            btnPressed = true;
+                        }
+                    }
+                    else
                     {
                         GameWorld.stage = 1;
                         btnPressed = true;
                     }
-                    else if (GameWorld.rnd.Next(1, 5) == 3)
-                    {
-                        GameWorld.stage = 2;
-                        btnPressed = true;
-                    }
-                    else if (GameWorld.rnd.Next(1, 5) == 4)
-                    {
-                        GameWorld.stage = 3;
-                        btnPressed = true;
-                    }
+
                 }
 
             }
+
         }
 
     }
+
 }

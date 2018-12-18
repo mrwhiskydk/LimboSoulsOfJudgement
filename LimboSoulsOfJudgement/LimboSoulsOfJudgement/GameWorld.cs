@@ -55,6 +55,8 @@ namespace LimboSoulsOfJudgement
         public static BuyLightningBoltButton buyLightningBoltButton;
         public static BuyBloodStormButton buyBloodStormButton;
         public static FinalBossButton finalBossButton;
+        public static UpgradeAbilityDamageBtn upgradeAbilityDamageBtn;
+
         public static bool triggerFinalBoss = false;
 
         // Healthbar
@@ -111,7 +113,7 @@ namespace LimboSoulsOfJudgement
             graphics = new GraphicsDeviceManager(this);
             graphics.PreferredBackBufferWidth = 1600;  // set this value to the desired width of your window
             graphics.PreferredBackBufferHeight = 900;   // set this value to the desired height of your window
-            //graphics.ToggleFullScreen();
+            graphics.ToggleFullScreen();
             graphics.GraphicsProfile = GraphicsProfile.HiDef;
             graphics.ApplyChanges();
             Content.RootDirectory = "Content";
@@ -202,6 +204,7 @@ namespace LimboSoulsOfJudgement
             buyLightningBoltButton = new BuyLightningBoltButton();
             buyBloodStormButton = new BuyBloodStormButton();
             finalBossButton = new FinalBossButton();
+            upgradeAbilityDamageBtn = new UpgradeAbilityDamageBtn();
             
 
             // Healthbar
