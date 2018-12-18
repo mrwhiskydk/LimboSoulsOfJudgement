@@ -42,14 +42,13 @@ namespace LimboSoulsOfJudgement
         /// Sets the amount of souls the Player currently has. 
         /// Used as a currency, in order for the user to upgrade specific given stat values of the Player GameObject
         /// </summary>
-        public int currentSouls = 0;
+        public int currentSouls = 10000;
 
         private double collisionMovement; // Used for collision so you dont need gameTime in DoCollision
         private bool hittingRoof = false;
         private bool inAir;
         private double newLevelTimer;
         private double chainJumpTimer;
-        private double ultimateTimer;
 
         /// <summary>
         /// Sets the value for wether or not the Player GameObject is able to climb up specific GameObjects
@@ -233,7 +232,7 @@ namespace LimboSoulsOfJudgement
                     else
                     {
                         gravity = false;
-                        jumpForce -= gameTime.ElapsedGameTime.TotalSeconds * 6000;
+                        jumpForce -= gameTime.ElapsedGameTime.TotalSeconds * 4000;
                     }
                     jumpForce -= gameTime.ElapsedGameTime.TotalSeconds * 1500;
                 }
@@ -349,22 +348,22 @@ namespace LimboSoulsOfJudgement
 
         /// <summary>
         /// Method that checks if the current Ability has been purchased & 
-        /// enables the Q button to be pressed, in order to shoot the Ability
+        /// enables the "use" button to be pressed, in order to shoot the Ability
         /// </summary>
         /// <param name="gameTime"></param>
         public void HandleAbilities(GameTime gameTime)
         {          
-            if (Keyboard.GetState().IsKeyDown(Keys.Q) && ability1 != null && GameWorld.buyBloodStormButton.abilityPurchased)
+            if (Keyboard.GetState().IsKeyDown(Keys.D1) && ability1 != null && GameWorld.buyBloodStormButton.abilityPurchased)
             {
                 ability1.Use();
             }
 
-            if (Keyboard.GetState().IsKeyDown(Keys.E) && ability2 != null && GameWorld.buyLightningBoltButton.abilityPurchased)
+            if (Keyboard.GetState().IsKeyDown(Keys.D2) && ability2 != null && GameWorld.buyLightningBoltButton.abilityPurchased)
             {
                 ability2.Use();
             }
 
-            if (Keyboard.GetState().IsKeyDown(Keys.O) && ability3 != null/* && GameWorld.buyUltimateButton.abilityPurchased*/)
+            if (Keyboard.GetState().IsKeyDown(Keys.D3) && ability3 != null/* && GameWorld.buyUltimateButton.abilityPurchased*/)
             {
                 ability3.Use();
             }
@@ -399,7 +398,7 @@ namespace LimboSoulsOfJudgement
                 Gravity = false;
                 isJumping = false;
                 jumpForce = jumpPower;
-                if (chainJumpTimer > 0.7f)
+                if (chainJumpTimer > 0.3f)
                 {
                     canJump = true;
                 }

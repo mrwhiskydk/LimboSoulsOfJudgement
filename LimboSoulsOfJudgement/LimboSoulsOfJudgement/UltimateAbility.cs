@@ -15,7 +15,7 @@ namespace LimboSoulsOfJudgement
 
         public UltimateAbility() : base("LightningBoltAbility")
         {
-            cooldown = 10;
+            cooldown = 30;
             cooldownTimer = cooldown;
 
         }
@@ -47,6 +47,10 @@ namespace LimboSoulsOfJudgement
 
         }
 
+        /// <summary>
+        /// if the ability is activated, count the duration and set stats to *0.5
+        /// </summary>
+        /// <param name="gameTime"></param>
         public override void Update(GameTime gameTime)
         {
             base.Update(gameTime);
@@ -55,7 +59,7 @@ namespace LimboSoulsOfJudgement
             if (activated)
             {
                 duration += gameTime.ElapsedGameTime.TotalSeconds;
-                if (duration > 5)
+                if (duration > 10)
                 {
                     GameWorld.player.critChance = GameWorld.player.critChance * 0.5f;
                     GameWorld.player.critDmgModifier = GameWorld.player.critDmgModifier * 0.5f;
