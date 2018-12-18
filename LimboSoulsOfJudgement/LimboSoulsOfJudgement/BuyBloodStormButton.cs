@@ -60,11 +60,7 @@ namespace LimboSoulsOfJudgement
                 abilityPurchased = true;
                 GameWorld.player.currentSouls -= statCost;  //Substracts player soul value equal to current buttons stat cost
                 mouseClicked = 0;
-                if (GameWorld.player.ability1 == null)
-                {
-                    GameWorld.player.ability1 = new BloodstormAbility(); //Add the purchased ability to ability 1
-                }
-                
+                GameWorld.player.ability1 = new BloodstormAbility(); //Add the purchased ability to ability 1
             }
         }
     }

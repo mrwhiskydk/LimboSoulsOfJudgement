@@ -16,7 +16,7 @@ namespace LimboSoulsOfJudgement
         /// <summary>
         /// UpgradeLifestealBtn Constructor, that sets the default position and sprite name values
         /// </summary>
-        public UpgradeLifetealBtn() : base(new Vector2(GameWorld.ui.Position.X + 300, GameWorld.ui.Position.Y + 25), "buttonUITest")
+        public UpgradeLifetealBtn() : base(new Vector2(GameWorld.ui.Position.X + 475, GameWorld.ui.Position.Y + 25), "buttonUITest")
         {
             currentFloatStatValue = GameWorld.player.lifeSteal;
             maxFloatStatValue = 1f;

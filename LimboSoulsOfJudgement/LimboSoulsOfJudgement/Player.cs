@@ -363,7 +363,7 @@ namespace LimboSoulsOfJudgement
                 ability2.Use();
             }
 
-            if (Keyboard.GetState().IsKeyDown(Keys.D3) && ability3 != null/* && GameWorld.buyUltimateButton.abilityPurchased*/)
+            if (Keyboard.GetState().IsKeyDown(Keys.O) && ability3 != null && GameWorld.buyGodModeAbility.abilityPurchased)
             {
                 ability3.Use();
             }
