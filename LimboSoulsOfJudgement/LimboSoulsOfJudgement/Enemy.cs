@@ -60,7 +60,7 @@ namespace LimboSoulsOfJudgement
         /// <param name="spriteName"></param>
         public Enemy(int frameCount, float animationFPS, Vector2 startPostion, string spriteName) : base(frameCount, animationFPS, startPostion, spriteName)
         {
-
+            immortalDuration = 0.5f;
         }
 
         /// <summary>

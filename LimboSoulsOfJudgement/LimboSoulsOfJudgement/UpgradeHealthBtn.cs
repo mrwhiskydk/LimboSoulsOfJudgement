@@ -52,7 +52,7 @@ namespace LimboSoulsOfJudgement
                 }
                 currentStatValue += statIncrease;   //Updates the vendor UI's stat increase 
                 GameWorld.player.maxHealth += statIncrease; //Actual increase of player values
-                GameWorld.player.health = GameWorld.player.maxHealth;   //Sets current player health equal to increased player health
+                GameWorld.player.Health = GameWorld.player.maxHealth;   //Sets current player health equal to increased player health
                 GameWorld.player.currentSouls -= statCost;  //Substracts player soul value equal to current buttons stat cost
                 statCost += 1;
                 mouseClicked = 0;   //Resets the mouseClicked value once value calculations has finished

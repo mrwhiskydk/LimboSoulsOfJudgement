@@ -57,8 +57,6 @@ namespace LimboSoulsOfJudgement
                 duration += gameTime.ElapsedGameTime.TotalSeconds;
                 if (duration > 5)
                 {
-                    duration = 0;
-
                     GameWorld.player.critChance = GameWorld.player.critChance * 0.5f;
                     GameWorld.player.critDmgModifier = GameWorld.player.critDmgModifier * 0.5f;
                     if (GameWorld.goodKarmaButton.currentKarma > GameWorld.badKarmaButton.currentKarma)
@@ -76,6 +74,7 @@ namespace LimboSoulsOfJudgement
                     BloodstormAbility.Bloodstorm.damage = (int)(BloodstormAbility.Bloodstorm.damage * 0.5f);
 
                     activated = false;
+                    duration = 0;
                 }
             }
 
