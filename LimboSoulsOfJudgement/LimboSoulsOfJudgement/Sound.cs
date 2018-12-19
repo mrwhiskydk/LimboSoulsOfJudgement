@@ -23,5 +23,25 @@ namespace LimboSoulsOfJudgement
         {
             sound.Play();
         }
+
+        /// <summary>
+        /// Play the sound file with set volume
+        /// </summary>
+        /// <param name="volume">how loud it should be 0-1f</param>
+        public void Play(float volume)
+        {
+            sound.Play(volume, 0f, 0f);
+        }
+
+        /// <summary>
+        /// Play the sound file with set volume, pitch and pan
+        /// </summary>
+        /// <param name="volume">how loud it should be 0-1f</param>
+        /// <param name="pitch">pitch of the sound 0-1f. 0 default</param>
+        /// <param name="pan">pan of the sound 0-1f. 0 default</param>
+        public void Play(float volume, float pitch, float pan)
+        {
+            sound.Play(volume, pitch, pan);
+        }
     }
 }
