@@ -429,7 +429,7 @@ namespace LimboSoulsOfJudgement
                 
                 if (stage == 2 && level.levelLoaded == true && level.movingLava != null)
                 {
-                    level.movingLava.position.Y -= (float)((25 * (levelCount - 0.2)) * gameTime.ElapsedGameTime.TotalSeconds);
+                    level.movingLava.position.Y -= (float)(30 * gameTime.ElapsedGameTime.TotalSeconds);
                 }
 
                 if (level.boss != null && level.finalBoss == true && level.boss.health <= 0)
