@@ -14,7 +14,8 @@ namespace LimboSoulsOfJudgement
         public Portal portal;
         public Lava movingLava;
         public bool levelLoaded = false;
-        public int lastLevel;
+        public int lastLevel = 1;
+        public bool finalBoss = false;
         public Level()
         {
             if (GameWorld.stage == 1)
@@ -578,13 +579,14 @@ namespace LimboSoulsOfJudgement
                     if (GameWorld.badKarmaButton.currentKarma < GameWorld.goodKarmaButton.currentKarma)
                     {
                         boss = new BossEnemy(4, 4, "DevilFinalBoss");
+                        finalBoss = true;
                     }
                     else if (GameWorld.badKarmaButton.currentKarma > GameWorld.goodKarmaButton.currentKarma)
                     {
                         boss = new BossEnemy(4, 4, "AngelFinalBoss");
+                        finalBoss = true;
                     }
                 }
-
                 else if (GameWorld.badKarmaButton.currentKarma < GameWorld.goodKarmaButton.currentKarma && GameWorld.triggerFinalBoss == false)
                 {
                     boss = new BossEnemy(4, 4, "DevilBoss");

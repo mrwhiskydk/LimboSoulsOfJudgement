@@ -16,7 +16,7 @@ namespace LimboSoulsOfJudgement
         /// <summary>
         /// UpgradeCritDamage Constructor, that sets the default position and sprite name values
         /// </summary>
-        public UpgradeCritDamageBtn() : base(new Vector2(GameWorld.ui.Position.X, GameWorld.ui.Position.Y - 175), "buttonUITest")
+        public UpgradeCritDamageBtn() : base(new Vector2(GameWorld.ui.Position.X, GameWorld.ui.Position.Y - 218), "buttonUITest")
         {
             currentFloatStatValue = GameWorld.player.critDmgModifier;
             maxFloatStatValue = 5.0f;
@@ -58,7 +58,7 @@ namespace LimboSoulsOfJudgement
                 currentFloatStatValue += floatStatIncrease;   //Updates the vendor UI's stat increase 
                 GameWorld.player.critDmgModifier += floatStatIncrease; //Actual increase of player values
                 GameWorld.player.currentSouls -= statCost;  //Substracts player soul value equal to current buttons stat cost
-                statCost += 1;
+                statCost += 10;
                 mouseClicked = 0;   //Resets the mouseClicked value once value calculations has finished
             }
         }

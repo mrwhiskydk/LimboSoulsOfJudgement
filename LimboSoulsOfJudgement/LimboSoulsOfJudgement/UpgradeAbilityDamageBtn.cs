@@ -17,13 +17,13 @@ namespace LimboSoulsOfJudgement
         /// </summary>
         public int currentSecondaryStatValue;
 
-        public UpgradeAbilityDamageBtn() : base(new Vector2(GameWorld.ui.Position.X - 225, GameWorld.ui.Position.Y + 20), "buttonUITest")
+        public UpgradeAbilityDamageBtn() : base(new Vector2(GameWorld.ui.Position.X - 250, GameWorld.ui.Position.Y - 25), "buttonUITest")
         {
             currentStatValue = LightningBoltAbility.LightningBolt.damage;
             currentSecondaryStatValue = BloodstormAbility.Bloodstorm.damage;
-            maxStatValue = 100;
+            maxStatValue = 100000;
             karmaRequirements = 35;
-            statCost = 10;
+            statCost = 50;
             statIncrease = 1;
         }
 
@@ -63,8 +63,7 @@ namespace LimboSoulsOfJudgement
                 LightningBoltAbility.LightningBolt.damage += statIncrease;
                 BloodstormAbility.Bloodstorm.damage += statIncrease;
                 GameWorld.player.currentSouls -= statCost;  //Substracts player soul value equal to current buttons stat cost
-                karmaRequirements += 1;
-                statCost += 1;
+                statCost += 10;
                 mouseClicked = 0;   //Resets the mouseClicked value once value calculations has finished
             }
         }

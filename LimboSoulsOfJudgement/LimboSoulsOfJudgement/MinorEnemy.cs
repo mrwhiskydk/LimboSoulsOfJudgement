@@ -21,7 +21,7 @@ namespace LimboSoulsOfJudgement
         public MinorEnemy(Vector2 position, string spriteName) : base(3, 6, position, spriteName)
         {
             movementSpeed = 200;
-            health = (int)(35 * GameWorld.levelCount);
+            health = (int)(20 * (GameWorld.levelCount + 0.5));
             maxHealth = health;
             enemyDamage = (int)(10 * GameWorld.levelCount);
             enemySouls = (int)(10 * GameWorld.levelCount);

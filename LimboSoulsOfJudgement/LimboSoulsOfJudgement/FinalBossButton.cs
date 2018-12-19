@@ -16,7 +16,7 @@ namespace LimboSoulsOfJudgement
         /// <summary>
         /// 
         /// </summary>
-        public FinalBossButton() : base(new Vector2(GameWorld.ui.Position.X, GameWorld.ui.Position.Y + 205), "buttonUITest")
+        public FinalBossButton() : base(new Vector2(GameWorld.ui.Position.X, GameWorld.ui.Position.Y + 225), "buttonUITest")
         {
 
 
@@ -46,6 +46,7 @@ namespace LimboSoulsOfJudgement
                 GameWorld.stage = 10;
                 GameWorld.teleport = true;
                 GameWorld.triggerFinalBoss = true;
+                GameWorld.vendor.Position = new Vector2(300, - 1500);
                 mouseClicked = 0;   //Resets the mouseClicked value once value calculations has finished
             }
         }

@@ -13,11 +13,9 @@ namespace LimboSoulsOfJudgement
         private bool charge;
         private double abilityTime;
         private float abilityDuration = 2f;
-        private float battleModeDuration = 20f;
         private double battleModeTime;
         private bool bossTeleport = false;
-       
-        
+        private float bossSlow = 0.5f;
 
         /// <summary>
         /// BossEnemy constructor that sets animation values, position and sprite names of current BossEnemy GameObject
@@ -26,15 +24,14 @@ namespace LimboSoulsOfJudgement
         /// <param name="animationFPS"></param>
         /// <param name="startPostion"></param>
         /// <param name="spriteName"></param>
-        public BossEnemy(int animationFPS, float frameCount,string spriteName) : base(animationFPS, frameCount, new Vector2(GameWorld.ScreenSize.Width * 0.5f, GameWorld.ScreenSize.Height * 0.5f), spriteName)
+        public BossEnemy(int animationFPS, float frameCount,string spriteName) : base(animationFPS, frameCount, new Vector2(300, 1000), spriteName)
         {
             movementSpeed = 300;
-            health = (int)(200 * GameWorld.levelCount);
+            health = (int)(100 * (GameWorld.levelCount + 0.5));
             maxHealth = health;
-            enemyDamage = (int)(20 * GameWorld.levelCount);
+            enemyDamage = (int)(20 * (GameWorld.levelCount));
             enemySouls = (int)(20 * GameWorld.levelCount);
-            soulCount = 20;
-            patrolDuration = 2f;
+            soulCount = (int)(20 * GameWorld.levelCount);
             knockbackDuration = 0.4f;
         }
 
@@ -73,41 +70,42 @@ namespace LimboSoulsOfJudgement
             {
                 GameWorld.vendor.Position = new Vector2(30 * 64, 28 * 64);
                 GameWorld.ui.Position = new Vector2(GameWorld.vendor.Position.X, GameWorld.vendor.Position.Y + 120);
-
-                GameWorld.upgradeCritDamageBtn.Position = new Vector2(GameWorld.ui.Position.X, GameWorld.ui.Position.Y - 175);
-                GameWorld.upgradeCritChanceBtn.Position = new Vector2(GameWorld.ui.Position.X, GameWorld.ui.Position.Y - 50);
-                GameWorld.upgradeHealthBtn.Position = new Vector2(GameWorld.ui.Position.X, GameWorld.ui.Position.Y + 75);
-                GameWorld.upgradeHealthRegenBtn.Position = new Vector2(GameWorld.ui.Position.X - 475, GameWorld.ui.Position.Y + 162);
-                GameWorld.upgradeLifestealBtn.Position = new Vector2(GameWorld.ui.Position.X + 300, GameWorld.ui.Position.Y + 25);
-                GameWorld.upgradeMovementSpeedBtn.Position = new Vector2(GameWorld.ui.Position.X - 200, GameWorld.ui.Position.Y + 165);
-                GameWorld.upgradeMeleeDamageBtn.Position = new Vector2(GameWorld.ui.Position.X + 350, GameWorld.ui.Position.Y + 165);
-                GameWorld.upgradeRangedDamageBtn.Position = new Vector2(GameWorld.ui.Position.X + 165, GameWorld.ui.Position.Y + 165);
-                GameWorld.resetButton.Position = new Vector2(GameWorld.ui.Position.X - -515, GameWorld.ui.Position.Y + 150);
-                GameWorld.goodWeaponBtn.Position = new Vector2(GameWorld.ui.Position.X - 525, GameWorld.ui.Position.Y - 100);
-                GameWorld.goodKarmaButton.Position = new Vector2(GameWorld.ui.Position.X - 475, GameWorld.ui.Position.Y - 218);
-                GameWorld.evilWeaponBtn.Position = new Vector2(GameWorld.ui.Position.X + 475, GameWorld.ui.Position.Y - 105);
-                GameWorld.buyLightningBoltButton.Position = new Vector2(GameWorld.ui.Position.X - 225, GameWorld.ui.Position.Y - 100);
-                GameWorld.buyBloodStormButton.Position = new Vector2(GameWorld.ui.Position.X + 245, GameWorld.ui.Position.Y - 150);
+                GameWorld.upgradeCritDamageBtn.Position = new Vector2(GameWorld.ui.Position.X, GameWorld.ui.Position.Y - 218);
+                GameWorld.upgradeCritChanceBtn.Position = new Vector2(GameWorld.ui.Position.X, GameWorld.ui.Position.Y - 100);
+                GameWorld.upgradeHealthBtn.Position = new Vector2(GameWorld.ui.Position.X, GameWorld.ui.Position.Y + 10);
+                GameWorld.upgradeHealthRegenBtn.Position = new Vector2(GameWorld.ui.Position.X - 500, GameWorld.ui.Position.Y + 165);
+                GameWorld.upgradeLifestealBtn.Position = new Vector2(GameWorld.ui.Position.X + 475, GameWorld.ui.Position.Y + 165);
+                GameWorld.upgradeMovementSpeedBtn.Position = new Vector2(GameWorld.ui.Position.X - 250, GameWorld.ui.Position.Y + 165);
+                GameWorld.upgradeMeleeDamageBtn.Position = new Vector2(GameWorld.ui.Position.X + 85, GameWorld.ui.Position.Y + 135);
+                GameWorld.upgradeRangedDamageBtn.Position = new Vector2(GameWorld.ui.Position.X - 75, GameWorld.ui.Position.Y + 135);
+                GameWorld.resetButton.Position = new Vector2(GameWorld.ui.Position.X + 245, GameWorld.ui.Position.Y + 165);
+                GameWorld.goodWeaponBtn.Position = new Vector2(GameWorld.ui.Position.X - 500, GameWorld.ui.Position.Y - 25);
+                GameWorld.goodKarmaButton.Position = new Vector2(GameWorld.ui.Position.X - 500, GameWorld.ui.Position.Y - 218);
+                GameWorld.evilWeaponBtn.Position = new Vector2(GameWorld.ui.Position.X + 475, GameWorld.ui.Position.Y - 25);
+                GameWorld.buyLightningBoltButton.Position = new Vector2(GameWorld.ui.Position.X - 250, GameWorld.ui.Position.Y - 218);
+                GameWorld.buyBloodStormButton.Position = new Vector2(GameWorld.ui.Position.X + 245, GameWorld.ui.Position.Y - 218);
                 GameWorld.badKarmaButton.Position = new Vector2(GameWorld.ui.Position.X + 475, GameWorld.ui.Position.Y - 218);
-                GameWorld.finalBossButton.Position = new Vector2(GameWorld.ui.Position.X, GameWorld.ui.Position.Y + 205);
+                GameWorld.finalBossButton.Position = new Vector2(GameWorld.ui.Position.X, GameWorld.ui.Position.Y + 225);
+                GameWorld.buyGodModeAbility.Position = new Vector2(GameWorld.ui.Position.X + 245, GameWorld.ui.Position.Y - 25);
+                GameWorld.upgradeAbilityDamageBtn.Position = new Vector2(GameWorld.ui.Position.X - 250, GameWorld.ui.Position.Y - 25);
             }
 
 
             battleModeTime += gameTime.ElapsedGameTime.TotalSeconds;
-            if (battleModeTime > battleModeDuration)
+            if (battleModeTime > 12)
             {
                 battleMode = false;
-                battleModeTime = 0;
             }
 
             if (charge == true)
             {
-                movementSpeed = 900;
-
+                movementSpeed = 750;
+                bossSlow = 1;
             }
             else if (charge == false)
             {
                 movementSpeed = 300;
+                bossSlow = 0.5f;
             }
 
         }
@@ -121,12 +119,12 @@ namespace LimboSoulsOfJudgement
             {
                 if (GameWorld.player.Position.Y < position.Y)
                 {
-                    position.Y -= (float)(movementSpeed * gameTime.ElapsedGameTime.TotalSeconds);
+                    position.Y -= (float)((movementSpeed * bossSlow) * gameTime.ElapsedGameTime.TotalSeconds);
                 }
 
                 if (GameWorld.player.Position.Y > position.Y)
                 {
-                    position.Y += (float)(movementSpeed * gameTime.ElapsedGameTime.TotalSeconds);
+                    position.Y += (float)((movementSpeed * bossSlow) * gameTime.ElapsedGameTime.TotalSeconds);
                 }
                 if (GameWorld.player.Position.X < position.X)
                 {
@@ -159,6 +157,7 @@ namespace LimboSoulsOfJudgement
                 {
                     charge = true;
                     battleMode = true;
+                    battleModeTime = 0;
                 }
 
 

@@ -20,7 +20,7 @@ namespace LimboSoulsOfJudgement
         /// </summary>
         /// <param name="startPosition"></param>
         /// <param name="spriteName"></param>
-        public ResetButton() : base(new Vector2(GameWorld.ui.Position.X - - 515, GameWorld.ui.Position.Y + 150), "buttonUITest")
+        public ResetButton() : base(new Vector2(GameWorld.ui.Position.X + 245, GameWorld.ui.Position.Y + 165), "buttonUITest")
         {
 
         }
@@ -56,7 +56,7 @@ namespace LimboSoulsOfJudgement
             {
                 GameWorld.levelReset = true;
                 GameWorld.addLevel = true;
-                GameWorld.levelCount += 0.15f;
+                GameWorld.levelCount += 0.25f;
                 mouseClicked = 0;
                 GameWorld.levelCounter += 1;
                 GameWorld.vendor.Position = new Vector2(600, -1550);
