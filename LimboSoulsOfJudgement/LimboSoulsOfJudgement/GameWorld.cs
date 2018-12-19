@@ -765,14 +765,14 @@ namespace LimboSoulsOfJudgement
                 }
 
                 //Text Completed Purchase of God Mode
-                if (75 <= goodKarmaButton.currentStatValue && buyGodModeAbility.abilityPurchased || triggerVendor && 75 <= badKarmaButton.currentStatValue && buyGodModeAbility.abilityPurchased)
+                if (50 <= goodKarmaButton.currentStatValue && buyGodModeAbility.abilityPurchased || triggerVendor && 50 <= badKarmaButton.currentStatValue && buyGodModeAbility.abilityPurchased)
                 {
                     spriteBatch.DrawString(font, $"GOD MODE PURCHASED!", new Vector2(buyGodModeAbility.Position.X - 114, buyGodModeAbility.Position.Y - 55), Color.White, 0f, Vector2.Zero, 1f, SpriteEffects.None, 0.995f);
                 }
                 //Text Purchase of God Mode
-                else if (75 >= goodKarmaButton.currentStatValue || triggerVendor && 75 >= badKarmaButton.currentStatValue)
+                else if (50 >= goodKarmaButton.currentStatValue || triggerVendor && 50 >= badKarmaButton.currentStatValue)
                 {
-                    spriteBatch.DrawString(font, $"Ultimate!:\n75 Angelic or Demonic Karma", new Vector2(buyGodModeAbility.Position.X - 114, buyGodModeAbility.Position.Y - 75), Color.White, 0f, Vector2.Zero, 1f, SpriteEffects.None, 0.995f);
+                    spriteBatch.DrawString(font, $"Ultimate!:\n50 Angelic or Demonic Karma", new Vector2(buyGodModeAbility.Position.X - 114, buyGodModeAbility.Position.Y - 75), Color.White, 0f, Vector2.Zero, 1f, SpriteEffects.None, 0.995f);
                 }
             }
 
