@@ -15,6 +15,9 @@ namespace LimboSoulsOfJudgement
         public string arrowSprite = "arrow";
         private int offset = 50;
 
+        /// <summary>
+        /// Constructor
+        /// </summary>
         public RangedWeapon() : base("bow")
         {
             damage = 5;
@@ -37,7 +40,7 @@ namespace LimboSoulsOfJudgement
         }
 
         /// <summary>
-        /// This method gets run once ever game tick
+        /// Method gets run once every game tick
         /// </summary>
         /// <param name="gameTime"></param>
         public override void Update(GameTime gameTime)
