@@ -17,14 +17,14 @@ namespace LimboSoulsOfJudgement
         /// <summary>
         /// GoodWeaponBtn Constructor, that sets the default position and sprite name values
         /// </summary>
-        public GoodWeaponBtn() : base(new Vector2(GameWorld.ui.Position.X - 525, GameWorld.ui.Position.Y - 100), "buttonUITest")
+        public GoodWeaponBtn() : base(new Vector2(GameWorld.ui.Position.X - 500, GameWorld.ui.Position.Y - 25), "buttonUITest")
         {
             weaponActive = false;   //Set to false as default until the weapon has been purchased
 
             currentStatValue = 0;
             maxStatValue = 2;
             karmaRequirements = 25;
-            statCost = 150;
+            statCost = 400;
             statIncrease = 1;   //statIncrease in this class are for the UI 'stat' increase purpose only
         }
 
@@ -72,6 +72,8 @@ namespace LimboSoulsOfJudgement
                 GameWorld.player.currentSouls -= statCost;  //Substracts player soul value equal to current buttons stat cost
                 weaponActive = true;    //Sets the value to true, since purchase is complete
                 mouseClicked = 0;
+                karmaRequirements += 25;
+                statCost += 600;
             }
         }
     }

@@ -18,7 +18,7 @@ namespace LimboSoulsOfJudgement
         /// <summary>
         /// Default Constructor that sets the values of current UI GameObject
         /// </summary>
-        public UI() : base(1, 1, new Vector2(GameWorld.vendor.Position.X, GameWorld.vendor.Position.Y + 320), "VendorUITest")
+        public UI() : base(1, 1, new Vector2(GameWorld.vendor.Position.X, GameWorld.vendor.Position.Y + 300), "VendorUITest")
         {
 
         }

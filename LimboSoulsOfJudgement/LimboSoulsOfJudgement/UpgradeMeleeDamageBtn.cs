@@ -16,11 +16,11 @@ namespace LimboSoulsOfJudgement
         /// <summary>
         /// UpgradeDamageBtn Constructor, that sets the default position and sprite name values
         /// </summary>
-        public UpgradeMeleeDamageBtn() : base(new Vector2(GameWorld.ui.Position.X + 350, GameWorld.ui.Position.Y + 165), "buttonUITest")
+        public UpgradeMeleeDamageBtn() : base(new Vector2(GameWorld.ui.Position.X + 85, GameWorld.ui.Position.Y + 135), "buttonUITest")
         {
             currentStatValue = GameWorld.player.melee.damage;
-            maxStatValue = 35;
-            statCost = 10;
+            maxStatValue = 100000;
+            statCost = 50;
             statIncrease = 1;
         }
 
@@ -50,7 +50,7 @@ namespace LimboSoulsOfJudgement
                 currentStatValue += statIncrease;   //Updates the vendor UI's stat increase 
                 GameWorld.player.melee.damage += statIncrease; //Actual increase of player values
                 GameWorld.player.currentSouls -= statCost;  //Substracts player soul value equal to current buttons stat cost
-                statCost += 1;
+                statCost += 10;
                 mouseClicked = 0;   //Resets the mouseClicked value once value calculations has finished
             }
         }

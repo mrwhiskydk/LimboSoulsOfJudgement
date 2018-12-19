@@ -16,10 +16,10 @@ namespace LimboSoulsOfJudgement
         /// <summary>
         /// UpgradeMovementSpeedBtn, that sets the default position and sprite name values
         /// </summary>
-        public UpgradeMovementSpeedBtn() : base(new Vector2(GameWorld.ui.Position.X - 200, GameWorld.ui.Position.Y + 165), "buttonUITest")
+        public UpgradeMovementSpeedBtn() : base(new Vector2(GameWorld.ui.Position.X - 250, GameWorld.ui.Position.Y + 165), "buttonUITest")
         {
             currentFloatStatValue = GameWorld.player.movementSpeed;
-            maxFloatStatValue = 850f;
+            maxFloatStatValue = 700f;
             statCost = 5;
             floatStatIncrease = 5f;
         }
@@ -53,7 +53,7 @@ namespace LimboSoulsOfJudgement
                 currentFloatStatValue += floatStatIncrease;   //Updates the vendor UI's stat increase 
                 GameWorld.player.movementSpeed += floatStatIncrease; //Actual increase of player values
                 GameWorld.player.currentSouls -= statCost;  //Substracts player soul value equal to current buttons stat cost
-                statCost += 1;
+                statCost += 5;
                 mouseClicked = 0;   //Resets the mouseClicked value once value calculations has finished
             }
         }

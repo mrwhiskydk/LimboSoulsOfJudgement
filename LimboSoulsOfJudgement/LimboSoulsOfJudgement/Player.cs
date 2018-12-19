@@ -42,7 +42,7 @@ namespace LimboSoulsOfJudgement
         /// Sets the amount of souls the Player currently has. 
         /// Used as a currency, in order for the user to upgrade specific given stat values of the Player GameObject
         /// </summary>
-        public int currentSouls = 10000;
+        public int currentSouls = 1;
 
         private double collisionMovement; // Used for collision so you dont need gameTime in DoCollision
         private bool hittingRoof = false;
@@ -61,7 +61,7 @@ namespace LimboSoulsOfJudgement
         /// <summary>
         /// The number of times you can die before the game starts over
         /// </summary>
-        public int playerLives = 3;
+        public int playerLives = 5;
         //private float maxJumpTime = 2f;
         private double jumpTime;
 
@@ -86,11 +86,11 @@ namespace LimboSoulsOfJudgement
         /// <summary>
         /// Percentage of damage added to player health
         /// </summary>
-        public float lifeSteal = 0.1f;
+        public float lifeSteal = 0f;
         /// <summary>
         /// Percentage chance of dealing critDmgModifier damage
         /// </summary>
-        public float critChance = 0.01f;
+        public float critChance = 0f;
         /// <summary>
         /// Percentage of original damage the player crits
         /// </summary>
@@ -149,19 +149,51 @@ namespace LimboSoulsOfJudgement
                 }
             }
 
-            if (isJumping == true || climb == true || inAir)
+            if (GameWorld.badKarmaButton.currentKarma < GameWorld.goodKarmaButton.currentKarma && GameWorld.goodKarmaButton.currentKarma > GameWorld.goodKarmaButton.maxStatValue * 0.5)
             {
-                State(3, "PlayerJump");
+                if (isJumping == true || climb == true || inAir)
+                {
+                    State(3, "PlayerJumpAngel");
+                }
+                else if (isRunning == true)
+                {
+                    State(4, "PlayerRunAngel");
+                }
+                else
+                {
+                    State(5, "PlayerIdleAngel");
+                }
             }
-            else if (isRunning == true)
+            else if (GameWorld.badKarmaButton.currentKarma > GameWorld.goodKarmaButton.currentKarma && GameWorld.badKarmaButton.currentKarma > GameWorld.badKarmaButton.maxStatValue * 0.5)
             {
-                State(4, "PlayerRun");
+                if (isJumping == true || climb == true || inAir)
+                {
+                    State(3, "PlayerJumpDevil");
+                }
+                else if (isRunning == true)
+                {
+                    State(4, "PlayerRunDevil");
+                }
+                else
+                {
+                    State(5, "PlayerIdleDevil");
+                }
             }
             else
             {
-                State(5, "PlayerIdle");
+                if (isJumping == true || climb == true || inAir)
+                {
+                    State(3, "PlayerJump");
+                }
+                else if (isRunning == true)
+                {
+                    State(4, "PlayerRun");
+                }
+                else
+                {
+                    State(5, "PlayerIdle");
+                }
             }
-
 
             HandleMovement(gameTime);
             climb = false;

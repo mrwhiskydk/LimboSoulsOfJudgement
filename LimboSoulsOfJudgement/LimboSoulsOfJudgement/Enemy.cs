@@ -165,7 +165,7 @@ namespace LimboSoulsOfJudgement
 
                 arrow.Destroy();
                 knockback = true;
-                knockbackDistance = 1.5f;
+                knockbackDistance = 1f;
                 aggro = true;
             }
         }
