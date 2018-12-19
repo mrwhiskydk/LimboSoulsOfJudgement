@@ -121,7 +121,7 @@ namespace LimboSoulsOfJudgement
             graphics = new GraphicsDeviceManager(this);
             graphics.PreferredBackBufferWidth = 1600;  // set this value to the desired width of your window
             graphics.PreferredBackBufferHeight = 900;   // set this value to the desired height of your window
-            graphics.ToggleFullScreen();
+            //graphics.ToggleFullScreen();
             graphics.GraphicsProfile = GraphicsProfile.HiDef;
             graphics.ApplyChanges();
             Content.RootDirectory = "Content";
@@ -217,7 +217,7 @@ namespace LimboSoulsOfJudgement
             upgradeAbilityDamageBtn = new UpgradeAbilityDamageBtn();
             buyGodModeAbility = new BuyGodModeAbility();
             
-
+            
             // Healthbar
             healthBar = new HealthBar(Vector2.Zero);
             healthBar.healthBarTexture = Content.Load<Texture2D>("healthbar");
@@ -227,7 +227,7 @@ namespace LimboSoulsOfJudgement
             karmaBar = new KarmaBar(Vector2.Zero);
             karmaBar.karmaBarTexture = Content.Load<Texture2D>("karmaBar");
             karmaBarOutline = Content.Load<Texture2D>("karmaBarOutline");
-
+            
 
             mouse = new Crosshair();
 
@@ -533,7 +533,7 @@ namespace LimboSoulsOfJudgement
             {
                 spriteBatch.DrawString(font, "Press E", new Vector2(level.portal.Position.X - 30, level.portal.Position.Y - 100), Color.White, 0f, Vector2.Zero, 1f, SpriteEffects.None, 1f);
             }
-
+            
             spriteBatch.DrawString(font, "1", new Vector2(uiAbilityBar.Position.X - 85, uiAbilityBar.Position.Y + 32), Color.White, 0f, Vector2.Zero, 1f, SpriteEffects.None, 0.993f);
             spriteBatch.DrawString(font, "2", new Vector2(uiAbilityBar.Position.X - 5, uiAbilityBar.Position.Y + 32), Color.White, 0f, Vector2.Zero, 1f, SpriteEffects.None, 0.993f);
             spriteBatch.DrawString(font, "3", new Vector2(uiAbilityBar.Position.X + 80, uiAbilityBar.Position.Y + 32), Color.White, 0f, Vector2.Zero, 1f, SpriteEffects.None, 0.993f);
@@ -542,7 +542,7 @@ namespace LimboSoulsOfJudgement
             spriteBatch.DrawString(font, $"Lives: {player.playerLives}", new Vector2(camera.Position.X - 750, camera.Position.Y - 400), Color.White, 0f, Vector2.Zero, 1f, SpriteEffects.None, 1f);
             spriteBatch.DrawString(font, $"Press E to interact", new Vector2(vendor.Position.X - 60, vendor.Position.Y - 120), Color.White, 0f, Vector2.Zero, 1f, SpriteEffects.None, 0.993f);
             spriteBatch.DrawString(font, $"Level: {levelCounter}", new Vector2(camera.Position.X + 720, camera.Position.Y - 430), Color.White, 0f, Vector2.Zero, 1f, SpriteEffects.None, 1f);
-
+            
             //Text of current Button Stat Cost
             if (triggerVendor)
             {

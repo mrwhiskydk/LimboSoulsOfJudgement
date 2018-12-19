@@ -15,6 +15,7 @@ namespace LimboSoulsOfJudgement
         private double attackTimer = 0;
         private Vector2 offsetIdle;
         private Vector2 offsetAttack;
+        //upgradeable sprites
         public static Texture2D good1;
         public static Texture2D good2;
         public static Texture2D bad1;
@@ -32,6 +33,9 @@ namespace LimboSoulsOfJudgement
             bad2 = GameWorld.ContentManager.Load<Texture2D>("demonSword");
         }
 
+        /// <summary>
+        /// This method gets run everytime we attack
+        /// </summary>
         public override void Attack()
         {
             base.Attack();
@@ -55,6 +59,10 @@ namespace LimboSoulsOfJudgement
             }
         }
 
+        /// <summary>
+        /// This method gets run once ever game tick
+        /// </summary>
+        /// <param name="gameTime"></param>
         public override void Update(GameTime gameTime)
         {
             offsetIdle = new Vector2(40, -sprite.Height * 0.5f - 40);
