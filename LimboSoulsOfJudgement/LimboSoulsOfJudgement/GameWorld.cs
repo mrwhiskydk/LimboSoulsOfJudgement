@@ -435,7 +435,7 @@ namespace LimboSoulsOfJudgement
                 go.Draw(spriteBatch);
 
 #if DEBUG
-                DrawCollisionBox(go);
+                DrawCollisionBox(go);                
 #endif
             }
 
