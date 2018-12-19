@@ -44,6 +44,7 @@ namespace LimboSoulsOfJudgement
         public static UpgradeHealthBtn upgradeHealthBtn;
         public static float levelCount = 1;
         public static bool levelReset = false;
+        public static int lastLevel;
         public static GoodKarmaButton goodKarmaButton;
         public static EvilWeaponBtn evilWeaponBtn;
         public static GoodWeaponBtn goodWeaponBtn;
@@ -266,6 +267,19 @@ namespace LimboSoulsOfJudgement
 
                 }
 
+                if (stage == 1)
+                {
+                    lastLevel = 1;
+                }
+                else if (stage == 2)
+                {
+                    lastLevel = 2;
+                }
+                else if (stage == 3)
+                {
+                    lastLevel = 3;
+                }
+
                 if (teleport == true)
                 {
                     levelReset = true;
@@ -415,7 +429,7 @@ namespace LimboSoulsOfJudgement
                 
                 if (stage == 2 && level.levelLoaded == true && level.movingLava != null)
                 {
-                    level.movingLava.position.Y -= (float)((30 * (levelCount - 0.3)) * gameTime.ElapsedGameTime.TotalSeconds);
+                    level.movingLava.position.Y -= (float)((30 * (levelCount - 2)) * gameTime.ElapsedGameTime.TotalSeconds);
                 }
 
                 if (level.boss != null && level.finalBoss == true && level.boss.health <= 0)

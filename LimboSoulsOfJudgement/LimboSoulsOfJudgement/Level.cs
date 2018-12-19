@@ -14,13 +14,11 @@ namespace LimboSoulsOfJudgement
         public Portal portal;
         public Lava movingLava;
         public bool levelLoaded = false;
-        public int lastLevel = 1;
         public bool finalBoss = false;
         public Level()
         {
             if (GameWorld.stage == 1)
             {
-                lastLevel = 1;
                 //Platforms
 
                 PlaceBlocks(3, 1, 2, 12, 3);
@@ -226,7 +224,6 @@ namespace LimboSoulsOfJudgement
             }
             if (GameWorld.stage == 2)
             {
-                lastLevel = 2;
 
                 // Frame
                 new Platform(new Vector2(-511, 2048), "VerticalFrame");
@@ -352,7 +349,6 @@ namespace LimboSoulsOfJudgement
             }
             if (GameWorld.stage == 3)
             {
-                lastLevel = 3;
 
                 new Platform(new Vector2(-511, 2048), "VerticalFrame");
                 new Platform(new Vector2(6272, 2048), "VerticalFrame");
