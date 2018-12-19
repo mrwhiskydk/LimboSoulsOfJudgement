@@ -765,6 +765,12 @@
 /processorParam:Quality=Best
 /build:sound/trapdoor.wav
 
+#begin sound/walk.wav
+/importer:WavImporter
+/processor:SoundEffectProcessor
+/processorParam:Quality=Best
+/build:sound/walk.wav
+
 #begin SurfaceLava.png
 /importer:TextureImporter
 /processor:TextureProcessor

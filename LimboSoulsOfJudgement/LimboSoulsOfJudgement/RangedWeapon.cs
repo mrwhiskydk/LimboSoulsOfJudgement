@@ -25,7 +25,7 @@ namespace LimboSoulsOfJudgement
         {
             base.Attack();
             //How many projectiles to fire. Can be used in the future if a bow shoots more than 1 arrow at a time. Would need to add some spread then so they dont all stack on each other
-            Vector2 dir = new Vector2(GameWorld.mouse.Position.X, GameWorld.mouse.Position.Y) - position;
+            Vector2 dir = GameWorld.mouse.position - new Vector2(Player.arm.Position.X, Player.arm.Position.Y);
 
             for (int i = 0; i < amountToFire; i++)
             {

@@ -96,6 +96,7 @@ namespace LimboSoulsOfJudgement
         /// </summary>
         public float critDmgModifier = 1.5f;
 
+
         /// <summary>
         /// Player constructor that sets player animation values, position and sprite name. 
         /// Sets the current equipped Weapon, Arm and Ability GameObjects: MeleeWeapon, RangedWeapon, Arm, BloodstormAbility & LightningBoltAbility.
@@ -111,6 +112,7 @@ namespace LimboSoulsOfJudgement
             ability1 = new BloodstormAbility();
             ability2 = new LightningBoltAbility();
             ability3 = new UltimateAbility();
+
 
             //Maximum amount of Player health
             maxHealth = 100;
@@ -138,6 +140,7 @@ namespace LimboSoulsOfJudgement
             collisionMovement = movementSpeed * gameTime.ElapsedGameTime.TotalSeconds;
             newLevelTimer += gameTime.ElapsedGameTime.TotalSeconds;
             chainJumpTimer += gameTime.ElapsedGameTime.TotalSeconds;
+            
             // If the player is under maxHealth activate healthRegen
             if (health < maxHealth)
             {

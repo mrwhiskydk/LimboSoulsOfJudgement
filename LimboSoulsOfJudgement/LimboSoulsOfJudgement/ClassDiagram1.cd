@@ -1,14 +1,14 @@
 ﻿<?xml version="1.0" encoding="utf-8"?>
-<ClassDiagram MajorVersion="1" MinorVersion="1">
+<ClassDiagram MajorVersion="1" MinorVersion="1" MembersFormat="FullSignature">
   <Class Name="LimboSoulsOfJudgement.GameWorld" Collapsed="true">
     <Position X="11.25" Y="1" Width="1.5" />
     <TypeIdentifier>
-      <HashCode>AEZkEEBQhmEUFxCJACIkScRCIGEQDG1VAACMAQQQBAY=</HashCode>
+      <HashCode>AM5kEEBUhmEUFxCJACIkScRCIGEQDW1VAACMAQQQJAY=</HashCode>
       <FileName>GameWorld.cs</FileName>
     </TypeIdentifier>
   </Class>
   <Class Name="LimboSoulsOfJudgement.GameObject" Collapsed="true">
-    <Position X="11.25" Y="2.75" Width="1.5" />
+    <Position X="10.75" Y="6.75" Width="3.75" />
     <TypeIdentifier>
       <HashCode>AAQAAAgAAAAIAgAgAACAIAAAAhBAAAAAAAAAAAIAAQA=</HashCode>
       <FileName>GameObject.cs</FileName>
@@ -17,7 +17,7 @@
   <Class Name="LimboSoulsOfJudgement.Level" Collapsed="true">
     <Position X="13.5" Y="2.75" Width="1.5" />
     <TypeIdentifier>
-      <HashCode>AAAAAAAAAAAAAAAAAAIAAEAAAAAAABgAIAEAAAIABAA=</HashCode>
+      <HashCode>AAAAAAAAAAAAABAAAAIAAEAAAAAAABgAIAEAAAIABAA=</HashCode>
       <FileName>Level.cs</FileName>
     </TypeIdentifier>
   </Class>
@@ -65,6 +65,13 @@
   </Class>
   <Class Name="LimboSoulsOfJudgement.Ability" Collapsed="true">
     <Position X="3" Y="6" Width="1.5" />
+    <NestedTypes>
+      <Class Name="LimboSoulsOfJudgement.Ability.AbilityCooldown" Collapsed="true">
+        <TypeIdentifier>
+          <NewMemberFileName>Ability.cs</NewMemberFileName>
+        </TypeIdentifier>
+      </Class>
+    </NestedTypes>
     <TypeIdentifier>
       <HashCode>AAQAAAAAAAAAAAAAAgAAAAAAICBEAAAAAAAAAgAAAAA=</HashCode>
       <FileName>Ability.cs</FileName>
@@ -101,7 +108,7 @@
   <Class Name="LimboSoulsOfJudgement.BossEnemy" Collapsed="true">
     <Position X="9.5" Y="9" Width="1.5" />
     <TypeIdentifier>
-      <HashCode>AAQABAIAgAAEAAAQAAAAAAAAAgBEAAAAAAAAACAAABA=</HashCode>
+      <HashCode>AAQABAAAgAAEAAAQAAAAAAAAAgBEAAAAAgAAACAAABA=</HashCode>
       <FileName>BossEnemy.cs</FileName>
     </TypeIdentifier>
   </Class>
@@ -112,11 +119,284 @@
       <FileName>Vendor.cs</FileName>
     </TypeIdentifier>
   </Class>
-  <Class Name="LimboSoulsOfJudgement.Player" Collapsed="true">
-    <Position X="5.75" Y="7.5" Width="1.5" />
+  <Class Name="LimboSoulsOfJudgement.Player">
+    <Position X="4.5" Y="7.5" Width="4.25" />
     <TypeIdentifier>
       <HashCode>AAaAQwIIIAAGBwRCAAAAIgAAigAAEFgARCAABqAAAwA=</HashCode>
       <FileName>Player.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="LimboSoulsOfJudgement.Arm" Collapsed="true">
+    <Position X="18" Y="0.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAQAAAAAAAAAAgAAAACAAAAAAAAAAAAAAAAAAAAAAAA=</HashCode>
+      <FileName>Arm.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="LimboSoulsOfJudgement.BadKarmaButton" Collapsed="true">
+    <Position X="31.5" Y="2" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAQAACAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA=</HashCode>
+      <FileName>BadKarmaButton.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="LimboSoulsOfJudgement.BloodstormAbility" Collapsed="true">
+    <Position X="1.5" Y="4" Width="1.5" />
+    <NestedTypes>
+      <Class Name="LimboSoulsOfJudgement.BloodstormAbility.Bloodstorm" Collapsed="true">
+        <TypeIdentifier>
+          <NewMemberFileName>BloodstormAbility.cs</NewMemberFileName>
+        </TypeIdentifier>
+      </Class>
+    </NestedTypes>
+    <TypeIdentifier>
+      <HashCode>AAQAAAAAAAAAAgAAAAAAAAAAIAAAAAAAAAAAAAAAAAA=</HashCode>
+      <FileName>BloodstormAbility.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="LimboSoulsOfJudgement.Button" Collapsed="true">
+    <Position X="48.25" Y="0.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>ABwCACAEAGAIAgAFAAAAAAAAEAAAAAAAAAACCAAIAAA=</HashCode>
+      <FileName>Button.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="LimboSoulsOfJudgement.BuyBloodStormButton" Collapsed="true">
+    <Position X="42.75" Y="2" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAQAACAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA=</HashCode>
+      <FileName>BuyBloodStormButton.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="LimboSoulsOfJudgement.BuyGodModeAbility" Collapsed="true">
+    <Position X="51.75" Y="2" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAQAACAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA=</HashCode>
+      <FileName>BuyGodModeAbility.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="LimboSoulsOfJudgement.BuyLightningBoltButton" Collapsed="true">
+    <Position X="56.25" Y="2" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAQAACAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA=</HashCode>
+      <FileName>BuyLightningBoltButton.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="LimboSoulsOfJudgement.Camera">
+    <Position X="71.75" Y="0.5" Width="2.25" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAAAgAAAAIgAAAAACAAAAAAAAAAAAAgA=</HashCode>
+      <FileName>Camera.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="LimboSoulsOfJudgement.Chain" Collapsed="true">
+    <Position X="20.25" Y="0.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA=</HashCode>
+      <FileName>Chain.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="LimboSoulsOfJudgement.Crosshair">
+    <Position X="24.75" Y="0.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAQAAAAAAAAAAgAAAAAAAAAAAAAAAACAAAAAAAAAAgA=</HashCode>
+      <FileName>Crosshair.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="LimboSoulsOfJudgement.DamageText">
+    <Position X="22.5" Y="5" Width="4.5" />
+    <TypeIdentifier>
+      <HashCode>AAQAAAAAAIAAggAAAAAAAAACAAAAAAAAIAAAAAAAAAA=</HashCode>
+      <FileName>DamageText.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="LimboSoulsOfJudgement.EvilWeaponBtn" Collapsed="true">
+    <Position X="38.25" Y="2" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>QAQAACAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA=</HashCode>
+      <FileName>EvilWeaponBtn.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="LimboSoulsOfJudgement.FinalBossButton" Collapsed="true">
+    <Position X="45" Y="2" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAQAACAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA=</HashCode>
+      <FileName>FinalBossButton.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="LimboSoulsOfJudgement.GameObjectPassive" Collapsed="true">
+    <Position X="2.75" Y="1.25" Width="3" />
+    <TypeIdentifier>
+      <HashCode>AAQAAAAAAAAAAgAgAACAIAAAABBAAAAIAAAAAAAAAAA=</HashCode>
+      <FileName>GameObjectPassive.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="LimboSoulsOfJudgement.GoodKarmaButton" Collapsed="true">
+    <Position X="58.5" Y="2" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAQAACAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA=</HashCode>
+      <FileName>GoodKarmaButton.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="LimboSoulsOfJudgement.GoodWeaponBtn" Collapsed="true">
+    <Position X="65.25" Y="2" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>QAQAACAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA=</HashCode>
+      <FileName>GoodWeaponBtn.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="LimboSoulsOfJudgement.HealthBar">
+    <Position X="16.5" Y="2.5" Width="3.25" />
+    <TypeIdentifier>
+      <HashCode>AAQAAAAAAAAAAgCAAAAAAAIAAAAAAAAAAAAAAAAAAAA=</HashCode>
+      <FileName>HealthBar.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="LimboSoulsOfJudgement.KarmaBar">
+    <Position X="20" Y="2.5" Width="2.5" />
+    <TypeIdentifier>
+      <HashCode>AAQAAAgAAAAAAgAAAIAQAAAAAAAAAAAAAAAAAAAAAAA=</HashCode>
+      <FileName>KarmaBar.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="LimboSoulsOfJudgement.Lava" Collapsed="true">
+    <Position X="27" Y="0.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAgAAAAAAAAAAAAAAAAAAAAAAAAAAAAA=</HashCode>
+      <FileName>Lava.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="LimboSoulsOfJudgement.LightningBoltAbility" Collapsed="true">
+    <Position X="3.75" Y="4.75" Width="1.5" />
+    <NestedTypes>
+      <Class Name="LimboSoulsOfJudgement.LightningBoltAbility.LightningBolt" Collapsed="true">
+        <TypeIdentifier>
+          <NewMemberFileName>LightningBoltAbility.cs</NewMemberFileName>
+        </TypeIdentifier>
+      </Class>
+    </NestedTypes>
+    <TypeIdentifier>
+      <HashCode>AAQAAAAAAAAAAgAAAAAAAAAAIAAAAAAAAAAAAAAAAAA=</HashCode>
+      <FileName>LightningBoltAbility.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="LimboSoulsOfJudgement.Portal" Collapsed="true">
+    <Position X="69.75" Y="2" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA=</HashCode>
+      <FileName>Portal.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="LimboSoulsOfJudgement.Program" Collapsed="true">
+    <Position X="74" Y="0.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAABAAAAAA=</HashCode>
+      <FileName>Program.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="LimboSoulsOfJudgement.ResetButton" Collapsed="true">
+    <Position X="60.75" Y="2" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAQAACAAAAAAAAAABAAAAAAAAAAAAAAAAAAAAAAAAQA=</HashCode>
+      <FileName>ResetButton.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="LimboSoulsOfJudgement.Sound">
+    <Position X="74" Y="1.5" Width="2.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAAAAAAAAAAAAAAAEAAAAgAAAAAAAAAA=</HashCode>
+      <FileName>Sound.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="LimboSoulsOfJudgement.Trapdoor" Collapsed="true">
+    <Position X="22.5" Y="0.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAAAAAAAAAAAAAgAEAAAAAAAAAAAAAAA=</HashCode>
+      <FileName>Trapdoor.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="LimboSoulsOfJudgement.UI" Collapsed="true">
+    <Position X="0.5" Y="2" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAQAAAAAAAAAAgAAAAAAAAAAAAAAAAAAAAAAAAAAAAA=</HashCode>
+      <FileName>UI.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="LimboSoulsOfJudgement.UIAbilityBar">
+    <Position X="24.5" Y="2.5" Width="2.25" />
+    <TypeIdentifier>
+      <HashCode>AAQAAACAAAAAAAAAAAAAAAAAAAAACAAAAAAAAAAAAAA=</HashCode>
+      <FileName>UIAbilityBar.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="LimboSoulsOfJudgement.UltimateAbility" Collapsed="true">
+    <Position X="12" Y="4" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAQAAAIAAAAAAgAAAAAAQAAAIAAAAAAAAAIAAAAAAAA=</HashCode>
+      <FileName>UltimateAbility.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="LimboSoulsOfJudgement.UpgradeAbilityDamageBtn" Collapsed="true">
+    <Position X="47.25" Y="2" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAQAACAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA=</HashCode>
+      <FileName>UpgradeAbilityDamageBtn.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="LimboSoulsOfJudgement.UpgradeCritChanceBtn" Collapsed="true">
+    <Position X="54" Y="2" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAQAACAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA=</HashCode>
+      <FileName>UpgradeCritChanceBtn.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="LimboSoulsOfJudgement.UpgradeCritDamageBtn" Collapsed="true">
+    <Position X="63" Y="2" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAQAACAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA=</HashCode>
+      <FileName>UpgradeCritDamageBtn.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="LimboSoulsOfJudgement.UpgradeHealthBtn" Collapsed="true">
+    <Position X="67.5" Y="2" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAQAACAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA=</HashCode>
+      <FileName>UpgradeHealthBtn.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="LimboSoulsOfJudgement.UpgradeHealthRegenBtn">
+    <Position X="29.25" Y="2" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAQAACAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA=</HashCode>
+      <FileName>UpgradeHealthRegenBtn.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="LimboSoulsOfJudgement.UpgradeLifetealBtn" Collapsed="true">
+    <Position X="33.75" Y="2" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAQAACAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA=</HashCode>
+      <FileName>UpgradeLifetealBtn.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="LimboSoulsOfJudgement.UpgradeMeleeDamageBtn" Collapsed="true">
+    <Position X="36" Y="2" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAQAACAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA=</HashCode>
+      <FileName>UpgradeMeleeDamageBtn.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="LimboSoulsOfJudgement.UpgradeMovementSpeedBtn" Collapsed="true">
+    <Position X="40.5" Y="2" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAQAACAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA=</HashCode>
+      <FileName>UpgradeMovementSpeedBtn.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="LimboSoulsOfJudgement.UpgradeRangedDamageBtn" Collapsed="true">
+    <Position X="49.5" Y="2" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAQAACAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA=</HashCode>
+      <FileName>UpgradeRangedDamageBtn.cs</FileName>
     </TypeIdentifier>
   </Class>
   <Font Name="Segoe UI" Size="9" />
