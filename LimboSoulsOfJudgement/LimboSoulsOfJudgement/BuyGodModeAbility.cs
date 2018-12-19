@@ -16,7 +16,7 @@ namespace LimboSoulsOfJudgement
         public BuyGodModeAbility() : base(new Vector2(GameWorld.ui.Position.X + 245, GameWorld.ui.Position.Y - 25), "buttonUITest")
         {
             abilityPurchased = false;
-
+            karmaRequirements = 50;
             statCost = 1000;
         }
 

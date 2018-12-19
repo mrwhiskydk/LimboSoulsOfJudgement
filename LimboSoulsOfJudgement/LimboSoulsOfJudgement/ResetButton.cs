@@ -70,7 +70,7 @@ namespace LimboSoulsOfJudgement
                 }
                 else
                 {
-                    if (GameWorld.level.lastLevel == 1)
+                    if (GameWorld.lastLevel == 1)
                     {
                         if (GameWorld.rnd.Next(1, 3) == 1)
                         {
@@ -83,7 +83,7 @@ namespace LimboSoulsOfJudgement
                             btnPressed = true;
                         }
                     }
-                    else if (GameWorld.level.lastLevel == 2)
+                    else if (GameWorld.lastLevel == 2)
                     {
                         if (GameWorld.rnd.Next(1, 3) == 1)
                         {

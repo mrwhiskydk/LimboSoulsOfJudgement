@@ -21,6 +21,9 @@ namespace LimboSoulsOfJudgement
             sound = new Sound("sound/bow");
         }
 
+        /// <summary>
+        /// This method gets run everytime we attack
+        /// </summary>
         public override void Attack()
         {
             base.Attack();
@@ -33,11 +36,12 @@ namespace LimboSoulsOfJudgement
             }
         }
 
+        /// <summary>
+        /// This method gets run once ever game tick
+        /// </summary>
+        /// <param name="gameTime"></param>
         public override void Update(GameTime gameTime)
         {
-            /*Matrix swordMatrix = Matrix.CreateRotationZ(1) * Matrix.CreateTranslation(new Vector3(GameWorld.player.Position, 0f));
-            position = Vector2.Transform(offset, swordMatrix);*/
-
             if (equipped)
             {
                 if (GameWorld.mouse.RightOfPlayer())

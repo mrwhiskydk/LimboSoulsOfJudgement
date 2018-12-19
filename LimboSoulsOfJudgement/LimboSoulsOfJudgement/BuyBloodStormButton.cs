@@ -23,7 +23,7 @@ namespace LimboSoulsOfJudgement
 
             currentStatValue = 0;
             maxStatValue = 1;
-            karmaRequirements = 75;
+            karmaRequirements = 25;
             statCost = 500;
             statIncrease = 1;
         }

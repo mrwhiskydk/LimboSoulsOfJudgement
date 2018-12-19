@@ -27,11 +27,11 @@ namespace LimboSoulsOfJudgement
         public BossEnemy(int animationFPS, float frameCount,string spriteName) : base(animationFPS, frameCount, new Vector2(300, 1000), spriteName)
         {
             movementSpeed = 300;
-            health = (int)(100 * (GameWorld.levelCount + 0.5));
+            health = (int)(125 * (GameWorld.levelCount + 0.5));
             maxHealth = health;
             enemyDamage = (int)(20 * (GameWorld.levelCount));
             enemySouls = (int)(20 * GameWorld.levelCount);
-            soulCount = (int)(20 * GameWorld.levelCount);
+            soulCount = 20;
             knockbackDuration = 0.4f;
         }
 

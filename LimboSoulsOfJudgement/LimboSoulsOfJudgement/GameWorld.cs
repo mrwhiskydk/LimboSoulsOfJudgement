@@ -44,6 +44,7 @@ namespace LimboSoulsOfJudgement
         public static UpgradeHealthBtn upgradeHealthBtn;
         public static float levelCount = 1;
         public static bool levelReset = false;
+        public static int lastLevel;
         public static GoodKarmaButton goodKarmaButton;
         public static EvilWeaponBtn evilWeaponBtn;
         public static GoodWeaponBtn goodWeaponBtn;
@@ -120,7 +121,7 @@ namespace LimboSoulsOfJudgement
             graphics = new GraphicsDeviceManager(this);
             graphics.PreferredBackBufferWidth = 1600;  // set this value to the desired width of your window
             graphics.PreferredBackBufferHeight = 900;   // set this value to the desired height of your window
-            graphics.ToggleFullScreen();
+            //graphics.ToggleFullScreen();
             graphics.GraphicsProfile = GraphicsProfile.HiDef;
             graphics.ApplyChanges();
             Content.RootDirectory = "Content";
@@ -216,7 +217,7 @@ namespace LimboSoulsOfJudgement
             upgradeAbilityDamageBtn = new UpgradeAbilityDamageBtn();
             buyGodModeAbility = new BuyGodModeAbility();
             
-
+            
             // Healthbar
             healthBar = new HealthBar(Vector2.Zero);
             healthBar.healthBarTexture = Content.Load<Texture2D>("healthbar");
@@ -226,7 +227,7 @@ namespace LimboSoulsOfJudgement
             karmaBar = new KarmaBar(Vector2.Zero);
             karmaBar.karmaBarTexture = Content.Load<Texture2D>("karmaBar");
             karmaBarOutline = Content.Load<Texture2D>("karmaBarOutline");
-
+            
 
             mouse = new Crosshair();
 
@@ -264,6 +265,19 @@ namespace LimboSoulsOfJudgement
                         pauseTime = 0;
                     }
 
+                }
+
+                if (stage == 1)
+                {
+                    lastLevel = 1;
+                }
+                else if (stage == 2)
+                {
+                    lastLevel = 2;
+                }
+                else if (stage == 3)
+                {
+                    lastLevel = 3;
                 }
 
                 if (teleport == true)
@@ -415,7 +429,7 @@ namespace LimboSoulsOfJudgement
                 
                 if (stage == 2 && level.levelLoaded == true && level.movingLava != null)
                 {
-                    level.movingLava.position.Y -= (float)((30 * (levelCount - 0.3)) * gameTime.ElapsedGameTime.TotalSeconds);
+                    level.movingLava.position.Y -= (float)(30 * gameTime.ElapsedGameTime.TotalSeconds);
                 }
 
                 if (level.boss != null && level.finalBoss == true && level.boss.health <= 0)
@@ -497,7 +511,7 @@ namespace LimboSoulsOfJudgement
                 go.Draw(spriteBatch);
 
 #if DEBUG
-                DrawCollisionBox(go);
+                DrawCollisionBox(go);                
 #endif
             }
             
@@ -519,7 +533,7 @@ namespace LimboSoulsOfJudgement
             {
                 spriteBatch.DrawString(font, "Press E", new Vector2(level.portal.Position.X - 30, level.portal.Position.Y - 100), Color.White, 0f, Vector2.Zero, 1f, SpriteEffects.None, 1f);
             }
-
+            
             spriteBatch.DrawString(font, "1", new Vector2(uiAbilityBar.Position.X - 85, uiAbilityBar.Position.Y + 32), Color.White, 0f, Vector2.Zero, 1f, SpriteEffects.None, 0.993f);
             spriteBatch.DrawString(font, "2", new Vector2(uiAbilityBar.Position.X - 5, uiAbilityBar.Position.Y + 32), Color.White, 0f, Vector2.Zero, 1f, SpriteEffects.None, 0.993f);
             spriteBatch.DrawString(font, "3", new Vector2(uiAbilityBar.Position.X + 80, uiAbilityBar.Position.Y + 32), Color.White, 0f, Vector2.Zero, 1f, SpriteEffects.None, 0.993f);
@@ -528,7 +542,7 @@ namespace LimboSoulsOfJudgement
             spriteBatch.DrawString(font, $"Lives: {player.playerLives}", new Vector2(camera.Position.X - 750, camera.Position.Y - 400), Color.White, 0f, Vector2.Zero, 1f, SpriteEffects.None, 1f);
             spriteBatch.DrawString(font, $"Press E to interact", new Vector2(vendor.Position.X - 60, vendor.Position.Y - 120), Color.White, 0f, Vector2.Zero, 1f, SpriteEffects.None, 0.993f);
             spriteBatch.DrawString(font, $"Level: {levelCounter}", new Vector2(camera.Position.X + 720, camera.Position.Y - 430), Color.White, 0f, Vector2.Zero, 1f, SpriteEffects.None, 1f);
-
+            
             //Text of current Button Stat Cost
             if (triggerVendor)
             {
@@ -751,14 +765,14 @@ namespace LimboSoulsOfJudgement
                 }
 
                 //Text Completed Purchase of God Mode
-                if (75 <= goodKarmaButton.currentStatValue && buyGodModeAbility.abilityPurchased || triggerVendor && 75 <= badKarmaButton.currentStatValue && buyGodModeAbility.abilityPurchased)
+                if (50 <= goodKarmaButton.currentStatValue && buyGodModeAbility.abilityPurchased || triggerVendor && 50 <= badKarmaButton.currentStatValue && buyGodModeAbility.abilityPurchased)
                 {
                     spriteBatch.DrawString(font, $"GOD MODE PURCHASED!", new Vector2(buyGodModeAbility.Position.X - 114, buyGodModeAbility.Position.Y - 55), Color.White, 0f, Vector2.Zero, 1f, SpriteEffects.None, 0.995f);
                 }
                 //Text Purchase of God Mode
-                else if (75 >= goodKarmaButton.currentStatValue || triggerVendor && 75 >= badKarmaButton.currentStatValue)
+                else if (50 >= goodKarmaButton.currentStatValue || triggerVendor && 50 >= badKarmaButton.currentStatValue)
                 {
-                    spriteBatch.DrawString(font, $"Ultimate!:\n75 Angelic or Demonic Karma", new Vector2(buyGodModeAbility.Position.X - 114, buyGodModeAbility.Position.Y - 75), Color.White, 0f, Vector2.Zero, 1f, SpriteEffects.None, 0.995f);
+                    spriteBatch.DrawString(font, $"Ultimate!:\n50 Angelic or Demonic Karma", new Vector2(buyGodModeAbility.Position.X - 114, buyGodModeAbility.Position.Y - 75), Color.White, 0f, Vector2.Zero, 1f, SpriteEffects.None, 0.995f);
                 }
             }
 

@@ -35,7 +35,7 @@ namespace LimboSoulsOfJudgement
         {
             if (currentStatValue < maxStatValue || currentSecondaryStatValue < maxStatValue)
             {
-                if(GameWorld.goodKarmaButton.currentKarma > karmaRequirements || GameWorld.badKarmaButton.currentKarma > karmaRequirements)
+                if(GameWorld.goodKarmaButton.currentKarma >= karmaRequirements || GameWorld.badKarmaButton.currentKarma >= karmaRequirements)
                 {
                     if (GameWorld.buyLightningBoltButton.abilityPurchased || GameWorld.buyBloodStormButton.abilityPurchased)
                     {
