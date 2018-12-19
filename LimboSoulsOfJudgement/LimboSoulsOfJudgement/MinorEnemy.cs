@@ -11,6 +11,12 @@ namespace LimboSoulsOfJudgement
     {
         public int karma;
 
+
+        /// <summary>
+        /// Checks if the code for (aggro if enemy is aggro'ed nearby) should be run
+        /// </summary>
+        private bool aggroCheck = true;
+
         /// <summary>
         /// MinorEnemy constructor that sets animation values, position and sprite names of current MinorEnemy GameObject
         /// </summary>
@@ -36,6 +42,31 @@ namespace LimboSoulsOfJudgement
         /// <param name="gameTime">Time elapsed since last call in the update</param>
         public override void Update(GameTime gameTime)
         {
+            if (Vector2.Distance(position, GameWorld.player.Position) < 400 && aggro is false)
+            {
+                aggro = true;
+            }
+
+            if (aggroCheck is true && aggro is true)
+            {
+                List<Enemy> tempEnemyList = new List<Enemy>();
+
+                foreach (GameObject item in GameWorld.gameObjects)
+                {
+                    if (item is Enemy)
+                    {
+                        tempEnemyList.Add((Enemy)item);
+                    }
+                }
+                foreach (Enemy item in tempEnemyList)
+                {
+                    if (Vector2.Distance(position, item.position) < 700)
+                    {
+                        item.aggro = true;
+                    }
+                }
+                aggroCheck = false;
+            }
             base.Update(gameTime);
             HandleMovement(gameTime);
             HandleJumping(gameTime);
