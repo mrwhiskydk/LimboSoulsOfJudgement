@@ -298,7 +298,7 @@ namespace LimboSoulsOfJudgement
         /// <summary>
         /// A method for adding gameobjects the the list gameObjects
         /// </summary>
-        /// <param name="go">The standard name for gameobjects</param>
+        /// <param name="go">The gameobject being added to the list of gameobjects</param>
         public static void AddGameObject(GameObject go)
         {
             toBeAdded.Add(go);
@@ -306,7 +306,7 @@ namespace LimboSoulsOfJudgement
         /// <summary>
         /// A method for removing gameobjects from the list gameObjects
         /// </summary>
-        /// <param name="go">The standard name for gameobjects</param>
+        /// <param name="go">The gameobject being removed to the list of gameobjects</param>
         public static void RemoveGameObject(GameObject go)
         {
             toBeRemoved.Add(go);
@@ -314,7 +314,7 @@ namespace LimboSoulsOfJudgement
         /// <summary>
         /// A method for adding gameobjects the the list gameObjectPassive
         /// </summary>
-        /// <param name="go">The standard name for gameobjects</param>
+        /// <param name="go">The gameobject being added to the list of passive gameobjects</param>
         public static void AddGameObjectPassive(GameObjectPassive go)
         {
             toBeAddedPassive.Add(go);
@@ -322,7 +322,7 @@ namespace LimboSoulsOfJudgement
         /// <summary>
         /// A method for removing gameobjects from the list gameObjectPassive
         /// </summary>
-        /// <param name="go">The standard name for gameobjects</param>
+        /// <param name="go">The gameobject being removed to the list of passive gameobjects</param>
         public static void RemoveGameObjectPassive(GameObjectPassive go)
         {
             toBeRemovedPassive.Add(go);

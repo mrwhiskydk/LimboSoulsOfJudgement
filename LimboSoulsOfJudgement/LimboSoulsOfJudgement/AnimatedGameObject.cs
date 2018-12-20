@@ -10,6 +10,9 @@ namespace LimboSoulsOfJudgement
 {
     public class AnimatedGameObject : GameObject
     {
+        /// <summary>
+        /// The rectangle being used when animating sprites
+        /// </summary>
         protected Rectangle[] animationRectangles;
 
         /// <summary>
