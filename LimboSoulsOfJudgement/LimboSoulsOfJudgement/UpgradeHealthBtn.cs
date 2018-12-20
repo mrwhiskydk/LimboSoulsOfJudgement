@@ -8,7 +8,7 @@ using Microsoft.Xna.Framework;
 namespace LimboSoulsOfJudgement
 {
     /// <summary>
-    /// Public Class that represents the functionality and game logic of the UpgradeHealthBtn
+    /// Public Class that represents the functionality and game logic of the UpgradeHealthBtn's Button
     /// </summary>
     public class UpgradeHealthBtn : Button
     {
@@ -26,7 +26,7 @@ namespace LimboSoulsOfJudgement
         }
 
         /// <summary>
-        /// Updates the UpgradeHealthBtn game logic
+        /// Updates the UpgradeHealthBtn's game logic
         /// </summary>
         /// <param name="gameTime">Time elapsed since last call in the update</param>
         public override void Update(GameTime gameTime)
@@ -37,9 +37,11 @@ namespace LimboSoulsOfJudgement
         }
 
         /// <summary>
-        /// Overridden UpgradeStat Method that sets its game logic.
+        /// Overridden UpgradeStat Method that enables button click, purchase and upgrades of the Player Health stat.
+        /// Adds a small time period between each click.
         /// Increases the player's max health equal to its statIncease value.
         /// Sets the player's current health equal to the increased max health upon purchase
+        /// Handles math calculations of soul currency, stat cost and stat increase
         /// </summary>
         /// <param name="gameTime">Time elapsed since last call in the update</param>
         public override void UpgradeStat(GameTime gameTime)

@@ -8,7 +8,7 @@ using Microsoft.Xna.Framework;
 namespace LimboSoulsOfJudgement
 {
     /// <summary>
-    /// Public Class that represents the functionality and game logic of the UpgradeRangedDamageBtn
+    /// Public Class that represents the functionality and game logic of the UpgradeRangedDamageBtn's Button
     /// </summary>
     public class UpgradeRangedDamageBtn : Button
     {
@@ -26,9 +26,9 @@ namespace LimboSoulsOfJudgement
         }
 
         /// <summary>
-        /// 
+        /// Updates the UpgradeRangedDamageBtn's game logic,
         /// </summary>
-        /// <param name="gameTime"></param>
+        /// <param name="gameTime">Time elapsed since last call in the Update</param>
         public override void Update(GameTime gameTime)
         {
             base.Update(gameTime);
@@ -36,9 +36,12 @@ namespace LimboSoulsOfJudgement
 
 
         /// <summary>
-        /// 
+        /// Overridden method that enables Button click, purchase and upgrades of Player Ranged Damage.
+        /// Adds a small time period between each click.
+        /// Increases the Damage amount, equal to its Damage value.
+        /// Handles math calculations of soul currency, stat cost and stat increase
         /// </summary>
-        /// <param name="gameTime"></param>
+        /// <param name="gameTime">Time elapsed since last call in the Update</param>
         public override void UpgradeStat(GameTime gameTime)
         {
             mouseClicked += gameTime.ElapsedGameTime.TotalSeconds;
