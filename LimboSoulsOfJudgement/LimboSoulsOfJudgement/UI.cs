@@ -10,7 +10,8 @@ using Microsoft.Xna.Framework.Input;
 namespace LimboSoulsOfJudgement
 {
     /// <summary>
-    /// Public Class that represents the UI Menu of the Vendor
+    /// Public Class that represents the UI Menu of the Vendor.
+    /// Mainly handles the visuals of the UI's sprite, wether it's shown onto the screen or not.
     /// </summary>
     public class UI : AnimatedGameObject
     {
@@ -34,9 +35,9 @@ namespace LimboSoulsOfJudgement
         }
 
         /// <summary>
-        /// 
+        /// Overridden Draw Method that draws out the UI should the Player and Vendor GameObject collide with one another
         /// </summary>
-        /// <param name="spriteBatch"></param>
+        /// <param name="spriteBatch">The spritebatch used for drawing</param>
         public override void Draw(SpriteBatch spriteBatch)
         {
            

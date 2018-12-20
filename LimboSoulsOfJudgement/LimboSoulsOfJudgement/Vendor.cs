@@ -8,6 +8,10 @@ using Microsoft.Xna.Framework.Input;
 
 namespace LimboSoulsOfJudgement
 {
+    /// <summary>
+    /// Public Class that represents the default functionality and game logic of the Vendor GameObject.
+    /// Handles the overall sprite stages, and checks if the Player GameObject is able to interact with the Vendor GameObject.
+    /// </summary>
     public class Vendor : AnimatedGameObject
     {
         private float nextClick = 0.3f;
@@ -24,7 +28,9 @@ namespace LimboSoulsOfJudgement
         }
 
         /// <summary>
-        /// Update Method that enables constant gravity on the Vendor GameObject, and updates base game logic
+        /// Update Method that enables constant gravity on the Vendor GameObject, and updates base game logic.
+        /// Checks wether or not the Player GameObject is within reach or the Vendor, in order to switch between different Vendor sprite states.
+        /// Also checks turns Vendors facing direction left or right, depending on the Player's current position of the Vendor.
         /// </summary>
         /// <param name="gameTime">Time elapsed since last call in the update</param>
         public override void Update(GameTime gameTime)
@@ -66,27 +72,29 @@ namespace LimboSoulsOfJudgement
         }
 
         /// <summary>
-        /// Method that handles Vendor collision functionality with the other current GameObjects in the game
+        /// Method that handles Vendor collision functionality with the other current GameObjects in the game.
+        /// Handles the enabling and disabling of the triggerVendor bool value.
         /// </summary>
         /// <param name="otherObject">The GameObject that the Vendor object collides with</param>
         public override void DoCollision(GameObject otherObject)
         {
             base.DoCollision(otherObject);
 
+            //Loops through all GameObjects, in order to find collision with the Player GameObject
             foreach(GameObject go in GameWorld.gameObjects)
             {
                 otherObject = go;
-                if (otherObject.IsColliding(this) && otherObject is Player)
+                if (otherObject.IsColliding(this) && otherObject is Player) //Checks if the other GameObject is the Player, if so, the value of vendorInteract is to to true.
                 {
-                    vendorInteract = true;
+                    vendorInteract = true;  //The Player can begin interactions with the Vendor GameObject
                 }
-                else if(!GameWorld.player.IsColliding(this))
+                else if(!GameWorld.player.IsColliding(this))    //If no collision between Vendor and Player is detected, interactions and shopping options are unavailable
                 {
                     GameWorld.triggerVendor = false;
                     vendorInteract = false;
                 }
 
-                if (otherObject is Platform)
+                if (otherObject is Platform)    //Statement that checks if the Vendor is colliding with a Platform, to prevent the Vendor from glitching through the floor
                 {
                     while (otherObject.IsColliding(this))
                     {
