@@ -8,6 +8,9 @@ using Microsoft.Xna.Framework.Graphics;
 
 namespace LimboSoulsOfJudgement
 {
+    /// <summary>
+    /// Public Class that represents the default functionality and game logic of the HealthBar GameObjectPassive
+    /// </summary>
     public class HealthBar : GameObjectPassive
     {
         /// <summary>
