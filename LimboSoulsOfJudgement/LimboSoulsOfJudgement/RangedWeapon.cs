@@ -8,10 +8,16 @@ using Microsoft.Xna.Framework.Input;
 
 namespace LimboSoulsOfJudgement
 {
+    /// <summary>
+    /// Public Class that represents the functionality and game logic of the Ranged Weapon
+    /// </summary>
     public class RangedWeapon : Weapon
     {
         private int speed = 1000;
         private int amountToFire = 1;
+        /// <summary>
+        /// The name of the sprite for the arrow
+        /// </summary>
         public string arrowSprite = "arrow";
         private int offset = 50;
 

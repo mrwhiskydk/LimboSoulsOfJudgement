@@ -7,6 +7,9 @@ using System.Threading.Tasks;
 
 namespace LimboSoulsOfJudgement
 {
+    /// <summary>
+    /// Public Class that represents the functionality of playing sounds
+    /// </summary>
     public class Sound
     {
         SoundEffect sound;

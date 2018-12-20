@@ -7,6 +7,9 @@ using Microsoft.Xna.Framework;
 
 namespace LimboSoulsOfJudgement
 {
+    /// <summary>
+    /// Public Class that represents the functionality and game logic of the Trapdoor GameObject
+    /// </summary>
     public class Trapdoor : GameObject
     {
         private Sound sound;
