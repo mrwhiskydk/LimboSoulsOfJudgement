@@ -11,7 +11,12 @@ namespace LimboSoulsOfJudgement
 {
     public class Arm : GameObject
     {
+        /// <summary>
+        /// The rotation of the arm, hides the inherited rotation from GameObject
+        /// </summary>
         public new float rotation;
+
+
         public Arm() : base("PlayerArm")
         {
             
@@ -73,11 +78,11 @@ namespace LimboSoulsOfJudgement
                 position = new Vector2(GameWorld.player.Position.X - 15, GameWorld.player.Position.Y - 30);
             }
         }
-        
+
         /// <summary>
         /// Method to draw our sprite
         /// </summary>
-        /// <param name="spriteBatch"></param>
+        /// <param name="spriteBatch">The spritebatch used for drawing</param>
         public override void Draw(SpriteBatch spriteBatch)
         {
             if (GameWorld.player.weapon is RangedWeapon)

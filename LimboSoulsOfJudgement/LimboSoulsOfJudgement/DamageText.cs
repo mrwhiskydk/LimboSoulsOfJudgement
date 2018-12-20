@@ -17,12 +17,12 @@ namespace LimboSoulsOfJudgement
         private bool heal;
 
         /// <summary>
-        /// The constructor used for showing damage dealt
+        /// The constructor used for dealing damage
         /// </summary>
         /// <param name="startPosition">The start position of the damage</param>
         /// <param name="damage">The amount of damage</param>
         /// <param name="scale">The size of the text</param>
-        /// <param name="crit">Is it a crit or not</param>
+        /// <param name="crit">is the damage dealth a crit, true/false</param>
         public DamageText(Vector2 startPosition, int damage, float scale, bool crit) : base(startPosition, "damage")
         {
             this.damage = damage;
@@ -47,7 +47,7 @@ namespace LimboSoulsOfJudgement
         /// <summary>
         /// Update method that removes the object after 0.7 seconds and moves it upwards
         /// </summary>
-        /// <param name="gameTime"></param>
+        /// <param name="gameTime">Time elapsed since last call in the update</param>
         public override void Update(GameTime gameTime)
         {
             timer += gameTime.ElapsedGameTime.TotalSeconds;
@@ -59,9 +59,9 @@ namespace LimboSoulsOfJudgement
         }
 
         /// <summary>
-        /// Draw method that draws both damage text and healing text
+        /// Draw method that draws the text
         /// </summary>
-        /// <param name="spriteBatch"></param>
+        /// <param name="spriteBatch">The spritebatch used for drawing</param>
         public override void Draw(SpriteBatch spriteBatch)
         {
             if (!heal)

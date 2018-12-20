@@ -10,6 +10,9 @@ namespace LimboSoulsOfJudgement
 {
     public class KarmaBar : GameObjectPassive
     {
+        /// <summary>
+        /// The texture of the karmaBar
+        /// </summary>
         public Texture2D karmaBarTexture;
         private Rectangle karmaBarSize;
         float size;
@@ -26,7 +29,7 @@ namespace LimboSoulsOfJudgement
         /// <summary>
         /// Update method that updates the position of the karmabar and the size based on how much good karma in comparison to bad karma.
         /// </summary>
-        /// <param name="gameTime"></param>
+        /// <param name="gameTime">Time elapsed since last call in the update</param>
         public override void Update(GameTime gameTime)
         {
             
@@ -53,9 +56,9 @@ namespace LimboSoulsOfJudgement
         }
 
         /// <summary>
-        /// Draw method that draws the karmabar
+        /// Draw method that draws the karmabar and the text in the karmabar
         /// </summary>
-        /// <param name="spriteBatch"></param>
+        /// <param name="spriteBatch">The spritebatch used for drawing</param>
         public override void Draw(SpriteBatch spriteBatch)
         {
             spriteBatch.Draw(karmaBarTexture, position, karmaBarSize, Color.White, 0f, Vector2.Zero, 1f, SpriteEffects.None, 0.992f);
