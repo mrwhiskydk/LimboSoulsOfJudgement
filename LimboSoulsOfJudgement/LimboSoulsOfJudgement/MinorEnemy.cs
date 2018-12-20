@@ -9,10 +9,6 @@ namespace LimboSoulsOfJudgement
 {
     public class MinorEnemy : Enemy
     {
-
-        public int karma;
-
-
         /// <summary>
         /// Checks if the code for (aggro if enemy is aggro'ed nearby) should be run
         /// </summary>

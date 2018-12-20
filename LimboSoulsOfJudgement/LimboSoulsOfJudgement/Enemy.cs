@@ -34,23 +34,26 @@ namespace LimboSoulsOfJudgement
         /// Checks if an enemy should go after the player vertically
         /// </summary>
         protected bool goVertically;
-
+        /// <summary>
+        /// Used in collision so that you dont need a gameTime in DoCollision
+        /// </summary>
         protected double collisionMovement;
+
         protected const float jumpPower = 1600;
         protected double jumpForce = jumpPower;
         protected double jumpTime;
         protected bool isJumping = false;
-        
+
 
 
 
         /// <summary>
         /// Enemy constructor that sets animation values, position and sprite names of MinorEnemy and BossEnemy
         /// </summary>
-        /// <param name="frameCount"></param>
-        /// <param name="animationFPS"></param>
-        /// <param name="startPostion"></param>
-        /// <param name="spriteName"></param>
+        /// <param name="frameCount">How many frames in the spritesheet</param>
+        /// <param name="animationFPS">The speed the frames change</param>
+        /// <param name="startPostion">The start position</param>
+        /// <param name="spriteName">Name of the sprite</param>
         public Enemy(int frameCount, float animationFPS, Vector2 startPostion, string spriteName) : base(frameCount, animationFPS, startPostion, spriteName)
         {
             immortalDuration = 0.5f;

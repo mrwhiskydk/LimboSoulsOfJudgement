@@ -53,7 +53,7 @@ namespace LimboSoulsOfJudgement
         /// </summary>
         protected bool knockback = false;
         /// <summary>
-        /// 
+        /// The amount of time the knock will last
         /// </summary>
         protected double knockbackTime;
         /// <summary>
