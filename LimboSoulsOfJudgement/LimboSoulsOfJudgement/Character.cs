@@ -49,7 +49,7 @@ namespace LimboSoulsOfJudgement
         /// </summary>
         protected bool canJump = false;
         /// <summary>
-        /// Checks if a character should be knocked back by the players weapon
+        /// Checks if a character should be knocked back 
         /// </summary>
         protected bool knockback = false;
         /// <summary>

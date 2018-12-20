@@ -11,7 +11,9 @@ namespace LimboSoulsOfJudgement
 
     public class LightningBoltAbility : Ability
     {
-
+        /// <summary>
+        /// Constructor
+        /// </summary>
         public LightningBoltAbility() : base("LightningBoltAbility")
         {
             cooldown = 10;
@@ -19,6 +21,9 @@ namespace LimboSoulsOfJudgement
             sound = new Sound("sound/lightningbolt");
         }
 
+        /// <summary>
+        /// Used to activate the ability
+        /// </summary>
         public override void UseAbility()
         {
             base.UseAbility();
@@ -28,6 +33,10 @@ namespace LimboSoulsOfJudgement
             new LightningBolt(playerPosition, direction);
         }
 
+        /// <summary>
+        /// Method gets run every game tick to update position to the ability bar
+        /// </summary>
+        /// <param name="gameTime"></param>
         public override void Update(GameTime gameTime)
         {
             base.Update(gameTime);
@@ -54,6 +63,11 @@ namespace LimboSoulsOfJudgement
             private Vector2 dir;
             private double timeAlive = 0;
 
+            /// <summary>
+            /// Constructor 
+            /// </summary>
+            /// <param name="startPosition">Start position of the ability</param>
+            /// <param name="dir">The direction to fly</param>
             public LightningBolt(Vector2 startPosition, Vector2 dir) : base(4, 20, startPosition, "LightningBolt")
             {
                 this.dir = dir;
@@ -66,6 +80,10 @@ namespace LimboSoulsOfJudgement
                 rotation = (float)Math.Atan2(dir.Y, dir.X);
             }
 
+            /// <summary>
+            /// Method gets run every game tick to propel forward the ability and checks how long the ability has been active for
+            /// </summary>
+            /// <param name="gameTime"></param>
             public override void Update(GameTime gameTime)
             {
                 position += dir * speed * (float)gameTime.ElapsedGameTime.TotalSeconds;
@@ -78,6 +96,10 @@ namespace LimboSoulsOfJudgement
                 }
             }
 
+            /// <summary>
+            /// Check if we are colliding with an enemy
+            /// </summary>
+            /// <param name="otherObject">The object we are colliding with</param>
             public override void DoCollision(GameObject otherObject)
             {
                 if (otherObject is Enemy)
@@ -88,6 +110,10 @@ namespace LimboSoulsOfJudgement
                 }
             }
 
+            /// <summary>
+            /// Method that draws the ability
+            /// </summary>
+            /// <param name="spriteBatch"></param>
             public override void Draw(SpriteBatch spriteBatch)
             {
                 spriteBatch.Draw(sprite, position, animationRectangles[currentAnimationIndex], Color.White, rotation, new Vector2(animationRectangles[currentAnimationIndex].Width * 0.5f, animationRectangles[currentAnimationIndex].Height * 0.5f), 1f, SpriteEffects.None, 0.991f);

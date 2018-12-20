@@ -10,8 +10,10 @@ namespace LimboSoulsOfJudgement
 {
     public abstract class Enemy : Character
     {
+        /// <summary>
+        /// The damage an enemy does to the players health
+        /// </summary>
         public int enemyDamage;
-
         /// <summary>
         /// The value of an enemies soul
         /// </summary>

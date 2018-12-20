@@ -47,13 +47,16 @@ namespace LimboSoulsOfJudgement
         private double collisionMovement; // Used for collision so you dont need gameTime in DoCollision
         private bool hittingRoof = false;
         private bool inAir;
-        private double newLevelTimer;
+
         private double chainJumpTimer;
 
         /// <summary>
         /// Sets the value for wether or not the Player GameObject is able to climb up specific GameObjects
         /// </summary>
         public bool climb = false;
+        /// <summary>
+        /// Is set to true if the player activates a portal
+        /// </summary>
         private bool nextLevel = false;
         private const float jumpPower = 1600;
         private double jumpForce = jumpPower;
@@ -96,6 +99,7 @@ namespace LimboSoulsOfJudgement
         /// </summary>
         public float critDmgModifier = 1.5f;
 
+
         /// <summary>
         /// Player constructor that sets player animation values, position and sprite name. 
         /// Sets the current equipped Weapon, Arm and Ability GameObjects: MeleeWeapon, RangedWeapon, Arm, BloodstormAbility & LightningBoltAbility.
@@ -111,6 +115,7 @@ namespace LimboSoulsOfJudgement
             ability1 = new BloodstormAbility();
             ability2 = new LightningBoltAbility();
             ability3 = new UltimateAbility();
+
 
             //Maximum amount of Player health
             maxHealth = 100;
@@ -136,8 +141,8 @@ namespace LimboSoulsOfJudgement
         {
             base.Update(gameTime);
             collisionMovement = movementSpeed * gameTime.ElapsedGameTime.TotalSeconds;
-            newLevelTimer += gameTime.ElapsedGameTime.TotalSeconds;
             chainJumpTimer += gameTime.ElapsedGameTime.TotalSeconds;
+            
             // If the player is under maxHealth activate healthRegen
             if (health < maxHealth)
             {
@@ -216,14 +221,15 @@ namespace LimboSoulsOfJudgement
                 }
             }
 
+            // Teleports the player to stage 10, which is the boss room
             if (nextLevel == true)
             {
                 GameWorld.stage = 10;
                 GameWorld.teleport = true;
                 nextLevel = false;
-
             }
 
+            // If knockback is true the player must be pushed back 
             if (knockback == true)
             {
                 knockbackTime += gameTime.ElapsedGameTime.TotalSeconds;
@@ -540,10 +546,9 @@ namespace LimboSoulsOfJudgement
                 isImmortal = true;
             }
 
-            if ((otherObject is Portal && Keyboard.GetState().IsKeyDown(Keys.E) && GameWorld.teleport == false) && newLevelTimer > 1)
+            if ((otherObject is Portal && Keyboard.GetState().IsKeyDown(Keys.E) && GameWorld.teleport == false))
             {
                 nextLevel = true;
-                newLevelTimer = 0;
             }
 
         }

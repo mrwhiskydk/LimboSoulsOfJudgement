@@ -13,7 +13,13 @@ namespace LimboSoulsOfJudgement
         public MinorEnemy minorEnemy;
         public Portal portal;
         public Lava movingLava;
+        /// <summary>
+        /// Checks if a level has been loaded
+        /// </summary>
         public bool levelLoaded = false;
+        /// <summary>
+        /// Checks if the final boss has been loaded
+        /// </summary>
         public bool finalBoss = false;
         public Level()
         {
@@ -40,119 +46,60 @@ namespace LimboSoulsOfJudgement
                 PlaceBlocks(2, 1, 31, 27, 2);
                 PlaceBlocks(2, 1, 9, 29, 2);
                 PlaceBlocks(2, 1, 25, 29, 11);
-                for (int i = 0; i < 7; i++)
-                {
-                    new Platform(new Vector2((89 * 64), i * 128 + (21 * 64)), "MediumBlock");
-                }
-                for (int i = 0; i < 4; i++)
-                {
-                    new Platform(new Vector2(128 + i * 256, 23*128), "BigBlock");
-                }
-                for (int i = 0; i < 5; i++)
-                {
-                    new Platform(new Vector2((1 * 64) + i * 128, (43 * 64)), "MediumBlock");
-                }
-                for (int i = 0; i < 4; i++)
-                {
-                    new Platform(new Vector2((1 * 64) + i * 128, (41 * 64)), "MediumBlock");
-                }
-                for (int i = 0; i < 9; i++)
-                {
-                    new Platform(new Vector2((45 * 64) + i * 128, (55 * 64)), "MediumBlock");
-                }
-                for (int i = 0; i < 8; i++)
-                {
-                    new Platform(new Vector2((47 * 64) + i * 128, (53 * 64)), "MediumBlock");
-                }
-                for (int i = 0; i < 7; i++)
-                {
-                    new Platform(new Vector2((49 * 64) + i * 128, (51 * 64)), "MediumBlock");
-                }
-                for (int i = 0; i < 6; i++)
-                {
-                    new Platform(new Vector2((51 * 64) + i * 128, (49 * 64)), "MediumBlock");
-                }
-                for (int i = 0; i < 5; i++)
-                {
-                    new Platform(new Vector2((53 * 64) + i * 128, (47 * 64)), "MediumBlock");
-                }
-                for (int i = 0; i < 4; i++)
-                {
-                    new Platform(new Vector2((55 * 64) + i * 128, (45 * 64)), "MediumBlock");
-                }
-                for (int i = 0; i < 3; i++)
-                {
-                    new Platform(new Vector2((57 * 64) + i * 128, (43 * 64)), "MediumBlock");
-                }
-                for (int i = 0; i < 3; i++)
-                {
-                    new Platform(new Vector2((67 * 64) + i * 128, (43 * 64)), "MediumBlock");
-                }
-                for (int i = 0; i < 3; i++)
-                {
-                    new Platform(new Vector2((73 * 64), i * 128 + (39 * 64)), "MediumBlock");
-                }
-                for (int i = 0; i < 4; i++)
-                {
-                    new Platform(new Vector2((81 * 64) + i * 128, (33 * 64)), "MediumBlock");
-                }
-
-                new Platform(new Vector2((77 * 64), (31 * 64)), "MediumBlock");
-                new Platform(new Vector2((73 * 64), (31 * 64)), "MediumBlock");
-                new Platform(new Vector2((71 * 64), (31 * 64)), "MediumBlock");
-                new Platform(new Vector2((69 * 64), (31 * 64)), "MediumBlock");
-                new Platform(new Vector2((65 * 64), (31 * 64)), "MediumBlock");
-                new Platform(new Vector2((63 * 64), (31 * 64)), "MediumBlock");
-                new Platform(new Vector2((61 * 64), (31 * 64)), "MediumBlock");
-                new Platform(new Vector2((57 * 64), (31 * 64)), "MediumBlock");
-                new Platform(new Vector2((21 * 64), (45 * 64)), "MediumBlock");
-                new Platform(new Vector2((27 * 64), (49 * 64)), "MediumBlock");
-                new Platform(new Vector2((35 * 64), (49 * 64)), "MediumBlock");
-                new Platform(new Vector2((41 * 64), (45 * 64)), "MediumBlock");
-
-                new Platform(new Vector2(9 * 64, 27 * 64), "MediumBlock");
-                new Platform(new Vector2(39 * 64, 9 * 64), "MediumBlock");
-                new Platform(new Vector2(45 * 64, 9 * 64), "MediumBlock");
-                new Platform(new Vector2(3776, 768), "MediumBlock");
-                new Platform(new Vector2(3392, 704), "MediumBlock");
-                new Platform(new Vector2(3520, 704), "MediumBlock");
-                new Platform(new Vector2(1664, 768), "BigBlock");
-                new Platform(new Vector2(1920, 768), "BigBlock");
-                new Platform(new Vector2(2112, 832), "MediumBlock");
-                new Platform(new Vector2(960, 448), "MediumBlock");
-                new Platform(new Vector2(1344, 448), "MediumBlock");
+                PlaceBlocks(2, 2, 89, 21, 7);
+                PlaceBlocks(3, 1, 2, 46, 4);
+                PlaceBlocks(2, 1, 1, 43, 5);
+                PlaceBlocks(2, 1, 1, 41, 4);
+                PlaceBlocks(2, 1, 45, 55, 9);
+                PlaceBlocks(2, 1, 47, 53, 8);
+                PlaceBlocks(2, 1, 49, 51, 7);
+                PlaceBlocks(2, 1, 51, 49, 6);
+                PlaceBlocks(2, 1, 53, 47, 5);
+                PlaceBlocks(2, 1, 55, 45, 4);
+                PlaceBlocks(2, 1, 57, 43, 3);
+                PlaceBlocks(2, 1, 67, 43, 3);
+                PlaceBlocks(2, 2, 73, 39, 3);
+                PlaceBlocks(2, 1, 81, 33, 4);
+                PlaceBlocks(2, 1, 77, 31, 1);
+                PlaceBlocks(2, 1, 73, 31, 1);
+                PlaceBlocks(2, 1, 71, 31, 1);
+                PlaceBlocks(2, 1, 69, 31, 1);
+                PlaceBlocks(2, 1, 65, 31, 1);
+                PlaceBlocks(2, 1, 63, 31, 1);
+                PlaceBlocks(2, 1, 61, 31, 1);
+                PlaceBlocks(2, 1, 57, 31, 1);
+                PlaceBlocks(2, 1, 21, 45, 1);
+                PlaceBlocks(2, 1, 27, 49, 1);
+                PlaceBlocks(2, 1, 35, 49, 1);
+                PlaceBlocks(2, 1, 41, 45, 1);
+                PlaceBlocks(2, 1, 9, 27, 1);
+                PlaceBlocks(2, 1, 39, 9, 1);
+                PlaceBlocks(2, 1, 45, 9, 1);
+                PlaceBlocks(2, 1, 59, 12, 1);
+                PlaceBlocks(2, 1, 53, 11, 1);
+                PlaceBlocks(2, 1, 55, 11, 1);
+                PlaceBlocks(3, 1, 26, 12, 1);
+                PlaceBlocks(3, 1, 30, 12, 1);
+                PlaceBlocks(2, 1, 33, 13, 1);
+                PlaceBlocks(2, 1, 15, 7, 1);
+                PlaceBlocks(2, 1, 21, 7, 1);
 
                 // Trapdoor
                 PlaceBlocks(4, 1, 63, 43, 2);
 
 
                 //Chains
-                for (int i = 0; i < 15; i++)
-                {
-                    new Chain(new Vector2(4670, 35 + i * 64), "chain");
-                }
-                for (int i = 0; i < 15; i++)
-                {
-                    new Chain(new Vector2(210, 1187 + i * 64), "chain");
-                }
-                for (int i = 0; i < 16; i++)
-                {
-                    new Chain(new Vector2(1980, 2210 + i * 64), "chain");
-                }
-                for (int i = 0; i < 12; i++)
-                {
-                    new Chain(new Vector2(5200, 2468 + i * 64), "chain");
-                }
+                PlaceBlocks(6, 2, 73, 0, 15);
+                PlaceBlocks(6, 2, 3, 18, 15);
+                PlaceBlocks(6, 2, 31, 34, 16);
+                PlaceBlocks(6, 2, 81, 38, 12);
 
                 //Lava
                 for (int i = 0; i < 6; i++)
                 {
                     new Lava(new Vector2((13 * 64) + i * 128, (708)), "SurfaceLava");
                 }
-                for (int i = 0; i < 6; i++)
-                {
-                    new Lava(new Vector2((13 * 64) + i * 128, (13 * 64)), "MediumLava");
-                }
+                PlaceBlocks(5, 1, 13, 13, 6);
                 for (int i = 0; i < 13; i++)
                 {
                     new Lava(new Vector2((55 * 64) + i * 128, (2116)), "SurfaceLava");
@@ -278,8 +225,7 @@ namespace LimboSoulsOfJudgement
                 PlaceBlocks(2, 1, 77, 7, 2);
 
                 //Chains
-                PlaceBlocks(6, 2, 72, 0, 10);
-                PlaceBlocks(6, 2, 69, 0, 10);
+                PlaceBlocks(6, 2, 71, 0, 10);
                 PlaceBlocks(6, 2, 60, 0, 10);
                 PlaceBlocks(6, 2, 54, 0, 10);
                 PlaceBlocks(6, 2, 48, 0, 10);
@@ -343,9 +289,7 @@ namespace LimboSoulsOfJudgement
                     PlaceEnemy(3, 56, 14);
                     PlaceEnemy(3, 66, 14);
                 }
-                levelLoaded = true;
-
-                
+                levelLoaded = true;                
             }
             if (GameWorld.stage == 3)
             {
@@ -381,7 +325,7 @@ namespace LimboSoulsOfJudgement
                 PlaceBlocks(2, 1, 71, 63, 2);
                 PlaceBlocks(2, 1, 79, 63, 2);
                 PlaceBlocks(2, 1, 87, 63, 2);
-                PlaceBlocks(2, 1, 71, 43, 4);
+                PlaceBlocks(2, 1, 71, 43, 5);
                 PlaceBlocks(2, 1, 78, 25, 2);
                 PlaceBlocks(3, 1, 84, 34, 2);
                 PlaceBlocks(2, 1, 83, 17, 4);
@@ -449,19 +393,19 @@ namespace LimboSoulsOfJudgement
                 }
                 if (GameWorld.badKarmaButton.currentKarma > GameWorld.goodKarmaButton.currentKarma)
                 {
-                    PlaceEnemy(1, 16, 21);
-                    PlaceEnemy(1, 2, 33);
-                    PlaceEnemy(1, 16, 45);
-                    PlaceEnemy(1, 43, 36);
-                    PlaceEnemy(1, 80, 59);
-                    PlaceEnemy(1, 86, 32);
-                    PlaceEnemy(1, 28, 21);
-                    PlaceEnemy(1, 36, 21);
-                    PlaceEnemy(1, 46, 21);
-                    PlaceEnemy(1, 56, 21);
-                    PlaceEnemy(1, 86, 14);
-                    PlaceEnemy(1, 36, 7);
-                    PlaceEnemy(1, 60, 7);
+                    PlaceEnemy(2, 16, 21);
+                    PlaceEnemy(2, 2, 33);
+                    PlaceEnemy(2, 16, 45);
+                    PlaceEnemy(2, 43, 36);
+                    PlaceEnemy(2, 80, 59);
+                    PlaceEnemy(2, 86, 32);
+                    PlaceEnemy(2, 28, 21);
+                    PlaceEnemy(2, 36, 21);
+                    PlaceEnemy(2, 46, 21);
+                    PlaceEnemy(2, 56, 21);
+                    PlaceEnemy(2, 86, 14);
+                    PlaceEnemy(2, 36, 7);
+                    PlaceEnemy(2, 60, 7);
                 }
                 if (GameWorld.badKarmaButton.currentKarma == GameWorld.goodKarmaButton.currentKarma)
                 {
