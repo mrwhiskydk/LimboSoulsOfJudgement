@@ -248,7 +248,10 @@ namespace LimboSoulsOfJudgement
         }
 
 
-
+        /// <summary>
+        /// GameWorld's Constructor, that sets the graphical functionalities of the game.
+        /// Also toggles fullscreen, and sets the default width and height values of the screen.
+        /// </summary>
         public GameWorld()
         {
             graphics = new GraphicsDeviceManager(this);
@@ -262,21 +265,37 @@ namespace LimboSoulsOfJudgement
 
         }
 
+        /// <summary>
+        /// Handles the functionlity of adding the current GameObject to the game
+        /// </summary>
+        /// <param name="go">Is the current GameObject</param>
         public static void AddGameObject(GameObject go)
         {
             toBeAdded.Add(go);
         }
 
+        /// <summary>
+        /// Handles the functionality of removing the current GameObject from the game
+        /// </summary>
+        /// <param name="go">Is the current GameObject</param>
         public static void RemoveGameObject(GameObject go)
         {
             toBeRemoved.Add(go);
         }
 
+        /// <summary>
+        /// Handles the functionality of adding the current GameObjectPassive to the game
+        /// </summary>
+        /// <param name="go">Is the current GameObjectPassive</param>
         public static void AddGameObjectPassive(GameObjectPassive go)
         {
             toBeAddedPassive.Add(go);
         }
 
+        /// <summary>
+        /// Handles the functionality of removing the current GameObjectPassive from the game
+        /// </summary>
+        /// <param name="go">Is the current GameObjectPassive</param>
         public static void RemoveGameObjectPassive(GameObjectPassive go)
         {
             toBeRemovedPassive.Add(go);
@@ -314,7 +333,7 @@ namespace LimboSoulsOfJudgement
             winScreen = Content.Load<Texture2D>("YouWin");
             pauseScreen = Content.Load<Texture2D>("Pause");
 
-            //Sound
+            //Loads the Sound
             MediaPlayer.Volume = 0.05f;
             MediaPlayer.IsRepeating = true;
             musicMain = Content.Load<Song>("sound/musicmain");
@@ -367,9 +386,6 @@ namespace LimboSoulsOfJudgement
             
         }
 
-
-
-        //go = new AnimatedGameObject(4,20,Content,"HeroStrip");
 
         /// <summary>
         /// UnloadContent will be called once per game and is the place to unload
