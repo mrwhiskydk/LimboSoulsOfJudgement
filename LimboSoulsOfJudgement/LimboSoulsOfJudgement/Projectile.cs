@@ -40,6 +40,10 @@ namespace LimboSoulsOfJudgement
             rotation = (float)Math.Atan2(dir.Y, dir.X);
         }
 
+        /// <summary>
+        /// Method that run every game tick. Propels the projectile forward and checks how long the arrow has been alive for
+        /// </summary>
+        /// <param name="gameTime"></param>
         public override void Update(GameTime gameTime)
         {
             position += dir * speed * (float)gameTime.ElapsedGameTime.TotalSeconds;
@@ -56,15 +60,23 @@ namespace LimboSoulsOfJudgement
 
         }
 
+        /// <summary>
+        /// Method that draws the projectile
+        /// </summary>
+        /// <param name="spriteBatch"></param>
         public override void Draw(SpriteBatch spriteBatch)
         {
             spriteBatch.Draw(sprite, position, null, Color.White, rotation, new Vector2(sprite.Width * 0.5f, sprite.Height * 0.5f), 1f, SpriteEffects.None, 0.86f);
         }
 
+        /// <summary>
+        /// Check if we are colliding with an object.
+        /// </summary>
+        /// <param name="otherObject">The object we are colliding with</param>
         public override void DoCollision(GameObject otherObject)
         {
             base.DoCollision(otherObject);
-            if (otherObject is Platform)
+            if (otherObject is Platform) //If object is platform then get stuck in it
             {
                 speed = 0;
                 damage = 0;

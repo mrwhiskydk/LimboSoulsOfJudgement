@@ -29,11 +29,6 @@ namespace LimboSoulsOfJudgement
             }
         }
 
-        public AnimatedGameObject(int frameCount, float animationFPS, string spriteName) : this(frameCount, animationFPS, Vector2.Zero, spriteName)
-        {
-                        
-        }
-
         public AnimatedGameObject(int frameCount, float animationFPS, Vector2 startPostion, string spriteName) : base(startPostion, spriteName)
         {
             this.animationFPS = animationFPS;
@@ -63,9 +58,14 @@ namespace LimboSoulsOfJudgement
             }
         }
 
+        /// <summary>
+        /// Method to change the sprite of an animated gameobject
+        /// </summary>
+        /// <param name="frameCount">How many frames in the spritesheet</param>
+        /// <param name="spriteName">Name of the sprite</param>
         public void State(int frameCount, string spriteName)
         {
-            if (sprite.Name != spriteName)
+            if (sprite.Name != spriteName) //Make sure its not the same sprite so we dont keep "resetting" the sprite to frame 1 never having any animation
             {
                 sprite = GameWorld.ContentManager.Load<Texture2D>(spriteName);
                 animationRectangles = new Rectangle[frameCount];

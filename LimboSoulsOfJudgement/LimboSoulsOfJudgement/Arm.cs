@@ -17,9 +17,13 @@ namespace LimboSoulsOfJudgement
             
         }
         
+        /// <summary>
+        /// Method gets run every game tick
+        /// </summary>
+        /// <param name="gameTime"></param>
         public override void Update(GameTime gameTime)
         {
-            //arm stuff
+            //if we are holding a ranged weapon rotate towards mouse
             if (GameWorld.player.weapon is RangedWeapon)
             {
                 Vector2 dir = new Vector2(GameWorld.mouse.Position.X, GameWorld.mouse.Position.Y) - position;
@@ -30,7 +34,7 @@ namespace LimboSoulsOfJudgement
                 rotation = (float)System.Math.Atan2(dir.Y, dir.X) + MathHelper.ToRadians(-90);
             }
             
-
+            //if melee is equipped and we are attacking then rotate the weapon accordingly
             if (GameWorld.player.weapon is MeleeWeapon)
             {
                 if (GameWorld.player.melee.isAttacking)
@@ -59,6 +63,7 @@ namespace LimboSoulsOfJudgement
                 }
             }
 
+            //rotate accordingly to the direction we are facing
             if (GameWorld.player.facingRight is true)
             {
                 position = new Vector2(GameWorld.player.Position.X + 15, GameWorld.player.Position.Y - 30);
@@ -67,9 +72,12 @@ namespace LimboSoulsOfJudgement
             {
                 position = new Vector2(GameWorld.player.Position.X - 15, GameWorld.player.Position.Y - 30);
             }
-            
         }
-
+        
+        /// <summary>
+        /// Method to draw our sprite
+        /// </summary>
+        /// <param name="spriteBatch"></param>
         public override void Draw(SpriteBatch spriteBatch)
         {
             if (GameWorld.player.weapon is RangedWeapon)

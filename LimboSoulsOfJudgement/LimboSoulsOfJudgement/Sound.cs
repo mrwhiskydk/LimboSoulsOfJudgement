@@ -12,9 +12,9 @@ namespace LimboSoulsOfJudgement
         SoundEffect sound;
 
         /// <summary>
-        /// 
+        /// Constructor
         /// </summary>
-        /// <param name="sound"></param>
+        /// <param name="sound">Name of the sound</param>
         public Sound(string sound)
         {
             this.sound = GameWorld.ContentManager.Load<SoundEffect>(sound);
