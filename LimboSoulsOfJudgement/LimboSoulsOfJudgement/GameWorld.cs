@@ -40,9 +40,21 @@ namespace LimboSoulsOfJudgement
         /// Sets the Camera GameObject, as a static field, allowing its use & functionality between other classes
         /// </summary>
         public static Camera camera;
+        /// <summary>
+        /// Sets a static field of a SpriteFont, used for drawing default text onto the screen
+        /// </summary>
         public static SpriteFont font;
+        /// <summary>
+        /// Sets the Vendor GameObject, as a static field, allowing its use & functionality between other classes
+        /// </summary>
         public static Vendor vendor;
+        /// <summary>
+        /// Sets the UI GameObject, as a static field, allowing its use & functionality between other classes
+        /// </summary>
         public static UI ui;
+        /// <summary>
+        /// Sets a static field of a SpriteFont, used for drawing damaging numbers onto the screen as text
+        /// </summary>
         public static SpriteFont damageFont;
         /// <summary>
         /// Sets the Song GameObject, as a static field, allowing its use & functionality between other classes.
@@ -136,6 +148,10 @@ namespace LimboSoulsOfJudgement
         /// </summary>
         public static BuyGodModeAbility buyGodModeAbility;
 
+        /// <summary>
+        /// Static field which's value sets wether or not the GameObject of the game's final boss should be added to the game.
+        /// If value is set true, the boss will be added to the game
+        /// </summary>
         public static bool triggerFinalBoss = false;
 
 
@@ -555,6 +571,9 @@ namespace LimboSoulsOfJudgement
 
         /// <summary>
         /// This is called when the game should draw itself.
+        /// Draws the text connected to the different Sub-Class buttons, once the value of triggerVendor is set true (Costs, values, Completed/NonCompleted purchases, karma requirements & other button requirements).
+        /// Draws most current values of the Player GameObject, text of the pause menu (once the value of pause is true) & other UI elements;
+        /// shadow, background, win/lose screen, aura's, pause screen & moving lava 
         /// </summary>
         /// <param name="gameTime">Provides a snapshot of timing values.</param>
         protected override void Draw(GameTime gameTime)
@@ -872,6 +891,7 @@ namespace LimboSoulsOfJudgement
 
             base.Draw(gameTime);
         }
+
 
         private void DrawCollisionBox(GameObject go)
         {
