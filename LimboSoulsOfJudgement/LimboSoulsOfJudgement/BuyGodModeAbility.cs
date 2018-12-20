@@ -8,7 +8,7 @@ using Microsoft.Xna.Framework;
 namespace LimboSoulsOfJudgement
 {
     /// <summary>
-    /// Public Class that represents the functionality and game logic of the BuyGodModeAbility
+    /// Public Class that represents the functionality and game logic of the BuyGodModeAbility's Button
     /// </summary>
     public class BuyGodModeAbility : Button
     {
@@ -39,9 +39,12 @@ namespace LimboSoulsOfJudgement
         }
 
         /// <summary>
-        /// 
+        /// Overridden method that enables Button click and purchase of the GodMode/Ultimate Ability.
+        /// Adds a small time period between each click.
+        /// Sets the value of abilityPurchased to true, making it possible for the Player GameObject to use the Ability.
+        /// Handles math calculations of soul currency, stat cost and stat increase
         /// </summary>
-        /// <param name="gameTime"></param>
+        /// <param name="gameTime">Time elapsed since last call in the Update</param>
         public override void UpgradeStat(GameTime gameTime)
         {
             mouseClicked += gameTime.ElapsedGameTime.TotalSeconds;

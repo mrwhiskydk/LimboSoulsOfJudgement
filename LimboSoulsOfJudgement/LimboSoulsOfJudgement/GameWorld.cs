@@ -10,7 +10,7 @@ using System.Collections.Generic;
 namespace LimboSoulsOfJudgement
 {
     /// <summary>
-    /// This is the main type for your game.
+    /// Public Class that represents the main type of the game.
     /// </summary>
     public class GameWorld : Game
     {

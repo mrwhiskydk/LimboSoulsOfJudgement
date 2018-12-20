@@ -8,7 +8,7 @@ using Microsoft.Xna.Framework;
 namespace LimboSoulsOfJudgement
 {
     /// <summary>
-    /// Public Class that represents the functionality and game logic of the BuyBloodStormButton
+    /// Public Class that represents the functionality and game logic of the BuyBloodStormButton's Button
     /// </summary>
     public class BuyBloodStormButton : Button
     {
@@ -33,7 +33,7 @@ namespace LimboSoulsOfJudgement
         /// Updates the BuyBloodStormButton's game logic
         /// Also checks if current amount of bad karma has reached the required karma value in order to begin the purchasing process
         /// </summary>
-        /// <param name="gameTime"></param>
+        /// <param name="gameTime">Time elapsed since last call in the Update</param>
         public override void Update(GameTime gameTime)
         {
 
@@ -45,9 +45,13 @@ namespace LimboSoulsOfJudgement
 
 
         /// <summary>
-        /// 
+        /// Overridden method that enables Button click and purchase of the Bloodstorm Ability.
+        /// Adds a small time period between each click.
+        /// Sets the value of abilityPurchased to true, making it possible for the Player GameObject to use the Ability.
+        /// Handles math calculations of soul currency, stat cost and stat increase
+        /// Sets the Bloodstorm Ability onto the UI Ability Bar.
         /// </summary>
-        /// <param name="gameTime"></param>
+        /// <param name="gameTime">Time elapsed since last call in the Update</param>
         public override void UpgradeStat(GameTime gameTime)
         {
             mouseClicked += gameTime.ElapsedGameTime.TotalSeconds;

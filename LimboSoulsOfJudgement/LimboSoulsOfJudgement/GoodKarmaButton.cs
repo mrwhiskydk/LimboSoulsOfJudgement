@@ -8,7 +8,7 @@ using Microsoft.Xna.Framework;
 namespace LimboSoulsOfJudgement
 {
     /// <summary>
-    /// Public Class that represents the functionality and game logic of the GoodKarmaButton
+    /// Public Class that represents the functionality and game logic of the GoodKarmaButton's Button
     /// </summary>
     public class GoodKarmaButton : Button
     {
@@ -38,7 +38,10 @@ namespace LimboSoulsOfJudgement
         }
 
         /// <summary>
-        /// Overridden UpgradeStat Method that sets its game logic
+        /// Overridden method that enables Button click, purchase and upgrades of Good/Angel Player Karma.
+        /// Adds a small time period between each click.
+        /// Increases the Good/Angel Karma amount, equal to its value.
+        /// Handles math calculations of soul currency, stat cost and stat increase
         /// </summary>
         /// <param name="gameTime">Time elapsed since last call in the update</param>
         public override void UpgradeStat(GameTime gameTime)
