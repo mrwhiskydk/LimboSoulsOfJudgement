@@ -7,6 +7,9 @@ using Microsoft.Xna.Framework;
 
 namespace LimboSoulsOfJudgement
 {
+    /// <summary>
+    /// Public class that represents the default functionality and game logic of the Chain GameObject
+    /// </summary>
     public class Chain : GameObject
     {
         /// <summary>

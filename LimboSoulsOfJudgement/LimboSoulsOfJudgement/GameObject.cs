@@ -8,6 +8,10 @@ using System.Threading.Tasks;
 
 namespace LimboSoulsOfJudgement
 {
+    /// <summary>
+    /// Public Class that represents the functionality and game logic of the currently added GameObjects in the game.
+    /// This Class contains most of the default fields and methods used within most GameObjects Class'.
+    /// </summary>
     public class GameObject
     {
         /// <summary>

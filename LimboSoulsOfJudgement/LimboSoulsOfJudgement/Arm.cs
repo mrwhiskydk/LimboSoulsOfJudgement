@@ -9,6 +9,9 @@ using Microsoft.Xna.Framework.Input;
 
 namespace LimboSoulsOfJudgement
 {
+    /// <summary>
+    /// Public Class that represents the functionality and game logic of the Arm GameObject
+    /// </summary>
     public class Arm : GameObject
     {
         /// <summary>

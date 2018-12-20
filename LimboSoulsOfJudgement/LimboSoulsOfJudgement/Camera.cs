@@ -7,6 +7,9 @@ using System.Threading.Tasks;
 
 namespace LimboSoulsOfJudgement
 {
+    /// <summary>
+    /// Public Class that represents the default functionality and game logic of the Camera Class
+    /// </summary>
     public class Camera
     {
         /// <summary>

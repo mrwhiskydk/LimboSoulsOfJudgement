@@ -9,6 +9,9 @@ using System.Threading.Tasks;
 
 namespace LimboSoulsOfJudgement
 {
+    /// <summary>
+    /// Public Class that represents the default functionality and game logic of the Crosshair GameObject
+    /// </summary>
     public class Crosshair : GameObject
     {
         /// <summary>
