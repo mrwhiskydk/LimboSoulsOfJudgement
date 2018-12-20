@@ -161,10 +161,19 @@ namespace LimboSoulsOfJudgement
         /// Sets the HealthBar GameObject, as a static field, allowing its use & functionality between other classes
         /// </summary>
         public static HealthBar healthBar;
+        /// <summary>
+        /// Used for setting the HealthBar Outline image, as a Texture2D
+        /// </summary>
         public static Texture2D healthBarOutline;
 
         // KarmaBar
+        /// <summary>
+        /// Sets the KarmaBar GameObject, as a static field, allowing its use & functionality between other classes
+        /// </summary>
         public static KarmaBar karmaBar;
+        /// <summary>
+        /// Used for setting the KarmaBar Outline image, as a Texture2D
+        /// </summary>
         public static Texture2D karmaBarOutline;
 
         /// <summary>
@@ -184,26 +193,42 @@ namespace LimboSoulsOfJudgement
         /// </summary>
         public static Level level;
         public static bool addLevel = true;
+        /// <summary>
+        /// Used for checking wether or not the current Player GameObject is alive or not, through values of true & false.
+        /// Used for respawning the Player & drawing UI elements onto the screen, should the Player die
+        /// </summary>
         public bool playerAlive;
+        /// <summary>
+        /// Used for checking if the player has won the game. Also draws out UI elements onto the screen should its value be set true
+        /// </summary>
         public bool gameWon = false;
         public static Random rnd = new Random();
         /// <summary>
         /// Sets the Crosshair GameObject, as a static field, allowing its use & functionality between other classes
         /// </summary>
         public static Crosshair mouse;
+
+        //Texture2D fields below, of background, shadow and good & evil aura's
         private Texture2D backGround;
         private Texture2D shadow;
         private Texture2D evilAura;
         private Texture2D goodAura;
+
         private static GraphicsDeviceManager graphics;
 
-        //Insert GameWorld fields below
+        /// <summary>
+        /// Sets the default amount of value, that Gravity produces once enabled onto a GameObject.
+        /// Used for pulling the current GameObject down (+) on the Y-axis, if they are not colliding with other specific GameObjects
+        /// </summary>
         public static float gravityStrength = 12f;
+
+        /// <summary>
+        /// Used for checking wether or not the Player & Vendor CollisionBox's are colliding with one another.
+        /// Its value of true, is used for drawing out the UI elements of the UI and Buttons.
+        /// Also enables the player to begin vendor interactions, which leads to the purchasing process' of Player increases and upgrades
+        /// </summary>
         public static bool triggerVendor = false;
-        //Fields below is used for Fade in and out Image
-        //private int alphaValue = 0;
-        //private static int fadeIncrease = 3;
-        //private double fadeDelay = 0;    //default is .010;
+
 
         public static Rectangle ScreenSize
         {
