@@ -9,7 +9,8 @@ using Microsoft.Xna.Framework.Graphics;
 namespace LimboSoulsOfJudgement
 {
     /// <summary>
-    /// Public Abstract Class that represents the default functionality and game logic for the current VendorUI Button GameObject
+    /// Public Abstract Class that represents the default functionality and game logic for the current VendorUI Button GameObject.
+    /// This Class contains most of the default fields and methods used within each of its Sub-Classes.
     /// </summary>
     public abstract class Button : GameObject
     {
@@ -72,7 +73,14 @@ namespace LimboSoulsOfJudgement
         /// </summary>
         public bool abilityPurchased;
 
+        /// <summary>
+        /// Sets the time space between each mouse click, once a button has been pressed
+        /// </summary>
         protected float nextClick = 0.2f;
+
+        /// <summary>
+        /// Sets the actual amount of time passed, once a button has been click
+        /// </summary>
         protected double mouseClicked;
 
         /// <summary>
@@ -110,7 +118,7 @@ namespace LimboSoulsOfJudgement
         
 
         /// <summary>
-        /// overridden Draw method that draws the button half transparent if pressed
+        /// overridden Draw method that draws the button half transparent if and/or while being pressed
         /// </summary>
         /// <param name="spriteBatch">The spritebatch used for drawing</param>
         public override void Draw(SpriteBatch spriteBatch)

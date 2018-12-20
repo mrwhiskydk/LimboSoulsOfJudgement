@@ -49,7 +49,7 @@ namespace LimboSoulsOfJudgement
         /// <summary>
         /// if the ability is activated, count the duration and set stats to *0.5
         /// </summary>
-        /// <param name="gameTime"></param>
+        /// <param name="gameTime">Time elapsed since last call in the update</param>
         public override void Update(GameTime gameTime)
         {
             base.Update(gameTime);

@@ -8,13 +8,14 @@ using Microsoft.Xna.Framework;
 namespace LimboSoulsOfJudgement
 {
     /// <summary>
-    /// Public Class that represents the functionality and game logic of the UpgradeLifestealBtn
+    /// Public Class that represents the functionality and game logic of the UpgradeLifestealBtn's Button
     /// </summary>
     public class UpgradeLifetealBtn : Button
     {
 
         /// <summary>
-        /// UpgradeLifestealBtn Constructor, that sets the default position and sprite name values
+        /// UpgradeLifestealBtn Constructor, that sets the default position and sprite name values.
+        /// Also sets this Class' default values of both: currentFloatStatValue, maxFloatStatValue, karmaRequirements, StatCost and floatStatIncrease
         /// </summary>
         public UpgradeLifetealBtn() : base(new Vector2(GameWorld.ui.Position.X + 475, GameWorld.ui.Position.Y + 165), "buttonUITest")
         {
@@ -26,7 +27,8 @@ namespace LimboSoulsOfJudgement
         }
 
         /// <summary>
-        /// Updates the UpgradeLifestealBtn game logic
+        /// Updates the UpgradeLifestealBtn's game logic.
+        /// Also checks if the required amount of karma has been reach in order to begin purchasing process
         /// </summary>
         /// <param name="gameTime">Time elapsed since last call in the update</param>
         public override void Update(GameTime gameTime)
@@ -42,7 +44,7 @@ namespace LimboSoulsOfJudgement
         /// Overridden method that enables Button click, purchase and upgrades of Player Lifesteal.
         /// Adds a small time period between each click.
         /// Increases the Lifesteal percentage amount, equal to its Lifesteal value.
-        /// Handles math calculations of soul currency, stat cost and stat increase
+        /// Handles math calculations of soul currency, stat cost, stat increase and karma requirements
         /// </summary>
         /// <param name="gameTime">Time elapsed since last call in the update</param>
         public override void UpgradeStat(GameTime gameTime)

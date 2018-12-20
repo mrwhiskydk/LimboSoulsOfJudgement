@@ -8,13 +8,14 @@ using Microsoft.Xna.Framework;
 namespace LimboSoulsOfJudgement
 {
     /// <summary>
-    /// Public Class that represents the functionality and game logic of the BuyLightningBoltButton
+    /// Public Class that represents the functionality and game logic of the BuyLightningBoltButton's Button
     /// </summary>
     public class BuyLightningBoltButton : Button
     {
 
         /// <summary>
         /// BuyLightningBoltButton's Constructor, that sets the default position and sprite name values.
+        /// Sets this Class' default values of both: currentStatValue, maxStatValue, karmaRequirements, StatCost and statIncrease.
         /// Also sets the abilityPurchased bool to false as default, since the ability have not yet been purchased
         /// </summary>
         public BuyLightningBoltButton() : base(new Vector2(GameWorld.ui.Position.X - 250, GameWorld.ui.Position.Y - 218), "buttonUITest")
@@ -30,10 +31,10 @@ namespace LimboSoulsOfJudgement
         }
 
         /// <summary>
-        /// Updates the BuyLightningBoltButton's game logic
+        /// Updates the BuyLightningBoltButton's game logic.
         /// Also checks if current amount of good karma has reached the required karma value in order to begin the purchasing process
         /// </summary>
-        /// <param name="gameTime"></param>
+        /// <param name="gameTime">Time elapsed since last call in the update</param>
         public override void Update(GameTime gameTime)
         {
 
@@ -44,7 +45,11 @@ namespace LimboSoulsOfJudgement
         }
 
         /// <summary>
-        /// 
+        /// Overridden method that enables Button click and purchase of the Lightning Bolt Ability.
+        /// Adds a small time period between each click.
+        /// Sets the value of abilityPurchased to true, making it possible for the Player GameObject to use the Ability.
+        /// Handles math calculations of soul currency, stat cost and stat increase
+        /// Sets the LightningBolt Ability onto the UI Ability Bar.
         /// </summary>
         /// <param name="gameTime"></param>
         public override void UpgradeStat(GameTime gameTime)

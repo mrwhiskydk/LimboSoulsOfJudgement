@@ -17,6 +17,10 @@ namespace LimboSoulsOfJudgement
             
         }
         
+        /// <summary>
+        /// Method gets run every game tick
+        /// </summary>
+        /// <param name="gameTime"></param>
         public override void Update(GameTime gameTime)
         {
             //if we are holding a ranged weapon rotate towards mouse

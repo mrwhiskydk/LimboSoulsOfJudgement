@@ -21,6 +21,9 @@ namespace LimboSoulsOfJudgement
         public static Texture2D bad1;
         public static Texture2D bad2;
 
+        /// <summary>
+        /// Constructor that also loads the sword sprites it can be upgraded to
+        /// </summary>
         public MeleeWeapon() : base("Sword")
         {
             damage = 10;
@@ -107,13 +110,6 @@ namespace LimboSoulsOfJudgement
                         rotation = MathHelper.ToRadians(270);
                         GameWorld.player.facingRight = false;
                     }
-                    
-                    /*
-                    rotation += (float)gameTime.ElapsedGameTime.TotalSeconds;
-                    rotSpeed += (float)gameTime.ElapsedGameTime.TotalSeconds;
-                    Matrix swordMatrix = Matrix.CreateRotationZ(rotSpeed) * Matrix.CreateTranslation(new Vector3(GameWorld.player.Position, 0f));
-                    position = Vector2.Transform(offset, swordMatrix);
-                    */
                 }
             }
         }

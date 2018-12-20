@@ -8,12 +8,15 @@ using Microsoft.Xna.Framework;
 namespace LimboSoulsOfJudgement
 {
     /// <summary>
-    /// Public Class that represents the functionality and game logic of the UpgradeRangedDamageBtn
+    /// Public Class that represents the functionality and game logic of the UpgradeRangedDamageBtn's Button
     /// </summary>
     public class UpgradeRangedDamageBtn : Button
     {
 
-
+        /// <summary>
+        /// UpgradeRangedDamageBtn Constructor, that sets the default position and sprite name values.
+        /// Also sets this Class' default values of both: currentStatValue, maxStatValue, StatCost and statIncrease
+        /// </summary>
         public UpgradeRangedDamageBtn() : base(new Vector2(GameWorld.ui.Position.X - 75, GameWorld.ui.Position.Y + 135), "buttonUITest")
         {
             currentStatValue = GameWorld.player.ranged.damage;
@@ -23,9 +26,9 @@ namespace LimboSoulsOfJudgement
         }
 
         /// <summary>
-        /// 
+        /// Updates the UpgradeRangedDamageBtn's game logic,
         /// </summary>
-        /// <param name="gameTime"></param>
+        /// <param name="gameTime">Time elapsed since last call in the Update</param>
         public override void Update(GameTime gameTime)
         {
             base.Update(gameTime);
@@ -33,9 +36,12 @@ namespace LimboSoulsOfJudgement
 
 
         /// <summary>
-        /// 
+        /// Overridden method that enables Button click, purchase and upgrades of Player Ranged Damage.
+        /// Adds a small time period between each click.
+        /// Increases the Damage amount, equal to its Damage value.
+        /// Handles math calculations of soul currency, stat cost and stat increase
         /// </summary>
-        /// <param name="gameTime"></param>
+        /// <param name="gameTime">Time elapsed since last call in the Update</param>
         public override void UpgradeStat(GameTime gameTime)
         {
             mouseClicked += gameTime.ElapsedGameTime.TotalSeconds;

@@ -10,8 +10,10 @@ namespace LimboSoulsOfJudgement
 {
     public abstract class Enemy : Character
     {
+        /// <summary>
+        /// The damage an enemy does to the players health
+        /// </summary>
         public int enemyDamage;
-
         /// <summary>
         /// The value of an enemies soul
         /// </summary>
@@ -34,9 +36,6 @@ namespace LimboSoulsOfJudgement
         protected bool goVertically;
         public int damageToDeal;
 
-
-        protected double patrolTime;
-        protected float patrolDuration;
         protected double collisionMovement;
         protected const float jumpPower = 1600;
         protected double jumpForce = jumpPower;

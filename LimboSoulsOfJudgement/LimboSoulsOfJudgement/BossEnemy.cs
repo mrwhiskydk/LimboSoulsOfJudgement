@@ -9,12 +9,33 @@ namespace LimboSoulsOfJudgement
 {
     public class BossEnemy : Enemy
     {
+        /// <summary>
+        /// Checks if the boss should be fighting normaly or doing a special move
+        /// </summary>
         private bool battleMode = true;
+        /// <summary>
+        /// If true the boss will disappear to one of the boss rooms corners and after 2 seconds, fly after the player with over double movespeed
+        /// </summary>
         private bool charge;
+        /// <summary>
+        /// Counts up to abilityDuration 
+        /// </summary>
         private double abilityTime;
+        /// <summary>
+        /// The time the boss should be waiting before charging
+        /// </summary>
         private float abilityDuration = 2f;
+        /// <summary>
+        /// Counts up to 12. The duration between charge moves
+        /// </summary>
         private double battleModeTime;
+        /// <summary>
+        /// Checks if the boss should teleport to a corner of the room
+        /// </summary>
         private bool bossTeleport = false;
+        /// <summary>
+        /// Slows down the boss' movement on the y-axis during battlemode
+        /// </summary>
         private float bossSlow = 0.5f;
 
         /// <summary>
@@ -66,6 +87,7 @@ namespace LimboSoulsOfJudgement
                 }
             }
 
+            // Moves the vendor, the UI and all the buttons when the boss dies
             if (health <= 0)
             {
                 GameWorld.vendor.Position = new Vector2(30 * 64, 28 * 64);
@@ -110,10 +132,8 @@ namespace LimboSoulsOfJudgement
 
         }
 
-
         protected override void HandleMovement(GameTime gameTime)
         {
-
             Gravity = false;
             if (battleMode is true)
             {
