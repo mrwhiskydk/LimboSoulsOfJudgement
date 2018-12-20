@@ -683,6 +683,7 @@ namespace LimboSoulsOfJudgement
                 spriteBatch.DrawString(font, $"Health regen: {player.healthRegen.ToString("0.00")}", new Vector2(camera.Position.X - 750, camera.Position.Y - 300), Color.White, 0f, Vector2.Zero, 1f, SpriteEffects.None, 1f);
                 spriteBatch.DrawString(font, $"Crit Chance: {player.critChance * 100f}%", new Vector2(camera.Position.X - 750, camera.Position.Y - 275), Color.White, 0f, Vector2.Zero, 1f, SpriteEffects.None, 1f);
                 spriteBatch.DrawString(font, $"Crit Damage: {player.critDmgModifier * 100f}%", new Vector2(camera.Position.X - 750, camera.Position.Y - 250), Color.White, 0f, Vector2.Zero, 1f, SpriteEffects.None, 1f);
+                spriteBatch.DrawString(font, $"Lifesteal: {player.lifeSteal * 100f}%", new Vector2(camera.Position.X - 750, camera.Position.Y - 225), Color.White, 0f, Vector2.Zero, 1f, SpriteEffects.None, 1f);
             }
 
             foreach (GameObject go in gameObjects)
