@@ -7,6 +7,10 @@ using Microsoft.Xna.Framework.Graphics;
 
 namespace LimboSoulsOfJudgement
 {
+    /// <summary>
+    /// Public Abstract Class that represents the functionality and game logic of the Ability GameObjectPassive.
+    /// This Class contains most of the default fields and methods used within each of its Sub-Classes.
+    /// </summary>
     public abstract class Ability : GameObjectPassive
     {
         /// <summary>
@@ -27,7 +31,7 @@ namespace LimboSoulsOfJudgement
         protected Sound sound;
 
         /// <summary>
-        /// Constructor
+        /// Default Ability's Constructor
         /// </summary>
         /// <param name="spriteName">Name of the sprite</param>
         public Ability(string spriteName) : this(Vector2.Zero, spriteName)
@@ -37,7 +41,8 @@ namespace LimboSoulsOfJudgement
 
 
         /// <summary>
-        /// Constructor
+        /// Ability's Constructor that sets the default values of starting position and sprite name.
+        /// Also sets a new AbilityCooldown GameObjectPassive, to the current Ability GameObjectPassive 
         /// </summary>
         /// <param name="startPosition">Start position</param>
         /// <param name="spriteName">Name of the sprite</param>

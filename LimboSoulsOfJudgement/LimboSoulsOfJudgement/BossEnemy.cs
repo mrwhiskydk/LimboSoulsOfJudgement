@@ -7,6 +7,9 @@ using Microsoft.Xna.Framework;
 
 namespace LimboSoulsOfJudgement
 {
+    /// <summary>
+    /// Public Class that represents the functionality and game logic of the BossEnemy GameObject
+    /// </summary>
     public class BossEnemy : Enemy
     {
         /// <summary>

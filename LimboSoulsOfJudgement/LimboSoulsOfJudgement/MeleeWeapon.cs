@@ -10,15 +10,29 @@ namespace LimboSoulsOfJudgement
 {
     public class MeleeWeapon : Weapon
     {
+        /// <summary>
+        /// Checks if the player is attacking or not
+        /// </summary>
         public bool isAttacking = false;
         private double attackTime = 0.2;
         private double attackTimer = 0;
         private Vector2 offsetIdle;
         private Vector2 offsetAttack;
-        //upgradeable sprites
+        /// <summary>
+        /// The sprite of the first good upgrade to the weapon
+        /// </summary>
         public static Texture2D good1;
+        /// <summary>
+        /// The sprite of the second good upgrade to the weapon
+        /// </summary>
         public static Texture2D good2;
+        /// <summary>
+        /// The sprite of the first evil upgrade to the weapon
+        /// </summary>
         public static Texture2D bad1;
+        /// <summary>
+        /// The sprite of the second evil upgrade to the weapon
+        /// </summary>
         public static Texture2D bad2;
 
         /// <summary>
@@ -45,7 +59,9 @@ namespace LimboSoulsOfJudgement
             isAttacking = true;
         }
 
-
+        /// <summary>
+        /// An override of the original Collisionbox rectangle
+        /// </summary>
         public override Rectangle CollisionBox
         {
             get
