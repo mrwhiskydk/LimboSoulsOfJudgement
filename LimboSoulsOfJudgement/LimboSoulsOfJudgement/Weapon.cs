@@ -55,7 +55,7 @@ namespace LimboSoulsOfJudgement
         /// <summary>
         /// This is used to draw our weapon
         /// </summary>
-        /// <param name="spriteBatch"></param>
+        /// <param name="spriteBatch">The spritebatch used for drawing</param>
         public override void Draw(SpriteBatch spriteBatch)
         {
             //only draw if the weapon is equipped
