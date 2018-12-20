@@ -7,6 +7,9 @@ using Microsoft.Xna.Framework.Graphics;
 
 namespace LimboSoulsOfJudgement
 {
+    /// <summary>
+    /// Public Class that represents the functionality and game logic of the Soul GameObject
+    /// </summary>
     public class Soul : AnimatedGameObject
     {
         /// <summary>
@@ -22,10 +25,10 @@ namespace LimboSoulsOfJudgement
         /// <summary>
         /// Soul Constructor that sets Soul animation values, position and sprite name
         /// </summary>
-        /// <param name="frameCount"></param>
-        /// <param name="animationFPS"></param>
-        /// <param name="startPostion"></param>
-        /// <param name="spriteName"></param>
+        /// <param name="frameCount">How many frames in the spritesheet</param>
+        /// <param name="animationFPS">The speed the frames change</param>
+        /// <param name="startPostion">The start position</param>
+        /// <param name="spriteName">Name of the sprite</param>
         public Soul(int frameCount, float animationFPS, Vector2 startPostion, string spriteName, int souls) : base(frameCount, animationFPS, startPostion, spriteName)
         {
             direction = (float)(GameWorld.rnd.Next(0, 2) * 2 - 1) * GameWorld.rnd.Next(0, 180);
@@ -35,7 +38,7 @@ namespace LimboSoulsOfJudgement
         /// <summary>
         /// Method that updates Soul game logic
         /// </summary>
-        /// <param name="gameTime"></param>
+        /// <param name="gameTime">Time elapsed since last call in the update</param>
         public override void Update(GameTime gameTime)
         {
             int distance = (int)Vector2.Distance(position, GameWorld.player.Position); // Gets the distance between the player and the soul
@@ -66,6 +69,11 @@ namespace LimboSoulsOfJudgement
             position += direction * 10;
         }
 
+        /// <summary>
+        /// Method that handles collision
+        /// If colliding with player, give player the souls and remove the Soul
+        /// </summary>
+        /// <param name="otherObject"></param>
         public override void DoCollision(GameObject otherObject)
         {
             if (otherObject is Platform)

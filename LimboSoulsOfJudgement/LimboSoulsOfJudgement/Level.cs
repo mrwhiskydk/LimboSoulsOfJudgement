@@ -9,9 +9,21 @@ namespace LimboSoulsOfJudgement
 {
     public class Level
     {
+        /// <summary>
+        /// The field used for putting bosses into a level
+        /// </summary>
         public BossEnemy boss;
+        /// <summary>
+        /// The field used for putting minor enemies into a level
+        /// </summary>
         public MinorEnemy minorEnemy;
+        /// <summary>
+        /// The field used for putting portals into a level
+        /// </summary>
         public Portal portal;
+        /// <summary>
+        /// The field used for putting moving lava into a level
+        /// </summary>
         public Lava movingLava;
         /// <summary>
         /// Checks if a level has been loaded
@@ -21,6 +33,9 @@ namespace LimboSoulsOfJudgement
         /// Checks if the final boss has been loaded
         /// </summary>
         public bool finalBoss = false;
+        /// <summary>
+        /// The constructer for all of the levels. Changes depending on what stage it is
+        /// </summary>
         public Level()
         {
             if (GameWorld.stage == 1)

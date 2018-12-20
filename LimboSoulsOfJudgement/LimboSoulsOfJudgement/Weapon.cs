@@ -8,6 +8,9 @@ using Microsoft.Xna.Framework.Graphics;
 
 namespace LimboSoulsOfJudgement
 {
+    /// <summary>
+    /// Public Class that represents the functionality and game logic of the Weapon GameObject
+    /// </summary>
     public abstract class Weapon : GameObject
     {
         /// <summary>

@@ -131,6 +131,10 @@ namespace LimboSoulsOfJudgement
             }
         }
 
+        /// <summary>
+        /// An override of the original DoCollision method from GameObject
+        /// </summary>
+        /// <param name="otherObject">The object that the current gameobject is colliding with</param>
         public override void DoCollision(GameObject otherObject)
         {
             base.DoCollision(otherObject);
@@ -171,13 +175,6 @@ namespace LimboSoulsOfJudgement
                         position.X += (float)knockbackMovement;
                     }
                 }
-
-                //if (bottomLine.Intersects(otherObject.CollisionBox) && Gravity is true)
-                //{
-                //    position.Y -= GameWorld.gravityStrength;
-                //    gravity = false;
-
-                //}
 
                 if (bottomLine.Intersects(otherObject.CollisionBox))
                 {

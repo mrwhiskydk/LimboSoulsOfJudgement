@@ -33,7 +33,13 @@ namespace LimboSoulsOfJudgement
         /// Sets the first Ability GameObject, of the AbilityBar, on the Player GameObject
         /// </summary>
         public Ability ability1;
+        /// <summary>
+        /// Sets the second Ability GameObject, of the AbilityBar, on the Player GameObject
+        /// </summary>
         public Ability ability2;
+        /// <summary>
+        /// Sets the third Ability GameObject, of the AbilityBar, on the Player GameObject
+        /// </summary>
         public Ability ability3;
         private bool canSwitchWeapons = true;
         private double attackTimer = 0;
@@ -78,7 +84,9 @@ namespace LimboSoulsOfJudgement
         /// Sets the running animation of the Player, if value is true. 
         /// </summary>
         public bool isRunning = false;
-
+        /// <summary>
+        /// If the enemy the player is hit by is located to the right of the player. hit = true
+        /// </summary>
         public bool hit = false;
         // Special-stats
         /// <summary>
@@ -251,11 +259,14 @@ namespace LimboSoulsOfJudgement
             }
         }
 
-        /* Method that handles jump functionality of the Player
-         * Value is added to jumpTime until it reaches the value of jumpForce
-         * Reduces the value of jumpForce, to give position.Y a certain stop point in the air
-         * Once jumpTime and jumpForce value are at the same, stop point is reached and the player falls down through use of gravity
-        */
+
+        /// <summary>
+        /// Method that handles jump functionality of the Player
+        /// Value is added to jumpTime until it reaches the value of jumpForce
+        /// Reduces the value of jumpForce, to give position.Y a certain stop point in the air
+        /// Once jumpTime and jumpForce value are at the same, stop point is reached and the player falls down through use of gravity
+        /// </summary>
+        /// <param name="gameTime">Time elapsed since last call in the update</param>
         private void HandleJumping(GameTime gameTime)
         {
             if (isJumping)
