@@ -22,7 +22,7 @@ namespace LimboSoulsOfJudgement
         /// <summary>
         /// Vendor Constructor, that sets vendor animation values, start position and sprite name 
         /// </summary>
-        public Vendor() : base(4, 4, new Vector2(300, 200), "Vendor")
+        public Vendor() : base(4, 4, new Vector2(300, -1500), "Vendor")
         {
 
         }
