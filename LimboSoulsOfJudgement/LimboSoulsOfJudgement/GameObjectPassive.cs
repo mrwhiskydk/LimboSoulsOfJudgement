@@ -10,10 +10,18 @@ namespace LimboSoulsOfJudgement
 {
     public class GameObjectPassive
     {
+        /// <summary>
+        /// The sprite texture of the GameObjectPassive
+        /// </summary>
         protected Texture2D sprite;
-
+        /// <summary>
+        /// The rotation of the GameObjectPassive
+        /// </summary>
         protected float rotation;
-        protected Vector2 position;
+        /// <summary>
+        /// The position of the GameObjectPassive
+        /// </summary>
+        public Vector2 position;
 
         /// <summary>
         /// Property for the position of current GameObject
@@ -42,11 +50,18 @@ namespace LimboSoulsOfJudgement
             GameWorld.gameObjectsPassive.Add(this);
         }
 
+        /// <summary>
+        /// Empty
+        /// </summary>
+        /// <param name="gameTime">Time elapsed since last call in the update</param>
         public virtual void Update(GameTime gameTime)
         {
 
         }
 
+        /// <summary>
+        /// Detroys this GameObject
+        /// </summary>
         public virtual void Destroy()
         {
             GameWorld.RemoveGameObjectPassive(this);

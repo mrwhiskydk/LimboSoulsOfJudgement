@@ -9,6 +9,11 @@ namespace LimboSoulsOfJudgement
 {
     public class Chain : GameObject
     {
+        /// <summary>
+        /// Constructor
+        /// </summary>
+        /// <param name="startPosition">the start position</param>
+        /// <param name="spriteName">The name of the sprite</param>
         public Chain(Vector2 startPosition, string spriteName) : base(startPosition, spriteName)
         {
         }

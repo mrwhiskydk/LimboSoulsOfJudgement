@@ -279,7 +279,10 @@ namespace LimboSoulsOfJudgement
         }
 
 
-
+        /// <summary>
+        /// GameWorld's Constructor, that sets the graphical functionalities of the game.
+        /// Also toggles fullscreen, and sets the default width and height values of the screen.
+        /// </summary>
         public GameWorld()
         {
             graphics = new GraphicsDeviceManager(this);
@@ -357,7 +360,7 @@ namespace LimboSoulsOfJudgement
             winScreen = Content.Load<Texture2D>("YouWin");
             pauseScreen = Content.Load<Texture2D>("Pause");
 
-            //Sound
+            //Loads the Sound
             MediaPlayer.Volume = 0.05f;
             MediaPlayer.IsRepeating = true;
             musicMain = Content.Load<Song>("sound/musicmain");
@@ -410,9 +413,6 @@ namespace LimboSoulsOfJudgement
             
         }
 
-
-
-        //go = new AnimatedGameObject(4,20,Content,"HeroStrip");
 
         /// <summary>
         /// UnloadContent will be called once per game and is the place to unload

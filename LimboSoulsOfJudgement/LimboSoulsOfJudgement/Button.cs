@@ -118,7 +118,7 @@ namespace LimboSoulsOfJudgement
         
 
         /// <summary>
-        /// overridden Draw method that draws the button half transparent if and/or while being pressed
+        /// overridden Draw method that draws out the button sprite image half transparent if and/or while being pressed
         /// </summary>
         /// <param name="spriteBatch">The spritebatch used for drawing</param>
         public override void Draw(SpriteBatch spriteBatch)

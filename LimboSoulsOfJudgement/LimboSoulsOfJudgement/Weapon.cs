@@ -10,10 +10,25 @@ namespace LimboSoulsOfJudgement
 {
     public abstract class Weapon : GameObject
     {
+        /// <summary>
+        /// The base attack rate of the weapon
+        /// </summary>
         protected float attackRate = 1; //base attack rate
+        /// <summary>
+        /// Used to increase the attackrate
+        /// </summary>
         public static float currentAttackRate = 1; //use for buffing attack rate
+        /// <summary>
+        /// The damage of the weapon
+        /// </summary>
         public int damage;
+        /// <summary>
+        /// is the weapon currently in our hands/ currently equipped
+        /// </summary>
         public bool equipped = false; //is the weapon currently in our hands/ currently equipped
+        /// <summary>
+        /// Used to play sounds
+        /// </summary>
         protected Sound sound;
 
         

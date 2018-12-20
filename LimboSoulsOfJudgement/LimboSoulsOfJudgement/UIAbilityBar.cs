@@ -10,8 +10,17 @@ namespace LimboSoulsOfJudgement
     public class UIAbilityBar : GameObjectPassive
     {
         //Positions of the ability slots
+        /// <summary>
+        /// Used to indicate the position of abilitySlot1
+        /// </summary>
         public static Vector2 abilitySlot1;
+        /// <summary>
+        /// Used to indicate the position of abilitySlot2
+        /// </summary>
         public static Vector2 abilitySlot2;
+        /// <summary>
+        /// Used to indicate the position of abilitySlot3
+        /// </summary>
         public static Vector2 abilitySlot3;
         private int distanceBetweenSlots = 82;
 

@@ -53,7 +53,7 @@ namespace LimboSoulsOfJudgement
         /// </summary>
         protected bool knockback = false;
         /// <summary>
-        /// 
+        /// The amount of time the knock will last
         /// </summary>
         protected double knockbackTime;
         /// <summary>
@@ -65,6 +65,9 @@ namespace LimboSoulsOfJudgement
         /// </summary>
         public float knockbackDistance;
 
+        /// <summary>
+        /// used by collision so that you dont need a gameTime in the DoCollision
+        /// </summary>
         protected double knockbackMovement;
 
         /// <summary>
@@ -155,7 +158,7 @@ namespace LimboSoulsOfJudgement
         /// <summary>
         /// Method that updates game logic
         /// </summary>
-        /// <param name="gameTime"></param>
+        /// <param name="gameTime">Time elapsed since last call in the update</param>
         public override void Update(GameTime gameTime)
         {
             base.Update(gameTime);

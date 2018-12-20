@@ -12,15 +12,23 @@ namespace LimboSoulsOfJudgement
     {
         protected Rectangle[] animationRectangles;
 
+        /// <summary>
+        /// the speed of the animation
+        /// </summary>
         protected float animationFPS = 10;
+        /// <summary>
+        /// the specific frame of the sprite
+        /// </summary>
         protected int currentAnimationIndex = 0;
-        double timeElapsed = 0;
+        private double timeElapsed = 0;
         /// <summary>
         /// Bool that checks for the current direction of the GameObject, on the X axis
         /// </summary>
         public bool facingRight;
 
-
+        /// <summary>
+        /// Get-Property that returns a CollisionBox based on the current frame and not the entire sprite
+        /// </summary>
         public override Rectangle CollisionBox
         {
             get
@@ -29,6 +37,13 @@ namespace LimboSoulsOfJudgement
             }
         }
 
+        /// <summary>
+        /// Constructor that creates the amount of frames
+        /// </summary>
+        /// <param name="frameCount">How many frames in the spritesheet</param>
+        /// <param name="animationFPS">The speed the frames change</param>
+        /// <param name="startPostion">The start position</param>
+        /// <param name="spriteName">Name of the sprite</param>
         public AnimatedGameObject(int frameCount, float animationFPS, Vector2 startPostion, string spriteName) : base(startPostion, spriteName)
         {
             this.animationFPS = animationFPS;
@@ -77,7 +92,10 @@ namespace LimboSoulsOfJudgement
             }
         }
 
-
+        /// <summary>
+        /// Draws the current animation index
+        /// </summary>
+        /// <param name="spriteBatch">The spritebatch used for drawing</param>
         public override void Draw(SpriteBatch spriteBatch)
         {
             if (facingRight == true)
