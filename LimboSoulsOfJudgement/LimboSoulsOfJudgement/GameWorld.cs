@@ -15,9 +15,15 @@ namespace LimboSoulsOfJudgement
     public class GameWorld : Game
     {
         private SpriteBatch spriteBatch;
+        /// <summary>
+        /// A list of all objects being added to the game
+        /// </summary>
         public static List<GameObject> gameObjects = new List<GameObject>();
         private static List<GameObject> toBeAdded = new List<GameObject>();
         private static List<GameObject> toBeRemoved = new List<GameObject>();
+        /// <summary>
+        /// A list of all passive gamobjects being added to the game
+        /// </summary>
         public static List<GameObjectPassive> gameObjectsPassive = new List<GameObjectPassive>();
         private static List<GameObjectPassive> toBeAddedPassive = new List<GameObjectPassive>();
         private static List<GameObjectPassive> toBeRemovedPassive = new List<GameObjectPassive>();
@@ -80,8 +86,17 @@ namespace LimboSoulsOfJudgement
         /// Sets the current UpgradeHealthBtn GameObject, as a static field, allowing its use between other classes
         /// </summary>
         public static UpgradeHealthBtn upgradeHealthBtn;
+        /// <summary>
+        /// Is being multiplied with a lot of the stats of the enemies. Grows by 25% after each levelreset
+        /// </summary>
         public static float levelCount = 1;
+        /// <summary>
+        /// Checks if the level should be reset or not. If the variable Stage is changed what level is being loaded
+        /// </summary>
         public static bool levelReset = false;
+        /// <summary>
+        /// Checks what level the player was in last. Is used to stop the game from loading the same level 2 times in a row
+        /// </summary>
         public static int lastLevel;
         /// <summary>
         /// Sets the current GoodKarmaButton GameObject, as a static field, allowing its use & functionality between other classes
@@ -154,13 +169,12 @@ namespace LimboSoulsOfJudgement
         /// </summary>
         public static bool triggerFinalBoss = false;
 
-
-
         // Healthbar
         /// <summary>
         /// Sets the HealthBar GameObject, as a static field, allowing its use & functionality between other classes
         /// </summary>
         public static HealthBar healthBar;
+
         /// <summary>
         /// Used for setting the HealthBar Outline image, as a Texture2D
         /// </summary>
@@ -171,6 +185,7 @@ namespace LimboSoulsOfJudgement
         /// Sets the KarmaBar GameObject, as a static field, allowing its use & functionality between other classes
         /// </summary>
         public static KarmaBar karmaBar;
+
         /// <summary>
         /// Used for setting the KarmaBar Outline image, as a Texture2D
         /// </summary>
@@ -180,19 +195,27 @@ namespace LimboSoulsOfJudgement
         /// Keeps check on what level the player is on. Changes after each level reset
         /// </summary>
         public static int levelCounter = 1;
+
         /// <summary>
         /// Shows which stage the player is on. If stage is set to 1 the game loads level 1
         /// </summary>
         public static int stage = 1;
+
         /// <summary>
         /// Checks if the player has clicked on a portal
         /// </summary>
         public static bool teleport = false;
+
         /// <summary>
         /// Sets the Level GameObject, as a static field, allowing its use & functionality between other classes
         /// </summary>
         public static Level level;
+
+        /// <summary>
+        /// Makes it so a level isnt loaded more than once
+        /// </summary>
         public static bool addLevel = true;
+
         /// <summary>
         /// Used for checking wether or not the current Player GameObject is alive or not, through values of true & false.
         /// Used for respawning the Player & drawing UI elements onto the screen, should the Player die
@@ -202,6 +225,9 @@ namespace LimboSoulsOfJudgement
         /// Used for checking if the player has won the game. Also draws out UI elements onto the screen should its value be set true
         /// </summary>
         public bool gameWon = false;
+        /// <summary>
+        /// Used to generate a random number. Can be used in all other classes
+        /// </summary>
         public static Random rnd = new Random();
         /// <summary>
         /// Sets the Crosshair GameObject, as a static field, allowing its use & functionality between other classes
@@ -229,7 +255,9 @@ namespace LimboSoulsOfJudgement
         /// </summary>
         public static bool triggerVendor = false;
 
-
+        /// <summary>
+        /// A public property for the rectangle set to the bounds of the screen
+        /// </summary>
         public static Rectangle ScreenSize
         {
             get
@@ -239,6 +267,9 @@ namespace LimboSoulsOfJudgement
         }
 
         private static ContentManager _content;
+        /// <summary>
+        /// Enables loading of recources
+        /// </summary>
         public static ContentManager ContentManager
         {
             get
@@ -261,22 +292,34 @@ namespace LimboSoulsOfJudgement
             _content = Content;
 
         }
-
+        /// <summary>
+        /// A method for adding gameobjects the the list gameObjects
+        /// </summary>
+        /// <param name="go">The standard name for gameobjects</param>
         public static void AddGameObject(GameObject go)
         {
             toBeAdded.Add(go);
         }
-
+        /// <summary>
+        /// A method for removing gameobjects from the list gameObjects
+        /// </summary>
+        /// <param name="go">The standard name for gameobjects</param>
         public static void RemoveGameObject(GameObject go)
         {
             toBeRemoved.Add(go);
         }
-
+        /// <summary>
+        /// A method for adding gameobjects the the list gameObjectPassive
+        /// </summary>
+        /// <param name="go">The standard name for gameobjects</param>
         public static void AddGameObjectPassive(GameObjectPassive go)
         {
             toBeAddedPassive.Add(go);
         }
-
+        /// <summary>
+        /// A method for removing gameobjects from the list gameObjectPassive
+        /// </summary>
+        /// <param name="go">The standard name for gameobjects</param>
         public static void RemoveGameObjectPassive(GameObjectPassive go)
         {
             toBeRemovedPassive.Add(go);

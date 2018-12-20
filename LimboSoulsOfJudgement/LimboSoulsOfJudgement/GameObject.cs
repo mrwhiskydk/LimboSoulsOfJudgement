@@ -95,7 +95,9 @@ namespace LimboSoulsOfJudgement
             sprite = GameWorld.ContentManager.Load<Texture2D>(spriteName);
             GameWorld.AddGameObject(this);
         }
-
+        /// <summary>
+        /// A method for removing gameobjects from the list gameObjects
+        /// </summary>
         public virtual void Destroy()
         {
             GameWorld.RemoveGameObject(this);
