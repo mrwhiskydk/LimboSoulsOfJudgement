@@ -399,7 +399,7 @@ namespace LimboSoulsOfJudgement
         /// Method that checks if the current Ability has been purchased & 
         /// enables the "use" button to be pressed, in order to shoot the Ability
         /// </summary>
-        /// <param name="gameTime"></param>
+        /// <param name="gameTime">Time elapsed since last call in the update</param>
         public void HandleAbilities(GameTime gameTime)
         {          
             if (Keyboard.GetState().IsKeyDown(Keys.D1) && ability1 != null && GameWorld.buyBloodStormButton.abilityPurchased)
