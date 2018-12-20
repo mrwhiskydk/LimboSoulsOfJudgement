@@ -8,6 +8,10 @@ using System.Threading.Tasks;
 
 namespace LimboSoulsOfJudgement
 {
+    /// <summary>
+    /// Public Class that represents the functionality and game logic of the AnimatedGameObject Class.
+    /// This Class contains most of the default fields and methods used to handle the functionality of animating the current GameObject's sprite
+    /// </summary>
     public class AnimatedGameObject : GameObject
     {
         protected Rectangle[] animationRectangles;

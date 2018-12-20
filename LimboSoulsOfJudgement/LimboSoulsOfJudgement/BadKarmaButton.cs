@@ -10,7 +10,6 @@ namespace LimboSoulsOfJudgement
 {
     /// <summary>
     /// Public Class that represents the functionality and game logic of the BadKarmaButton.
-    /// Also sets this Class' default values of both: currentStatValue, maxStatValue, StatCost, statIncrease and currentKarma.
     /// </summary>
     public class BadKarmaButton : Button
     {
