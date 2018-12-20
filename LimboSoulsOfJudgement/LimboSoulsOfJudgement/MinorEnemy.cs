@@ -9,6 +9,7 @@ namespace LimboSoulsOfJudgement
 {
     public class MinorEnemy : Enemy
     {
+
         public int karma;
 
 

@@ -16,16 +16,19 @@ namespace LimboSoulsOfJudgement
         /// </summary>
         public new float rotation;
 
-
+        /// <summary>
+        /// Arm Constructor
+        /// </summary>
         public Arm() : base("PlayerArm")
         {
             
         }
-        
+
         /// <summary>
         /// Method gets run every game tick
+        /// Updates the position and rotation of the Arm
         /// </summary>
-        /// <param name="gameTime"></param>
+        /// <param name="gameTime">Time elapsed since last call in the update</param>
         public override void Update(GameTime gameTime)
         {
             //if we are holding a ranged weapon rotate towards mouse

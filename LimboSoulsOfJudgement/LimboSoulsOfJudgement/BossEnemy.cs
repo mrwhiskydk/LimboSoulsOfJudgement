@@ -41,10 +41,10 @@ namespace LimboSoulsOfJudgement
         /// <summary>
         /// BossEnemy constructor that sets animation values, position and sprite names of current BossEnemy GameObject
         /// </summary>
-        /// <param name="frameCount"></param>
-        /// <param name="animationFPS"></param>
-        /// <param name="startPostion"></param>
-        /// <param name="spriteName"></param>
+        /// <param name="frameCount">How many frames in the spritesheet</param>
+        /// <param name="animationFPS">The speed the frames change</param>
+        /// <param name="startPostion">The start position</param>
+        /// <param name="spriteName">Name of the sprite</param>
         public BossEnemy(int animationFPS, float frameCount,string spriteName) : base(animationFPS, frameCount, new Vector2(300, 1000), spriteName)
         {
             movementSpeed = 300;
@@ -132,6 +132,10 @@ namespace LimboSoulsOfJudgement
 
         }
 
+        /// <summary>
+        /// Handles the boss movement
+        /// </summary>
+        /// <param name="gameTime">Time elapsed since last call in the update</param>
         protected override void HandleMovement(GameTime gameTime)
         {
             Gravity = false;
@@ -185,6 +189,10 @@ namespace LimboSoulsOfJudgement
 
         }
 
+        /// <summary>
+        /// Handles collision
+        /// </summary>
+        /// <param name="otherObject"></param>
         public override void DoCollision(GameObject otherObject)
         {
             base.DoCollision(otherObject);
@@ -197,6 +205,9 @@ namespace LimboSoulsOfJudgement
             }
         }
 
+        /// <summary>
+        /// Destroys the object
+        /// </summary>
         public override void Destroy()
         {
             base.Destroy();

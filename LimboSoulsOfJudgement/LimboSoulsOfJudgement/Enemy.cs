@@ -34,7 +34,6 @@ namespace LimboSoulsOfJudgement
         /// Checks if an enemy should go after the player vertically
         /// </summary>
         protected bool goVertically;
-        public int damageToDeal;
 
         protected double collisionMovement;
         protected const float jumpPower = 1600;

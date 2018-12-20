@@ -9,9 +9,21 @@ namespace LimboSoulsOfJudgement
 {
     public abstract class Ability : GameObjectPassive
     {
+        /// <summary>
+        /// The cooldown time on the ability
+        /// </summary>
         protected double cooldown;
+        /// <summary>
+        /// Timer used with cooldown
+        /// </summary>
         protected double cooldownTimer;
+        /// <summary>
+        /// Creates a new AbilityCooldown to show how much time is left on the cooldown
+        /// </summary>
         protected AbilityCooldown abilityCooldown;
+        /// <summary>
+        /// Used to play sounds
+        /// </summary>
         protected Sound sound;
 
         /// <summary>
@@ -37,7 +49,7 @@ namespace LimboSoulsOfJudgement
         /// <summary>
         /// This method will be run every game tick
         /// </summary>
-        /// <param name="gameTime"></param>
+        /// <param name="gameTime">Time elapsed since last call in the update</param>
         public override void Update(GameTime gameTime)
         {
             if (cooldownTimer < cooldown)
@@ -94,7 +106,7 @@ namespace LimboSoulsOfJudgement
             /// <summary>
             /// Draw the cooldown bar taking into calculations the remaining cooldown time
             /// </summary>
-            /// <param name="spriteBatch"></param>
+            /// <param name="spriteBatch">The spritebatch used for drawing</param>
             public override void Draw(SpriteBatch spriteBatch)
             {
                 if (ability.cooldownTimer < ability.cooldown)
