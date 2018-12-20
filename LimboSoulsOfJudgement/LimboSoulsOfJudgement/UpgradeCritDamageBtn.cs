@@ -14,7 +14,8 @@ namespace LimboSoulsOfJudgement
     {
 
         /// <summary>
-        /// UpgradeCritDamage Constructor, that sets the default position and sprite name values
+        /// UpgradeCritDamage Constructor, that sets the default position and sprite name values.
+        /// Also sets this Class' default values of both: currentFloatStatValue, maxFloatStatValue, StatCost and floatStatIncrease
         /// </summary>
         public UpgradeCritDamageBtn() : base(new Vector2(GameWorld.ui.Position.X, GameWorld.ui.Position.Y - 218), "buttonUITest")
         {

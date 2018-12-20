@@ -14,7 +14,8 @@ namespace LimboSoulsOfJudgement
     {
 
         /// <summary>
-        /// UpgradeMovementSpeedBtn, that sets the default position and sprite name values
+        /// UpgradeMovementSpeedBtn, that sets the default position and sprite name values.
+        /// Also sets this Class' default values of both: currentFloatStatValue, maxFloatStatValue, StatCost and floatStatIncrease
         /// </summary>
         public UpgradeMovementSpeedBtn() : base(new Vector2(GameWorld.ui.Position.X - 250, GameWorld.ui.Position.Y + 165), "buttonUITest")
         {
@@ -25,7 +26,8 @@ namespace LimboSoulsOfJudgement
         }
 
         /// <summary>
-        /// 
+        /// Updates the UpgradeCritChance game logic,
+        /// as long as the current value amount of Movement Speed haven't reach maximum
         /// </summary>
         /// <param name="gameTime"></param>
         public override void Update(GameTime gameTime)

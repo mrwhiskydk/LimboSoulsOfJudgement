@@ -17,6 +17,11 @@ namespace LimboSoulsOfJudgement
         /// </summary>
         public int currentSecondaryStatValue;
 
+        /// <summary>
+        /// UpgradeAbilityDamageBtn Constructor, that sets the default position and sprite name values
+        /// Also sets this Class' default values of both: currentStatValue, currentSecondaryStatValue, maxStatValue, karmaRequirements, 
+        /// StatCost and statIncrease
+        /// </summary>
         public UpgradeAbilityDamageBtn() : base(new Vector2(GameWorld.ui.Position.X - 250, GameWorld.ui.Position.Y - 25), "buttonUITest")
         {
             currentStatValue = LightningBoltAbility.LightningBolt.damage;

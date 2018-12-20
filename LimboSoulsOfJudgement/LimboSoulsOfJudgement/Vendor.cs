@@ -18,10 +18,6 @@ namespace LimboSoulsOfJudgement
         /// <summary>
         /// Vendor Constructor, that sets vendor animation values, start position and sprite name 
         /// </summary>
-        /// <param name="frameCount"></param>
-        /// <param name="animationFPS"></param>
-        /// <param name="startPostion"></param>
-        /// <param name="spriteName"></param>
         public Vendor() : base(4, 4, new Vector2(300, -1500), "Vendor")
         {
 
@@ -30,7 +26,7 @@ namespace LimboSoulsOfJudgement
         /// <summary>
         /// Update Method that enables constant gravity on the Vendor GameObject, and updates base game logic
         /// </summary>
-        /// <param name="gameTime"></param>
+        /// <param name="gameTime">Time elapsed since last call in the update</param>
         public override void Update(GameTime gameTime)
         {
             gravity = true;

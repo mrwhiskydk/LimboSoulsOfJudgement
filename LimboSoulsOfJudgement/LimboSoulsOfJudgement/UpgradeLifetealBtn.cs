@@ -14,7 +14,8 @@ namespace LimboSoulsOfJudgement
     {
 
         /// <summary>
-        /// UpgradeLifestealBtn Constructor, that sets the default position and sprite name values
+        /// UpgradeLifestealBtn Constructor, that sets the default position and sprite name values.
+        /// Also sets this Class' default values of both: currentFloatStatValue, maxFloatStatValue, karmaRequirements, StatCost and floatStatIncrease
         /// </summary>
         public UpgradeLifetealBtn() : base(new Vector2(GameWorld.ui.Position.X + 475, GameWorld.ui.Position.Y + 165), "buttonUITest")
         {

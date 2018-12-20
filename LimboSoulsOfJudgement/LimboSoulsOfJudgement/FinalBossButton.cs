@@ -14,11 +14,10 @@ namespace LimboSoulsOfJudgement
     {
 
         /// <summary>
-        /// 
+        /// FinalBossButton's Constructor, that sets the default position and sprite name values.
         /// </summary>
         public FinalBossButton() : base(new Vector2(GameWorld.ui.Position.X, GameWorld.ui.Position.Y + 225), "buttonUITest")
         {
-
 
         }
 

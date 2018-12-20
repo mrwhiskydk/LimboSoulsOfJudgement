@@ -13,6 +13,11 @@ namespace LimboSoulsOfJudgement
     public class BuyGodModeAbility : Button
     {
 
+        /// <summary>
+        /// BuyGodModeAbility's Constructor, that sets the default position and sprite name values.
+        /// Sets this Class' default values of both: karmaRequirements and StatCost.
+        /// Also sets the abilityPurchased bool to false as default, since the ability have not yet been purchased
+        /// </summary>
         public BuyGodModeAbility() : base(new Vector2(GameWorld.ui.Position.X + 245, GameWorld.ui.Position.Y - 25), "buttonUITest")
         {
             abilityPurchased = false;
@@ -21,9 +26,10 @@ namespace LimboSoulsOfJudgement
         }
 
         /// <summary>
-        /// 
+        /// Updates the BuyLightningBoltButton's game logic.
+        /// Also checks if current amount of either good or bad karma has reached the required karma value in order to begin the purchasing process
         /// </summary>
-        /// <param name="gameTime"></param>
+        /// <param name="gameTime">Time elapsed since last call in the update</param>
         public override void Update(GameTime gameTime)
         {
             if (GameWorld.goodKarmaButton.currentKarma >= 45 || GameWorld.badKarmaButton.currentKarma >= 45)

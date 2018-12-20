@@ -19,6 +19,10 @@ namespace LimboSoulsOfJudgement
             
         }
 
+        /// <summary>
+        /// Updates the UIAbilityBar's game logic
+        /// </summary>
+        /// <param name="gameTime">Time elapsed since last call in the update</param>
         public override void Update(GameTime gameTime)
         {
             position = new Vector2(GameWorld.camera.Position.X, GameWorld.camera.Position.Y + GameWorld.ScreenSize.Height * 0.5f - sprite.Height / 2);

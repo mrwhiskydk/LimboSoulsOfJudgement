@@ -15,6 +15,7 @@ namespace LimboSoulsOfJudgement
 
         /// <summary>
         /// BuyBloodStormButton's Constructor, that sets the default position and sprite name values.
+        /// Sets this Class' default values of both: currentStatValue, maxStatValue, karmaRequirements, StatCost and statIncrease.
         /// Also sets the abilityPurchased bool to false as default, since the ability have not yet been purchased
         /// </summary>
         public BuyBloodStormButton() : base(new Vector2(GameWorld.ui.Position.X + 245, GameWorld.ui.Position.Y - 218), "buttonUITest")

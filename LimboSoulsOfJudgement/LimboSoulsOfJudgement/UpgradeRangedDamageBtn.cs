@@ -13,7 +13,10 @@ namespace LimboSoulsOfJudgement
     public class UpgradeRangedDamageBtn : Button
     {
 
-
+        /// <summary>
+        /// UpgradeRangedDamageBtn Constructor, that sets the default position and sprite name values.
+        /// Also sets this Class' default values of both: currentStatValue, maxStatValue, StatCost and statIncrease
+        /// </summary>
         public UpgradeRangedDamageBtn() : base(new Vector2(GameWorld.ui.Position.X - 75, GameWorld.ui.Position.Y + 135), "buttonUITest")
         {
             currentStatValue = GameWorld.player.ranged.damage;

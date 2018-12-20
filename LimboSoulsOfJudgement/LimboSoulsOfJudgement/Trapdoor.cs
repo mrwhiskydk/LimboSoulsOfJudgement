@@ -11,11 +11,20 @@ namespace LimboSoulsOfJudgement
     {
         private Sound sound;
 
+        /// <summary>
+        /// Trapdoor's Constructor, that sets the default values of start position and sprite name
+        /// </summary>
+        /// <param name="startPosition"></param>
+        /// <param name="spriteName"></param>
         public Trapdoor(Vector2 startPosition, string spriteName) : base(startPosition, spriteName)
         {
             sound = new Sound("sound/trapdoor");
         }
 
+        /// <summary>
+        /// 
+        /// </summary>
+        /// <param name="otherObject"></param>
         public override void DoCollision(GameObject otherObject)
         {
             base.DoCollision(otherObject);

@@ -14,7 +14,8 @@ namespace LimboSoulsOfJudgement
     {
 
         /// <summary>
-        /// UpgradeCritChance Constructor, that sets the default position and sprite name values
+        /// UpgradeCritChance Constructor, that sets the default position and sprite name values.
+        /// Also sets this Class' default values of both: currentFloatStatValue, maxFloatStatValue, StatCost and floatStatIncrease
         /// </summary>
         public UpgradeCritChanceBtn() : base(new Vector2(GameWorld.ui.Position.X, GameWorld.ui.Position.Y - 100), "buttonUITest")
         {
@@ -25,7 +26,7 @@ namespace LimboSoulsOfJudgement
         }
 
         /// <summary>
-        /// Updates the UpgradeCritChance game logic.
+        /// Updates the UpgradeCritChance game logic,
         /// as long as the current value amount of Crit Chance haven't reach maximum
         /// </summary>
         /// <param name="gameTime">Time elapsed since last call in the update</param>

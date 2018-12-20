@@ -18,8 +18,6 @@ namespace LimboSoulsOfJudgement
         /// <summary>
         /// ResetButton Constructor, that sets the default position and sprite name values
         /// </summary>
-        /// <param name="startPosition"></param>
-        /// <param name="spriteName"></param>
         public ResetButton() : base(new Vector2(GameWorld.ui.Position.X + 245, GameWorld.ui.Position.Y + 165), "buttonUITest")
         {
 

@@ -14,7 +14,8 @@ namespace LimboSoulsOfJudgement
     {
 
         /// <summary>
-        /// UpgradeDamageBtn Constructor, that sets the default position and sprite name values
+        /// UpgradeMeleeDamageBtn Constructor, that sets the default position and sprite name values.
+        /// Also sets this Class' default values of both: currentStatValue, maxStatValue, StatCost and statIncrease
         /// </summary>
         public UpgradeMeleeDamageBtn() : base(new Vector2(GameWorld.ui.Position.X + 85, GameWorld.ui.Position.Y + 135), "buttonUITest")
         {

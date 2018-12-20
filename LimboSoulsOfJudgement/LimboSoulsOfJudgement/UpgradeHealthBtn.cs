@@ -12,9 +12,10 @@ namespace LimboSoulsOfJudgement
     /// </summary>
     public class UpgradeHealthBtn : Button
     {
-        
+
         /// <summary>
-        /// UpgradeHealthBtn Constructor, that sets the default position and sprite name values
+        /// UpgradeHealthBtn Constructor, that sets the default position and sprite name values.
+        /// Also sets this Class' default values of both: currentStatValue, maxStatValue, StatCost and statIncrease
         /// </summary>
         public UpgradeHealthBtn() : base(new Vector2(GameWorld.ui.Position.X, GameWorld.ui.Position.Y + 10), "buttonUITest")
         {

@@ -16,6 +16,15 @@ namespace LimboSoulsOfJudgement
         private double timeToRemove;
         private bool remove = false;
 
+        /// <summary>
+        /// Projectile's Constructor, that sets the default position, sprite name, speed, damage, direction and team
+        /// </summary>
+        /// <param name="startPosition">Sets the start position of the Projectile GameObject</param>
+        /// <param name="spriteName">Sets the sprite name of the Projectile GameObject</param>
+        /// <param name="speed">Sets the default speed that the Projectile GameObject is moving</param>
+        /// <param name="damage">Sets the default damage of the Projectile GameObject</param>
+        /// <param name="dir">Sets the default direction of the Projectile GameObject</param>
+        /// <param name="team">Sets the team of the Projectile GameObject</param>
         public Projectile(Vector2 startPosition, string spriteName, int speed, int damage, Vector2 dir, string team) : base(startPosition, spriteName)
         {
             this.speed = speed;

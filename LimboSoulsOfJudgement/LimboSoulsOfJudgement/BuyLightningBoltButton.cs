@@ -15,6 +15,7 @@ namespace LimboSoulsOfJudgement
 
         /// <summary>
         /// BuyLightningBoltButton's Constructor, that sets the default position and sprite name values.
+        /// Sets this Class' default values of both: currentStatValue, maxStatValue, karmaRequirements, StatCost and statIncrease.
         /// Also sets the abilityPurchased bool to false as default, since the ability have not yet been purchased
         /// </summary>
         public BuyLightningBoltButton() : base(new Vector2(GameWorld.ui.Position.X - 250, GameWorld.ui.Position.Y - 218), "buttonUITest")
@@ -30,10 +31,10 @@ namespace LimboSoulsOfJudgement
         }
 
         /// <summary>
-        /// Updates the BuyLightningBoltButton's game logic
+        /// Updates the BuyLightningBoltButton's game logic.
         /// Also checks if current amount of good karma has reached the required karma value in order to begin the purchasing process
         /// </summary>
-        /// <param name="gameTime"></param>
+        /// <param name="gameTime">Time elapsed since last call in the update</param>
         public override void Update(GameTime gameTime)
         {
 

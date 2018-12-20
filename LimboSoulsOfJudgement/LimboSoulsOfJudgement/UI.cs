@@ -23,14 +23,20 @@ namespace LimboSoulsOfJudgement
 
         }
 
-
+        /// <summary>
+        /// Updates the UI's game logic
+        /// </summary>
+        /// <param name="gameTime">Time elapsed since last call in the update</param>
         public override void Update(GameTime gameTime)
         {
             base.Update(gameTime);
             
         }
 
-
+        /// <summary>
+        /// 
+        /// </summary>
+        /// <param name="spriteBatch"></param>
         public override void Draw(SpriteBatch spriteBatch)
         {
            
