@@ -8,7 +8,9 @@ using Microsoft.Xna.Framework.Graphics;
 
 namespace LimboSoulsOfJudgement
 {
-
+    /// <summary>
+    /// Public Class that represents the functionality and game logic of the LightningBoltAbility
+    /// </summary>
     public class LightningBoltAbility : Ability
     {
         /// <summary>
@@ -55,7 +57,9 @@ namespace LimboSoulsOfJudgement
             }
         }
 
-
+        /// <summary>
+        /// Public Class that represents the functionality and game logic of the LightningBolt GameObject
+        /// </summary>
         public class LightningBolt : AnimatedGameObject
         {
             private int speed = 1000;

@@ -7,6 +7,9 @@ using Microsoft.Xna.Framework.Media;
 
 namespace LimboSoulsOfJudgement
 {
+    /// <summary>
+    /// Public Class that represents the functionality and game logic of the Level
+    /// </summary>
     public class Level
     {
         /// <summary>
