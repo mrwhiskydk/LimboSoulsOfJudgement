@@ -21,7 +21,13 @@ namespace LimboSoulsOfJudgement
         public static List<GameObjectPassive> gameObjectsPassive = new List<GameObjectPassive>();
         private static List<GameObjectPassive> toBeAddedPassive = new List<GameObjectPassive>();
         private static List<GameObjectPassive> toBeRemovedPassive = new List<GameObjectPassive>();
+        /// <summary>
+        /// Sets the UIAbilityBar GameObject, as a static field, allowing its use & functionality between other classes
+        /// </summary>
         public static UIAbilityBar uiAbilityBar;
+        /// <summary>
+        /// Sets the Player GameObject, as a static field, allowing its use & functionality between other classes
+        /// </summary>
         public static Player player;
         private Texture2D collisionTexture;
         private Texture2D loseScreen;
@@ -30,43 +36,114 @@ namespace LimboSoulsOfJudgement
         private bool pause = false;
         private double pauseTime;
         private double gameCooldown;
+        /// <summary>
+        /// Sets the Camera GameObject, as a static field, allowing its use & functionality between other classes
+        /// </summary>
         public static Camera camera;
         public static SpriteFont font;
         public static Vendor vendor;
         public static UI ui;
         public static SpriteFont damageFont;
+        /// <summary>
+        /// Sets the Song GameObject, as a static field, allowing its use & functionality between other classes.
+        /// This field is used for the main music, played during the non-boss levels
+        /// </summary>
         public static Song musicMain;
+        /// <summary>
+        /// Sets the Song GameObject, as a static field, allowing its use & functionality between other classes.
+        /// This field is used for the boss music, played during the boss levels
+        /// </summary>
         public static Song musicBoss;
 
         //Button Fields below
+        /// <summary>
+        /// Sets the current Button GameObject, as a static field, allowing its use between other classes
+        /// </summary>
         public static Button button;
+        /// <summary>
+        /// Sets the current BadKarmaButton GameObject, as a static field, allowing its use between other classes
+        /// </summary>
         public static BadKarmaButton badKarmaButton;
+        /// <summary>
+        /// Sets the current UpgradeHealthBtn GameObject, as a static field, allowing its use between other classes
+        /// </summary>
         public static UpgradeHealthBtn upgradeHealthBtn;
         public static float levelCount = 1;
         public static bool levelReset = false;
         public static int lastLevel;
+        /// <summary>
+        /// Sets the current GoodKarmaButton GameObject, as a static field, allowing its use & functionality between other classes
+        /// </summary>
         public static GoodKarmaButton goodKarmaButton;
+        /// <summary>
+        /// Sets the EvilWeaponBtn GameObject, as a static field, allowing its use & functionality between other classes
+        /// </summary>
         public static EvilWeaponBtn evilWeaponBtn;
+        /// <summary>
+        /// Sets the GoodWeaponBtn GameObject, as a static field, allowing its use & functionality between other classes
+        /// </summary>
         public static GoodWeaponBtn goodWeaponBtn;
+        /// <summary>
+        /// Sets the ResetButton GameObject, as a static field, allowing its use & functionality between other classes
+        /// </summary>
         public static ResetButton resetButton;
+        /// <summary>
+        /// Sets the UpgradeHealthRegenBtn GameObject, as a static field, allowing its use & functionality between other classes
+        /// </summary>
         public static UpgradeHealthRegenBtn upgradeHealthRegenBtn;
+        /// <summary>
+        /// Sets the UpgradeLifestealBtn GameObject, as a static field, allowing its use & functionality between other classes
+        /// </summary>
         public static UpgradeLifetealBtn upgradeLifestealBtn;
+        /// <summary>
+        /// Sets the UpgradeCritChanceBtn GameObject, as a static field, allowing its use & functionality between other classes
+        /// </summary>
         public static UpgradeCritChanceBtn upgradeCritChanceBtn;
+        /// <summary>
+        /// Sets the UpgradeCritDamageBtn GameObject, as a static field, allowing its use & functionality between other classes
+        /// </summary>
         public static UpgradeCritDamageBtn upgradeCritDamageBtn;
+        /// <summary>
+        /// Sets the UpgradeMeleeDamageBtn GameObject, as a static field, allowing its use & functionality between other classes
+        /// </summary>
         public static UpgradeMeleeDamageBtn upgradeMeleeDamageBtn;
+        /// <summary>
+        /// Sets the UpgradeRangedDamageBtn GameObject, as a static field, allowing its use & functionality between other classes
+        /// </summary>
         public static UpgradeRangedDamageBtn upgradeRangedDamageBtn;
+        /// <summary>
+        /// Sets the UpgradeMovementSpeedBtn GameObject, as a static field, allowing its use & functionality between other classes
+        /// </summary>
         public static UpgradeMovementSpeedBtn upgradeMovementSpeedBtn;
+        /// <summary>
+        /// Sets the BuyLightningBoltButton GameObject, as a static field, allowing its use & functionality between other classes
+        /// </summary>
         public static BuyLightningBoltButton buyLightningBoltButton;
+        /// <summary>
+        /// Sets the BuyBloodStormButton GameObject, as a static field, allowing its use & functionality between other classes
+        /// </summary>
         public static BuyBloodStormButton buyBloodStormButton;
+        /// <summary>
+        /// Sets the FinalBossButton GameObject, as a static field, allowing its use & functionality between other classes
+        /// </summary>
         public static FinalBossButton finalBossButton;
+        /// <summary>
+        /// Sets the UpgradeAbilityDamageBtn GameObject, as a static field, allowing its use & functionality between other classes
+        /// </summary>
         public static UpgradeAbilityDamageBtn upgradeAbilityDamageBtn;
+        /// <summary>
+        /// Sets the BuyGodModeAbility GameObject, as a static field, allowing its use & functionality between other classes
+        /// </summary>
         public static BuyGodModeAbility buyGodModeAbility;
 
         public static bool triggerFinalBoss = false;
-        
-        
+
+
 
         // Healthbar
+        /// <summary>
+        /// Sets the HealthBar GameObject, as a static field, allowing its use & functionality between other classes
+        /// </summary>
         public static HealthBar healthBar;
         public static Texture2D healthBarOutline;
 
@@ -86,11 +163,17 @@ namespace LimboSoulsOfJudgement
         /// Checks if the player has clicked on a portal
         /// </summary>
         public static bool teleport = false;
+        /// <summary>
+        /// Sets the Level GameObject, as a static field, allowing its use & functionality between other classes
+        /// </summary>
         public static Level level;
         public static bool addLevel = true;
         public bool playerAlive;
         public bool gameWon = false;
         public static Random rnd = new Random();
+        /// <summary>
+        /// Sets the Crosshair GameObject, as a static field, allowing its use & functionality between other classes
+        /// </summary>
         public static Crosshair mouse;
         private Texture2D backGround;
         private Texture2D shadow;
@@ -198,7 +281,7 @@ namespace LimboSoulsOfJudgement
             MediaPlayer.Play(musicMain);
 
 
-            //Load Vendor & Vendor UI
+            //Loads the Vendor, Vendor UI, UI AbilityBar, Player & Camera
             vendor = new Vendor();
             uiAbilityBar = new UIAbilityBar();
             player = new Player();
@@ -206,7 +289,7 @@ namespace LimboSoulsOfJudgement
             ui = new UI();
             
 
-            
+            //Loads the Sub-Class Buttons
             badKarmaButton = new BadKarmaButton();
             upgradeHealthBtn = new UpgradeHealthBtn();
             goodKarmaButton = new GoodKarmaButton();
@@ -227,17 +310,17 @@ namespace LimboSoulsOfJudgement
             buyGodModeAbility = new BuyGodModeAbility();
             
             
-            // Healthbar
+            //Loads the Healthbar
             healthBar = new HealthBar(Vector2.Zero);
             healthBar.healthBarTexture = Content.Load<Texture2D>("healthbar");
             healthBarOutline = Content.Load<Texture2D>("healthBarOutline");
 
-            //karmabar
+            //Loads the Karmabar
             karmaBar = new KarmaBar(Vector2.Zero);
             karmaBar.karmaBarTexture = Content.Load<Texture2D>("karmaBar");
             karmaBarOutline = Content.Load<Texture2D>("karmaBarOutline");
             
-
+            //Loads the Crosshair mouse
             mouse = new Crosshair();
 
             
