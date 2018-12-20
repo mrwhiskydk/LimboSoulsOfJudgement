@@ -11,8 +11,10 @@ namespace LimboSoulsOfJudgement
     /// Public Class that represents functionality and game logic of the 'EvilWeaponBtn' Button
     /// </summary>
     public class EvilWeaponBtn : Button
-    {              
-        //Actual value increase of player melee weapon damage
+    {
+        /// <summary>
+        /// Actual value increase of player melee weapon damage
+        /// </summary>
         public int weaponStatIncrease = 10;
 
         /// <summary>
@@ -46,7 +48,7 @@ namespace LimboSoulsOfJudgement
         }
 
         /// <summary>
-        ///  Overridden method that enables Button click, purchase of a new Bad/Demonic Weapon.
+        /// Overridden method that enables Button click, purchase of a new Bad/Demonic Weapon.
         /// Adds a small time period between each click.
         /// Checks wether or not another Good/Angel weapon has aldready been purchased. if true, no additional damage will be added to the MeleeWeapon GameObject.
         /// Handles math calculations of soul currency, stat cost, stat increase and karma requirements

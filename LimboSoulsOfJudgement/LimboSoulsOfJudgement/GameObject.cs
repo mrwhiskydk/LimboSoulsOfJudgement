@@ -10,9 +10,17 @@ namespace LimboSoulsOfJudgement
 {
     public class GameObject
     {
+        /// <summary>
+        /// The sprite texture of the GameObject
+        /// </summary>
         protected Texture2D sprite;
-
+        /// <summary>
+        /// The rotation of the GameObject
+        /// </summary>
         protected float rotation;
+        /// <summary>
+        /// The position of the GameObject
+        /// </summary>
         public Vector2 position;
 
         /// <summary>
@@ -85,7 +93,7 @@ namespace LimboSoulsOfJudgement
         /// <summary>
         /// Constructor that sets the starting position of the GameObject
         /// </summary>
-        /// <param name="startPosition"></param>
+        /// <param name="startPosition">The start position</param>
         /// <param name="content">Reference to a ContentManager for loading resources</param>
         /// <param name="spriteName">The name of the texture resource the should be used for the sprite</param>
         /// <exception cref="Microsoft.Xna.Framework.Content.ContentLoadException">Thrown if a matching texture cant be found for spriteName</exception>
@@ -96,6 +104,9 @@ namespace LimboSoulsOfJudgement
             GameWorld.AddGameObject(this);
         }
 
+        /// <summary>
+        /// Destoys this object
+        /// </summary>
         public virtual void Destroy()
         {
             GameWorld.RemoveGameObject(this);
