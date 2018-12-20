@@ -12,7 +12,13 @@ namespace LimboSoulsOfJudgement
     /// </summary>
     public class ResetButton : Button
     {
+        /// <summary>
+        /// Checks if the button has been pressed
+        /// </summary>
         private bool btnPressed = false;
+        /// <summary>
+        /// Makes it so the button cant be pressed multiple times in a row
+        /// </summary>
         private double btnPressDuration;
 
         /// <summary>
@@ -37,7 +43,6 @@ namespace LimboSoulsOfJudgement
                 if (btnPressDuration > 2)
                 {
                     btnPressed = false;
-                    btnPressDuration = 0;
                 }
             }
         }
@@ -59,6 +64,7 @@ namespace LimboSoulsOfJudgement
                 mouseClicked = 0;
                 GameWorld.levelCounter += 1;
                 GameWorld.vendor.Position = new Vector2(600, -1550);
+                
                 if (GameWorld.levelCounter == 2)
                 {
                     GameWorld.stage = 2;
