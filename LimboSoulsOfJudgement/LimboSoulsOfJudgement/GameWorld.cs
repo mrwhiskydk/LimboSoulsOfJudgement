@@ -74,8 +74,17 @@ namespace LimboSoulsOfJudgement
         public static KarmaBar karmaBar;
         public static Texture2D karmaBarOutline;
 
+        /// <summary>
+        /// Keeps check on what level the player is on. Changes after each level reset
+        /// </summary>
         public static int levelCounter = 1;
+        /// <summary>
+        /// Shows which stage the player is on. If stage is set to 1 the game loads level 1
+        /// </summary>
         public static int stage = 1;
+        /// <summary>
+        /// Checks if the player has clicked on a portal
+        /// </summary>
         public static bool teleport = false;
         public static Level level;
         public static bool addLevel = true;
