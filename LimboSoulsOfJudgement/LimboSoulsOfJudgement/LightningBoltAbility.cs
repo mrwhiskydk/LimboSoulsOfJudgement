@@ -8,7 +8,6 @@ using Microsoft.Xna.Framework.Graphics;
 
 namespace LimboSoulsOfJudgement
 {
-
     public class LightningBoltAbility : Ability
     {
         /// <summary>
