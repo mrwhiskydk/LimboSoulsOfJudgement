@@ -43,7 +43,7 @@
     </TypeIdentifier>
   </Class>
   <Class Name="LimboSoulsOfJudgement.Button" Collapsed="true">
-    <Position X="14.5" Y="3.75" Width="1.5" />
+    <Position X="15.75" Y="3.75" Width="2" />
     <TypeIdentifier>
       <HashCode>ABwCACAEAGAIAgAFAAAAAAAAEAAAAAAAAAACCAAIAAA=</HashCode>
       <FileName>Button.cs</FileName>
@@ -67,12 +67,18 @@
     <Position X="11" Y="5.5" Width="1.5" />
     <InheritanceLine Type="LimboSoulsOfJudgement.Button" FixedFromPoint="true">
       <Path>
-        <Point X="16" Y="4.441" />
-        <Point X="16.375" Y="4.441" />
-        <Point X="16.375" Y="5.25" />
-        <Point X="13.75" Y="5.25" />
-        <Point X="13.75" Y="5.941" />
-        <Point X="12.5" Y="5.941" />
+        <Point X="17.75" Y="4.441" />
+        <Point X="18.125" Y="4.441" />
+        <Point X="18.125" Y="4.691" />
+        <Point X="16.833" Y="4.691" Type="JumpStart" />
+        <Point X="16.667" Y="4.691" Type="JumpEnd" />
+        <Point X="15.633" Y="4.691" Type="JumpStart" />
+        <Point X="15.467" Y="4.691" Type="JumpEnd" />
+        <Point X="14.75" Y="4.691" />
+        <Point X="14.75" Y="5.441" />
+        <Point X="13.75" Y="5.441" />
+        <Point X="13.75" Y="5.846" />
+        <Point X="12.5" Y="5.846" />
       </Path>
     </InheritanceLine>
     <TypeIdentifier>
@@ -108,7 +114,7 @@
       <FileName>Crosshair.cs</FileName>
     </TypeIdentifier>
   </Class>
-  <Class Name="LimboSoulsOfJudgement.DamageText" Collapsed="true">
+  <Class Name="LimboSoulsOfJudgement.DamageText">
     <Position X="0.75" Y="1" Width="1.5" />
     <TypeIdentifier>
       <HashCode>AAQAAAAAAIAAggAAAAAAAAACAAAAAAAAIAAAAAAAAAA=</HashCode>
@@ -270,7 +276,7 @@
     </TypeIdentifier>
   </Class>
   <Class Name="LimboSoulsOfJudgement.Soul" Collapsed="true">
-    <Position X="23.75" Y="5" Width="1.5" />
+    <Position X="24.5" Y="5" Width="1.5" />
     <TypeIdentifier>
       <HashCode>AAQAAAAAAAAAIgAIAAAAIAAAAgAAAEAAAAAAAQAAAAA=</HashCode>
       <FileName>Soul.cs</FileName>
@@ -381,7 +387,7 @@
       <FileName>Vendor.cs</FileName>
     </TypeIdentifier>
   </Class>
-  <Class Name="LimboSoulsOfJudgement.Weapon">
+  <Class Name="LimboSoulsOfJudgement.Weapon" Collapsed="true">
     <Position X="19" Y="3.5" Width="1.5" />
     <TypeIdentifier>
       <HashCode>AAAAAAAAAAAAggAAABgAAAAAAIAEAAIAAAAAAAAAAAA=</HashCode>

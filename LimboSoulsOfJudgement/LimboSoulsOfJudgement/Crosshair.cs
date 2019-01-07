@@ -9,6 +9,9 @@ using System.Threading.Tasks;
 
 namespace LimboSoulsOfJudgement
 {
+    /// <summary>
+    /// Public Class that represents the default functionality and game logic of the Crosshair GameObject
+    /// </summary>
     public class Crosshair : GameObject
     {
         /// <summary>
@@ -20,9 +23,9 @@ namespace LimboSoulsOfJudgement
         }
 
         /// <summary>
-        /// Method gets run every game tick
+        /// Updates the position of the crosshair to the mouse position
         /// </summary>
-        /// <param name="gameTime"></param>
+        /// <param name="gameTime">Time elapsed since last call in the update</param>
         public override void Update(GameTime gameTime)
         {
             position = new Vector2(Mouse.GetState().X - GameWorld.camera.viewMatrix.Translation.X, Mouse.GetState().Y - GameWorld.camera.viewMatrix.Translation.Y);
@@ -32,7 +35,7 @@ namespace LimboSoulsOfJudgement
         /// <summary>
         /// Method used to draw the crosshair
         /// </summary>
-        /// <param name="spriteBatch"></param>
+        /// <param name="spriteBatch">The spritebatch used for drawing</param>
         public override void Draw(SpriteBatch spriteBatch)
         {
             spriteBatch.Draw(sprite, position, null, Color.White, rotation, new Vector2(sprite.Width * 0.5f, sprite.Height * 0.5f), 1f, SpriteEffects.None, 1f);          

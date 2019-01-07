@@ -7,9 +7,15 @@ using Microsoft.Xna.Framework.Graphics;
 
 namespace LimboSoulsOfJudgement
 {
+    /// <summary>
+    /// Public Class that represents the functionality and game logic of the Projectile GameObject
+    /// </summary>
     public class Projectile : GameObject
     {
         int speed;
+        /// <summary>
+        /// Sets the  value amount of damage dealt, of the current Projectile GameObject
+        /// </summary>
         public int damage;
         Vector2 dir;
         string team;
@@ -17,14 +23,14 @@ namespace LimboSoulsOfJudgement
         private bool remove = false;
 
         /// <summary>
-        /// Constructor
+        /// Projectile's Constructor, that sets the default position, sprite name, speed, damage, direction and team
         /// </summary>
-        /// <param name="startPosition">Start position</param>
-        /// <param name="spriteName">Name of the sprite</param>
-        /// <param name="speed">How fast the projectile travels</param>
-        /// <param name="damage">The damage of the projectile</param>
-        /// <param name="dir">The direction to fly in</param>
-        /// <param name="team">Player or Enemy team</param>
+        /// <param name="startPosition">Sets the start position of the Projectile GameObject</param>
+        /// <param name="spriteName">Sets the sprite name of the Projectile GameObject</param>
+        /// <param name="speed">Sets how fast that the Projectile GameObject travels</param>
+        /// <param name="damage">Sets the default damage of the Projectile GameObject</param>
+        /// <param name="dir">Sets the default direction of the Projectile GameObject</param>
+        /// <param name="team">Sets the team of the Projectile GameObject; Player or Enemy team</param>
         public Projectile(Vector2 startPosition, string spriteName, int speed, int damage, Vector2 dir, string team) : base(startPosition, spriteName)
         {
             this.speed = speed;
@@ -43,7 +49,7 @@ namespace LimboSoulsOfJudgement
         /// <summary>
         /// Method that run every game tick. Propels the projectile forward and checks how long the arrow has been alive for
         /// </summary>
-        /// <param name="gameTime"></param>
+        /// <param name="gameTime">Time elapsed since last call in the Update</param>
         public override void Update(GameTime gameTime)
         {
             position += dir * speed * (float)gameTime.ElapsedGameTime.TotalSeconds;
@@ -63,16 +69,17 @@ namespace LimboSoulsOfJudgement
         /// <summary>
         /// Method that draws the projectile
         /// </summary>
-        /// <param name="spriteBatch"></param>
+        /// <param name="spriteBatch">The spritebatch used for drawing</param>
         public override void Draw(SpriteBatch spriteBatch)
         {
             spriteBatch.Draw(sprite, position, null, Color.White, rotation, new Vector2(sprite.Width * 0.5f, sprite.Height * 0.5f), 1f, SpriteEffects.None, 0.86f);
         }
 
         /// <summary>
-        /// Check if we are colliding with an object.
+        /// Checks if the current Projectile GameObject is colliding with another GameObject.
+        /// Also checks if the other object is a Platform GameObject, to make the current Projectile get stuck in that Platform for a certain amount of time.
         /// </summary>
-        /// <param name="otherObject">The object we are colliding with</param>
+        /// <param name="otherObject">The other GameObject that we are colliding with</param>
         public override void DoCollision(GameObject otherObject)
         {
             base.DoCollision(otherObject);

@@ -8,13 +8,14 @@ using Microsoft.Xna.Framework;
 namespace LimboSoulsOfJudgement
 {
     /// <summary>
-    /// Public Class that represents the functionality and game logic of the UpgradeCritChanceBtn
+    /// Public Class that represents the functionality and game logic of the UpgradeCritChanceBtn's Button
     /// </summary>
     public class UpgradeCritChanceBtn : Button
     {
 
         /// <summary>
-        /// UpgradeCritChance Constructor, that sets the default position and sprite name values
+        /// UpgradeCritChance Constructor, that sets the default position and sprite name values.
+        /// Also sets this Class' default values of both: currentFloatStatValue, maxFloatStatValue, StatCost and floatStatIncrease
         /// </summary>
         public UpgradeCritChanceBtn() : base(new Vector2(GameWorld.ui.Position.X, GameWorld.ui.Position.Y - 100), "buttonUITest")
         {
@@ -26,7 +27,7 @@ namespace LimboSoulsOfJudgement
 
         /// <summary>
         /// Updates the UpgradeCritChance game logic.
-        /// as long as the current value amount of Crit Chance haven't reach maximum
+        /// Also checks if the current value amount of Crit Chance haven't reached its maximum
         /// </summary>
         /// <param name="gameTime">Time elapsed since last call in the update</param>
         public override void Update(GameTime gameTime)
@@ -41,7 +42,7 @@ namespace LimboSoulsOfJudgement
 
 
         /// <summary>
-        /// Overridden method that enables Button click, purchase and upgrades of Player Crit Chance.
+        /// Overridden method that enables Button click, purchase and upgrades of Player Critical strike Chance.
         /// Adds a small time period between each click.
         /// Increases the Crit Chance percentage amount, equal to its Crit Chance value.
         /// Handles math calculations of soul currency, stat cost and stat increase

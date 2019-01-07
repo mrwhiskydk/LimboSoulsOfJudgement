@@ -8,13 +8,14 @@ using Microsoft.Xna.Framework;
 namespace LimboSoulsOfJudgement
 {
     /// <summary>
-    /// Public Clas that represents the functionality and game logic of the UpgradeCritDamageBtn
+    /// Public Clas that represents the functionality and game logic of the UpgradeCritDamageBtn's Button
     /// </summary>
     public class UpgradeCritDamageBtn : Button
     {
 
         /// <summary>
-        /// UpgradeCritDamage Constructor, that sets the default position and sprite name values
+        /// UpgradeCritDamage Constructor, that sets the default position and sprite name values.
+        /// Also sets this Class' default values of both: currentFloatStatValue, maxFloatStatValue, StatCost and floatStatIncrease
         /// </summary>
         public UpgradeCritDamageBtn() : base(new Vector2(GameWorld.ui.Position.X, GameWorld.ui.Position.Y - 218), "buttonUITest")
         {
@@ -26,7 +27,7 @@ namespace LimboSoulsOfJudgement
 
         /// <summary>
         /// Updates the UpgradeCritDamage game logic.
-        /// as long as the current value amount of Crit Damage haven't reach maximum
+        /// Also checks if the current value amount of Crit Damage haven't reached its maximum
         /// </summary>
         /// <param name="gameTime">Time elapsed since last call in the update</param>
         public override void Update(GameTime gameTime)
@@ -40,7 +41,7 @@ namespace LimboSoulsOfJudgement
 
 
         /// <summary>
-        /// Overridden method that enables Button click, purchase and upgrades of Player Crit Damage.
+        /// Overridden method that enables Button click, purchase and upgrades of Player Critical strike Damage.
         /// Adds a small time period between each click.
         /// Increases the Crit Damage percentage amount, equal to its Crit Damage value.
         /// Handles math calculations of soul currency, stat cost and stat increase

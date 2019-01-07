@@ -9,13 +9,14 @@ using Microsoft.Xna.Framework.Graphics;
 namespace LimboSoulsOfJudgement
 {
     /// <summary>
-    /// Public Class that represents the functionality and game logic of the BadKarmaButton
+    /// Public Class that represents the functionality and game logic of the BadKarmaButton.
     /// </summary>
     public class BadKarmaButton : Button
     {
-        
+
         /// <summary>
-        /// BadKarmaButton Constructor, that sets the default position and sprite name values
+        /// BadKarmaButton Constructor, that sets the default position and sprite name values.
+        /// Also sets this Class' default values of both: currentStatValue, maxStatValue, StatCost, statIncrease and currentKarma
         /// </summary>
         public BadKarmaButton() : base(new Vector2(GameWorld.ui.Position.X + 475, GameWorld.ui.Position.Y - 218), "buttonUITest")
         {

@@ -10,18 +10,30 @@ using System.Collections.Generic;
 namespace LimboSoulsOfJudgement
 {
     /// <summary>
-    /// This is the main type for your game.
+    /// Public Class that represents the main type of the game.
     /// </summary>
     public class GameWorld : Game
     {
         private SpriteBatch spriteBatch;
+        /// <summary>
+        /// A list of all objects being added to the game
+        /// </summary>
         public static List<GameObject> gameObjects = new List<GameObject>();
         private static List<GameObject> toBeAdded = new List<GameObject>();
         private static List<GameObject> toBeRemoved = new List<GameObject>();
+        /// <summary>
+        /// A list of all passive gamobjects being added to the game
+        /// </summary>
         public static List<GameObjectPassive> gameObjectsPassive = new List<GameObjectPassive>();
         private static List<GameObjectPassive> toBeAddedPassive = new List<GameObjectPassive>();
         private static List<GameObjectPassive> toBeRemovedPassive = new List<GameObjectPassive>();
+        /// <summary>
+        /// Sets the UIAbilityBar GameObject, as a static field, allowing its use & functionality between other classes
+        /// </summary>
         public static UIAbilityBar uiAbilityBar;
+        /// <summary>
+        /// Sets the Player GameObject, as a static field, allowing its use & functionality between other classes
+        /// </summary>
         public static Player player;
         private Texture2D collisionTexture;
         private Texture2D loseScreen;
@@ -30,73 +42,222 @@ namespace LimboSoulsOfJudgement
         private bool pause = false;
         private double pauseTime;
         private double gameCooldown;
+        /// <summary>
+        /// Sets the Camera GameObject, as a static field, allowing its use & functionality between other classes
+        /// </summary>
         public static Camera camera;
+        /// <summary>
+        /// Sets a static field of a SpriteFont, used for drawing default text onto the screen
+        /// </summary>
         public static SpriteFont font;
+        /// <summary>
+        /// Sets the Vendor GameObject, as a static field, allowing its use & functionality between other classes
+        /// </summary>
         public static Vendor vendor;
+        /// <summary>
+        /// Sets the UI GameObject, as a static field, allowing its use & functionality between other classes
+        /// </summary>
         public static UI ui;
+        /// <summary>
+        /// Sets a static field of a SpriteFont, used for drawing damaging numbers onto the screen as text
+        /// </summary>
         public static SpriteFont damageFont;
+        /// <summary>
+        /// Sets the Song GameObject, as a static field, allowing its use & functionality between other classes.
+        /// This field is used for the main music, played during the non-boss levels
+        /// </summary>
         public static Song musicMain;
+        /// <summary>
+        /// Sets the Song GameObject, as a static field, allowing its use & functionality between other classes.
+        /// This field is used for the boss music, played during the boss levels
+        /// </summary>
         public static Song musicBoss;
 
         //Button Fields below
+        /// <summary>
+        /// Sets the current Button GameObject, as a static field, allowing its use between other classes
+        /// </summary>
         public static Button button;
+        /// <summary>
+        /// Sets the current BadKarmaButton GameObject, as a static field, allowing its use between other classes
+        /// </summary>
         public static BadKarmaButton badKarmaButton;
+        /// <summary>
+        /// Sets the current UpgradeHealthBtn GameObject, as a static field, allowing its use between other classes
+        /// </summary>
         public static UpgradeHealthBtn upgradeHealthBtn;
+        /// <summary>
+        /// Is being multiplied with a lot of the stats of the enemies. Grows by 25% after each levelreset
+        /// </summary>
         public static float levelCount = 1;
+        /// <summary>
+        /// Checks if the level should be reset or not. If the variable Stage is changed what level is being loaded
+        /// </summary>
         public static bool levelReset = false;
+        /// <summary>
+        /// Checks what level the player was in last. Is used to stop the game from loading the same level 2 times in a row
+        /// </summary>
         public static int lastLevel;
+        /// <summary>
+        /// Sets the current GoodKarmaButton GameObject, as a static field, allowing its use & functionality between other classes
+        /// </summary>
         public static GoodKarmaButton goodKarmaButton;
+        /// <summary>
+        /// Sets the EvilWeaponBtn GameObject, as a static field, allowing its use & functionality between other classes
+        /// </summary>
         public static EvilWeaponBtn evilWeaponBtn;
+        /// <summary>
+        /// Sets the GoodWeaponBtn GameObject, as a static field, allowing its use & functionality between other classes
+        /// </summary>
         public static GoodWeaponBtn goodWeaponBtn;
+        /// <summary>
+        /// Sets the ResetButton GameObject, as a static field, allowing its use & functionality between other classes
+        /// </summary>
         public static ResetButton resetButton;
+        /// <summary>
+        /// Sets the UpgradeHealthRegenBtn GameObject, as a static field, allowing its use & functionality between other classes
+        /// </summary>
         public static UpgradeHealthRegenBtn upgradeHealthRegenBtn;
+        /// <summary>
+        /// Sets the UpgradeLifestealBtn GameObject, as a static field, allowing its use & functionality between other classes
+        /// </summary>
         public static UpgradeLifetealBtn upgradeLifestealBtn;
+        /// <summary>
+        /// Sets the UpgradeCritChanceBtn GameObject, as a static field, allowing its use & functionality between other classes
+        /// </summary>
         public static UpgradeCritChanceBtn upgradeCritChanceBtn;
+        /// <summary>
+        /// Sets the UpgradeCritDamageBtn GameObject, as a static field, allowing its use & functionality between other classes
+        /// </summary>
         public static UpgradeCritDamageBtn upgradeCritDamageBtn;
+        /// <summary>
+        /// Sets the UpgradeMeleeDamageBtn GameObject, as a static field, allowing its use & functionality between other classes
+        /// </summary>
         public static UpgradeMeleeDamageBtn upgradeMeleeDamageBtn;
+        /// <summary>
+        /// Sets the UpgradeRangedDamageBtn GameObject, as a static field, allowing its use & functionality between other classes
+        /// </summary>
         public static UpgradeRangedDamageBtn upgradeRangedDamageBtn;
+        /// <summary>
+        /// Sets the UpgradeMovementSpeedBtn GameObject, as a static field, allowing its use & functionality between other classes
+        /// </summary>
         public static UpgradeMovementSpeedBtn upgradeMovementSpeedBtn;
+        /// <summary>
+        /// Sets the BuyLightningBoltButton GameObject, as a static field, allowing its use & functionality between other classes
+        /// </summary>
         public static BuyLightningBoltButton buyLightningBoltButton;
+        /// <summary>
+        /// Sets the BuyBloodStormButton GameObject, as a static field, allowing its use & functionality between other classes
+        /// </summary>
         public static BuyBloodStormButton buyBloodStormButton;
+        /// <summary>
+        /// Sets the FinalBossButton GameObject, as a static field, allowing its use & functionality between other classes
+        /// </summary>
         public static FinalBossButton finalBossButton;
+        /// <summary>
+        /// Sets the UpgradeAbilityDamageBtn GameObject, as a static field, allowing its use & functionality between other classes
+        /// </summary>
         public static UpgradeAbilityDamageBtn upgradeAbilityDamageBtn;
+        /// <summary>
+        /// Sets the BuyGodModeAbility GameObject, as a static field, allowing its use & functionality between other classes
+        /// </summary>
         public static BuyGodModeAbility buyGodModeAbility;
 
+        /// <summary>
+        /// Static field which's value sets wether or not the GameObject of the game's final boss should be added to the game.
+        /// If value is set true, the boss will be added to the game
+        /// </summary>
         public static bool triggerFinalBoss = false;
-        
-        
 
         // Healthbar
+        /// <summary>
+        /// Sets the HealthBar GameObject, as a static field, allowing its use & functionality between other classes
+        /// </summary>
         public static HealthBar healthBar;
+
+        /// <summary>
+        /// Used for setting the HealthBar Outline image, as a Texture2D
+        /// </summary>
         public static Texture2D healthBarOutline;
 
         // KarmaBar
+        /// <summary>
+        /// Sets the KarmaBar GameObject, as a static field, allowing its use & functionality between other classes
+        /// </summary>
         public static KarmaBar karmaBar;
+
+        /// <summary>
+        /// Used for setting the KarmaBar Outline image, as a Texture2D
+        /// </summary>
         public static Texture2D karmaBarOutline;
 
+        /// <summary>
+        /// Keeps check on what level the player is on. Changes after each level reset
+        /// </summary>
         public static int levelCounter = 1;
+
+        /// <summary>
+        /// Shows which stage the player is on. If stage is set to 1 the game loads level 1
+        /// </summary>
         public static int stage = 1;
+
+        /// <summary>
+        /// Checks if the player has clicked on a portal
+        /// </summary>
         public static bool teleport = false;
+
+        /// <summary>
+        /// Sets the Level GameObject, as a static field, allowing its use & functionality between other classes
+        /// </summary>
         public static Level level;
+
+        /// <summary>
+        /// Makes it so a level isnt loaded more than once
+        /// </summary>
         public static bool addLevel = true;
+
+        /// <summary>
+        /// Used for checking wether or not the current Player GameObject is alive or not, through values of true & false.
+        /// Used for respawning the Player & drawing UI elements onto the screen, should the Player die
+        /// </summary>
         public bool playerAlive;
+        /// <summary>
+        /// Used for checking if the player has won the game. Also draws out UI elements onto the screen should its value be set true
+        /// </summary>
         public bool gameWon = false;
+        /// <summary>
+        /// Used to generate a random number. Can be used in all other classes
+        /// </summary>
         public static Random rnd = new Random();
+        /// <summary>
+        /// Sets the Crosshair GameObject, as a static field, allowing its use & functionality between other classes
+        /// </summary>
         public static Crosshair mouse;
+
+        //Texture2D fields below, of background, shadow and good & evil aura's
         private Texture2D backGround;
         private Texture2D shadow;
         private Texture2D evilAura;
         private Texture2D goodAura;
+
         private static GraphicsDeviceManager graphics;
 
-        //Insert GameWorld fields below
+        /// <summary>
+        /// Sets the default amount of value, that Gravity produces once enabled onto a GameObject.
+        /// Used for pulling the current GameObject down (+) on the Y-axis, if they are not colliding with other specific GameObjects
+        /// </summary>
         public static float gravityStrength = 12f;
-        public static bool triggerVendor = false;
-        //Fields below is used for Fade in and out Image
-        //private int alphaValue = 0;
-        //private static int fadeIncrease = 3;
-        //private double fadeDelay = 0;    //default is .010;
 
+        /// <summary>
+        /// Used for checking wether or not the Player & Vendor CollisionBox's are colliding with one another.
+        /// Its value of true, is used for drawing out the UI elements of the UI and Buttons.
+        /// Also enables the player to begin vendor interactions, which leads to the purchasing process' of Player increases and upgrades
+        /// </summary>
+        public static bool triggerVendor = false;
+
+        /// <summary>
+        /// A public property for the rectangle set to the bounds of the screen
+        /// </summary>
         public static Rectangle ScreenSize
         {
             get
@@ -106,6 +267,9 @@ namespace LimboSoulsOfJudgement
         }
 
         private static ContentManager _content;
+        /// <summary>
+        /// Enables loading of recources
+        /// </summary>
         public static ContentManager ContentManager
         {
             get
@@ -115,35 +279,50 @@ namespace LimboSoulsOfJudgement
         }
 
 
-
+        /// <summary>
+        /// GameWorld's Constructor, that sets the graphical functionalities of the game.
+        /// Also toggles fullscreen, and sets the default width and height values of the screen.
+        /// </summary>
         public GameWorld()
         {
             graphics = new GraphicsDeviceManager(this);
             graphics.PreferredBackBufferWidth = 1600;  // set this value to the desired width of your window
             graphics.PreferredBackBufferHeight = 900;   // set this value to the desired height of your window
-            //graphics.ToggleFullScreen();
+            graphics.ToggleFullScreen();
             graphics.GraphicsProfile = GraphicsProfile.HiDef;
             graphics.ApplyChanges();
             Content.RootDirectory = "Content";
             _content = Content;
 
         }
-
+        /// <summary>
+        /// A method for adding gameobjects the the list gameObjects
+        /// </summary>
+        /// <param name="go">The gameobject being added to the list of gameobjects</param>
         public static void AddGameObject(GameObject go)
         {
             toBeAdded.Add(go);
         }
-
+        /// <summary>
+        /// A method for removing gameobjects from the list gameObjects
+        /// </summary>
+        /// <param name="go">The gameobject being removed to the list of gameobjects</param>
         public static void RemoveGameObject(GameObject go)
         {
             toBeRemoved.Add(go);
         }
-
+        /// <summary>
+        /// A method for adding gameobjects the the list gameObjectPassive
+        /// </summary>
+        /// <param name="go">The gameobject being added to the list of passive gameobjects</param>
         public static void AddGameObjectPassive(GameObjectPassive go)
         {
             toBeAddedPassive.Add(go);
         }
-
+        /// <summary>
+        /// A method for removing gameobjects from the list gameObjectPassive
+        /// </summary>
+        /// <param name="go">The gameobject being removed to the list of passive gameobjects</param>
         public static void RemoveGameObjectPassive(GameObjectPassive go)
         {
             toBeRemovedPassive.Add(go);
@@ -181,7 +360,7 @@ namespace LimboSoulsOfJudgement
             winScreen = Content.Load<Texture2D>("YouWin");
             pauseScreen = Content.Load<Texture2D>("Pause");
 
-            //Sound
+            //Loads the Sound
             MediaPlayer.Volume = 0.05f;
             MediaPlayer.IsRepeating = true;
             musicMain = Content.Load<Song>("sound/musicmain");
@@ -189,7 +368,7 @@ namespace LimboSoulsOfJudgement
             MediaPlayer.Play(musicMain);
 
 
-            //Load Vendor & Vendor UI
+            //Loads the Vendor, Vendor UI, UI AbilityBar, Player & Camera
             vendor = new Vendor();
             uiAbilityBar = new UIAbilityBar();
             player = new Player();
@@ -197,7 +376,7 @@ namespace LimboSoulsOfJudgement
             ui = new UI();
             
 
-            
+            //Loads the Sub-Class Buttons
             badKarmaButton = new BadKarmaButton();
             upgradeHealthBtn = new UpgradeHealthBtn();
             goodKarmaButton = new GoodKarmaButton();
@@ -218,25 +397,22 @@ namespace LimboSoulsOfJudgement
             buyGodModeAbility = new BuyGodModeAbility();
             
             
-            // Healthbar
+            //Loads the Healthbar
             healthBar = new HealthBar(Vector2.Zero);
             healthBar.healthBarTexture = Content.Load<Texture2D>("healthbar");
             healthBarOutline = Content.Load<Texture2D>("healthBarOutline");
 
-            //karmabar
+            //Loads the Karmabar
             karmaBar = new KarmaBar(Vector2.Zero);
             karmaBar.karmaBarTexture = Content.Load<Texture2D>("karmaBar");
             karmaBarOutline = Content.Load<Texture2D>("karmaBarOutline");
             
-
+            //Loads the Crosshair mouse
             mouse = new Crosshair();
 
             
         }
 
-
-
-        //go = new AnimatedGameObject(4,20,Content,"HeroStrip");
 
         /// <summary>
         /// UnloadContent will be called once per game and is the place to unload
@@ -463,6 +639,9 @@ namespace LimboSoulsOfJudgement
 
         /// <summary>
         /// This is called when the game should draw itself.
+        /// Draws the text connected to the different Sub-Class buttons, once the value of triggerVendor is set true (Costs, values, Completed/NonCompleted purchases, karma requirements & other button requirements).
+        /// Draws most current values of the Player GameObject, text of the pause menu (once the value of pause is true) & other UI elements;
+        /// shadow, background, win/lose screen, aura's, pause screen & moving lava 
         /// </summary>
         /// <param name="gameTime">Provides a snapshot of timing values.</param>
         protected override void Draw(GameTime gameTime)
@@ -504,6 +683,7 @@ namespace LimboSoulsOfJudgement
                 spriteBatch.DrawString(font, $"Health regen: {player.healthRegen.ToString("0.00")}", new Vector2(camera.Position.X - 750, camera.Position.Y - 300), Color.White, 0f, Vector2.Zero, 1f, SpriteEffects.None, 1f);
                 spriteBatch.DrawString(font, $"Crit Chance: {player.critChance * 100f}%", new Vector2(camera.Position.X - 750, camera.Position.Y - 275), Color.White, 0f, Vector2.Zero, 1f, SpriteEffects.None, 1f);
                 spriteBatch.DrawString(font, $"Crit Damage: {player.critDmgModifier * 100f}%", new Vector2(camera.Position.X - 750, camera.Position.Y - 250), Color.White, 0f, Vector2.Zero, 1f, SpriteEffects.None, 1f);
+                spriteBatch.DrawString(font, $"Lifesteal: {player.lifeSteal * 100f}%", new Vector2(camera.Position.X - 750, camera.Position.Y - 225), Color.White, 0f, Vector2.Zero, 1f, SpriteEffects.None, 1f);
             }
 
             foreach (GameObject go in gameObjects)
@@ -546,54 +726,54 @@ namespace LimboSoulsOfJudgement
             //Text of current Button Stat Cost
             if (triggerVendor)
             {
-                spriteBatch.DrawString(font, $"Soul Cost: {upgradeHealthBtn.statCost}", new Vector2(upgradeHealthBtn.Position.X - 50, upgradeHealthBtn.Position.Y + 35), Color.White, 0f, Vector2.Zero, 1f, SpriteEffects.None, 0.995f);
-                spriteBatch.DrawString(font, $"Soul Cost: {upgradeHealthRegenBtn.statCost}", new Vector2(upgradeHealthRegenBtn.Position.X - 50, upgradeHealthRegenBtn.Position.Y + 35), Color.White, 0f, Vector2.Zero, 1f, SpriteEffects.None, 0.995f);
-                spriteBatch.DrawString(font, $"Soul Cost: {upgradeLifestealBtn.statCost}", new Vector2(upgradeLifestealBtn.Position.X - 50, upgradeLifestealBtn.Position.Y + 35), Color.White, 0f, Vector2.Zero, 1f, SpriteEffects.None, 0.995f);
-                spriteBatch.DrawString(font, $"Soul Cost: {upgradeCritChanceBtn.statCost}", new Vector2(upgradeCritChanceBtn.Position.X - 50, upgradeCritChanceBtn.Position.Y + 35), Color.White, 0f, Vector2.Zero, 1f, SpriteEffects.None, 0.995f);
-                spriteBatch.DrawString(font, $"Soul Cost: {upgradeCritDamageBtn.statCost}", new Vector2(upgradeCritDamageBtn.Position.X - 50, upgradeCritDamageBtn.Position.Y + 35), Color.White, 0f, Vector2.Zero, 1f, SpriteEffects.None, 0.995f);
-                spriteBatch.DrawString(font, $"Soul Cost: {goodKarmaButton.statCost}", new Vector2(goodKarmaButton.Position.X - 50, goodKarmaButton.Position.Y + 35), Color.White, 0f, Vector2.Zero, 1f, SpriteEffects.None, 0.995f);
-                spriteBatch.DrawString(font, $"Soul Cost: {badKarmaButton.statCost}", new Vector2(badKarmaButton.Position.X - 50, badKarmaButton.Position.Y + 35), Color.White, 0f, Vector2.Zero, 1f, SpriteEffects.None, 0.995f);
-                spriteBatch.DrawString(font, $"Soul Cost: {upgradeMeleeDamageBtn.statCost}", new Vector2(upgradeMeleeDamageBtn.Position.X - 50, upgradeMeleeDamageBtn.Position.Y + 35), Color.White, 0f, Vector2.Zero, 1f, SpriteEffects.None, 0.995f);
-                spriteBatch.DrawString(font, $"Soul Cost: {upgradeRangedDamageBtn.statCost}", new Vector2(upgradeRangedDamageBtn.Position.X - 50, upgradeRangedDamageBtn.Position.Y + 35), Color.White, 0f, Vector2.Zero, 1f, SpriteEffects.None, 0.995f);
-                spriteBatch.DrawString(font, $"Soul Cost: {upgradeMovementSpeedBtn.statCost}", new Vector2(upgradeMovementSpeedBtn.Position.X - 50, upgradeMovementSpeedBtn.Position.Y + 35), Color.White, 0f, Vector2.Zero, 1f, SpriteEffects.None, 0.995f);                
-                spriteBatch.DrawString(font, $"Soul Cost: {buyGodModeAbility.statCost}", new Vector2(buyGodModeAbility.Position.X - 50, buyGodModeAbility.Position.Y + 35), Color.White, 0f, Vector2.Zero, 1f, SpriteEffects.None, 0.995f);
+                spriteBatch.DrawString(font, $"Soul Cost: {upgradeHealthBtn.statCost}", new Vector2(upgradeHealthBtn.Position.X - 50, upgradeHealthBtn.Position.Y + 35), Color.Black, 0f, Vector2.Zero, 1f, SpriteEffects.None, 0.995f);
+                spriteBatch.DrawString(font, $"Soul Cost: {upgradeHealthRegenBtn.statCost}", new Vector2(upgradeHealthRegenBtn.Position.X - 50, upgradeHealthRegenBtn.Position.Y + 35), Color.Black, 0f, Vector2.Zero, 1f, SpriteEffects.None, 0.995f);
+                spriteBatch.DrawString(font, $"Soul Cost: {upgradeLifestealBtn.statCost}", new Vector2(upgradeLifestealBtn.Position.X - 50, upgradeLifestealBtn.Position.Y + 35), Color.Black, 0f, Vector2.Zero, 1f, SpriteEffects.None, 0.995f);
+                spriteBatch.DrawString(font, $"Soul Cost: {upgradeCritChanceBtn.statCost}", new Vector2(upgradeCritChanceBtn.Position.X - 50, upgradeCritChanceBtn.Position.Y + 35), Color.Black, 0f, Vector2.Zero, 1f, SpriteEffects.None, 0.995f);
+                spriteBatch.DrawString(font, $"Soul Cost: {upgradeCritDamageBtn.statCost}", new Vector2(upgradeCritDamageBtn.Position.X - 50, upgradeCritDamageBtn.Position.Y + 35), Color.Black, 0f, Vector2.Zero, 1f, SpriteEffects.None, 0.995f);
+                spriteBatch.DrawString(font, $"Soul Cost: {goodKarmaButton.statCost}", new Vector2(goodKarmaButton.Position.X - 50, goodKarmaButton.Position.Y + 35), Color.Black, 0f, Vector2.Zero, 1f, SpriteEffects.None, 0.995f);
+                spriteBatch.DrawString(font, $"Soul Cost: {badKarmaButton.statCost}", new Vector2(badKarmaButton.Position.X - 50, badKarmaButton.Position.Y + 35), Color.Black, 0f, Vector2.Zero, 1f, SpriteEffects.None, 0.995f);
+                spriteBatch.DrawString(font, $"Soul Cost: {upgradeMeleeDamageBtn.statCost}", new Vector2(upgradeMeleeDamageBtn.Position.X - 50, upgradeMeleeDamageBtn.Position.Y + 35), Color.Black, 0f, Vector2.Zero, 1f, SpriteEffects.None, 0.995f);
+                spriteBatch.DrawString(font, $"Soul Cost: {upgradeRangedDamageBtn.statCost}", new Vector2(upgradeRangedDamageBtn.Position.X - 50, upgradeRangedDamageBtn.Position.Y + 35), Color.Black, 0f, Vector2.Zero, 1f, SpriteEffects.None, 0.995f);
+                spriteBatch.DrawString(font, $"Soul Cost: {upgradeMovementSpeedBtn.statCost}", new Vector2(upgradeMovementSpeedBtn.Position.X - 50, upgradeMovementSpeedBtn.Position.Y + 35), Color.Black, 0f, Vector2.Zero, 1f, SpriteEffects.None, 0.995f);                
+                spriteBatch.DrawString(font, $"Soul Cost: {buyGodModeAbility.statCost}", new Vector2(buyGodModeAbility.Position.X - 50, buyGodModeAbility.Position.Y + 35), Color.Black, 0f, Vector2.Zero, 1f, SpriteEffects.None, 0.995f);
 
                 //Cost and Karma Required Text of Good Weapon
                 if (goodWeaponBtn.maxStatValue <= goodWeaponBtn.currentStatValue)
                 {
-                    spriteBatch.DrawString(font, "Out of weapons", new Vector2(goodWeaponBtn.Position.X - 50, goodWeaponBtn.Position.Y + 35), Color.White, 0f, Vector2.Zero, 1f, SpriteEffects.None, 0.995f);
+                    spriteBatch.DrawString(font, "Out of weapons", new Vector2(goodWeaponBtn.Position.X - 50, goodWeaponBtn.Position.Y + 35), Color.Black, 0f, Vector2.Zero, 1f, SpriteEffects.None, 0.995f);
                 }
                 else if (goodWeaponBtn.maxStatValue >= goodWeaponBtn.currentStatValue)
                 {
-                    spriteBatch.DrawString(font, $"Soul Cost: {goodWeaponBtn.statCost}", new Vector2(goodWeaponBtn.Position.X - 50, goodWeaponBtn.Position.Y + 35), Color.White, 0f, Vector2.Zero, 1f, SpriteEffects.None, 0.995f);
-                    spriteBatch.DrawString(font, $"Angelic Karma Required: {goodWeaponBtn.karmaRequirements}", new Vector2(goodWeaponBtn.Position.X - 50, goodWeaponBtn.Position.Y + 55), Color.White, 0f, Vector2.Zero, 1f, SpriteEffects.None, 0.995f);
+                    spriteBatch.DrawString(font, $"Soul Cost: {goodWeaponBtn.statCost}", new Vector2(goodWeaponBtn.Position.X - 50, goodWeaponBtn.Position.Y + 35), Color.Black, 0f, Vector2.Zero, 1f, SpriteEffects.None, 0.995f);
+                    spriteBatch.DrawString(font, $"Angelic Karma Required: {goodWeaponBtn.karmaRequirements}", new Vector2(goodWeaponBtn.Position.X - 50, goodWeaponBtn.Position.Y + 55), Color.Black, 0f, Vector2.Zero, 1f, SpriteEffects.None, 0.995f);
                 }
 
                 //Cost and Karma Required Text of Good/Lightning Bolt Ability
-                spriteBatch.DrawString(font, $"Soul Cost: {buyLightningBoltButton.statCost}", new Vector2(buyLightningBoltButton.Position.X - 50, buyLightningBoltButton.Position.Y + 35), Color.White, 0f, Vector2.Zero, 1f, SpriteEffects.None, 0.995f);
-                spriteBatch.DrawString(font, $"Angelic Karma Required: {buyLightningBoltButton.karmaRequirements}", new Vector2(buyLightningBoltButton.Position.X - 80, buyLightningBoltButton.Position.Y + 55), Color.White, 0f, Vector2.Zero, 1f, SpriteEffects.None, 0.995f);
+                spriteBatch.DrawString(font, $"Soul Cost: {buyLightningBoltButton.statCost}", new Vector2(buyLightningBoltButton.Position.X - 50, buyLightningBoltButton.Position.Y + 35), Color.Black, 0f, Vector2.Zero, 1f, SpriteEffects.None, 0.995f);
+                spriteBatch.DrawString(font, $"Angelic Karma Required: {buyLightningBoltButton.karmaRequirements}", new Vector2(buyLightningBoltButton.Position.X - 80, buyLightningBoltButton.Position.Y + 55), Color.Black, 0f, Vector2.Zero, 1f, SpriteEffects.None, 0.995f);
                 //Karma Required Text of HealthRegen Stat
-                spriteBatch.DrawString(font, $"Angelic Karma Required: {upgradeHealthRegenBtn.karmaRequirements}", new Vector2(upgradeHealthRegenBtn.Position.X - 80, upgradeHealthRegenBtn.Position.Y + 55), Color.White, 0f, Vector2.Zero, 1f, SpriteEffects.None, 0.995f);
+                spriteBatch.DrawString(font, $"Angelic Karma Required: {upgradeHealthRegenBtn.karmaRequirements}", new Vector2(upgradeHealthRegenBtn.Position.X - 80, upgradeHealthRegenBtn.Position.Y + 55), Color.Black, 0f, Vector2.Zero, 1f, SpriteEffects.None, 0.995f);
                 //Cost and Karma Reuquired Text of Evil Weapon
                 if (evilWeaponBtn.maxStatValue <= evilWeaponBtn.currentStatValue)
                 {
-                    spriteBatch.DrawString(font, "Out of weapons", new Vector2(evilWeaponBtn.Position.X - 50, evilWeaponBtn.Position.Y + 35), Color.White, 0f, Vector2.Zero, 1f, SpriteEffects.None, 0.995f);
+                    spriteBatch.DrawString(font, "Out of weapons", new Vector2(evilWeaponBtn.Position.X - 50, evilWeaponBtn.Position.Y + 35), Color.Black, 0f, Vector2.Zero, 1f, SpriteEffects.None, 0.995f);
                 }
                 else if (evilWeaponBtn.maxStatValue >= evilWeaponBtn.currentStatValue)
                 {
-                    spriteBatch.DrawString(font, $"Soul Cost: {evilWeaponBtn.statCost}", new Vector2(evilWeaponBtn.Position.X - 50, evilWeaponBtn.Position.Y + 35), Color.White, 0f, Vector2.Zero, 1f, SpriteEffects.None, 0.995f);
-                    spriteBatch.DrawString(font, $"Demonic Karma Required: {evilWeaponBtn.karmaRequirements}", new Vector2(evilWeaponBtn.Position.X - 75, evilWeaponBtn.Position.Y + 55), Color.White, 0f, Vector2.Zero, 1f, SpriteEffects.None, 0.995f);
+                    spriteBatch.DrawString(font, $"Soul Cost: {evilWeaponBtn.statCost}", new Vector2(evilWeaponBtn.Position.X - 50, evilWeaponBtn.Position.Y + 35), Color.Black, 0f, Vector2.Zero, 1f, SpriteEffects.None, 0.995f);
+                    spriteBatch.DrawString(font, $"Demonic Karma Required: {evilWeaponBtn.karmaRequirements}", new Vector2(evilWeaponBtn.Position.X - 75, evilWeaponBtn.Position.Y + 55), Color.Black, 0f, Vector2.Zero, 1f, SpriteEffects.None, 0.995f);
                 }
 
                 //Cost and Karma Required Text of Evil/Blood Storm Ability
-                spriteBatch.DrawString(font, $"Soul Cost: {buyBloodStormButton.statCost}", new Vector2(buyBloodStormButton.Position.X - 50, buyBloodStormButton.Position.Y + 35), Color.White, 0f, Vector2.Zero, 1f, SpriteEffects.None, 0.995f);
-                spriteBatch.DrawString(font, $"Demonic Karma Required: {buyBloodStormButton.karmaRequirements}", new Vector2(buyBloodStormButton.Position.X - 80, buyBloodStormButton.Position.Y + 55), Color.White, 0f, Vector2.Zero, 1f, SpriteEffects.None, 0.995f);
+                spriteBatch.DrawString(font, $"Soul Cost: {buyBloodStormButton.statCost}", new Vector2(buyBloodStormButton.Position.X - 50, buyBloodStormButton.Position.Y + 35), Color.Black, 0f, Vector2.Zero, 1f, SpriteEffects.None, 0.995f);
+                spriteBatch.DrawString(font, $"Demonic Karma Required: {buyBloodStormButton.karmaRequirements}", new Vector2(buyBloodStormButton.Position.X - 80, buyBloodStormButton.Position.Y + 55), Color.Black, 0f, Vector2.Zero, 1f, SpriteEffects.None, 0.995f);
                 //Karma Required Text of Lifesteal Stat
-                spriteBatch.DrawString(font, $"Demonic Karma Required: {upgradeLifestealBtn.karmaRequirements}", new Vector2(upgradeLifestealBtn.Position.X - 80, upgradeLifestealBtn.Position.Y + 55), Color.White, 0f, Vector2.Zero, 1f, SpriteEffects.None, 0.995f);
+                spriteBatch.DrawString(font, $"Demonic Karma Required: {upgradeLifestealBtn.karmaRequirements}", new Vector2(upgradeLifestealBtn.Position.X - 80, upgradeLifestealBtn.Position.Y + 55), Color.Black, 0f, Vector2.Zero, 1f, SpriteEffects.None, 0.995f);
 
                 //Karma Required Text of Upgrade Ability Damage Stat
-                spriteBatch.DrawString(font, $"Soul Cost: {upgradeAbilityDamageBtn.statCost}", new Vector2(upgradeAbilityDamageBtn.Position.X - 50, upgradeAbilityDamageBtn.Position.Y + 35), Color.White, 0f, Vector2.Zero, 1f, SpriteEffects.None, 0.995f);
-                spriteBatch.DrawString(font, $"Either Karma Required: {upgradeAbilityDamageBtn.karmaRequirements}", new Vector2(upgradeAbilityDamageBtn.Position.X - 80, upgradeAbilityDamageBtn.Position.Y + 55), Color.White, 0f, Vector2.Zero, 1f, SpriteEffects.None, 0.995f);
+                spriteBatch.DrawString(font, $"Soul Cost: {upgradeAbilityDamageBtn.statCost}", new Vector2(upgradeAbilityDamageBtn.Position.X - 50, upgradeAbilityDamageBtn.Position.Y + 35), Color.Black, 0f, Vector2.Zero, 1f, SpriteEffects.None, 0.995f);
+                spriteBatch.DrawString(font, $"Either Karma Required: {upgradeAbilityDamageBtn.karmaRequirements}", new Vector2(upgradeAbilityDamageBtn.Position.X - 80, upgradeAbilityDamageBtn.Position.Y + 55), Color.Black, 0f, Vector2.Zero, 1f, SpriteEffects.None, 0.995f);
 
                 if (badKarmaButton.maxStatValue <= badKarmaButton.currentStatValue)
                 {
@@ -607,22 +787,22 @@ namespace LimboSoulsOfJudgement
                 //Text Completed Purchase of Evil Melee Weapon
                 if (evilWeaponBtn.maxStatValue <= evilWeaponBtn.currentStatValue)
                 {
-                    spriteBatch.DrawString(font, $"EVIL WEAPON PURCHASED", new Vector2(evilWeaponBtn.Position.X - 62, evilWeaponBtn.Position.Y - 55), Color.White, 0f, Vector2.Zero, 1f, SpriteEffects.None, 0.995f);
+                    spriteBatch.DrawString(font, $"EVIL WEAPON PURCHASED", new Vector2(evilWeaponBtn.Position.X - 62, evilWeaponBtn.Position.Y - 55), Color.Black, 0f, Vector2.Zero, 1f, SpriteEffects.None, 0.995f);
                 }
                 //Text Purchase of Evil Melee Weapon
                 else if (evilWeaponBtn.maxStatValue >= evilWeaponBtn.currentStatValue)
                 {
-                    spriteBatch.DrawString(font, $"BUY EVIL MELEE WEAPON", new Vector2(evilWeaponBtn.Position.X - 62, evilWeaponBtn.Position.Y - 55), Color.White, 0f, Vector2.Zero, 1f, SpriteEffects.None, 0.995f);
+                    spriteBatch.DrawString(font, $"BUY EVIL MELEE WEAPON", new Vector2(evilWeaponBtn.Position.X - 62, evilWeaponBtn.Position.Y - 55), Color.Black, 0f, Vector2.Zero, 1f, SpriteEffects.None, 0.995f);
                 }
                 //Text Completed Purchase of Good Melee Weapon
                 if (goodWeaponBtn.maxStatValue <= goodWeaponBtn.currentStatValue)
                 {
-                    spriteBatch.DrawString(font, $"GOOD WEAPON PURCHASED", new Vector2(goodWeaponBtn.Position.X - 52, goodWeaponBtn.Position.Y - 55), Color.White, 0f, Vector2.Zero, 1f, SpriteEffects.None, 0.995f);
+                    spriteBatch.DrawString(font, $"GOOD WEAPON PURCHASED", new Vector2(goodWeaponBtn.Position.X - 52, goodWeaponBtn.Position.Y - 55), Color.Black, 0f, Vector2.Zero, 1f, SpriteEffects.None, 0.995f);
                 }
                 //Text Purchase of Good Melee Weapon
                 else if (goodWeaponBtn.maxStatValue >= goodWeaponBtn.currentStatValue)
                 {
-                    spriteBatch.DrawString(font, $"BUY GOOD MELEE WEAPON", new Vector2(goodWeaponBtn.Position.X - 85, goodWeaponBtn.Position.Y - 55), Color.White, 0f, Vector2.Zero, 1f, SpriteEffects.None, 0.995f);
+                    spriteBatch.DrawString(font, $"BUY GOOD MELEE WEAPON", new Vector2(goodWeaponBtn.Position.X - 85, goodWeaponBtn.Position.Y - 55), Color.Black, 0f, Vector2.Zero, 1f, SpriteEffects.None, 0.995f);
                 }
 
                 //Text Completed Purchase of Good Ability: Lightning Bolt
@@ -660,38 +840,38 @@ namespace LimboSoulsOfJudgement
                 //Text Purchase Max Player Health
                 if (upgradeHealthBtn.maxStatValue >= upgradeHealthBtn.currentStatValue)
                 {
-                    spriteBatch.DrawString(font, $"Player Health Value: {upgradeHealthBtn.currentStatValue}", new Vector2(upgradeHealthBtn.Position.X - 85, upgradeHealthBtn.Position.Y - 55), Color.White, 0f, Vector2.Zero, 1f, SpriteEffects.None, 0.995f);
+                    spriteBatch.DrawString(font, $"Player Health Value: {upgradeHealthBtn.currentStatValue}", new Vector2(upgradeHealthBtn.Position.X - 85, upgradeHealthBtn.Position.Y - 55), Color.Black, 0f, Vector2.Zero, 1f, SpriteEffects.None, 0.995f);
                 }
                 //Text Completed of Purchase Life Steal
                 if (upgradeLifestealBtn.maxFloatStatValue <= upgradeLifestealBtn.currentFloatStatValue)
                 {
-                    spriteBatch.DrawString(font, $"LifeSteal: {upgradeLifestealBtn.currentFloatStatValue.ToString("0.00")}% / {upgradeLifestealBtn.maxFloatStatValue.ToString("0.00")}%", new Vector2(upgradeLifestealBtn.Position.X - 68, upgradeLifestealBtn.Position.Y - 55), Color.White, 0f, Vector2.Zero, 1f, SpriteEffects.None, 0.995f);
+                    spriteBatch.DrawString(font, $"LifeSteal: {upgradeLifestealBtn.currentFloatStatValue.ToString("0.00")}% / {upgradeLifestealBtn.maxFloatStatValue.ToString("0.00")}%", new Vector2(upgradeLifestealBtn.Position.X - 68, upgradeLifestealBtn.Position.Y - 55), Color.Black, 0f, Vector2.Zero, 1f, SpriteEffects.None, 0.995f);
                 }
                 //Text of Purchase Life Steal
                 if (upgradeLifestealBtn.maxFloatStatValue >= upgradeLifestealBtn.currentFloatStatValue)
                 {
-                    spriteBatch.DrawString(font, $"LifeSteal: {upgradeLifestealBtn.currentFloatStatValue.ToString("0.00")}% / {upgradeLifestealBtn.maxFloatStatValue.ToString("0.00")}%", new Vector2(upgradeLifestealBtn.Position.X - 68, upgradeLifestealBtn.Position.Y - 55), Color.White, 0f, Vector2.Zero, 1f, SpriteEffects.None, 0.995f);
+                    spriteBatch.DrawString(font, $"LifeSteal: {upgradeLifestealBtn.currentFloatStatValue.ToString("0.00")}% / {upgradeLifestealBtn.maxFloatStatValue.ToString("0.00")}%", new Vector2(upgradeLifestealBtn.Position.X - 68, upgradeLifestealBtn.Position.Y - 55), Color.Black, 0f, Vector2.Zero, 1f, SpriteEffects.None, 0.995f);
                 }
 
                 //Text Completed of Purchase Health Regen
                 if (upgradeHealthRegenBtn.maxFloatStatValue <= upgradeHealthRegenBtn.currentFloatStatValue)
                 {
-                    spriteBatch.DrawString(font, $"Health Regen: {upgradeHealthRegenBtn.currentFloatStatValue.ToString("0.00")} / {upgradeHealthRegenBtn.maxFloatStatValue.ToString("0.00")}", new Vector2(upgradeHealthRegenBtn.Position.X - 68, upgradeHealthRegenBtn.Position.Y - 55), Color.White, 0f, Vector2.Zero, 1f, SpriteEffects.None, 0.995f);
+                    spriteBatch.DrawString(font, $"Health Regen: {upgradeHealthRegenBtn.currentFloatStatValue.ToString("0.00")} / {upgradeHealthRegenBtn.maxFloatStatValue.ToString("0.00")}", new Vector2(upgradeHealthRegenBtn.Position.X - 68, upgradeHealthRegenBtn.Position.Y - 55), Color.Black, 0f, Vector2.Zero, 1f, SpriteEffects.None, 0.995f);
                 }
                 //Text Purchase of Upgrade Health Regen,- text of currentRegenStatValue is using 'ToString("0.00")', in order to show a maximum of only 2 decimal numbers.
                 else if (upgradeHealthRegenBtn.maxFloatStatValue >= upgradeHealthRegenBtn.currentFloatStatValue)
                 {
-                    spriteBatch.DrawString(font, $"Health Regen: {upgradeHealthRegenBtn.currentFloatStatValue.ToString("0.00")} / {upgradeHealthRegenBtn.maxFloatStatValue.ToString("0.00")}", new Vector2(upgradeHealthRegenBtn.Position.X - 68, upgradeHealthRegenBtn.Position.Y - 55), Color.White, 0f, Vector2.Zero, 1f, SpriteEffects.None, 0.995f);
+                    spriteBatch.DrawString(font, $"Health Regen: {upgradeHealthRegenBtn.currentFloatStatValue.ToString("0.00")} / {upgradeHealthRegenBtn.maxFloatStatValue.ToString("0.00")}", new Vector2(upgradeHealthRegenBtn.Position.X - 68, upgradeHealthRegenBtn.Position.Y - 55), Color.Black, 0f, Vector2.Zero, 1f, SpriteEffects.None, 0.995f);
                 }
                 //Text Completed of Upgrade Crit Chance,- text of currentRegenStatValue is using 'ToString("0.00")', in order to show a maximum of only 2 decimal numbers.
                 if (upgradeCritChanceBtn.maxFloatStatValue <= upgradeCritChanceBtn.currentFloatStatValue)
                 {
-                    spriteBatch.DrawString(font, $"Crit Chance: {upgradeCritChanceBtn.currentFloatStatValue.ToString("0.00")}% / {upgradeCritChanceBtn.maxFloatStatValue.ToString("0.00")}%", new Vector2(upgradeCritChanceBtn.Position.X - 68, upgradeCritChanceBtn.Position.Y - 55), Color.White, 0f, Vector2.Zero, 1f, SpriteEffects.None, 0.995f);
+                    spriteBatch.DrawString(font, $"Crit Chance: {upgradeCritChanceBtn.currentFloatStatValue.ToString("0.00")}% / {upgradeCritChanceBtn.maxFloatStatValue.ToString("0.00")}%", new Vector2(upgradeCritChanceBtn.Position.X - 68, upgradeCritChanceBtn.Position.Y - 55), Color.Black, 0f, Vector2.Zero, 1f, SpriteEffects.None, 0.995f);
                 }
                 //Text Purchase of Upgrade Crit Chance,- text of currentRegenStatValue is using 'ToString("0.00")', in order to show a maximum of only 2 decimal numbers.
                 else if (upgradeCritChanceBtn.maxFloatStatValue >= upgradeCritChanceBtn.currentFloatStatValue)
                 {
-                    spriteBatch.DrawString(font, $"Crit Chance: {upgradeCritChanceBtn.currentFloatStatValue * 100f}% / {upgradeCritChanceBtn.maxFloatStatValue * 100f}%", new Vector2(upgradeCritChanceBtn.Position.X - 68, upgradeCritChanceBtn.Position.Y - 55), Color.White, 0f, Vector2.Zero, 1f, SpriteEffects.None, 0.995f);
+                    spriteBatch.DrawString(font, $"Crit Chance: {upgradeCritChanceBtn.currentFloatStatValue * 100f}% / {upgradeCritChanceBtn.maxFloatStatValue * 100f}%", new Vector2(upgradeCritChanceBtn.Position.X - 68, upgradeCritChanceBtn.Position.Y - 55), Color.Black, 0f, Vector2.Zero, 1f, SpriteEffects.None, 0.995f);
                 }
                 //Text Completed of Upgrade Crit Damage,- text of currentRegenStatValue is using 'ToString("0.00")', in order to show a maximum of only 2 decimal numbers.
                 if (upgradeCritDamageBtn.maxFloatStatValue <= upgradeCritDamageBtn.currentFloatStatValue)
@@ -707,56 +887,56 @@ namespace LimboSoulsOfJudgement
                 //Text Completed of Upgrade Default Melee Damage
                 if (upgradeMeleeDamageBtn.maxStatValue <= upgradeMeleeDamageBtn.currentStatValue)
                 {
-                    spriteBatch.DrawString(font, $"Melee Damage: {upgradeMeleeDamageBtn.currentStatValue}", new Vector2(upgradeMeleeDamageBtn.Position.X - 68, upgradeMeleeDamageBtn.Position.Y - 55), Color.White, 0f, Vector2.Zero, 1f, SpriteEffects.None, 0.995f);
+                    spriteBatch.DrawString(font, $"Melee Damage: {upgradeMeleeDamageBtn.currentStatValue}", new Vector2(upgradeMeleeDamageBtn.Position.X - 68, upgradeMeleeDamageBtn.Position.Y - 55), Color.Black, 0f, Vector2.Zero, 1f, SpriteEffects.None, 0.995f);
                 }
                 //Text Purchase of Upgrade Default Melee Damage
                 else if (upgradeMeleeDamageBtn.maxStatValue >= upgradeMeleeDamageBtn.currentStatValue)
                 {
-                    spriteBatch.DrawString(font, $"Melee Damage: {upgradeMeleeDamageBtn.currentStatValue}", new Vector2(upgradeMeleeDamageBtn.Position.X - 68, upgradeMeleeDamageBtn.Position.Y - 55), Color.White, 0f, Vector2.Zero, 1f, SpriteEffects.None, 0.995f);
+                    spriteBatch.DrawString(font, $"Melee Damage: {upgradeMeleeDamageBtn.currentStatValue}", new Vector2(upgradeMeleeDamageBtn.Position.X - 68, upgradeMeleeDamageBtn.Position.Y - 55), Color.Black, 0f, Vector2.Zero, 1f, SpriteEffects.None, 0.995f);
                 }
 
                 //Text Completed of Upgrade Default Ranged Damage
                 if (upgradeRangedDamageBtn.maxStatValue <= upgradeRangedDamageBtn.currentStatValue)
                 {
-                    spriteBatch.DrawString(font, $"Ranged Damage: {upgradeRangedDamageBtn.currentStatValue}", new Vector2(upgradeRangedDamageBtn.Position.X - 68, upgradeRangedDamageBtn.Position.Y - 55), Color.White, 0f, Vector2.Zero, 1f, SpriteEffects.None, 0.995f);
+                    spriteBatch.DrawString(font, $"Ranged Damage: {upgradeRangedDamageBtn.currentStatValue}", new Vector2(upgradeRangedDamageBtn.Position.X - 68, upgradeRangedDamageBtn.Position.Y - 55), Color.Black, 0f, Vector2.Zero, 1f, SpriteEffects.None, 0.995f);
                 }
                 //Text Purchase of Upgrade Default Ranged Damage
                 else if (upgradeRangedDamageBtn.maxStatValue >= upgradeRangedDamageBtn.currentStatValue)
                 {
-                    spriteBatch.DrawString(font, $"Ranged Damage: {upgradeRangedDamageBtn.currentStatValue}", new Vector2(upgradeRangedDamageBtn.Position.X - 68, upgradeRangedDamageBtn.Position.Y - 55), Color.White, 0f, Vector2.Zero, 1f, SpriteEffects.None, 0.995f);
+                    spriteBatch.DrawString(font, $"Ranged Damage: {upgradeRangedDamageBtn.currentStatValue}", new Vector2(upgradeRangedDamageBtn.Position.X - 68, upgradeRangedDamageBtn.Position.Y - 55), Color.Black, 0f, Vector2.Zero, 1f, SpriteEffects.None, 0.995f);
                 }
 
                 //Text Completed of Upgrade Movement Speed
                 if (upgradeMovementSpeedBtn.maxFloatStatValue <= upgradeMovementSpeedBtn.currentFloatStatValue)
                 {
-                    spriteBatch.DrawString(font, $"Movement Speed: {upgradeMovementSpeedBtn.currentFloatStatValue} / {upgradeMovementSpeedBtn.maxFloatStatValue}", new Vector2(upgradeMovementSpeedBtn.Position.X - 90, upgradeMovementSpeedBtn.Position.Y - 55), Color.White, 0f, Vector2.Zero, 1f, SpriteEffects.None, 0.995f);
+                    spriteBatch.DrawString(font, $"Movement Speed: {upgradeMovementSpeedBtn.currentFloatStatValue} / {upgradeMovementSpeedBtn.maxFloatStatValue}", new Vector2(upgradeMovementSpeedBtn.Position.X - 90, upgradeMovementSpeedBtn.Position.Y - 55), Color.Black, 0f, Vector2.Zero, 1f, SpriteEffects.None, 0.995f);
                 }
                 //Text Purchase of Upgrade MovementSpeed
                 else if (upgradeMovementSpeedBtn.maxFloatStatValue >= upgradeMovementSpeedBtn.currentFloatStatValue)
                 {
-                    spriteBatch.DrawString(font, $"Movement Speed: {upgradeMovementSpeedBtn.currentFloatStatValue} / {upgradeMovementSpeedBtn.maxFloatStatValue}", new Vector2(upgradeMovementSpeedBtn.Position.X - 90, upgradeMovementSpeedBtn.Position.Y - 55), Color.White, 0f, Vector2.Zero, 1f, SpriteEffects.None, 0.995f);
+                    spriteBatch.DrawString(font, $"Movement Speed: {upgradeMovementSpeedBtn.currentFloatStatValue} / {upgradeMovementSpeedBtn.maxFloatStatValue}", new Vector2(upgradeMovementSpeedBtn.Position.X - 90, upgradeMovementSpeedBtn.Position.Y - 55), Color.Black, 0f, Vector2.Zero, 1f, SpriteEffects.None, 0.995f);
                 }
 
                 //Text Completed of Upgrade Ability Damage
                 if (upgradeAbilityDamageBtn.maxStatValue <= upgradeAbilityDamageBtn.currentStatValue || triggerVendor && upgradeAbilityDamageBtn.maxStatValue <= upgradeAbilityDamageBtn.currentSecondaryStatValue)
                 {
-                    spriteBatch.DrawString(font, $"Lightning Bolt Damage: {upgradeAbilityDamageBtn.currentStatValue}", new Vector2(upgradeAbilityDamageBtn.Position.X - 90, upgradeAbilityDamageBtn.Position.Y - 75), Color.White, 0f, Vector2.Zero, 1f, SpriteEffects.None, 0.995f);
-                    spriteBatch.DrawString(font, $"Bloodstorm Damage: {upgradeAbilityDamageBtn.currentSecondaryStatValue}", new Vector2(upgradeAbilityDamageBtn.Position.X - 90, upgradeAbilityDamageBtn.Position.Y - 55), Color.White, 0f, Vector2.Zero, 1f, SpriteEffects.None, 0.995f);
+                    spriteBatch.DrawString(font, $"Lightning Bolt Damage: {upgradeAbilityDamageBtn.currentStatValue}", new Vector2(upgradeAbilityDamageBtn.Position.X - 90, upgradeAbilityDamageBtn.Position.Y - 75), Color.Black, 0f, Vector2.Zero, 1f, SpriteEffects.None, 0.995f);
+                    spriteBatch.DrawString(font, $"Bloodstorm Damage: {upgradeAbilityDamageBtn.currentSecondaryStatValue}", new Vector2(upgradeAbilityDamageBtn.Position.X - 90, upgradeAbilityDamageBtn.Position.Y - 55), Color.Black, 0f, Vector2.Zero, 1f, SpriteEffects.None, 0.995f);
                 }
                 //Text Purchase of Upgrade Ability Damage
                 else if (upgradeAbilityDamageBtn.maxStatValue >= upgradeAbilityDamageBtn.currentStatValue || triggerVendor && upgradeAbilityDamageBtn.maxStatValue >= upgradeAbilityDamageBtn.currentSecondaryStatValue)
                 {
-                    spriteBatch.DrawString(font, $"Lightning Bolt Damage: {upgradeAbilityDamageBtn.currentStatValue}", new Vector2(upgradeAbilityDamageBtn.Position.X - 90, upgradeAbilityDamageBtn.Position.Y - 75), Color.White, 0f, Vector2.Zero, 1f, SpriteEffects.None, 0.995f);
-                    spriteBatch.DrawString(font, $"Bloodstorm Damage: {upgradeAbilityDamageBtn.currentSecondaryStatValue}", new Vector2(upgradeAbilityDamageBtn.Position.X - 90, upgradeAbilityDamageBtn.Position.Y - 55), Color.White, 0f, Vector2.Zero, 1f, SpriteEffects.None, 0.995f);
+                    spriteBatch.DrawString(font, $"Lightning Bolt Damage: {upgradeAbilityDamageBtn.currentStatValue}", new Vector2(upgradeAbilityDamageBtn.Position.X - 90, upgradeAbilityDamageBtn.Position.Y - 75), Color.Black, 0f, Vector2.Zero, 1f, SpriteEffects.None, 0.995f);
+                    spriteBatch.DrawString(font, $"Bloodstorm Damage: {upgradeAbilityDamageBtn.currentSecondaryStatValue}", new Vector2(upgradeAbilityDamageBtn.Position.X - 90, upgradeAbilityDamageBtn.Position.Y - 55), Color.Black, 0f, Vector2.Zero, 1f, SpriteEffects.None, 0.995f);
                 }
 
                 //Text Description of the Reset Button
-                spriteBatch.DrawString(font, "NEXT LEVEL!", new Vector2(resetButton.Position.X - 60, resetButton.Position.Y - 55), Color.White, 0f, Vector2.Zero, 1f, SpriteEffects.None, 0.995f);
+                spriteBatch.DrawString(font, "NEXT LEVEL!", new Vector2(resetButton.Position.X - 60, resetButton.Position.Y - 55), Color.Black, 0f, Vector2.Zero, 1f, SpriteEffects.None, 0.995f);
 
                 //Text Completed Purchase of Final Boss Button
                 if (goodKarmaButton.maxStatValue <= goodKarmaButton.currentStatValue || triggerVendor && badKarmaButton.maxStatValue <= badKarmaButton.currentStatValue)
                 {
-                    spriteBatch.DrawString(font, $"CLICK TO ENTER FINAL BOSS ROOM!", new Vector2(finalBossButton.Position.X - 114, finalBossButton.Position.Y + 35), Color.White, 0f, Vector2.Zero, 1f, SpriteEffects.None, 0.995f);
+                    spriteBatch.DrawString(font, $"CLICK TO ENTER FINAL BOSS ROOM!", new Vector2(finalBossButton.Position.X - 114, finalBossButton.Position.Y + 35), Color.Black, 0f, Vector2.Zero, 1f, SpriteEffects.None, 0.995f);
                 }
                 //Text Purchase of Final Boss Button
                 else if (goodKarmaButton.maxStatValue >= goodKarmaButton.currentStatValue || triggerVendor && badKarmaButton.maxStatValue >= badKarmaButton.currentStatValue)
@@ -767,12 +947,12 @@ namespace LimboSoulsOfJudgement
                 //Text Completed Purchase of God Mode
                 if (50 <= goodKarmaButton.currentStatValue && buyGodModeAbility.abilityPurchased || triggerVendor && 50 <= badKarmaButton.currentStatValue && buyGodModeAbility.abilityPurchased)
                 {
-                    spriteBatch.DrawString(font, $"GOD MODE PURCHASED!", new Vector2(buyGodModeAbility.Position.X - 114, buyGodModeAbility.Position.Y - 55), Color.White, 0f, Vector2.Zero, 1f, SpriteEffects.None, 0.995f);
+                    spriteBatch.DrawString(font, $"GOD MODE PURCHASED!", new Vector2(buyGodModeAbility.Position.X - 114, buyGodModeAbility.Position.Y - 55), Color.Black, 0f, Vector2.Zero, 1f, SpriteEffects.None, 0.995f);
                 }
                 //Text Purchase of God Mode
                 else if (50 >= goodKarmaButton.currentStatValue || triggerVendor && 50 >= badKarmaButton.currentStatValue)
                 {
-                    spriteBatch.DrawString(font, $"Ultimate!:\n50 Angelic or Demonic Karma", new Vector2(buyGodModeAbility.Position.X - 114, buyGodModeAbility.Position.Y - 75), Color.White, 0f, Vector2.Zero, 1f, SpriteEffects.None, 0.995f);
+                    spriteBatch.DrawString(font, $"Ultimate!:\n50 Angelic or Demonic Karma", new Vector2(buyGodModeAbility.Position.X - 114, buyGodModeAbility.Position.Y - 75), Color.Black, 0f, Vector2.Zero, 1f, SpriteEffects.None, 0.995f);
                 }
             }
 
@@ -780,6 +960,7 @@ namespace LimboSoulsOfJudgement
 
             base.Draw(gameTime);
         }
+
 
         private void DrawCollisionBox(GameObject go)
         {

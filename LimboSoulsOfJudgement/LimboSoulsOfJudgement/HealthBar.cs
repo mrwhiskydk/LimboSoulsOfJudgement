@@ -8,8 +8,14 @@ using Microsoft.Xna.Framework.Graphics;
 
 namespace LimboSoulsOfJudgement
 {
+    /// <summary>
+    /// Public Class that represents the default functionality and game logic of the HealthBar GameObjectPassive
+    /// </summary>
     public class HealthBar : GameObjectPassive
     {
+        /// <summary>
+        /// The texture of the healthBar
+        /// </summary>
         public Texture2D healthBarTexture;
         private Rectangle healthBarSize;
 
@@ -25,7 +31,7 @@ namespace LimboSoulsOfJudgement
         /// <summary>
         /// Update method that handles updating the position of the healthbar and the size based on how much health the player has left.
         /// </summary>
-        /// <param name="gameTime"></param>
+        /// <param name="gameTime">Time elapsed since last call in the update</param>
         public override void Update(GameTime gameTime)
         {
             float size = (((float)GameWorld.player.Health / (float)GameWorld.player.MaxHealth) * 100f) * (float)healthBarTexture.Width / 100f;
@@ -34,9 +40,9 @@ namespace LimboSoulsOfJudgement
         }
 
         /// <summary>
-        /// Draw method that handles the draw of the healthbar
+        /// Draw method that handles the draw of the healthbar and the health text
         /// </summary>
-        /// <param name="spriteBatch"></param>
+        /// <param name="spriteBatch">The spritebatch used for drawing</param>
         public override void Draw(SpriteBatch spriteBatch)
         {
             spriteBatch.Draw(healthBarTexture, position, healthBarSize, Color.White, 0f, Vector2.Zero, 1f, SpriteEffects.None, 0.992f);

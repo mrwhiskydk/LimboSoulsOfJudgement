@@ -8,6 +8,9 @@ using Microsoft.Xna.Framework.Graphics;
 
 namespace LimboSoulsOfJudgement
 {
+    /// <summary>
+    /// Public Class that represents the functionality and game logic of the LightningBoltAbility
+    /// </summary>
     public class LightningBoltAbility : Ability
     {
         /// <summary>
@@ -54,10 +57,15 @@ namespace LimboSoulsOfJudgement
             }
         }
 
-
+        /// <summary>
+        /// Public Class that represents the functionality and game logic of the LightningBolt GameObject
+        /// </summary>
         public class LightningBolt : AnimatedGameObject
         {
             private int speed = 1000;
+            /// <summary>
+            /// The damage of the lightningbolt
+            /// </summary>
             public static int damage = 15;
             private Vector2 dir;
             private double timeAlive = 0;
@@ -82,7 +90,7 @@ namespace LimboSoulsOfJudgement
             /// <summary>
             /// Method gets run every game tick to propel forward the ability and checks how long the ability has been active for
             /// </summary>
-            /// <param name="gameTime"></param>
+            /// <param name="gameTime">Time elapsed since last call in the update</param>
             public override void Update(GameTime gameTime)
             {
                 position += dir * speed * (float)gameTime.ElapsedGameTime.TotalSeconds;
@@ -112,7 +120,7 @@ namespace LimboSoulsOfJudgement
             /// <summary>
             /// Method that draws the ability
             /// </summary>
-            /// <param name="spriteBatch"></param>
+            /// <param name="spriteBatch">The spritebatch used for drawing</param>
             public override void Draw(SpriteBatch spriteBatch)
             {
                 spriteBatch.Draw(sprite, position, animationRectangles[currentAnimationIndex], Color.White, rotation, new Vector2(animationRectangles[currentAnimationIndex].Width * 0.5f, animationRectangles[currentAnimationIndex].Height * 0.5f), 1f, SpriteEffects.None, 0.991f);

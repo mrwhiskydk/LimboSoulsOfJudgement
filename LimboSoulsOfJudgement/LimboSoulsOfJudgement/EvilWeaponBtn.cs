@@ -11,16 +11,20 @@ namespace LimboSoulsOfJudgement
     /// Public Class that represents functionality and game logic of the 'EvilWeaponBtn' Button
     /// </summary>
     public class EvilWeaponBtn : Button
-    {              
-        //Actual value increase of player melee weapon damage
+    {
+        /// <summary>
+        /// Actual value increase of player melee weapon damage
+        /// </summary>
         public int weaponStatIncrease = 10;
 
         /// <summary>
-        /// EvilWeaponBtn Constructor, that sets the default position and sprite name values
+        /// EvilWeaponBtn Constructor, that sets the default position and sprite name values.
+        /// Sets this Class' default values of both: currentStatValue, maxStatValue, StatCost, karmaRequirements and statIncrease.
+        /// Also sets the value of weaponActive to false as default until the weapon has been purchased.
         /// </summary>
         public EvilWeaponBtn() : base(new Vector2(GameWorld.ui.Position.X + 475, GameWorld.ui.Position.Y - 25), "buttonUITest")
         {
-            weaponActive = false;   //Set to false as default until the weapon has been purchased
+            weaponActive = false;
 
             currentStatValue = 0;
             maxStatValue = 2;
@@ -30,7 +34,8 @@ namespace LimboSoulsOfJudgement
         }
 
         /// <summary>
-        /// Updates the EvilWeaponBtn's game logic
+        /// Updates the EvilWeaponBtn's game logic.
+        /// Also checks wether or not the bad karma requirements has been reached, in order to begin purchasing process
         /// </summary>
         /// <param name="gameTime">Time elapsed since last call in the update</param>
         public override void Update(GameTime gameTime)
@@ -43,7 +48,11 @@ namespace LimboSoulsOfJudgement
         }
 
         /// <summary>
-        /// Overridden UpgradeStat Method that sets its game logic
+        /// Overridden method that enables Button click, purchase of a new Bad/Demonic Weapon.
+        /// Adds a small time period between each click.
+        /// Checks wether or not another Good/Angel weapon has aldready been purchased. if true, no additional damage will be added to the MeleeWeapon GameObject.
+        /// Handles math calculations of soul currency, stat cost, stat increase and karma requirements
+        /// Also sets the value of weaponActive to true, since the purchase of this current weapon has been purchased.
         /// </summary>
         /// <param name="gameTime">Time elapsed since last call in the update</param>
         public override void UpgradeStat(GameTime gameTime)

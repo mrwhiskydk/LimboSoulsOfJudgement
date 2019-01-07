@@ -9,18 +9,29 @@ using Microsoft.Xna.Framework.Input;
 
 namespace LimboSoulsOfJudgement
 {
+    /// <summary>
+    /// Public Class that represents the functionality and game logic of the Arm GameObject
+    /// </summary>
     public class Arm : GameObject
     {
+        /// <summary>
+        /// The rotation of the arm, hides the inherited rotation from GameObject
+        /// </summary>
         public new float rotation;
+
+        /// <summary>
+        /// Arm Constructor
+        /// </summary>
         public Arm() : base("PlayerArm")
         {
             
         }
-        
+
         /// <summary>
         /// Method gets run every game tick
+        /// Updates the position and rotation of the Arm
         /// </summary>
-        /// <param name="gameTime"></param>
+        /// <param name="gameTime">Time elapsed since last call in the update</param>
         public override void Update(GameTime gameTime)
         {
             //if we are holding a ranged weapon rotate towards mouse
@@ -73,11 +84,11 @@ namespace LimboSoulsOfJudgement
                 position = new Vector2(GameWorld.player.Position.X - 15, GameWorld.player.Position.Y - 30);
             }
         }
-        
+
         /// <summary>
         /// Method to draw our sprite
         /// </summary>
-        /// <param name="spriteBatch"></param>
+        /// <param name="spriteBatch">The spritebatch used for drawing</param>
         public override void Draw(SpriteBatch spriteBatch)
         {
             if (GameWorld.player.weapon is RangedWeapon)

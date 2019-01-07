@@ -8,13 +8,14 @@ using Microsoft.Xna.Framework;
 namespace LimboSoulsOfJudgement
 {
     /// <summary>
-    /// Public Class that represents the functionality and game logic of the UpgradeMovementSpeedBtn
+    /// Public Class that represents the functionality and game logic of the UpgradeMovementSpeedBtn's Button
     /// </summary>
     public class UpgradeMovementSpeedBtn : Button
     {
 
         /// <summary>
-        /// UpgradeMovementSpeedBtn, that sets the default position and sprite name values
+        /// UpgradeMovementSpeedBtn, that sets the default position and sprite name values.
+        /// Also sets this Class' default values of both: currentFloatStatValue, maxFloatStatValue, StatCost and floatStatIncrease
         /// </summary>
         public UpgradeMovementSpeedBtn() : base(new Vector2(GameWorld.ui.Position.X - 250, GameWorld.ui.Position.Y + 165), "buttonUITest")
         {
@@ -25,9 +26,10 @@ namespace LimboSoulsOfJudgement
         }
 
         /// <summary>
-        /// 
+        /// Updates the UpgradeCritChance game logic,
+        /// as long as the current value amount of Movement Speed haven't reach its maximum
         /// </summary>
-        /// <param name="gameTime"></param>
+        /// <param name="gameTime">Time elapsed since last call in the Update</param>
         public override void Update(GameTime gameTime)
         {
 
@@ -38,9 +40,12 @@ namespace LimboSoulsOfJudgement
         }
 
         /// <summary>
-        /// 
+        /// Overridden method that enables Button click, purchase and upgrades of Player Movement Speed.
+        /// Adds a small time period between each click.
+        /// Increases the Movement Speed amount, equal to its value.
+        /// Handles math calculations of soul currency, stat cost and stat increase
         /// </summary>
-        /// <param name="gameTime"></param>
+        /// <param name="gameTime">Time elapsed since last call in the Update</param>
         public override void UpgradeStat(GameTime gameTime)
         {
             mouseClicked += gameTime.ElapsedGameTime.TotalSeconds;

@@ -8,12 +8,30 @@ using Microsoft.Xna.Framework.Graphics;
 
 namespace LimboSoulsOfJudgement
 {
+    /// <summary>
+    /// Public Class that represents the functionality and game logic of the Weapon GameObject
+    /// </summary>
     public abstract class Weapon : GameObject
     {
+        /// <summary>
+        /// The base attack rate of the weapon
+        /// </summary>
         protected float attackRate = 1; //base attack rate
+        /// <summary>
+        /// Used to increase the attackrate
+        /// </summary>
         public static float currentAttackRate = 1; //use for buffing attack rate
+        /// <summary>
+        /// The damage of the weapon
+        /// </summary>
         public int damage;
+        /// <summary>
+        /// is the weapon currently in our hands/ currently equipped
+        /// </summary>
         public bool equipped = false; //is the weapon currently in our hands/ currently equipped
+        /// <summary>
+        /// Used to play sounds
+        /// </summary>
         protected Sound sound;
 
         
@@ -37,7 +55,7 @@ namespace LimboSoulsOfJudgement
         /// <summary>
         /// This is used to draw our weapon
         /// </summary>
-        /// <param name="spriteBatch"></param>
+        /// <param name="spriteBatch">The spritebatch used for drawing</param>
         public override void Draw(SpriteBatch spriteBatch)
         {
             //only draw if the weapon is equipped

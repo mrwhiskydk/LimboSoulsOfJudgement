@@ -8,10 +8,16 @@ using Microsoft.Xna.Framework.Graphics;
 
 namespace LimboSoulsOfJudgement
 {
+    /// <summary>
+    /// Public Abstract Class that represents the functionality and game logic of the current Enemy GameObject.
+    /// This Class contains most of the default fields and methods used within each of its Sub-Classes.
+    /// </summary>
     public abstract class Enemy : Character
     {
+        /// <summary>
+        /// The damage an enemy does to the players health
+        /// </summary>
         public int enemyDamage;
-
         /// <summary>
         /// The value of an enemies soul
         /// </summary>
@@ -32,34 +38,54 @@ namespace LimboSoulsOfJudgement
         /// Checks if an enemy should go after the player vertically
         /// </summary>
         protected bool goVertically;
-        public int damageToDeal;
-
-
-        protected double patrolTime;
-        protected float patrolDuration;
+        /// <summary>
+        /// Used in collision so that you dont need a gameTime in DoCollision
+        /// </summary>
         protected double collisionMovement;
+
+        /// <summary>
+        /// Sets the default value amount of the current Enemy GameObject's jumping mechanic.
+        /// </summary>
         protected const float jumpPower = 1600;
+
+        /// <summary>
+        /// Sets the value amount, that the current Enemy GameObject should be able to jump, equal to the same current amount of the jumpPower value
+        /// </summary>
         protected double jumpForce = jumpPower;
+
+        /// <summary>
+        /// Used for setting the amount of time that the current Enemy GameObject should moving up the Y-axis (-Y)(jumping)
+        /// </summary>
         protected double jumpTime;
+
+        /// <summary>
+        /// Sets the value of wether the current Enemy GameObject is currently jumping (in the air / - on the Y-axis), or not.
+        /// Default value is set false, meaning the Enemy is not jumping.
+        /// If set true, meaning the current Enemy GameObject is jumping
+        /// </summary>
         protected bool isJumping = false;
-        
+
 
 
 
         /// <summary>
-        /// Enemy constructor that sets animation values, position and sprite names of MinorEnemy and BossEnemy
+        /// Enemy constructor that sets animation values, position and sprite names of MinorEnemy and BossEnemy.
+        /// Also sets the immortality duration amount, that the current Enemy GameObject should remain (immune to all sources of damage value taken)
         /// </summary>
-        /// <param name="frameCount"></param>
-        /// <param name="animationFPS"></param>
-        /// <param name="startPostion"></param>
-        /// <param name="spriteName"></param>
+        /// <param name="frameCount">How many frames in the spritesheet</param>
+        /// <param name="animationFPS">The speed the frames change</param>
+        /// <param name="startPostion">The start position</param>
+        /// <param name="spriteName">Name of the sprite</param>
         public Enemy(int frameCount, float animationFPS, Vector2 startPostion, string spriteName) : base(frameCount, animationFPS, startPostion, spriteName)
         {
             immortalDuration = 0.5f;
         }
 
         /// <summary>
-        /// Update method that enables movement of the Enemy GameObject
+        /// Update method that enables movement of the Enemy GameObject.
+        /// Checks wether or not the value of isImmortal is set true, to begin processing the functionality of the current Enemy GameObject's duration of remaining immortal (immune to all sources of damage value taken).
+        /// Also Checks if the value of current Enemy GameObject's Health is at or below zero, 
+        /// in order to start the processing of adding Soul GameObjects to the game, towards a random direction with a start position of the current Enemy GameObject.
         /// </summary>
         /// <param name="gameTime">Time elapsed since last call in the update</param>
         public override void Update(GameTime gameTime)

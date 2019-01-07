@@ -12,8 +12,14 @@ namespace LimboSoulsOfJudgement
     {
         private double durationTimer;
         private int duration = 10;
+        /// <summary>
+        /// If the ability has been activated
+        /// </summary>
         public static bool activated = false;
 
+        /// <summary>
+        /// Constructor that sets the sprite and cooldown
+        /// </summary>
         public UltimateAbility() : base("angelUltimate")
         {
             cooldown = 30;
@@ -22,7 +28,7 @@ namespace LimboSoulsOfJudgement
         }
 
         /// <summary>
-        /// Sets all the stats to *2 
+        /// Doubles the stats while the ability is activated
         /// </summary>
         public override void UseAbility()
         {
@@ -47,9 +53,9 @@ namespace LimboSoulsOfJudgement
         }
 
         /// <summary>
-        /// if the ability is activated, count the duration and set stats to *0.5
+        /// if the ability is activated, count the duration and set the stats back to normal
         /// </summary>
-        /// <param name="gameTime"></param>
+        /// <param name="gameTime">Time elapsed since last call in the update</param>
         public override void Update(GameTime gameTime)
         {
             base.Update(gameTime);
@@ -93,6 +99,10 @@ namespace LimboSoulsOfJudgement
             }
         }
 
+        /// <summary>
+        /// Draws the ability icon
+        /// </summary>
+        /// <param name="spriteBatch">The spritebatch used for drawing</param>
         public override void Draw(SpriteBatch spriteBatch)
         {
             if (GameWorld.buyGodModeAbility.abilityPurchased)

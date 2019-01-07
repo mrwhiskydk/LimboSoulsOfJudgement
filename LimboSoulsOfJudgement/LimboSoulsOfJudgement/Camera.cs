@@ -7,8 +7,14 @@ using System.Threading.Tasks;
 
 namespace LimboSoulsOfJudgement
 {
+    /// <summary>
+    /// Public Class that represents the default functionality and game logic of the Camera Class
+    /// </summary>
     public class Camera
     {
+        /// <summary>
+        /// The matrix used for the camera
+        /// </summary>
         public Matrix viewMatrix;
         private Vector2 halfScreenSize;
         private Vector2 position;
@@ -40,7 +46,7 @@ namespace LimboSoulsOfJudgement
         }
 
         /// <summary>
-        /// Method that updates the camera position to the player position
+        /// Method that updates the camera position to the center of the screen, which is the player position
         /// </summary>
         private void UpdateViewMatrix()
         {
